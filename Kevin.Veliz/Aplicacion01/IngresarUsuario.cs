@@ -10,24 +10,36 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+
 namespace Aplicacion01
 {
     public partial class IngresarUsuario : Form
     {
-        Usuario[] usuarios;
+        List<Usuario> usuarios;
         public IngresarUsuario()
         {
             InitializeComponent();
             this.StartPosition = FormStartPosition.CenterScreen;
+            this.usuarios = new List<Usuario>();
         }
 
         private void IngresarUsuario_Load(object sender, EventArgs e)
         {
             try
             {
-                string json = File.ReadAllText(@"C:\Users\veliz\Desktop\Parcial\Kevin.Veliz\MOCK_DATA.json");
-                // Deserializar el array JSON a un objeto Usuario
-                usuarios = JsonConvert.DeserializeObject<Usuario[]>(json);
+                string jsonFilePath = @"C:\Users\veliz\Desktop\Veliz.Kevin.PrimerParcial\Kevin.Veliz\MOCK_DATA.json";
+
+                // Crear un JsonReader a partir del archivo JSON
+                using (StreamReader sr = new StreamReader(jsonFilePath))
+                {
+                    string json_str = sr.ReadToEnd();
+                    this.usuarios = (List<Usuario>)System.Text.Json.JsonSerializer.Deserialize(json_str, typeof(List<Usuario>));
+
+                    //foreach (Usuario usuario in this.usuarios)
+                    //{
+                    //    MessageBox.Show(usuario.Apellido);
+                    //}
+                }
             }
             catch (Exception ex)
             {
@@ -40,9 +52,10 @@ namespace Aplicacion01
             bool encontro = false;
             foreach (Usuario usuario in usuarios)
             {
-                if (usuario.Nombre == txtNombre.Text & usuario.Clave == txtClave.Text)
+                if (usuario.Correo == txtCorreo.Text && usuario.Clave == txtContraseña.Text)
                 {
-                    encontro = true; break;
+                    encontro = true;
+                    break;
                 }
             }
 
@@ -50,18 +63,24 @@ namespace Aplicacion01
             {
                 MessageBox.Show("accedió");
                 this.Hide();
-
                 Aerolineas aerolineas = new Aerolineas();
                 aerolineas.ShowDialog();
-
-                this.ShowDialog();
+                this.Close();
             }
             else
             {
                 MessageBox.Show("Error");
             }
+        }
+        private void btnIngresar_MouseHover(object sender, EventArgs e)
+        {
 
+        }
 
+        private void btnLimpiar_Click(object sender, EventArgs e)
+        {
+            txtCorreo.Text = "";
+            txtContraseña.Text = "";
         }
     }
 }

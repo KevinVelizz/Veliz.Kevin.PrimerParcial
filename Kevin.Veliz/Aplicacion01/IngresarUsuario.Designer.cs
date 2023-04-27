@@ -28,115 +28,114 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(IngresarUsuario));
             btnIngresar = new Button();
-            txtNombre = new TextBox();
-            txtClave = new TextBox();
-            lblNombre = new Label();
-            lblClave = new Label();
-            chkAdministrador = new CheckBox();
-            chkSupervisor = new CheckBox();
-            chkVendedor = new CheckBox();
+            txtCorreo = new TextBox();
+            txtContraseña = new TextBox();
+            lblCorreo = new Label();
+            lblContraseña = new Label();
             pictureBox1 = new PictureBox();
+            btnLimpiar = new Button();
+            lblOlvidoContra = new Label();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
             // btnIngresar
             // 
-            btnIngresar.Location = new Point(271, 274);
+            btnIngresar.Anchor = AnchorStyles.None;
+            btnIngresar.Location = new Point(188, 205);
             btnIngresar.Name = "btnIngresar";
-            btnIngresar.Size = new Size(75, 23);
+            btnIngresar.Size = new Size(100, 25);
             btnIngresar.TabIndex = 0;
             btnIngresar.Text = "Ingresar";
             btnIngresar.UseVisualStyleBackColor = true;
             btnIngresar.Click += btnIngresar_Click;
+            btnIngresar.MouseHover += btnIngresar_MouseHover;
             // 
-            // txtNombre
+            // txtCorreo
             // 
-            txtNombre.Location = new Point(246, 165);
-            txtNombre.Name = "txtNombre";
-            txtNombre.Size = new Size(100, 23);
-            txtNombre.TabIndex = 1;
+            txtCorreo.Anchor = AnchorStyles.None;
+            txtCorreo.Location = new Point(188, 127);
+            txtCorreo.Name = "txtCorreo";
+            txtCorreo.Size = new Size(100, 23);
+            txtCorreo.TabIndex = 1;
             // 
-            // txtClave
+            // txtContraseña
             // 
-            txtClave.Location = new Point(246, 206);
-            txtClave.Name = "txtClave";
-            txtClave.Size = new Size(100, 23);
-            txtClave.TabIndex = 2;
+            txtContraseña.Anchor = AnchorStyles.None;
+            txtContraseña.Location = new Point(188, 164);
+            txtContraseña.Name = "txtContraseña";
+            txtContraseña.Size = new Size(100, 23);
+            txtContraseña.TabIndex = 2;
             // 
-            // lblNombre
+            // lblCorreo
             // 
-            lblNombre.AutoSize = true;
-            lblNombre.Location = new Point(169, 168);
-            lblNombre.Name = "lblNombre";
-            lblNombre.Size = new Size(51, 15);
-            lblNombre.TabIndex = 3;
-            lblNombre.Text = "Nombre";
+            lblCorreo.Anchor = AnchorStyles.None;
+            lblCorreo.AutoSize = true;
+            lblCorreo.Location = new Point(120, 130);
+            lblCorreo.Name = "lblCorreo";
+            lblCorreo.Size = new Size(46, 15);
+            lblCorreo.TabIndex = 3;
+            lblCorreo.Text = "Correo:";
             // 
-            // lblClave
+            // lblContraseña
             // 
-            lblClave.AutoSize = true;
-            lblClave.Location = new Point(169, 209);
-            lblClave.Name = "lblClave";
-            lblClave.Size = new Size(36, 15);
-            lblClave.TabIndex = 4;
-            lblClave.Text = "Clave";
-            // 
-            // chkAdministrador
-            // 
-            chkAdministrador.AutoSize = true;
-            chkAdministrador.Location = new Point(87, 105);
-            chkAdministrador.Name = "chkAdministrador";
-            chkAdministrador.Size = new Size(102, 19);
-            chkAdministrador.TabIndex = 5;
-            chkAdministrador.Text = "Administrador";
-            chkAdministrador.UseVisualStyleBackColor = true;
-            // 
-            // chkSupervisor
-            // 
-            chkSupervisor.AutoSize = true;
-            chkSupervisor.Location = new Point(265, 105);
-            chkSupervisor.Name = "chkSupervisor";
-            chkSupervisor.Size = new Size(81, 19);
-            chkSupervisor.TabIndex = 6;
-            chkSupervisor.Text = "Supervisor";
-            chkSupervisor.UseVisualStyleBackColor = true;
-            // 
-            // chkVendedor
-            // 
-            chkVendedor.AutoSize = true;
-            chkVendedor.Location = new Point(457, 105);
-            chkVendedor.Name = "chkVendedor";
-            chkVendedor.Size = new Size(76, 19);
-            chkVendedor.TabIndex = 7;
-            chkVendedor.Text = "Vendedor";
-            chkVendedor.UseVisualStyleBackColor = true;
+            lblContraseña.Anchor = AnchorStyles.None;
+            lblContraseña.AutoSize = true;
+            lblContraseña.Location = new Point(96, 167);
+            lblContraseña.Name = "lblContraseña";
+            lblContraseña.Size = new Size(70, 15);
+            lblContraseña.TabIndex = 4;
+            lblContraseña.Text = "Contraseña:";
             // 
             // pictureBox1
             // 
-            pictureBox1.Image = Properties.Resources.abierto;
-            pictureBox1.Location = new Point(228, 12);
+            pictureBox1.Anchor = AnchorStyles.None;
+            pictureBox1.BackColor = SystemColors.Control;
+            pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
+            pictureBox1.Location = new Point(198, 10);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(118, 70);
+            pictureBox1.Size = new Size(81, 71);
+            pictureBox1.SizeMode = PictureBoxSizeMode.CenterImage;
             pictureBox1.TabIndex = 8;
             pictureBox1.TabStop = false;
+            // 
+            // btnLimpiar
+            // 
+            btnLimpiar.Anchor = AnchorStyles.None;
+            btnLimpiar.Location = new Point(188, 236);
+            btnLimpiar.Name = "btnLimpiar";
+            btnLimpiar.Size = new Size(100, 25);
+            btnLimpiar.TabIndex = 12;
+            btnLimpiar.Text = "Limpiar";
+            btnLimpiar.UseVisualStyleBackColor = true;
+            btnLimpiar.Click += btnLimpiar_Click;
+            // 
+            // lblOlvidoContra
+            // 
+            lblOlvidoContra.Anchor = AnchorStyles.None;
+            lblOlvidoContra.AutoSize = true;
+            lblOlvidoContra.Location = new Point(168, 282);
+            lblOlvidoContra.Name = "lblOlvidoContra";
+            lblOlvidoContra.Size = new Size(139, 15);
+            lblOlvidoContra.TabIndex = 13;
+            lblOlvidoContra.Text = "¿olvidaste tu contraseña?";
             // 
             // IngresarUsuario
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(582, 376);
+            ClientSize = new Size(465, 318);
+            Controls.Add(lblOlvidoContra);
+            Controls.Add(btnLimpiar);
             Controls.Add(pictureBox1);
-            Controls.Add(chkVendedor);
-            Controls.Add(chkSupervisor);
-            Controls.Add(chkAdministrador);
-            Controls.Add(lblClave);
-            Controls.Add(lblNombre);
-            Controls.Add(txtClave);
-            Controls.Add(txtNombre);
+            Controls.Add(lblContraseña);
+            Controls.Add(lblCorreo);
+            Controls.Add(txtContraseña);
+            Controls.Add(txtCorreo);
             Controls.Add(btnIngresar);
             Name = "IngresarUsuario";
-            Text = "Ingresar";
+            Text = " ";
             Load += IngresarUsuario_Load;
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
@@ -146,13 +145,12 @@
         #endregion
 
         private Button btnIngresar;
-        private TextBox txtNombre;
-        private TextBox txtClave;
-        private Label lblNombre;
-        private Label lblClave;
-        private CheckBox chkAdministrador;
-        private CheckBox chkSupervisor;
-        private CheckBox chkVendedor;
+        private TextBox txtCorreo;
+        private TextBox txtContraseña;
+        private Label lblCorreo;
+        private Label lblContraseña;
         private PictureBox pictureBox1;
+        private Button btnLimpiar;
+        private Label lblOlvidoContra;
     }
 }

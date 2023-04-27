@@ -13,6 +13,7 @@ namespace Aplicacion01
             ApplicationConfiguration.Initialize();
             //Application.Run(new Aerolineas());
             Application.Run(new IngresarUsuario());
+            //Application.Run(new FrmIniciarSesion());
         }
     }
 }

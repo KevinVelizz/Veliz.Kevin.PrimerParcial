@@ -8,11 +8,12 @@ namespace Aplicacion01
 {
     public partial class Aerolineas : Form
     {
-        Usuario[] usuarios;
+        List<Cliente> clientes;
 
         public Aerolineas()
         {
             InitializeComponent();
+            this.StartPosition = FormStartPosition.CenterScreen;
         }
 
         private void Aerolineas_Load(object sender, EventArgs e)

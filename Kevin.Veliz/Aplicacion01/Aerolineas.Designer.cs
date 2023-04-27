@@ -28,45 +28,81 @@
         /// </summary>
         private void InitializeComponent()
         {
-            lblInicio = new Label();
-            button1 = new Button();
+            menuStrip1 = new MenuStrip();
+            inicioToolStripMenuItem = new ToolStripMenuItem();
+            pasajeroToolStripMenuItem = new ToolStripMenuItem();
+            agregarPasajeroToolStripMenuItem = new ToolStripMenuItem();
+            venderVueloToolStripMenuItem = new ToolStripMenuItem();
+            comboBox1 = new ComboBox();
+            menuStrip1.SuspendLayout();
             SuspendLayout();
             // 
-            // lblInicio
+            // menuStrip1
             // 
-            lblInicio.AutoSize = true;
-            lblInicio.Location = new Point(333, 109);
-            lblInicio.Name = "lblInicio";
-            lblInicio.Size = new Size(87, 15);
-            lblInicio.TabIndex = 0;
-            lblInicio.Text = "Iniciaste Sesión";
+            menuStrip1.Items.AddRange(new ToolStripItem[] { inicioToolStripMenuItem, pasajeroToolStripMenuItem, venderVueloToolStripMenuItem });
+            menuStrip1.Location = new Point(0, 0);
+            menuStrip1.Name = "menuStrip1";
+            menuStrip1.Size = new Size(822, 24);
+            menuStrip1.TabIndex = 2;
+            menuStrip1.Text = "menuStrip1";
             // 
-            // button1
+            // inicioToolStripMenuItem
             // 
-            button1.Location = new Point(333, 259);
-            button1.Name = "button1";
-            button1.Size = new Size(75, 23);
-            button1.TabIndex = 1;
-            button1.Text = "button1";
-            button1.UseVisualStyleBackColor = true;
+            inicioToolStripMenuItem.Name = "inicioToolStripMenuItem";
+            inicioToolStripMenuItem.Size = new Size(48, 20);
+            inicioToolStripMenuItem.Text = "Inicio";
+            // 
+            // pasajeroToolStripMenuItem
+            // 
+            pasajeroToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { agregarPasajeroToolStripMenuItem });
+            pasajeroToolStripMenuItem.Name = "pasajeroToolStripMenuItem";
+            pasajeroToolStripMenuItem.Size = new Size(63, 20);
+            pasajeroToolStripMenuItem.Text = "Pasajero";
+            // 
+            // agregarPasajeroToolStripMenuItem
+            // 
+            agregarPasajeroToolStripMenuItem.Name = "agregarPasajeroToolStripMenuItem";
+            agregarPasajeroToolStripMenuItem.Size = new Size(163, 22);
+            agregarPasajeroToolStripMenuItem.Text = "Agregar pasajero";
+            // 
+            // venderVueloToolStripMenuItem
+            // 
+            venderVueloToolStripMenuItem.Name = "venderVueloToolStripMenuItem";
+            venderVueloToolStripMenuItem.Size = new Size(88, 20);
+            venderVueloToolStripMenuItem.Text = "Vender Vuelo";
+            // 
+            // comboBox1
+            // 
+            comboBox1.FormattingEnabled = true;
+            comboBox1.Location = new Point(346, 141);
+            comboBox1.Name = "comboBox1";
+            comboBox1.Size = new Size(121, 23);
+            comboBox1.TabIndex = 3;
             // 
             // Aerolineas
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(822, 492);
-            Controls.Add(button1);
-            Controls.Add(lblInicio);
+            Controls.Add(comboBox1);
+            Controls.Add(menuStrip1);
+            MainMenuStrip = menuStrip1;
             Name = "Aerolineas";
             Text = "Aerolineas";
             Load += Aerolineas_Load;
+            menuStrip1.ResumeLayout(false);
+            menuStrip1.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
 
         #endregion
 
-        private Label lblInicio;
-        private Button button1;
+        private MenuStrip menuStrip1;
+        private ToolStripMenuItem inicioToolStripMenuItem;
+        private ToolStripMenuItem pasajeroToolStripMenuItem;
+        private ToolStripMenuItem agregarPasajeroToolStripMenuItem;
+        private ToolStripMenuItem venderVueloToolStripMenuItem;
+        private ComboBox comboBox1;
     }
 }

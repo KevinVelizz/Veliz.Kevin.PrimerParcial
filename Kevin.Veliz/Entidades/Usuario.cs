@@ -1,65 +1,68 @@
-﻿namespace Entidades
+﻿using System.Reflection.Metadata;
+using System.Collections.Generic;
+using System.Text.Json.Serialization;
+
+namespace Entidades
 {
     public class Usuario
     {
-        string apellido;
-        string nombre;
-        int legajo;
-        string correo;
-        string clave;
-        string perfil;
+        string _apellido;   
+        string _nombre;   
+        int _legajo;      
+        string _correo;       
+        string _clave; 
+        string _perfil;
 
-        public Usuario()
+        public Usuario (string apellido, string nombre, int legajo, string correo, string clave, string perfil)
         {
-            this.apellido = "Veliz";
-            this.nombre = "Kevin";
-            this.legajo = 1;
-            this.correo = "velizkevin@gmail.com";
-            this.clave = "1d3g3";
-            this.perfil = "vendedor";
+            this._apellido = apellido;
+            this._nombre = nombre;
+            this._legajo = legajo;
+            this._correo = correo;
+            this._clave = clave;
+            this._perfil = perfil;
         }
 
+        [JsonPropertyName("apellido")]
         public string Apellido
         {
-            get { return apellido; }
-            set { this.apellido = value; }
+            get { return this._apellido; }
+            set { this._apellido = value; }
         }
 
+        [JsonPropertyName("nombre")]
         public string Nombre
         {
-            get { return nombre; }
-            set { this.nombre = value; }
+            get { return _nombre; }
+            set { this._nombre = value; }
         }
 
+        [JsonPropertyName("legajo")]
         public int Legajo
         {
-            get { return legajo; }
-            set { this.legajo = value;}
+            get { return this._legajo; }
+            set { this._legajo = value; }
         }
 
+        [JsonPropertyName("correo")]
         public string Correo
         {
-            get { return correo; }
-            set {  this.correo = value;}
+            get { return this._correo; }
+            set { this._correo = value;}
         }
 
+        [JsonPropertyName("clave")]
         public string Clave
         {
-            get { return clave; }
-            set { this.clave = value;}
+            get { return _clave; }
+            set { this._clave = value; }
         }
 
+        [JsonPropertyName("perfil")]
         public string Perfil
         {
-            get { return perfil; }
-            set { this.perfil = value; }
-        }
-
-        
-
-        public string Mostar()
-        {
-            return $"{this.apellido} - {this.nombre} - {this.legajo} - {this.correo} - {this.clave} - {this.perfil}";
+            get { return this._perfil; }
+            set { this._perfil = value; }
         }
 
     }
