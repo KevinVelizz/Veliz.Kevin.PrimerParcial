@@ -19,7 +19,7 @@ class Program
 
             foreach (Usuario usuario in usuarios)
             {
-                Console.WriteLine(usuario.nombre);
+                Console.WriteLine(usuario.Nombre);
             }
 
         }

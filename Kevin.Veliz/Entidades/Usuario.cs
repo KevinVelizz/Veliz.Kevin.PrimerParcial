@@ -64,6 +64,5 @@ namespace Entidades
             get { return this._perfil; }
             set { this._perfil = value; }
         }
-
     }
 }

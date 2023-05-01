@@ -8,7 +8,7 @@ namespace Aplicacion01
 {
     public partial class Aerolineas : Form
     {
-        List<Cliente> clientes;
+        Usuario usuario;
 
         public Aerolineas()
         {
@@ -18,9 +18,17 @@ namespace Aplicacion01
 
         private void Aerolineas_Load(object sender, EventArgs e)
         {
-
+            IngresarUsuario ingresarUsuario = new IngresarUsuario();
+            ingresarUsuario.ShowDialog();
+            if (ingresarUsuario.DialogResult == DialogResult.OK)
+            {
+                usuario = ingresarUsuario.Usuario;
+            }
+            else
+            {
+                this.Close();
+            }
+            
         }
-
-
     }
 }

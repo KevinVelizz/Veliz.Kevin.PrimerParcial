@@ -56,13 +56,13 @@
             // 
             pasajeroToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { agregarPasajeroToolStripMenuItem });
             pasajeroToolStripMenuItem.Name = "pasajeroToolStripMenuItem";
-            pasajeroToolStripMenuItem.Size = new Size(63, 20);
-            pasajeroToolStripMenuItem.Text = "Pasajero";
+            pasajeroToolStripMenuItem.Size = new Size(61, 20);
+            pasajeroToolStripMenuItem.Text = "Clientes";
             // 
             // agregarPasajeroToolStripMenuItem
             // 
             agregarPasajeroToolStripMenuItem.Name = "agregarPasajeroToolStripMenuItem";
-            agregarPasajeroToolStripMenuItem.Size = new Size(163, 22);
+            agregarPasajeroToolStripMenuItem.Size = new Size(180, 22);
             agregarPasajeroToolStripMenuItem.Text = "Agregar pasajero";
             // 
             // venderVueloToolStripMenuItem

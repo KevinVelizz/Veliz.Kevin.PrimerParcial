@@ -14,12 +14,10 @@ namespace Entidades
         string _edad;
         Dictionary<string, double> _equipajes;
         DateTime _fechaNacimiento;
-        bool _vacunado;
         bool _premium;
 
         private Cliente()
         {
-            this._vacunado = false;
             this._equipajes = new Dictionary<string, double>();
         }
 
@@ -33,10 +31,9 @@ namespace Entidades
             this._premium = premium;
         }
 
-        public Cliente (string nombres, string apellidos, string dni, string edad, Dictionary<string, double> equipajes, bool premium, DateTime fechaNacimiento, bool vacunado) :this(nombres,apellidos,dni,edad,equipajes,premium)
+        public Cliente (string nombres, string apellidos, string dni, string edad, Dictionary<string, double> equipajes, bool premium, DateTime fechaNacimiento) :this(nombres,apellidos,dni,edad,equipajes,premium)
         {
             this._fechaNacimiento = fechaNacimiento;
-            this._vacunado = vacunado;
         }
 
         public string Nombres
@@ -75,12 +72,11 @@ namespace Entidades
             set { this._fechaNacimiento = value; }
         }
 
-        public bool Vacunado
+        public bool Premium
         {
-            get { return this._vacunado; }
-            set { this._vacunado = value;}
+            get { return this._premium; }
+            set { this._premium = value; }
         }
-
     }
 
 }
