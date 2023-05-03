@@ -28,7 +28,6 @@ namespace Aplicacion01
             {
                 this.Close();
             }
-            
         }
     }
 }

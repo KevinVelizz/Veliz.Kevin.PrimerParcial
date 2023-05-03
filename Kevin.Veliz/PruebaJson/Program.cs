@@ -8,20 +8,21 @@ class Program
 {
     static void Main(string[] args)
     {
-        List<Usuario> usuarios = new List<Usuario>();
-        string jsonFilePath = @"C:\Users\veliz\Desktop\Veliz.Kevin.PrimerParcial\Kevin.Veliz\MOCK_DATA.json";
+        List<Usuario> lista = Aerolinea.ListaUsuarios();
+        
+        //foreach (Usuario usario in lista)
+        //{
+        //    Console.WriteLine(usario.Perfil);  
+        //}
 
-        // Crear un JsonReader a partir del archivo JSON
-        using (System.IO.StreamReader sr = new System.IO.StreamReader(jsonFilePath))
-        {
-            string json_str = sr.ReadToEnd();
-            usuarios = (List<Usuario>)System.Text.Json.JsonSerializer.Deserialize(json_str, typeof(List<Usuario>));
+        Dictionary<string,double> valija = new Dictionary<string,double>();
 
-            foreach (Usuario usuario in usuarios)
-            {
-                Console.WriteLine(usuario.Nombre);
-            }
+        valija.Add("De mano", 400);
 
-        }
+        Cliente cliente = new Cliente("German", "Veliz","43898582","21",valija,false);
+
+        //Console.WriteLine(cliente.ToString());
+        Usuario usuario = new Usuario("Veliz", "Kevin", 24, "kevin@gmail.com", "12345678", "administrador");
+        Console.WriteLine(usuario.ToString());
     }
 }

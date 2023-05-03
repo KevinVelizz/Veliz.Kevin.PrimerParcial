@@ -1,68 +1,67 @@
 ﻿using System.Reflection.Metadata;
 using System.Collections.Generic;
 using System.Text.Json.Serialization;
+using System.Text;
 
 namespace Entidades
 {
-    public class Usuario
+    public class Usuario : Persona
     {
-        string _apellido;   
-        string _nombre;   
-        int _legajo;      
-        string _correo;       
-        string _clave; 
-        string _perfil;
+        private int legajo;      
+        private string correo;       
+        private string clave; 
+        private string perfil;
 
-        public Usuario (string apellido, string nombre, int legajo, string correo, string clave, string perfil)
+        public Usuario (string apellido, string nombre, int legajo, string correo, string clave, string perfil) :base(nombre,apellido)
         {
-            this._apellido = apellido;
-            this._nombre = nombre;
-            this._legajo = legajo;
-            this._correo = correo;
-            this._clave = clave;
-            this._perfil = perfil;
-        }
-
-        [JsonPropertyName("apellido")]
-        public string Apellido
-        {
-            get { return this._apellido; }
-            set { this._apellido = value; }
-        }
-
-        [JsonPropertyName("nombre")]
-        public string Nombre
-        {
-            get { return _nombre; }
-            set { this._nombre = value; }
+            this.legajo = legajo;
+            this.correo = correo;
+            this.clave = clave;
+            this.perfil = perfil;
         }
 
         [JsonPropertyName("legajo")]
         public int Legajo
         {
-            get { return this._legajo; }
-            set { this._legajo = value; }
+            get { return this.legajo; }
+            set { this.legajo = value; }
         }
 
         [JsonPropertyName("correo")]
         public string Correo
         {
-            get { return this._correo; }
-            set { this._correo = value;}
+            get { return this.correo; }
+            set { this.correo = value;}
         }
 
         [JsonPropertyName("clave")]
         public string Clave
         {
-            get { return _clave; }
-            set { this._clave = value; }
+            get { return clave; }
+            set { this.clave = value; }
         }
 
         [JsonPropertyName("perfil")]
         public string Perfil
         {
-            get { return this._perfil; }
-            set { this._perfil = value; }
+            get { return this.perfil; }
+            set { this.perfil = value; }
+        }
+
+        protected override string Informacion()
+        {
+            StringBuilder mensaje = new StringBuilder();
+            mensaje.AppendLine($"{base.Mostrar()}");
+            mensaje.AppendLine($"Legajo: {this.legajo}");
+            mensaje.AppendLine($"Correo: {this.correo}");
+            mensaje.AppendLine($"Clave: {this.clave}");
+            mensaje.AppendLine($"Perfil: {this.Perfil}");
+            return mensaje.ToString();
+        }
+
+        public override string ToString()
+        {
+            return this.Informacion();
         }
     }
 }

@@ -40,6 +40,11 @@ namespace Entidades
                     string json_str = sr.ReadToEnd();
 
                     usuarios = JsonSerializer.Deserialize(json_str, typeof(List<Usuario>)) as List<Usuario> ?? new(); // el operador as es para expresiones que devuelven nulos. ?? me pregunto si es nulo
+                    
+                    foreach (Usuario usario in usuarios)
+                    {
+                        Console.WriteLine(usario.ToString());
+                    }    
                 }
             }
             catch (Exception ex)

@@ -6,76 +6,67 @@ using System.Threading.Tasks;
 
 namespace Entidades
 {
-    public abstract class Cliente
+    public class Cliente : Persona
     {
-        string _nombres;
-        string _apellidos;
-        string _dni;
-        string _edad;
-        Dictionary<string, double> _equipajes;
-        DateTime _fechaNacimiento;
-        bool _premium;
+        private string dni;
+        private string edad;
+        private static Dictionary<string, double> equipajes;
+        private bool premium;
 
-        private Cliente()
+        static Cliente() 
         {
-            this._equipajes = new Dictionary<string, double>();
+            Cliente.equipajes = new Dictionary<string, double>();
         }
 
-    public Cliente(string nombres, string apellidos, string dni, string edad, Dictionary<string, double> equipajes, bool premium) : this()
+    public Cliente(string nombre, string apellido, string dni, string edad, Dictionary<string, double> equipajes, bool premium) : base(nombre,apellido)
         {
-            this._nombres = nombres;
-            this._apellidos = apellidos;
-            this._dni = dni;
-            this._edad = edad;
-            this._equipajes = equipajes;
-            this._premium = premium;
-        }
-
-        public Cliente (string nombres, string apellidos, string dni, string edad, Dictionary<string, double> equipajes, bool premium, DateTime fechaNacimiento) :this(nombres,apellidos,dni,edad,equipajes,premium)
-        {
-            this._fechaNacimiento = fechaNacimiento;
-        }
-
-        public string Nombres
-        {
-            get { return this._nombres; }
-            set { this._nombres = value; }
-        }
-
-        public string Apellidos
-        {
-            get { return this._apellidos; }
-            set { this._apellidos = value; }
+            this.dni = dni;
+            this.edad = edad;
+            Cliente.equipajes = equipajes;
+            this.premium = premium;
         }
 
         public string Dni
         {
-            get { return this._dni; }
-            set { this._dni = value; }
+            get { return this.dni; }
+            set { this.dni = value; }
         }
 
         public string Edad
         {
-            get { return this._edad; }
-            set { this._edad = value; }
+            get { return this.edad; }
+            set { this.edad = value; }
         }
 
-        public Dictionary<string, double> Equipajes
+        public static Dictionary<string, double> Equipajes
         {
-            get { return this._equipajes; }
-            set { this._equipajes = value; }
-        }
-
-        public DateTime FechaNacimiento
-        {
-            get { return this._fechaNacimiento; }
-            set { this._fechaNacimiento = value; }
+            get { return Cliente.equipajes; }
+            set { Cliente.equipajes = value; }
         }
 
         public bool Premium
         {
-            get { return this._premium; }
-            set { this._premium = value; }
+            get { return this.premium; }
+            set { this.premium = value; }
+        }
+
+        protected override string Informacion()
+        {
+            StringBuilder mensaje = new StringBuilder();
+            mensaje.AppendLine($"{base.Mostrar()}");
+            mensaje.AppendLine($"DNI: {this.dni}");
+            mensaje.AppendLine($"Edad: {this.edad}");
+            foreach (KeyValuePair<string, double> valores in Cliente.equipajes)
+            {
+                mensaje.AppendLine($"{valores.Key} - {valores.Value}");
+            }
+            mensaje.AppendLine($"Premium: {this.premium}");
+            return mensaje.ToString();
+        }
+
+        public override string ToString()
+        {
+            return this.Informacion();
         }
     }
 
