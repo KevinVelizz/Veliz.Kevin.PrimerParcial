@@ -17,27 +17,24 @@ namespace Entidades
         private double costoClasePremium;
         private double costoClaseTurista;
         private DateTime duracionVuelo;
-        private List<Cliente> clientes;
+        private List<Pasajero> clientes;
 
         private Vuelo()
         {
-            this.clientes = new List<Cliente>();
+            this.clientes = new List<Pasajero>();
             this.duracionVuelo = new DateTime();
         }
 
-        public Vuelo(string ciudadDePartida, string ciudadDeDestino, DateTime fechaDeVuelo,Aeronave avion, int cantidadAsientosDispPremium,  int cantidadAsientosDispTurista, double costoClasePremium, double costoClaseTurista, DateTime duracionVuelo, List<Cliente> clientes) :this()
+        public Vuelo(string ciudadDePartida, string ciudadDeDestino, DateTime fechaDeVuelo,Aeronave avion, double costoClasePremium, double costoClaseTurista, DateTime duracionVuelo, List<Pasajero> clientes) :this()
         {
             this.ciudadDePartida = ciudadDePartida;
             this.ciudadDeDestino = ciudadDeDestino;
             this.fechaDeVuelo = fechaDeVuelo;
             this.avion = avion;
-            this.cantidadAsientosDispPremium = cantidadAsientosDispPremium;
-            this.cantidadAsientosDispTurista = cantidadAsientosDispTurista;
             this.costoClasePremium = costoClasePremium;
             this.costoClaseTurista = costoClaseTurista;
             this.clientes = clientes;
         }
-
 
         public string CiudadDePartida
         {
@@ -57,35 +54,46 @@ namespace Entidades
             set { this.fechaDeVuelo = value; }
         }
 
-        public int CantidadAsientosDispPremium
-        {
-            get { return this.cantidadAsientosDispPremium; }
-            set { this.cantidadAsientosDispPremium = value; }
-        }
-
         public int CantidadAsientosDispTurista
         {
-            get { return this.cantidadAsientosDispTurista; }
-            set { this.cantidadAsientosDispTurista = value; }
+            get
+            {
+                if (avion.CantidadAsientos > 0)
+                {
+                    return this.cantidadAsientosDispTurista = 80 * avion.CantidadAsientos / 100;
+                }
+                return this.cantidadAsientosDispTurista;
+            }
+        }
+
+        public int CantidadAsientosDispPremium
+        {
+            get 
+            {
+                if (avion.CantidadAsientos > 0)
+                {
+                   return this.cantidadAsientosDispPremium = 20 * avion.CantidadAsientos / 100;
+                }
+                return this.cantidadAsientosDispPremium;
+            }
         }
 
         public double CostoClasePremium
         {
             get { return this.costoClasePremium; }
-            set { this.costoClasePremium  = value; }
+            private set { this.costoClasePremium  = value; }
         }
 
         public double CostoClaseTurista
         {
             get { return this.costoClaseTurista; }
-            set { this.costoClaseTurista = value; }
+            private set { this.costoClaseTurista = value; }
         }
 
-        public List<Cliente> Clientes
+        public List<Pasajero> Clientes
         {
             get { return this.clientes; }
-            set { this.clientes = value; }
+            private set { this.clientes = value; }
         }
-
     }
 }

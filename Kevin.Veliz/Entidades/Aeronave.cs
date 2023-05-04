@@ -15,6 +15,10 @@ namespace Entidades
         private bool servicioComida;
         private double capacidadBodega;
 
+        public Aeronave()
+        {
+        }
+
         public Aeronave(string matricula, int cantidadAsientos, int cantidadDeBanios, bool servicioInternet, bool servicioComida, double capacidadBodega)
         {
             this.matricula = matricula;
@@ -57,8 +61,9 @@ namespace Entidades
 
         public double CapacidadBodega
         {
-            get { return this.CapacidadBodega; }
+            get { return this.capacidadBodega; }
             set { this.capacidadBodega = value; }
         }
+
     }
 }

@@ -32,14 +32,14 @@
             inicioToolStripMenuItem = new ToolStripMenuItem();
             pasajeroToolStripMenuItem = new ToolStripMenuItem();
             agregarPasajeroToolStripMenuItem = new ToolStripMenuItem();
-            venderVueloToolStripMenuItem = new ToolStripMenuItem();
+            StripVender = new ToolStripMenuItem();
             comboBox1 = new ComboBox();
             menuStrip1.SuspendLayout();
             SuspendLayout();
             // 
             // menuStrip1
             // 
-            menuStrip1.Items.AddRange(new ToolStripItem[] { inicioToolStripMenuItem, pasajeroToolStripMenuItem, venderVueloToolStripMenuItem });
+            menuStrip1.Items.AddRange(new ToolStripItem[] { inicioToolStripMenuItem, pasajeroToolStripMenuItem, StripVender });
             menuStrip1.Location = new Point(0, 0);
             menuStrip1.Name = "menuStrip1";
             menuStrip1.Size = new Size(822, 24);
@@ -62,14 +62,14 @@
             // agregarPasajeroToolStripMenuItem
             // 
             agregarPasajeroToolStripMenuItem.Name = "agregarPasajeroToolStripMenuItem";
-            agregarPasajeroToolStripMenuItem.Size = new Size(180, 22);
+            agregarPasajeroToolStripMenuItem.Size = new Size(163, 22);
             agregarPasajeroToolStripMenuItem.Text = "Agregar pasajero";
             // 
-            // venderVueloToolStripMenuItem
+            // StripVender
             // 
-            venderVueloToolStripMenuItem.Name = "venderVueloToolStripMenuItem";
-            venderVueloToolStripMenuItem.Size = new Size(88, 20);
-            venderVueloToolStripMenuItem.Text = "Vender Vuelo";
+            StripVender.Name = "StripVender";
+            StripVender.Size = new Size(88, 20);
+            StripVender.Text = "Vender Vuelo";
             // 
             // comboBox1
             // 
@@ -102,7 +102,7 @@
         private ToolStripMenuItem inicioToolStripMenuItem;
         private ToolStripMenuItem pasajeroToolStripMenuItem;
         private ToolStripMenuItem agregarPasajeroToolStripMenuItem;
-        private ToolStripMenuItem venderVueloToolStripMenuItem;
+        private ToolStripMenuItem StripVender;
         private ComboBox comboBox1;
     }
 }

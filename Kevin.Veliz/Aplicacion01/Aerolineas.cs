@@ -22,7 +22,17 @@ namespace Aplicacion01
             ingresarUsuario.ShowDialog();
             if (ingresarUsuario.DialogResult == DialogResult.OK)
             {
-                usuario = ingresarUsuario.Usuario;
+                this.usuario = ingresarUsuario.Usuario;
+                if (this.usuario.Perfil == "administrador" || this.usuario.Perfil == "supervisor")
+                {
+                    this.StripVender.Visible = false;
+                    this.StripVender.Enabled = false;
+                }
+                else if (this.usuario.Perfil == "vendedor")
+                {
+                    this.StripVender.Visible = true;
+                    this.StripVender.Enabled = true;
+                }
             }
             else
             {

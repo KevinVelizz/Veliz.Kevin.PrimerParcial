@@ -6,23 +6,27 @@ using System.Threading.Tasks;
 
 namespace Entidades
 {
-    public class Cliente : Persona
+    public class Pasajero : Persona
     {
         private string dni;
         private string edad;
         private static Dictionary<string, double> equipajes;
         private bool premium;
 
-        static Cliente() 
+        public Pasajero()
         {
-            Cliente.equipajes = new Dictionary<string, double>();
         }
 
-    public Cliente(string nombre, string apellido, string dni, string edad, Dictionary<string, double> equipajes, bool premium) : base(nombre,apellido)
+        static Pasajero() 
+        {
+            Pasajero.equipajes = new Dictionary<string, double>();
+        }
+
+    public Pasajero(string nombre, string apellido, string dni, string edad, Dictionary<string, double> equipajes, bool premium) : base(nombre,apellido)
         {
             this.dni = dni;
             this.edad = edad;
-            Cliente.equipajes = equipajes;
+            Pasajero.equipajes = equipajes;
             this.premium = premium;
         }
 
@@ -40,8 +44,8 @@ namespace Entidades
 
         public static Dictionary<string, double> Equipajes
         {
-            get { return Cliente.equipajes; }
-            set { Cliente.equipajes = value; }
+            get { return Pasajero.equipajes; }
+            set { Pasajero.equipajes = value; }
         }
 
         public bool Premium
@@ -56,7 +60,7 @@ namespace Entidades
             mensaje.AppendLine($"{base.Mostrar()}");
             mensaje.AppendLine($"DNI: {this.dni}");
             mensaje.AppendLine($"Edad: {this.edad}");
-            foreach (KeyValuePair<string, double> valores in Cliente.equipajes)
+            foreach (KeyValuePair<string, double> valores in Pasajero.equipajes)
             {
                 mensaje.AppendLine($"{valores.Key} - {valores.Value}");
             }
