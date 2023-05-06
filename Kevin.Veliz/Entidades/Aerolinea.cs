@@ -9,7 +9,6 @@ namespace Entidades
 {
     public class Aerolinea
     {
-
         //requerimientos de negocio.
         public static Usuario? Login(string email, string clave) 
         {
@@ -25,10 +24,5 @@ namespace Entidades
             }
             return aux;
         }
-
-
-
-
-
     }
 }

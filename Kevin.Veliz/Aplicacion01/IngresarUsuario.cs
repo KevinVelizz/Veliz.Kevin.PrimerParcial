@@ -18,21 +18,19 @@ namespace Aplicacion01
         {
 
         }
-
         private void btnIngresar_Click(object sender, EventArgs e)
         {
             Usuario? aux = Aerolinea.Login(txtCorreo.Text, txtContraseña.Text);
-            
+
             if (aux != null)
             {
                 Usuario = aux;
-                MessageBox.Show("Accedió");
                 this.DialogResult = DialogResult.OK;
                 this.Close();
             }
             else
             {
-                MessageBox.Show("Error");
+                MessageBox.Show("Error al ingresar. Verifique los datos.");
             }
         }
         private void btnIngresar_MouseHover(object sender, EventArgs e)

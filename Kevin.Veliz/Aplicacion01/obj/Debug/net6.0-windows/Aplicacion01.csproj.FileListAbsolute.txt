@@ -44,3 +44,4 @@ C:\Users\veliz\Desktop\Veliz.Kevin.PrimerParcial\Kevin.Veliz\Aplicacion01\obj\De
 C:\Users\veliz\Desktop\Veliz.Kevin.PrimerParcial\Kevin.Veliz\Aplicacion01\obj\Debug\net6.0-windows\Aplicacion01.pdb
 C:\Users\veliz\Desktop\Veliz.Kevin.PrimerParcial\Kevin.Veliz\Aplicacion01\obj\Debug\net6.0-windows\Aplicacion01.genruntimeconfig.cache
 C:\Users\veliz\Desktop\Veliz.Kevin.PrimerParcial\Kevin.Veliz\Aplicacion01\obj\Debug\net6.0-windows\ref\Aplicacion01.dll
+C:\Users\veliz\Desktop\Veliz.Kevin.PrimerParcial\Kevin.Veliz\Aplicacion01\obj\Debug\net6.0-windows\Aplicacion01.FrmPasajero.resources

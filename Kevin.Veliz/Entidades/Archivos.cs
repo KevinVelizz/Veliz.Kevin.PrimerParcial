@@ -83,7 +83,6 @@ namespace Entidades
             return usuarios;
         }
 
-
         public static void SerealizarViajeros(List<Pasajero> pasajeros)
         {
             try

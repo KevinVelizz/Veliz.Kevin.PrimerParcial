@@ -4,6 +4,12 @@
     <Compile Update="Aerolineas.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="FrmAeronave.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="FrmPasajero.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="IngresarUsuario.cs">
       <SubType>Form</SubType>
     </Compile>

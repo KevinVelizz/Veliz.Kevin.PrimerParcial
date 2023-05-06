@@ -73,9 +73,10 @@
             // 
             lblCorreo.Anchor = AnchorStyles.None;
             lblCorreo.AutoSize = true;
+            lblCorreo.Font = new Font("Segoe UI Symbol", 9.75F, FontStyle.Italic, GraphicsUnit.Point);
             lblCorreo.Location = new Point(120, 130);
             lblCorreo.Name = "lblCorreo";
-            lblCorreo.Size = new Size(46, 15);
+            lblCorreo.Size = new Size(52, 17);
             lblCorreo.TabIndex = 3;
             lblCorreo.Text = "Correo:";
             // 
@@ -83,16 +84,17 @@
             // 
             lblContraseña.Anchor = AnchorStyles.None;
             lblContraseña.AutoSize = true;
+            lblContraseña.Font = new Font("Segoe UI Symbol", 9.75F, FontStyle.Italic, GraphicsUnit.Point);
             lblContraseña.Location = new Point(96, 167);
             lblContraseña.Name = "lblContraseña";
-            lblContraseña.Size = new Size(70, 15);
+            lblContraseña.Size = new Size(77, 17);
             lblContraseña.TabIndex = 4;
             lblContraseña.Text = "Contraseña:";
             // 
             // pictureBox1
             // 
             pictureBox1.Anchor = AnchorStyles.None;
-            pictureBox1.BackColor = SystemColors.Control;
+            pictureBox1.BackColor = SystemColors.GradientInactiveCaption;
             pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
             pictureBox1.Location = new Point(198, 10);
             pictureBox1.Name = "pictureBox1";
@@ -126,6 +128,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackColor = SystemColors.GradientInactiveCaption;
             ClientSize = new Size(465, 318);
             Controls.Add(lblOlvidoContra);
             Controls.Add(btnLimpiar);

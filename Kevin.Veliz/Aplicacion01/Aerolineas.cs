@@ -9,10 +9,16 @@ namespace Aplicacion01
     public partial class Aerolineas : Form
     {
         Usuario usuario;
+        List<Pasajero> pasajeros;
+        List<Aeronave> aeronaves;
+        List<Vuelo> vuelos;
 
         public Aerolineas()
         {
             InitializeComponent();
+            this.pasajeros = new List<Pasajero>();
+            this.aeronaves = new List<Aeronave>();
+            this.vuelos = new List<Vuelo>();
             this.StartPosition = FormStartPosition.CenterScreen;
         }
 
@@ -27,6 +33,7 @@ namespace Aplicacion01
                 {
                     this.StripVender.Visible = false;
                     this.StripVender.Enabled = false;
+                    this.StripAgregarPasajero.Enabled = false;
                 }
                 else if (this.usuario.Perfil == "vendedor")
                 {
@@ -39,5 +46,23 @@ namespace Aplicacion01
                 this.Close();
             }
         }
+
+        private void agregarPasajeroToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FrmPasajero frmPasajero = new FrmPasajero();
+            frmPasajero.ShowDialog();
+            this.pasajeros.Add(frmPasajero.Pasajero);
+
+            foreach (Pasajero pasajero in this.pasajeros)
+            {
+                MessageBox.Show(pasajero.Nombre);
+            }
+        }
+
+        //private void ActualizarListaSupermercado()
+        //{
+        //    lstObjetos.DataSource = null;
+        //    lstObjetos.DataSource = listaSupermercado;
+        //}
     }
 }

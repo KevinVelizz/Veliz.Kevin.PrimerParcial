@@ -6,10 +6,9 @@
     Miami,
 }
 
-
 public enum EnumVuelosNacionales
 {
-    SantaRosa,
+    Santa_Rosa,
     Bariloche,
     Corrientes,
     Cordoba,
@@ -19,9 +18,21 @@ public enum EnumVuelosNacionales
     Posadas,
     Iguazu,
     Salta,
-    SantiagoDelEstero,
+    Santiago_Del_Estero,
     Trelew,
     Tucuman,
-    PuertoMadryn,
+    Puerto_Madryn,
     Ushuaia,
+}
+
+public enum EnumEquipaje
+{
+    De_Mano,
+    De_Bodega,
+}
+
+public enum EnumClase
+{
+    Turista,
+    Premium,
 }
