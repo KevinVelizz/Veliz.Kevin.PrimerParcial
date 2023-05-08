@@ -11,6 +11,23 @@ class Program
 {
     static void Main(string[] args)
     {
-       
+        Dictionary<string, double> equipaje = new Dictionary<string, double>();
+        Dictionary<string, double> equipaje1 = new Dictionary<string, double>();
+        equipaje.Add("de mano", 200);
+        equipaje1.Add("de bodega", 400);
+
+        List<Pasajero> pasajeros = new List<Pasajero>();
+
+
+        pasajeros.Add(pasajero);
+        pasajeros.Add(pasajero1);
+
+
+        foreach (Pasajero pasa in pasajeros)
+        {
+            Console.WriteLine(pasa.ToString());
+        }
+
+
     }
 }

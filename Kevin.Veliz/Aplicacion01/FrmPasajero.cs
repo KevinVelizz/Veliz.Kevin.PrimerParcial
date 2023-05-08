@@ -15,12 +15,12 @@ namespace Aplicacion01
     {
 
         private Pasajero pasajero;
-        private Dictionary<string,double> equipaje;
+        private Dictionary<string, double> equipaje;
 
         public FrmPasajero()
         {
             InitializeComponent();
-            this.equipaje = new Dictionary<string,double>();
+            this.equipaje = new Dictionary<string, double>();
             this.StartPosition = FormStartPosition.CenterScreen;
         }
 
@@ -61,8 +61,11 @@ namespace Aplicacion01
         private void btnAgregar_Click(object sender, EventArgs e)
         {
             bool verificar = true;
+            bool premium = false;
             double peso;
             string equipajeSeleccionado;
+            int edad = 0;
+            int dni = 0;
 
             foreach (Control control in this.Controls)
             {
@@ -77,19 +80,40 @@ namespace Aplicacion01
                 }
             }
 
-            if (this.cboClase.SelectedItem != null && this.txtPesoEquipaje.Text != "") 
+            if (this.cboClase.SelectedItem != null && this.txtPesoEquipaje.Text != "")
             {
                 equipajeSeleccionado = (string)this.cboEquipaje.SelectedItem;
                 peso = double.Parse(this.txtPesoEquipaje.Text);
                 this.equipaje.Add(equipajeSeleccionado, peso);
+                if ((string)this.cboClase.SelectedItem == "Premium")
+                {
+                    premium = true;
+                }
+            }
+
+            if (int.TryParse(this.txtDNI.Text, out int numero) && int.TryParse(this.txtEdad.Text, out int numero1))
+            {
+                dni = numero;
+                edad = numero1;
+            }
+            else
+            {
+                MessageBox.Show("Ingrese valores númericos");
+                verificar = false;
             }
 
             if (verificar)
             {
-                this.pasajero = new Pasajero(this.txtNombre.Text,this.txtApellido.Text,this.txtDNI.Text,this.txtEdad.Text,this.equipaje,false);
+                this.pasajero = new Pasajero(this.txtNombre.Text, this.txtApellido.Text, dni, edad, this.equipaje, premium);
                 this.DialogResult = DialogResult.OK;
             }
         }
-        public Pasajero Pasajero { get { return this.pasajero;} }
+
+        private void btnCancelar_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        public Pasajero Pasajero { get { return this.pasajero; } }
     }
 }

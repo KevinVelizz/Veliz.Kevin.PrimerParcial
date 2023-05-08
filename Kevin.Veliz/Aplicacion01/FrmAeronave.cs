@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Entidades;
+using Newtonsoft.Json.Linq;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,9 +14,13 @@ namespace Aplicacion01
 {
     public partial class FrmAeronave : Form
     {
+
+        private Aeronave aeronave;
+
         public FrmAeronave()
         {
             InitializeComponent();
+            this.StartPosition = FormStartPosition.CenterScreen;
         }
 
         private void FrmAeronave_Load(object sender, EventArgs e)
@@ -22,5 +28,64 @@ namespace Aplicacion01
 
         }
 
+        private void btnAgregar_Click(object sender, EventArgs e)
+        {
+            int cantidadBanios = 0;
+            int cantidadAsientos = 0;
+            double capacidadBodegas = 0;
+            bool verificar = true;
+            foreach (Control control in this.Controls)
+            {
+                if (control is TextBox textBox)
+                {
+                    if (textBox.Text == "")
+                    {
+                        MessageBox.Show("Complete todos los campos");
+                        verificar = false;
+                        break;
+                    }
+                }
+            }
+
+            if (int.TryParse(this.txtCantAsientos.Text, out int numero) && int.TryParse(this.txtCantAsientos.Text, out int numero1) && double.TryParse(this.txtCantAsientos.Text, out double numero2))
+            {
+                cantidadAsientos = numero;
+                cantidadBanios = numero1;
+                capacidadBodegas = numero2;
+            }
+            else
+            {
+                MessageBox.Show("Ingrese valores númericos.");
+                verificar = false;
+            }
+
+            if (verificar)
+            {
+                this.aeronave = new Aeronave(this.txtMatricula.Text, cantidadAsientos, cantidadBanios, this.chkInternet.Checked, this.chkComida.Checked, capacidadBodegas);
+                this.DialogResult = DialogResult.OK;
+            }
+        }
+
+        private void btnLimpiar_Click(object sender, EventArgs e)
+        {
+            foreach (Control control in this.Controls)
+            {
+                if (control is TextBox textBox)
+                {
+                    textBox.Text = "";
+                }
+                else if (control is CheckBox checkBox)
+                {
+                    checkBox.Checked = false;
+                }
+            }
+        }
+
+        private void btnCancelar_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        public Aeronave Aeronave { get { return this.aeronave; } }
     }
 }

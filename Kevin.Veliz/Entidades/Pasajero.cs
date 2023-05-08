@@ -8,44 +8,40 @@ namespace Entidades
 {
     public class Pasajero : Persona
     {
-        private string dni;
-        private string edad;
-        private static Dictionary<string, double> equipajes;
+        private int dni;
+        private int edad;
+        private Dictionary<string, double> equipajes;
         private bool premium;
 
-        public Pasajero()
+        private Pasajero()
         {
+            this.equipajes = new Dictionary<string, double>();
         }
 
-        static Pasajero() 
-        {
-            Pasajero.equipajes = new Dictionary<string, double>();
-        }
-
-    public Pasajero(string nombre, string apellido, string dni, string edad, Dictionary<string, double> equipajes, bool premium) : base(nombre,apellido)
+        public Pasajero(string nombre, string apellido, int dni, int edad, Dictionary<string, double> equipajes, bool premium) : base(nombre,apellido)
         {
             this.dni = dni;
             this.edad = edad;
-            Pasajero.equipajes = equipajes;
+            this.equipajes = equipajes;
             this.premium = premium;
         }
 
-        public string Dni
+        public int Dni
         {
             get { return this.dni; }
             set { this.dni = value; }
         }
 
-        public string Edad
+        public int Edad
         {
             get { return this.edad; }
             set { this.edad = value; }
         }
 
-        public static Dictionary<string, double> Equipajes
+        public Dictionary<string, double> Equipajes
         {
-            get { return Pasajero.equipajes; }
-            set { Pasajero.equipajes = value; }
+            get { return this.equipajes; }
+            set { this.equipajes = value; }
         }
 
         public bool Premium
@@ -60,11 +56,18 @@ namespace Entidades
             mensaje.AppendLine($"{base.Mostrar()}");
             mensaje.AppendLine($"DNI: {this.dni}");
             mensaje.AppendLine($"Edad: {this.edad}");
-            foreach (KeyValuePair<string, double> valores in Pasajero.equipajes)
+            foreach (KeyValuePair<string, double> valores in this.equipajes)
             {
                 mensaje.AppendLine($"{valores.Key} - {valores.Value}");
             }
-            mensaje.AppendLine($"Premium: {this.premium}");
+            if (this.premium)
+            {
+                mensaje.AppendLine($"Clase: Premium");
+            }
+            else
+            {
+                mensaje.AppendLine("Clase: Turista");
+            }
             return mensaje.ToString();
         }
 

@@ -58,7 +58,9 @@ namespace Entidades
             {
                 if (avion.CantidadAsientos > 0)
                 {
-                    return this.cantidadAsientosDispTurista = 80 * avion.CantidadAsientos / 100;
+                    double aux = 80 * avion.CantidadAsientos / 100;
+                    this.cantidadAsientosDispTurista = (int)Math.Round(aux,0);
+                    return this.cantidadAsientosDispTurista;
                 }
                 return this.cantidadAsientosDispTurista = 0;
             }
@@ -70,7 +72,9 @@ namespace Entidades
             {
                 if (avion.CantidadAsientos > 0)
                 {
-                   return this.cantidadAsientosDispPremium = 20 * avion.CantidadAsientos / 100;
+                    double aux = 20 * avion.CantidadAsientos / 100;
+                    this.cantidadAsientosDispPremium = (int)Math.Round(aux, 0);
+                    return this.cantidadAsientosDispPremium;
                 }
                 return this.cantidadAsientosDispPremium = 0;
             }

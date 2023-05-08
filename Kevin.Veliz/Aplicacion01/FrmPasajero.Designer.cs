@@ -65,6 +65,7 @@
             btnCancelar.TabIndex = 1;
             btnCancelar.Text = "Cancelar";
             btnCancelar.UseVisualStyleBackColor = true;
+            btnCancelar.Click += btnCancelar_Click;
             // 
             // txtApellido
             // 
@@ -193,7 +194,7 @@
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI Symbol", 9.75F, FontStyle.Italic, GraphicsUnit.Point);
-            label1.Location = new Point(44, 298);
+            label1.Location = new Point(45, 296);
             label1.Name = "label1";
             label1.Size = new Size(42, 17);
             label1.TabIndex = 20;
