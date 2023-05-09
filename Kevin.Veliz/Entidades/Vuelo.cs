@@ -18,6 +18,7 @@ namespace Entidades
         private double costoClaseTurista;
         private DateTime duracionVuelo;
         private List<Pasajero> clientes;
+        private string estado;
 
         private Vuelo()
         {
@@ -97,12 +98,5 @@ namespace Entidades
             get { return this.clientes; }
             private set { this.clientes = value; }
         }
-
-
-        //private double CalcularPrecioTurista()
-        //{
-        //    if (this.CiudadDeDestino)
-        //}
-
     }
 }

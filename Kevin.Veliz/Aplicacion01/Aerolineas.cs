@@ -52,6 +52,7 @@ namespace Aplicacion01
         private void stripPasajero_Click(object sender, EventArgs e)
         {
             this.panelModificar.Visible = true;
+            this.panelInicio.Visible = false;
             this.lblNombreSeccion.Text = "Pasajeros";
             this.index = 0;
             ModificarColor(this.index);
@@ -60,6 +61,7 @@ namespace Aplicacion01
         private void stripVuelo_Click(object sender, EventArgs e)
         {
             this.panelModificar.Visible = true;
+            this.panelInicio.Visible = false;
             this.lblNombreSeccion.Text = "Vuelos";
             this.index = 1;
             this.ModificarColor(this.index);
@@ -68,6 +70,7 @@ namespace Aplicacion01
         private void stripAeronave_Click(object sender, EventArgs e)
         {
             this.panelModificar.Visible = true;
+            this.panelInicio.Visible = false;
             this.lblNombreSeccion.Text = "Aeronaves";
             this.index = 2;
             ModificarColor(this.index);
@@ -76,6 +79,7 @@ namespace Aplicacion01
         private void stripEstadistica_Click(object sender, EventArgs e)
         {
             this.panelModificar.Visible = false;
+            this.panelInicio.Visible = false;
             this.index = 3;
             ModificarColor(this.index);
         }
@@ -83,6 +87,7 @@ namespace Aplicacion01
         private void stripInicio_Click(object sender, EventArgs e)
         {
             this.panelModificar.Visible = false;
+            this.panelInicio.Visible = true;
             this.index = 4;
             ModificarColor(this.index);
         }
@@ -149,6 +154,8 @@ namespace Aplicacion01
                     }
                     break;
                 case 1:
+                    FrmVuelo vuelo = new FrmVuelo();
+                    vuelo.ShowDialog();
                     break;
 
                 case 2:

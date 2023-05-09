@@ -18,16 +18,11 @@ class Program
 
         List<Pasajero> pasajeros = new List<Pasajero>();
 
+        DateTime numero = DateTime.Now;
 
-        pasajeros.Add(pasajero);
-        pasajeros.Add(pasajero1);
+        numero = Aerolinea.CalcularDuracion();
 
-
-        foreach (Pasajero pasa in pasajeros)
-        {
-            Console.WriteLine(pasa.ToString());
-        }
-
+        Console.WriteLine(numero);
 
     }
 }

@@ -23,6 +23,7 @@ public enum EnumVuelosNacionales
     Tucuman,
     Puerto_Madryn,
     Ushuaia,
+    Buenos_Aires,
 }
 
 public enum EnumEquipaje

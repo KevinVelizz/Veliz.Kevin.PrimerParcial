@@ -42,12 +42,12 @@
             btnEliminar = new Button();
             btnAgregar = new Button();
             pictureBox1 = new PictureBox();
-            panel1 = new Panel();
+            panelInicio = new Panel();
             label1 = new Label();
             menuAerolinea.SuspendLayout();
             panelModificar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
-            panel1.SuspendLayout();
+            panelInicio.SuspendLayout();
             SuspendLayout();
             // 
             // menuAerolinea
@@ -186,14 +186,14 @@
             pictureBox1.TabIndex = 4;
             pictureBox1.TabStop = false;
             // 
-            // panel1
+            // panelInicio
             // 
-            panel1.Controls.Add(label1);
-            panel1.Controls.Add(pictureBox1);
-            panel1.Location = new Point(116, 153);
-            panel1.Name = "panel1";
-            panel1.Size = new Size(668, 355);
-            panel1.TabIndex = 5;
+            panelInicio.Controls.Add(label1);
+            panelInicio.Controls.Add(pictureBox1);
+            panelInicio.Location = new Point(116, 153);
+            panelInicio.Name = "panelInicio";
+            panelInicio.Size = new Size(668, 355);
+            panelInicio.TabIndex = 5;
             // 
             // label1
             // 
@@ -211,7 +211,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.GradientInactiveCaption;
             ClientSize = new Size(951, 573);
-            Controls.Add(panel1);
+            Controls.Add(panelInicio);
             Controls.Add(panelModificar);
             Controls.Add(menuAerolinea);
             MainMenuStrip = menuAerolinea;
@@ -223,8 +223,8 @@
             panelModificar.ResumeLayout(false);
             panelModificar.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
-            panel1.ResumeLayout(false);
-            panel1.PerformLayout();
+            panelInicio.ResumeLayout(false);
+            panelInicio.PerformLayout();
             ResumeLayout(false);
         }
 
@@ -243,7 +243,7 @@
         private ToolStripMenuItem stripAeronave;
         private Label lblNombreSeccion;
         private PictureBox pictureBox1;
-        private Panel panel1;
+        private Panel panelInicio;
         private Label label1;
     }
 }

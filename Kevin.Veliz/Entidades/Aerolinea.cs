@@ -9,8 +9,8 @@ namespace Entidades
 {
     public class Aerolinea
     {
-        //requerimientos de negocio.
-        public static Usuario? Login(string email, string clave) 
+
+        public static Usuario? Login(string email, string clave)
         {
             List<Usuario> lista = Archivos.DeserealizarUsuarios();
             Usuario? aux = null;
@@ -23,6 +23,25 @@ namespace Entidades
                 }
             }
             return aux;
+        }
+
+        public static DateTime CalcularDuracion(DateTime fechaViaje)
+        {   
+            Random numRandom = new Random();
+            double num = numRandom.Next(2, 5);
+            fechaViaje = fechaViaje.AddHours(num);
+            return fechaViaje;
+        }
+
+        public static double CalcularPrecioTurista(Pasajero pasajero, string destino)
+        {
+            double valorPrecio;
+            if (pasajero.Premium == false)
+            {
+
+            }
+
+            return valorPrecio = 0;
         }
     }
 }

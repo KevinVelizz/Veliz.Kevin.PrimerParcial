@@ -49,6 +49,28 @@ namespace Entidades
             get { return this.premium; }
             set { this.premium = value; }
         }
+        public static bool operator ==(Pasajero pasajero1, Pasajero pasajero2)
+        {
+            return pasajero1.dni == pasajero2.dni;
+        }
+
+        public static bool operator !=(Pasajero pasajero1, Pasajero pasajero2)
+        {
+            return !(pasajero1 == pasajero2);
+        }
+
+        public override bool Equals(object? obj)
+        {
+            bool retorno = false;
+            if (obj is Pasajero)
+            {
+                if (this == (Pasajero)obj)
+                {
+                    retorno = true;
+                }
+            }
+            return retorno;
+        }
 
         protected override string Informacion()
         {
@@ -76,5 +98,4 @@ namespace Entidades
             return this.Informacion();
         }
     }
-
 }
