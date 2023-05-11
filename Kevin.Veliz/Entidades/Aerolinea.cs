@@ -33,15 +33,47 @@ namespace Entidades
             return fechaViaje;
         }
 
-        public static double CalcularPrecioTurista(Pasajero pasajero, string destino)
+        public static double CalcularPrecio(Pasajero pasajero, string destino, DateTime fechaViaje)
         {
-            double valorPrecio;
-            if (pasajero.Premium == false)
-            {
+            int duracion = CalcularDuracion(fechaViaje).Hour;
 
+            double valorPrecio = 0;
+            
+            foreach (EnumEquipaje equipaje in Enum.GetValues(typeof(EnumVuelosNacionales)))
+            {
+                if (destino == equipaje.ToString())
+                {
+                    if (pasajero.Premium)
+                    {
+                        valorPrecio = (duracion * 50) * 135 / 100;
+                        break;
+                    }
+                    else
+                    {
+                        valorPrecio = duracion * 50;
+                    }
+                }
             }
 
-            return valorPrecio = 0;
+            foreach (EnumEquipaje equipaje in Enum.GetValues(typeof(EnumVuelosInternacionales)))
+            {
+                if (destino == equipaje.ToString())
+                {
+                    if (pasajero.Premium)
+                    {
+                        valorPrecio = (duracion * 50) * 135 / 100;
+                        break;
+                    }
+                    else
+                    {
+                        valorPrecio = duracion * 50;
+                    }
+                }
+            }
+            return valorPrecio;
         }
+
+
+        
     }
 }

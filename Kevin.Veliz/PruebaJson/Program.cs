@@ -11,18 +11,40 @@ class Program
 {
     static void Main(string[] args)
     {
-        Dictionary<string, double> equipaje = new Dictionary<string, double>();
-        Dictionary<string, double> equipaje1 = new Dictionary<string, double>();
-        equipaje.Add("de mano", 200);
-        equipaje1.Add("de bodega", 400);
+        List<Equipaje> equipajes = new List<Equipaje>();
 
+        Equipaje equipaje = new Equipaje();
+        equipaje.Tipo = "De bodega";
+        equipaje.Peso = 200;
+
+        equipajes.Add(equipaje);
+        
+        Pasajero pasajero = new Pasajero("Kevin", "Veliz", 43898582, 21, equipajes, false);
         List<Pasajero> pasajeros = new List<Pasajero>();
 
-        DateTime numero = DateTime.Now;
+        pasajeros.Add(pasajero);
 
-        numero = Aerolinea.CalcularDuracion();
+        //Archivos.SerealizarViajeros(pasajeros);
 
-        Console.WriteLine(numero);
 
+        List<Aeronave> aeronaves = new List<Aeronave>();
+        Aeronave aeronave = new Aeronave("666",11,4,true,false,5000);
+
+        aeronaves.Add(aeronave);
+
+        //Archivos.SerealizarAeronaves(aeronaves);
+
+
+        List<Vuelo> vuelos = new List<Vuelo>();
+        DateTime tiempoSalida = DateTime.Now;
+        DateTime tiempoLLegada = Aerolinea.CalcularDuracion(tiempoSalida);
+        Aeronave aeronave1 = new Aeronave("fli2", 120, 4, true, false, 4000);
+
+
+        Vuelo vuelo = new Vuelo(EnumVuelosNacionales.Santa_Rosa.ToString(), EnumVuelosInternacionales.Recife.ToString(), tiempoSalida, aeronave1, tiempoLLegada, pasajeros, "no realizado");
+
+        vuelos.Add(vuelo);
+
+        Archivos.SerealizarVuelos(vuelos);
     }
 }

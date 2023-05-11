@@ -13,15 +13,20 @@ namespace Aplicacion01
 {
     public partial class FrmPasajero : Form
     {
-
+        private double peso;
         private Pasajero pasajero;
-        private Dictionary<string, double> equipaje;
+        private List<Equipaje> equipajes;
 
         public FrmPasajero()
         {
             InitializeComponent();
-            this.equipaje = new Dictionary<string, double>();
+            this.equipajes = new List<Equipaje>();
             this.StartPosition = FormStartPosition.CenterScreen;
+        }
+
+        public FrmPasajero(Pasajero pasajero) :this()
+        {
+            this.InicializarComponentesModificacion(pasajero);
         }
 
         private void FrmPasajero_Load(object sender, EventArgs e)
@@ -62,7 +67,7 @@ namespace Aplicacion01
         {
             bool verificar = true;
             bool premium = false;
-            double peso;
+            
             string equipajeSeleccionado;
             int edad = 0;
             int dni = 0;
@@ -83,8 +88,12 @@ namespace Aplicacion01
             if (this.cboClase.SelectedItem != null && this.txtPesoEquipaje.Text != "")
             {
                 equipajeSeleccionado = (string)this.cboEquipaje.SelectedItem;
-                peso = double.Parse(this.txtPesoEquipaje.Text);
-                this.equipaje.Add(equipajeSeleccionado, peso);
+                this.peso = double.Parse(this.txtPesoEquipaje.Text);
+                Equipaje equipaje = new Equipaje();
+                equipaje.Tipo = equipajeSeleccionado;
+                equipaje.Peso = this.peso;
+                this.equipajes.Add(equipaje);
+
                 if ((string)this.cboClase.SelectedItem == "Premium")
                 {
                     premium = true;
@@ -104,7 +113,7 @@ namespace Aplicacion01
 
             if (verificar)
             {
-                this.pasajero = new Pasajero(this.txtNombre.Text, this.txtApellido.Text, dni, edad, this.equipaje, premium);
+                this.pasajero = new Pasajero(this.txtNombre.Text, this.txtApellido.Text, dni, edad, this.equipajes, premium);
                 this.DialogResult = DialogResult.OK;
             }
         }
@@ -115,5 +124,15 @@ namespace Aplicacion01
         }
 
         public Pasajero Pasajero { get { return this.pasajero; } }
+
+
+        private void InicializarComponentesModificacion(Pasajero pasajero)
+        {
+            this.txtApellido.Text = pasajero.Apellido;
+            this.txtNombre.Text = pasajero.Nombre;
+            this.txtDNI.Text = pasajero.Dni.ToString();
+            this.txtEdad.Text = pasajero.Edad.ToString();
+            this.txtPesoEquipaje.Text = this.peso.ToString();
+        }
     }
 }

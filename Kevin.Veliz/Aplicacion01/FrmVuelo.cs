@@ -13,13 +13,15 @@ namespace Aplicacion01
 {
     public partial class FrmVuelo : Form
     {
-        DateTime fechaActual;
+        private DateTime fechaActual;
+        private Pasajero pasajero;
+        private string seleccionado;
 
         public FrmVuelo()
         {
             InitializeComponent();
             this.fechaActual = DateTime.Now;
-
+            //this.pasajero = pasajero;
         }
 
         private void FrmVuelo_Load(object sender, EventArgs e)
@@ -28,7 +30,9 @@ namespace Aplicacion01
             this.dtmVuelo.MinDate = fechaActual.Date;
             this.lblHoraVuelo.Visible = false;
             this.lblDuracionVuelo.Visible = false;
-
+            this.seleccionado = (string)this.cboDestino.SelectedItem;
+            //double aux = Aerolinea.CalcularPrecio(this.pasajero, this.seleccionado, this.dtmVuelo.Value);
+            //this.txtCosto.Text = $"{aux}";
         }
 
         private void dtmVuelo_ValueChanged(object sender, EventArgs e)
@@ -40,7 +44,5 @@ namespace Aplicacion01
             DateTime duracion = Aerolinea.CalcularDuracion(hora);
             this.lblDuracionVuelo.Text = duracion.ToString();
         }
-
-
     }
 }

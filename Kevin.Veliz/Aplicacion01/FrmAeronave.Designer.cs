@@ -192,10 +192,6 @@
         private TextBox txtMatricula;
         private TextBox txtCantAsientos;
         private TextBox txtCantBanios;
-        private TextBox textBox4;
-        private TextBox textBox5;
-        private Button button1;
-        private Button button2;
         private Button btnCancelar;
         private Label lblMatricula;
         private Label lblCantAsientos;

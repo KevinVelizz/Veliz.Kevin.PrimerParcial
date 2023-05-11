@@ -1,5 +1,8 @@
-﻿public enum EnumVuelosInternacionales
+﻿using System.Xml.Serialization;
+
+public enum EnumVuelosInternacionales
 {
+    [XmlEnum ("Recife")]
     Recife,
     Roma,
     Acapulco,
@@ -8,6 +11,7 @@
 
 public enum EnumVuelosNacionales
 {
+    [XmlEnum("Santa Rosa")]
     Santa_Rosa,
     Bariloche,
     Corrientes,

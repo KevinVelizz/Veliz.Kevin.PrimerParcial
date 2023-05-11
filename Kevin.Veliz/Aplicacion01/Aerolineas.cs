@@ -3,6 +3,7 @@ using System.Data;
 using System.IO;
 using System.Text.Json.Serialization;
 using Entidades;
+using System.Runtime.Intrinsics.X86;
 
 namespace Aplicacion01
 {
@@ -22,25 +23,34 @@ namespace Aplicacion01
             this.vuelos = new List<Vuelo>();
             this.StartPosition = FormStartPosition.CenterScreen;
             this.panelModificar.Dock = DockStyle.Fill;
+            this.panelInicio.Dock = DockStyle.Fill;
         }
 
         private void Aerolineas_Load(object sender, EventArgs e)
         {
+
+            this.pasajeros = Archivos.DeserealizarPasajeros();
+            this.aeronaves = Archivos.DeserealizarAeronaves();
+
             IngresarUsuario ingresarUsuario = new IngresarUsuario();
             ingresarUsuario.ShowDialog();
             if (ingresarUsuario.DialogResult == DialogResult.OK)
             {
                 this.usuario = ingresarUsuario.Usuario;
-                if (this.usuario.Perfil == "administrador" || this.usuario.Perfil == "supervisor")
+                if (this.usuario.Perfil == "administrador")
                 {
-                    this.stripVuelo.Visible = false;
-                    this.stripVuelo.Enabled = false;
-
+                    this.index = 1;
+                    this.VisualizacionDelUsuario(this.index, this.usuario.Perfil);
+                }
+                else if (this.usuario.Perfil == "supervisor")
+                {
+                    this.index = 1;
+                    this.VisualizacionDelUsuario(this.index, this.usuario.Perfil);
                 }
                 else if (this.usuario.Perfil == "vendedor")
                 {
-                    this.stripVuelo.Visible = true;
-                    this.stripVuelo.Enabled = true;
+                    this.index = 1;
+                    this.VisualizacionDelUsuario(this.index, this.usuario.Perfil);
                 }
             }
             else
@@ -56,6 +66,7 @@ namespace Aplicacion01
             this.lblNombreSeccion.Text = "Pasajeros";
             this.index = 0;
             ModificarColor(this.index);
+            this.VisualizacionDelUsuario(this.index, this.usuario.Perfil);
         }
 
         private void stripVuelo_Click(object sender, EventArgs e)
@@ -65,6 +76,7 @@ namespace Aplicacion01
             this.lblNombreSeccion.Text = "Vuelos";
             this.index = 1;
             this.ModificarColor(this.index);
+            this.VisualizacionDelUsuario(this.index, this.usuario.Perfil);
         }
 
         private void stripAeronave_Click(object sender, EventArgs e)
@@ -82,6 +94,7 @@ namespace Aplicacion01
             this.panelInicio.Visible = false;
             this.index = 3;
             ModificarColor(this.index);
+            this.VisualizacionDelUsuario(this.index, this.usuario.Perfil);
         }
 
         private void stripInicio_Click(object sender, EventArgs e)
@@ -134,7 +147,6 @@ namespace Aplicacion01
             }
         }
 
-
         private void AgregarElementos(int index)
         {
             switch (index)
@@ -145,19 +157,22 @@ namespace Aplicacion01
 
                     if (frmPasajero.DialogResult == DialogResult.OK)
                     {
-                        this.pasajeros.Add(frmPasajero.Pasajero);
-
                         foreach (Pasajero pasajero in this.pasajeros)
                         {
-                            MessageBox.Show(pasajero.ToString());
+                            if (pasajero != frmPasajero.Pasajero)
+                            {
+                                this.pasajeros.Add(frmPasajero.Pasajero);
+                            }
                         }
+                        Archivos.SerealizarViajeros(this.pasajeros);
+                        this.ActualizarListaPasjeros();
+
                     }
                     break;
                 case 1:
                     FrmVuelo vuelo = new FrmVuelo();
                     vuelo.ShowDialog();
                     break;
-
                 case 2:
                     FrmAeronave frmAeronave = new FrmAeronave();
                     frmAeronave.ShowDialog();
@@ -165,11 +180,6 @@ namespace Aplicacion01
                     if (frmAeronave.DialogResult == DialogResult.OK)
                     {
                         this.aeronaves.Add(frmAeronave.Aeronave);
-
-                        foreach (Aeronave aeronave in this.aeronaves)
-                        {
-                            MessageBox.Show(aeronave.Matricula);
-                        }
                     }
                     break;
             }
@@ -180,15 +190,92 @@ namespace Aplicacion01
             this.AgregarElementos(this.index);
         }
 
-        private void Lista_SelectedIndexChanged(object sender, EventArgs e)
+        private void VisualizacionDelUsuario(int index, string perfil)
+        {
+            if ("administrador" == perfil)
+            {
+                if (index == 1 || index == 0)
+                {
+                    this.btnAgregar.Visible = false;
+                    this.btnEliminar.Visible = false;
+                    this.btnModificar.Visible = false;
+                }
+                else
+                {
+                    this.btnAgregar.Visible = true;
+                    this.btnEliminar.Visible = true;
+                    this.btnModificar.Visible = true;
+                }
+                this.stripEstadistica.Visible = false;
+            }
+            else if ("vendedor" == perfil)
+            {
+                if (index == 1 || index == 2)
+                {
+                    this.btnAgregar.Visible = false;
+                    this.btnEliminar.Visible = false;
+                    this.btnModificar.Visible = false;
+                }
+                else
+                {
+                    this.btnAgregar.Visible = true;
+                    this.btnEliminar.Visible = true;
+                    this.btnModificar.Visible = true;
+                }
+                this.stripAeronave.Visible = false;
+            }
+            else if ("supervisor" == perfil)
+            {
+                if (index == 1)
+                {
+                    this.btnAgregar.Visible = false;
+                    this.btnEliminar.Visible = false;
+                    this.btnModificar.Visible = false;
+                }
+                else
+                {
+                    this.btnAgregar.Visible = true;
+                    this.btnEliminar.Visible = true;
+                    this.btnModificar.Visible = true;
+                }
+                this.stripAeronave.Visible = false;
+                this.stripVuelo.Visible = false;
+            }
+        }
+
+        private void btnEliminar_Click(object sender, EventArgs e)
         {
 
         }
 
-        //private void ActualizarListaSupermercado()
-        //{
-        //    lstObjetos.DataSource = null;
-        //    lstObjetos.DataSource = listaSupermercado;
-        //}
+        private void ModificarElemento(int index)
+        {
+            int indexItemSeleccionado;
+            Pasajero modifica;
+            indexItemSeleccionado = this.lstListaElementos.SelectedIndex;
+            if (indexItemSeleccionado != -1)
+            {
+                modifica = pasajeros.ElementAt(indexItemSeleccionado);
+                FrmPasajero frmPasajero = new FrmPasajero(modifica); 
+
+                if (frmPasajero.ShowDialog() == DialogResult.OK)
+                {
+                    this.pasajeros[indexItemSeleccionado] = frmPasajero.Pasajero;
+                    Archivos.SerealizarViajeros(this.pasajeros);
+                    this.ActualizarListaPasjeros();
+                }
+            }
+        }
+
+        private void ActualizarListaPasjeros()
+        {
+            this.lstListaElementos.DataSource = null;
+            this.lstListaElementos.DataSource = this.pasajeros;
+        }
+
+        private void btnModificar_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

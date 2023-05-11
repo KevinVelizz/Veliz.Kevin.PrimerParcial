@@ -47,3 +47,4 @@ C:\Users\veliz\Desktop\Veliz.Kevin.PrimerParcial\Kevin.Veliz\Aplicacion01\obj\De
 C:\Users\veliz\Desktop\Veliz.Kevin.PrimerParcial\Kevin.Veliz\Aplicacion01\obj\Debug\net6.0-windows\Aplicacion01.FrmPasajero.resources
 C:\Users\veliz\Desktop\Veliz.Kevin.PrimerParcial\Kevin.Veliz\Aplicacion01\obj\Debug\net6.0-windows\Aplicacion01.FrmAeronave.resources
 C:\Users\veliz\Desktop\Veliz.Kevin.PrimerParcial\Kevin.Veliz\Aplicacion01\obj\Debug\net6.0-windows\Aplicacion01.FrmVuelo.resources
+C:\Users\veliz\Desktop\Veliz.Kevin.PrimerParcial\Kevin.Veliz\Aplicacion01\obj\Debug\net6.0-windows\Aplicacion01.FrmVenderVuelo.resources

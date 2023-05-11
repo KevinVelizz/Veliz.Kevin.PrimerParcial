@@ -15,8 +15,9 @@ namespace Entidades
         private bool servicioComida;
         private double capacidadBodega;
 
-        public Aeronave()
+        private Aeronave()
         {
+            cantidadAsientos = 0;
         }
 
         public Aeronave(string matricula, int cantidadAsientos, int cantidadDeBanios, bool servicioInternet, bool servicioComida, double capacidadBodega)

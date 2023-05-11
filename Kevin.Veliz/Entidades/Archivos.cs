@@ -22,6 +22,8 @@ namespace Entidades
 
         //Path Viajeros.
         private static string pathViajeros = Path.Combine(Archivos.folderPath + @"listaViajeros.xml");
+
+        private static string pathVuelos = Path.Combine(Archivos.folderPath + @"listaVuelos.xml");
         public static void SerealizarAeronaves(List<Aeronave> aeronaves)
         {
             try
@@ -87,7 +89,7 @@ namespace Entidades
         {
             try
             {
-                using (XmlTextWriter writer = new XmlTextWriter(Archivos.pathAeronaves, Encoding.UTF8))
+                using (XmlTextWriter writer = new XmlTextWriter(Archivos.pathViajeros, Encoding.UTF8))
                 {
                     XmlSerializer ser = new XmlSerializer((typeof(List<Pasajero>)));
                     ser.Serialize(writer, pasajeros);
@@ -101,15 +103,15 @@ namespace Entidades
 
         public static List<Pasajero> DeserealizarPasajeros()
         { 
-            List<Pasajero> listaXML = new List<Pasajero>();
-            if (File.Exists(Archivos.pathAeronaves))
+            List<Pasajero> listaPasajerosXML = new List<Pasajero>();
+            if (File.Exists(Archivos.pathViajeros))
             {
                 try
                 {
-                    using (XmlTextReader sr = new XmlTextReader(Archivos.pathAeronaves))
+                    using (XmlTextReader sr = new XmlTextReader(Archivos.pathViajeros))
                     {
                         XmlSerializer serializer = new XmlSerializer((typeof(List<Pasajero>)));
-                        listaXML = serializer.Deserialize(sr) as List<Pasajero> ?? new();
+                        listaPasajerosXML = serializer.Deserialize(sr) as List<Pasajero> ?? new();
                     }
                 }
                 catch (Exception ex)
@@ -121,7 +123,48 @@ namespace Entidades
             {
                 Console.WriteLine("No existe el archivo");
             }
-            return listaXML;
+            return listaPasajerosXML;
+        }
+
+        public static void SerealizarVuelos(List<Vuelo> vuelos)
+        {
+            try
+            {
+                using (XmlTextWriter writer = new XmlTextWriter(Archivos.pathVuelos, Encoding.UTF8))
+                {
+                    XmlSerializer ser = new XmlSerializer((typeof(List<Vuelo>)));
+                    ser.Serialize(writer, vuelos);
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"ERROR:{ex.Message} - {ex.StackTrace}");
+            }
+        }
+
+        public static List<Vuelo> DeserealizarVuelos()
+        {
+            List<Vuelo> listaVuelosXML = new List<Vuelo>();
+            if (File.Exists(Archivos.pathVuelos))
+            {
+                try
+                {
+                    using (XmlTextReader sr = new XmlTextReader(Archivos.pathVuelos))
+                    {
+                        XmlSerializer serializer = new XmlSerializer((typeof(List<Vuelo>)));
+                        listaVuelosXML = serializer.Deserialize(sr) as List<Vuelo> ?? new();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"ERROR: {ex.Message} - {ex.StackTrace}");
+                }
+            }
+            else
+            {
+                Console.WriteLine("No existe el archivo");
+            }
+            return listaVuelosXML;
         }
     }
 }

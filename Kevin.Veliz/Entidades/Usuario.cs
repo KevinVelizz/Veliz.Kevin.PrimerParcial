@@ -48,6 +48,11 @@ namespace Entidades
             set { this.perfil = value; }
         }
 
+
+        /// <summary>
+        /// El metódo almacena los atributos de la clase en un StringBuilder "mensaje" para retornarla en una candena string. 
+        /// </summary>
+        /// <returns>La información en string</returns>
         protected override string Informacion()
         {
             StringBuilder mensaje = new StringBuilder();
@@ -59,6 +64,10 @@ namespace Entidades
             return mensaje.ToString();
         }
 
+        /// <summary>
+        /// El metodo sobreescribe el metodo ToString, es decir, cuando se invoque el ToString se va a mostrar lo que contiene mi metodo Informacio()
+        /// </summary>
+        /// <returns>La informacion en string</returns>
         public override string ToString()
         {
             return this.Informacion();

@@ -4,21 +4,22 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+
 namespace Entidades
 {
     public class Pasajero : Persona
     {
         private int dni;
         private int edad;
-        private Dictionary<string, double> equipajes;
+        private List<Equipaje> equipajes;
         private bool premium;
 
         private Pasajero()
         {
-            this.equipajes = new Dictionary<string, double>();
+            this.equipajes = new List<Equipaje>();
         }
 
-        public Pasajero(string nombre, string apellido, int dni, int edad, Dictionary<string, double> equipajes, bool premium) : base(nombre,apellido)
+        public Pasajero(string nombre, string apellido, int dni, int edad, List<Equipaje> equipajes, bool premium) : base(nombre,apellido)
         {
             this.dni = dni;
             this.edad = edad;
@@ -38,7 +39,7 @@ namespace Entidades
             set { this.edad = value; }
         }
 
-        public Dictionary<string, double> Equipajes
+        public List<Equipaje> Equipajes
         {
             get { return this.equipajes; }
             set { this.equipajes = value; }
@@ -78,9 +79,9 @@ namespace Entidades
             mensaje.AppendLine($"{base.Mostrar()}");
             mensaje.AppendLine($"DNI: {this.dni}");
             mensaje.AppendLine($"Edad: {this.edad}");
-            foreach (KeyValuePair<string, double> valores in this.equipajes)
+            foreach (Equipaje equipajeClase in this.equipajes)
             {
-                mensaje.AppendLine($"{valores.Key} - {valores.Value}");
+                mensaje.AppendLine($"{equipajeClase.Tipo} - {equipajeClase.Peso}");
             }
             if (this.premium)
             {

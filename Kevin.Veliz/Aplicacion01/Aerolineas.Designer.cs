@@ -33,11 +33,12 @@
             stripInicio = new ToolStripMenuItem();
             stripPasajero = new ToolStripMenuItem();
             stripVuelo = new ToolStripMenuItem();
+            venderVueloToolStripMenuItem = new ToolStripMenuItem();
             stripAeronave = new ToolStripMenuItem();
             stripEstadistica = new ToolStripMenuItem();
             panelModificar = new Panel();
             lblNombreSeccion = new Label();
-            Lista = new ListBox();
+            lstListaElementos = new ListBox();
             btnModificar = new Button();
             btnEliminar = new Button();
             btnAgregar = new Button();
@@ -55,7 +56,7 @@
             menuAerolinea.AutoSize = false;
             menuAerolinea.BackColor = SystemColors.ActiveCaption;
             menuAerolinea.Font = new Font("Segoe UI Symbol", 9.75F, FontStyle.Italic, GraphicsUnit.Point);
-            menuAerolinea.Items.AddRange(new ToolStripItem[] { stripInicio, stripPasajero, stripVuelo, stripAeronave, stripEstadistica });
+            menuAerolinea.Items.AddRange(new ToolStripItem[] { stripInicio, stripPasajero, stripVuelo, venderVueloToolStripMenuItem, stripAeronave, stripEstadistica });
             menuAerolinea.Location = new Point(0, 0);
             menuAerolinea.Margin = new Padding(10);
             menuAerolinea.Name = "menuAerolinea";
@@ -90,6 +91,12 @@
             stripVuelo.Text = "Vuelos";
             stripVuelo.Click += stripVuelo_Click;
             // 
+            // venderVueloToolStripMenuItem
+            // 
+            venderVueloToolStripMenuItem.Name = "venderVueloToolStripMenuItem";
+            venderVueloToolStripMenuItem.Size = new Size(97, 21);
+            venderVueloToolStripMenuItem.Text = "Vender vuelo";
+            // 
             // stripAeronave
             // 
             stripAeronave.AutoSize = false;
@@ -110,13 +117,13 @@
             // 
             panelModificar.Anchor = AnchorStyles.None;
             panelModificar.Controls.Add(lblNombreSeccion);
-            panelModificar.Controls.Add(Lista);
+            panelModificar.Controls.Add(lstListaElementos);
             panelModificar.Controls.Add(btnModificar);
             panelModificar.Controls.Add(btnEliminar);
             panelModificar.Controls.Add(btnAgregar);
-            panelModificar.Location = new Point(865, 133);
+            panelModificar.Location = new Point(813, 113);
             panelModificar.Name = "panelModificar";
-            panelModificar.Size = new Size(74, 386);
+            panelModificar.Size = new Size(126, 406);
             panelModificar.TabIndex = 3;
             panelModificar.Visible = false;
             // 
@@ -130,45 +137,46 @@
             lblNombreSeccion.TabIndex = 4;
             lblNombreSeccion.Text = "label1";
             // 
-            // Lista
+            // lstListaElementos
             // 
-            Lista.Anchor = AnchorStyles.None;
-            Lista.FormattingEnabled = true;
-            Lista.ItemHeight = 15;
-            Lista.Location = new Point(-334, 20);
-            Lista.Name = "Lista";
-            Lista.Size = new Size(686, 379);
-            Lista.TabIndex = 3;
-            Lista.SelectedIndexChanged += Lista_SelectedIndexChanged;
+            lstListaElementos.Anchor = AnchorStyles.None;
+            lstListaElementos.FormattingEnabled = true;
+            lstListaElementos.ItemHeight = 15;
+            lstListaElementos.Location = new Point(-308, 30);
+            lstListaElementos.Name = "lstListaElementos";
+            lstListaElementos.Size = new Size(686, 379);
+            lstListaElementos.TabIndex = 3;
             // 
             // btnModificar
             // 
             btnModificar.Anchor = AnchorStyles.None;
-            btnModificar.Location = new Point(368, 165);
+            btnModificar.Location = new Point(394, 175);
             btnModificar.Name = "btnModificar";
             btnModificar.Size = new Size(75, 51);
             btnModificar.TabIndex = 2;
             btnModificar.Text = "Modificar";
             btnModificar.UseVisualStyleBackColor = true;
+            btnModificar.Click += btnModificar_Click;
             // 
             // btnEliminar
             // 
             btnEliminar.Anchor = AnchorStyles.None;
             btnEliminar.Font = new Font("Segoe UI", 20.25F, FontStyle.Bold, GraphicsUnit.Point);
             btnEliminar.ForeColor = Color.Red;
-            btnEliminar.Location = new Point(368, 93);
+            btnEliminar.Location = new Point(394, 103);
             btnEliminar.Name = "btnEliminar";
             btnEliminar.Size = new Size(75, 50);
             btnEliminar.TabIndex = 1;
             btnEliminar.Text = "-";
             btnEliminar.UseVisualStyleBackColor = true;
+            btnEliminar.Click += btnEliminar_Click;
             // 
             // btnAgregar
             // 
             btnAgregar.Anchor = AnchorStyles.None;
             btnAgregar.Font = new Font("Segoe UI", 20.25F, FontStyle.Bold, GraphicsUnit.Point);
             btnAgregar.ForeColor = Color.LimeGreen;
-            btnAgregar.Location = new Point(368, 20);
+            btnAgregar.Location = new Point(394, 30);
             btnAgregar.Name = "btnAgregar";
             btnAgregar.Size = new Size(75, 49);
             btnAgregar.TabIndex = 0;
@@ -190,9 +198,9 @@
             // 
             panelInicio.Controls.Add(label1);
             panelInicio.Controls.Add(pictureBox1);
-            panelInicio.Location = new Point(116, 153);
+            panelInicio.Location = new Point(12, 54);
             panelInicio.Name = "panelInicio";
-            panelInicio.Size = new Size(668, 355);
+            panelInicio.Size = new Size(62, 50);
             panelInicio.TabIndex = 5;
             // 
             // label1
@@ -239,11 +247,12 @@
         private Button btnModificar;
         private Button btnEliminar;
         private Button btnAgregar;
-        private ListBox Lista;
+        private ListBox lstListaElementos;
         private ToolStripMenuItem stripAeronave;
         private Label lblNombreSeccion;
         private PictureBox pictureBox1;
         private Panel panelInicio;
         private Label label1;
+        private ToolStripMenuItem venderVueloToolStripMenuItem;
     }
 }
