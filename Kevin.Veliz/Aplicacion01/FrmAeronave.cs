@@ -23,6 +23,12 @@ namespace Aplicacion01
             this.StartPosition = FormStartPosition.CenterScreen;
         }
 
+        public FrmAeronave(Aeronave aeronave, string accion):this()
+        {
+            this.InicializarComponentesModificacion(aeronave);
+            this.btnAgregar.Text = accion;
+        }
+
         private void FrmAeronave_Load(object sender, EventArgs e)
         {
 
@@ -86,6 +92,18 @@ namespace Aplicacion01
             this.Close();
         }
 
-        public Aeronave Aeronave { get { return this.aeronave; } }
+        private void InicializarComponentesModificacion(Aeronave aeronave)
+        {
+            this.txtMatricula.Text = aeronave.Matricula;
+            this.txtCantAsientos.Text = aeronave.CantidadAsientos.ToString();
+            this.txtCantBanios.Text = aeronave.CantidadDeBanios.ToString();
+            this.txtCapacidadBodega.Text = aeronave.CapacidadBodega.ToString();
+        }
+
+        public Aeronave Aeronave 
+        { 
+            get { return this.aeronave; } 
+            set { this.aeronave = value; }
+        }
     }
 }

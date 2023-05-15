@@ -38,18 +38,22 @@
             lblApellido = new Label();
             label3 = new Label();
             lblEdad = new Label();
-            cboEquipaje = new ComboBox();
-            lblEquipaje = new Label();
-            lblPeso = new Label();
-            txtPesoEquipaje = new TextBox();
             btnLimpiar = new Button();
-            cboClase = new ComboBox();
+            txtPesoEquipaje2 = new TextBox();
+            lblPesoEquipaje2 = new Label();
+            chkEquipajeMano = new CheckBox();
             label1 = new Label();
+            cboClase = new ComboBox();
+            txtPesoEquipaje = new TextBox();
+            lblPeso = new Label();
+            cboVuelosDisponibles = new ComboBox();
+            lblVuelo = new Label();
+            lblInformacion = new Label();
             SuspendLayout();
             // 
             // btnAgregar
             // 
-            btnAgregar.Location = new Point(7, 356);
+            btnAgregar.Location = new Point(462, 239);
             btnAgregar.Name = "btnAgregar";
             btnAgregar.Size = new Size(75, 23);
             btnAgregar.TabIndex = 0;
@@ -59,7 +63,7 @@
             // 
             // btnCancelar
             // 
-            btnCancelar.Location = new Point(239, 356);
+            btnCancelar.Location = new Point(783, 239);
             btnCancelar.Name = "btnCancelar";
             btnCancelar.Size = new Size(75, 23);
             btnCancelar.TabIndex = 1;
@@ -69,28 +73,28 @@
             // 
             // txtApellido
             // 
-            txtApellido.Location = new Point(122, 65);
+            txtApellido.Location = new Point(176, 62);
             txtApellido.Name = "txtApellido";
             txtApellido.Size = new Size(100, 23);
             txtApellido.TabIndex = 2;
             // 
             // txtDNI
             // 
-            txtDNI.Location = new Point(122, 112);
+            txtDNI.Location = new Point(176, 109);
             txtDNI.Name = "txtDNI";
             txtDNI.Size = new Size(100, 23);
             txtDNI.TabIndex = 4;
             // 
             // txtNombre
             // 
-            txtNombre.Location = new Point(122, 23);
+            txtNombre.Location = new Point(176, 20);
             txtNombre.Name = "txtNombre";
             txtNombre.Size = new Size(100, 23);
             txtNombre.TabIndex = 5;
             // 
             // txtEdad
             // 
-            txtEdad.Location = new Point(122, 154);
+            txtEdad.Location = new Point(176, 151);
             txtEdad.Name = "txtEdad";
             txtEdad.Size = new Size(100, 23);
             txtEdad.TabIndex = 6;
@@ -99,7 +103,7 @@
             // 
             lblNombre.AutoSize = true;
             lblNombre.Font = new Font("Segoe UI Symbol", 9.75F, FontStyle.Italic, GraphicsUnit.Point);
-            lblNombre.Location = new Point(28, 31);
+            lblNombre.Location = new Point(95, 26);
             lblNombre.Name = "lblNombre";
             lblNombre.Size = new Size(60, 17);
             lblNombre.TabIndex = 7;
@@ -109,7 +113,7 @@
             // 
             lblApellido.AutoSize = true;
             lblApellido.Font = new Font("Segoe UI Symbol", 9.75F, FontStyle.Italic, GraphicsUnit.Point);
-            lblApellido.Location = new Point(28, 73);
+            lblApellido.Location = new Point(96, 68);
             lblApellido.Name = "lblApellido";
             lblApellido.Size = new Size(59, 17);
             lblApellido.TabIndex = 8;
@@ -119,7 +123,7 @@
             // 
             label3.AutoSize = true;
             label3.Font = new Font("Segoe UI Symbol", 9.75F, FontStyle.Italic, GraphicsUnit.Point);
-            label3.Location = new Point(52, 120);
+            label3.Location = new Point(122, 115);
             label3.Name = "label3";
             label3.Size = new Size(33, 17);
             label3.TabIndex = 9;
@@ -129,51 +133,15 @@
             // 
             lblEdad.AutoSize = true;
             lblEdad.Font = new Font("Segoe UI Symbol", 9.75F, FontStyle.Italic, GraphicsUnit.Point);
-            lblEdad.Location = new Point(46, 162);
+            lblEdad.Location = new Point(114, 157);
             lblEdad.Name = "lblEdad";
             lblEdad.Size = new Size(41, 17);
             lblEdad.TabIndex = 10;
             lblEdad.Text = "Edad:";
             // 
-            // cboEquipaje
-            // 
-            cboEquipaje.FormattingEnabled = true;
-            cboEquipaje.Location = new Point(122, 195);
-            cboEquipaje.Name = "cboEquipaje";
-            cboEquipaje.Size = new Size(100, 23);
-            cboEquipaje.TabIndex = 12;
-            cboEquipaje.Text = "--Seleccione--";
-            // 
-            // lblEquipaje
-            // 
-            lblEquipaje.AutoSize = true;
-            lblEquipaje.Font = new Font("Segoe UI Symbol", 9.75F, FontStyle.Italic, GraphicsUnit.Point);
-            lblEquipaje.Location = new Point(27, 203);
-            lblEquipaje.Name = "lblEquipaje";
-            lblEquipaje.Size = new Size(61, 17);
-            lblEquipaje.TabIndex = 13;
-            lblEquipaje.Text = "Equipaje:";
-            // 
-            // lblPeso
-            // 
-            lblPeso.AutoSize = true;
-            lblPeso.Font = new Font("Segoe UI Symbol", 9.75F, FontStyle.Italic, GraphicsUnit.Point);
-            lblPeso.Location = new Point(-1, 244);
-            lblPeso.Name = "lblPeso";
-            lblPeso.Size = new Size(93, 17);
-            lblPeso.TabIndex = 14;
-            lblPeso.Text = "Peso equipaje:";
-            // 
-            // txtPesoEquipaje
-            // 
-            txtPesoEquipaje.Location = new Point(122, 241);
-            txtPesoEquipaje.Name = "txtPesoEquipaje";
-            txtPesoEquipaje.Size = new Size(100, 23);
-            txtPesoEquipaje.TabIndex = 15;
-            // 
             // btnLimpiar
             // 
-            btnLimpiar.Location = new Point(122, 356);
+            btnLimpiar.Location = new Point(627, 239);
             btnLimpiar.Name = "btnLimpiar";
             btnLimpiar.Size = new Size(75, 23);
             btnLimpiar.TabIndex = 16;
@@ -181,38 +149,121 @@
             btnLimpiar.UseVisualStyleBackColor = true;
             btnLimpiar.Click += btnLimpiar_Click;
             // 
-            // cboClase
+            // txtPesoEquipaje2
             // 
-            cboClase.FormattingEnabled = true;
-            cboClase.Location = new Point(122, 290);
-            cboClase.Name = "cboClase";
-            cboClase.Size = new Size(100, 23);
-            cboClase.TabIndex = 19;
-            cboClase.Text = "--Seleccione--";
+            txtPesoEquipaje2.Enabled = false;
+            txtPesoEquipaje2.Location = new Point(176, 299);
+            txtPesoEquipaje2.Name = "txtPesoEquipaje2";
+            txtPesoEquipaje2.Size = new Size(100, 23);
+            txtPesoEquipaje2.TabIndex = 57;
+            // 
+            // lblPesoEquipaje2
+            // 
+            lblPesoEquipaje2.AutoSize = true;
+            lblPesoEquipaje2.Font = new Font("Segoe UI Symbol", 9.75F, FontStyle.Italic, GraphicsUnit.Point);
+            lblPesoEquipaje2.Location = new Point(3, 305);
+            lblPesoEquipaje2.Name = "lblPesoEquipaje2";
+            lblPesoEquipaje2.Size = new Size(154, 17);
+            lblPesoEquipaje2.TabIndex = 56;
+            lblPesoEquipaje2.Text = "Peso equipaje bodega 2:";
+            // 
+            // chkEquipajeMano
+            // 
+            chkEquipajeMano.AutoSize = true;
+            chkEquipajeMano.Location = new Point(176, 348);
+            chkEquipajeMano.Name = "chkEquipajeMano";
+            chkEquipajeMano.Size = new Size(121, 19);
+            chkEquipajeMano.TabIndex = 55;
+            chkEquipajeMano.Text = "Equipaje de mano";
+            chkEquipajeMano.UseVisualStyleBackColor = true;
             // 
             // label1
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI Symbol", 9.75F, FontStyle.Italic, GraphicsUnit.Point);
-            label1.Location = new Point(45, 296);
+            label1.Location = new Point(115, 202);
             label1.Name = "label1";
             label1.Size = new Size(42, 17);
-            label1.TabIndex = 20;
+            label1.TabIndex = 54;
             label1.Text = "Clase:";
+            // 
+            // cboClase
+            // 
+            cboClase.FormattingEnabled = true;
+            cboClase.Location = new Point(176, 196);
+            cboClase.Name = "cboClase";
+            cboClase.Size = new Size(100, 23);
+            cboClase.TabIndex = 53;
+            cboClase.Text = "--Seleccione--";
+            cboClase.SelectedIndexChanged += cboClase_SelectedIndexChanged;
+            // 
+            // txtPesoEquipaje
+            // 
+            txtPesoEquipaje.Enabled = false;
+            txtPesoEquipaje.Location = new Point(176, 250);
+            txtPesoEquipaje.Name = "txtPesoEquipaje";
+            txtPesoEquipaje.Size = new Size(100, 23);
+            txtPesoEquipaje.TabIndex = 52;
+            // 
+            // lblPeso
+            // 
+            lblPeso.AutoSize = true;
+            lblPeso.Font = new Font("Segoe UI Symbol", 9.75F, FontStyle.Italic, GraphicsUnit.Point);
+            lblPeso.Location = new Point(14, 256);
+            lblPeso.Name = "lblPeso";
+            lblPeso.Size = new Size(143, 17);
+            lblPeso.TabIndex = 51;
+            lblPeso.Text = "Peso equipaje bodega:";
+            // 
+            // cboVuelosDisponibles
+            // 
+            cboVuelosDisponibles.FormattingEnabled = true;
+            cboVuelosDisponibles.Location = new Point(462, 20);
+            cboVuelosDisponibles.Name = "cboVuelosDisponibles";
+            cboVuelosDisponibles.Size = new Size(396, 23);
+            cboVuelosDisponibles.TabIndex = 58;
+            cboVuelosDisponibles.Text = "--Seleccione--";
+            cboVuelosDisponibles.SelectedIndexChanged += cboVuelosDisponibles_SelectedIndexChanged;
+            cboVuelosDisponibles.Click += cboVuelosDisponibles_Click;
+            // 
+            // lblVuelo
+            // 
+            lblVuelo.AutoSize = true;
+            lblVuelo.Font = new Font("Segoe UI Symbol", 9.75F, FontStyle.Italic, GraphicsUnit.Point);
+            lblVuelo.Location = new Point(319, 26);
+            lblVuelo.Name = "lblVuelo";
+            lblVuelo.Size = new Size(122, 17);
+            lblVuelo.TabIndex = 59;
+            lblVuelo.Text = "Vuelos Disponibles:";
+            // 
+            // lblInformacion
+            // 
+            lblInformacion.AutoSize = true;
+            lblInformacion.Font = new Font("Segoe UI Symbol", 9.75F, FontStyle.Italic, GraphicsUnit.Point);
+            lblInformacion.Location = new Point(462, 70);
+            lblInformacion.Name = "lblInformacion";
+            lblInformacion.Size = new Size(43, 17);
+            lblInformacion.TabIndex = 60;
+            lblInformacion.Text = "label2";
+            lblInformacion.Visible = false;
             // 
             // FrmPasajero
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.GradientInactiveCaption;
-            ClientSize = new Size(326, 406);
+            ClientSize = new Size(878, 465);
+            Controls.Add(lblInformacion);
+            Controls.Add(lblVuelo);
+            Controls.Add(cboVuelosDisponibles);
+            Controls.Add(txtPesoEquipaje2);
+            Controls.Add(lblPesoEquipaje2);
+            Controls.Add(chkEquipajeMano);
             Controls.Add(label1);
             Controls.Add(cboClase);
-            Controls.Add(btnLimpiar);
             Controls.Add(txtPesoEquipaje);
             Controls.Add(lblPeso);
-            Controls.Add(lblEquipaje);
-            Controls.Add(cboEquipaje);
+            Controls.Add(btnLimpiar);
             Controls.Add(lblEdad);
             Controls.Add(label3);
             Controls.Add(lblApellido);
@@ -226,6 +277,7 @@
             Name = "FrmPasajero";
             Text = "FrmPasajero";
             Load += FrmPasajero_Load;
+            Click += FrmPasajero_Click;
             ResumeLayout(false);
             PerformLayout();
         }
@@ -242,12 +294,16 @@
         private Label lblApellido;
         private Label label3;
         private Label lblEdad;
-        private ComboBox cboEquipaje;
-        private Label lblEquipaje;
-        private Label lblPeso;
-        private TextBox txtPesoEquipaje;
         private Button btnLimpiar;
-        private ComboBox cboClase;
+        private TextBox txtPesoEquipaje2;
+        private Label lblPesoEquipaje2;
+        private CheckBox chkEquipajeMano;
         private Label label1;
+        private ComboBox cboClase;
+        private TextBox txtPesoEquipaje;
+        private Label lblPeso;
+        private ComboBox cboVuelosDisponibles;
+        private Label lblVuelo;
+        private Label lblInformacion;
     }
 }

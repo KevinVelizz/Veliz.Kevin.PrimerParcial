@@ -66,5 +66,38 @@ namespace Entidades
             set { this.capacidadBodega = value; }
         }
 
+
+        private string Infomacion()
+        {
+            StringBuilder mensaje = new StringBuilder();
+            mensaje.AppendLine($"Matricula: {this.matricula} ");
+            mensaje.AppendLine($"Cantidad de asientos: {this.cantidadAsientos} ");
+            mensaje.AppendLine($"Cantidad de baños: {this.cantidadDeBanios} ");
+            if (this.servicioInternet)
+            {
+                mensaje.AppendLine("Internet: Si");
+            }
+            else
+            {
+                mensaje.AppendLine("Internet: No");
+            }
+            if (this.servicioComida)
+            {
+                mensaje.AppendLine("Comida: Si ");
+            }    
+            else
+            {
+                mensaje.AppendLine("Comida: No ");
+            }
+            mensaje.AppendLine($"Capacidad Bodega: {this.capacidadBodega}");
+            return mensaje.ToString();  
+        }
+
+        public override string ToString()
+        {
+            return this.Infomacion();
+        }
+
+
     }
 }

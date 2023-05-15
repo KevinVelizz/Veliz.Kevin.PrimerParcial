@@ -33,7 +33,7 @@
             stripInicio = new ToolStripMenuItem();
             stripPasajero = new ToolStripMenuItem();
             stripVuelo = new ToolStripMenuItem();
-            venderVueloToolStripMenuItem = new ToolStripMenuItem();
+            stripVender = new ToolStripMenuItem();
             stripAeronave = new ToolStripMenuItem();
             stripEstadistica = new ToolStripMenuItem();
             panelModificar = new Panel();
@@ -56,12 +56,12 @@
             menuAerolinea.AutoSize = false;
             menuAerolinea.BackColor = SystemColors.ActiveCaption;
             menuAerolinea.Font = new Font("Segoe UI Symbol", 9.75F, FontStyle.Italic, GraphicsUnit.Point);
-            menuAerolinea.Items.AddRange(new ToolStripItem[] { stripInicio, stripPasajero, stripVuelo, venderVueloToolStripMenuItem, stripAeronave, stripEstadistica });
+            menuAerolinea.Items.AddRange(new ToolStripItem[] { stripInicio, stripPasajero, stripVuelo, stripVender, stripAeronave, stripEstadistica });
             menuAerolinea.Location = new Point(0, 0);
             menuAerolinea.Margin = new Padding(10);
             menuAerolinea.Name = "menuAerolinea";
             menuAerolinea.Padding = new Padding(6, 10, 0, 10);
-            menuAerolinea.Size = new Size(951, 41);
+            menuAerolinea.Size = new Size(1253, 41);
             menuAerolinea.TabIndex = 2;
             menuAerolinea.Text = "menuAerolinea";
             // 
@@ -79,7 +79,7 @@
             stripPasajero.BackColor = SystemColors.ActiveCaption;
             stripPasajero.ForeColor = SystemColors.ControlText;
             stripPasajero.Name = "stripPasajero";
-            stripPasajero.Size = new Size(76, 40);
+            stripPasajero.Size = new Size(90, 40);
             stripPasajero.Text = "Pasajeros";
             stripPasajero.Click += stripPasajero_Click;
             // 
@@ -91,11 +91,13 @@
             stripVuelo.Text = "Vuelos";
             stripVuelo.Click += stripVuelo_Click;
             // 
-            // venderVueloToolStripMenuItem
+            // stripVender
             // 
-            venderVueloToolStripMenuItem.Name = "venderVueloToolStripMenuItem";
-            venderVueloToolStripMenuItem.Size = new Size(97, 21);
-            venderVueloToolStripMenuItem.Text = "Vender vuelo";
+            stripVender.AutoSize = false;
+            stripVender.Name = "stripVender";
+            stripVender.Size = new Size(97, 40);
+            stripVender.Text = "Vender vuelo";
+            stripVender.Click += stripVender_Click;
             // 
             // stripAeronave
             // 
@@ -116,14 +118,15 @@
             // panelModificar
             // 
             panelModificar.Anchor = AnchorStyles.None;
+            panelModificar.BackColor = SystemColors.AppWorkspace;
             panelModificar.Controls.Add(lblNombreSeccion);
             panelModificar.Controls.Add(lstListaElementos);
             panelModificar.Controls.Add(btnModificar);
             panelModificar.Controls.Add(btnEliminar);
             panelModificar.Controls.Add(btnAgregar);
-            panelModificar.Location = new Point(813, 113);
+            panelModificar.Location = new Point(18, 77);
             panelModificar.Name = "panelModificar";
-            panelModificar.Size = new Size(126, 406);
+            panelModificar.Size = new Size(1223, 523);
             panelModificar.TabIndex = 3;
             panelModificar.Visible = false;
             // 
@@ -131,7 +134,7 @@
             // 
             lblNombreSeccion.AutoSize = true;
             lblNombreSeccion.Font = new Font("Segoe UI Symbol", 11.25F, FontStyle.Italic, GraphicsUnit.Point);
-            lblNombreSeccion.Location = new Point(87, 8);
+            lblNombreSeccion.Location = new Point(538, 25);
             lblNombreSeccion.Name = "lblNombreSeccion";
             lblNombreSeccion.Size = new Size(50, 20);
             lblNombreSeccion.TabIndex = 4;
@@ -142,15 +145,15 @@
             lstListaElementos.Anchor = AnchorStyles.None;
             lstListaElementos.FormattingEnabled = true;
             lstListaElementos.ItemHeight = 15;
-            lstListaElementos.Location = new Point(-308, 30);
+            lstListaElementos.Location = new Point(21, 59);
             lstListaElementos.Name = "lstListaElementos";
-            lstListaElementos.Size = new Size(686, 379);
+            lstListaElementos.Size = new Size(1108, 424);
             lstListaElementos.TabIndex = 3;
             // 
             // btnModificar
             // 
             btnModificar.Anchor = AnchorStyles.None;
-            btnModificar.Location = new Point(394, 175);
+            btnModificar.Location = new Point(1135, 216);
             btnModificar.Name = "btnModificar";
             btnModificar.Size = new Size(75, 51);
             btnModificar.TabIndex = 2;
@@ -163,7 +166,7 @@
             btnEliminar.Anchor = AnchorStyles.None;
             btnEliminar.Font = new Font("Segoe UI", 20.25F, FontStyle.Bold, GraphicsUnit.Point);
             btnEliminar.ForeColor = Color.Red;
-            btnEliminar.Location = new Point(394, 103);
+            btnEliminar.Location = new Point(1135, 136);
             btnEliminar.Name = "btnEliminar";
             btnEliminar.Size = new Size(75, 50);
             btnEliminar.TabIndex = 1;
@@ -176,7 +179,7 @@
             btnAgregar.Anchor = AnchorStyles.None;
             btnAgregar.Font = new Font("Segoe UI", 20.25F, FontStyle.Bold, GraphicsUnit.Point);
             btnAgregar.ForeColor = Color.LimeGreen;
-            btnAgregar.Location = new Point(394, 30);
+            btnAgregar.Location = new Point(1135, 59);
             btnAgregar.Name = "btnAgregar";
             btnAgregar.Size = new Size(75, 49);
             btnAgregar.TabIndex = 0;
@@ -188,7 +191,7 @@
             // 
             pictureBox1.BackColor = SystemColors.ActiveCaption;
             pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
-            pictureBox1.Location = new Point(255, 3);
+            pictureBox1.Location = new Point(418, 125);
             pictureBox1.Name = "pictureBox1";
             pictureBox1.Size = new Size(103, 102);
             pictureBox1.TabIndex = 4;
@@ -200,14 +203,14 @@
             panelInicio.Controls.Add(pictureBox1);
             panelInicio.Location = new Point(12, 54);
             panelInicio.Name = "panelInicio";
-            panelInicio.Size = new Size(62, 50);
+            panelInicio.Size = new Size(49, 46);
             panelInicio.TabIndex = 5;
             // 
             // label1
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI Symbol", 24F, FontStyle.Italic, GraphicsUnit.Point);
-            label1.Location = new Point(191, 108);
+            label1.Location = new Point(363, 245);
             label1.Name = "label1";
             label1.Size = new Size(220, 45);
             label1.TabIndex = 5;
@@ -218,7 +221,7 @@
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.GradientInactiveCaption;
-            ClientSize = new Size(951, 573);
+            ClientSize = new Size(1253, 612);
             Controls.Add(panelInicio);
             Controls.Add(panelModificar);
             Controls.Add(menuAerolinea);
@@ -253,6 +256,6 @@
         private PictureBox pictureBox1;
         private Panel panelInicio;
         private Label label1;
-        private ToolStripMenuItem venderVueloToolStripMenuItem;
+        private ToolStripMenuItem stripVender;
     }
 }

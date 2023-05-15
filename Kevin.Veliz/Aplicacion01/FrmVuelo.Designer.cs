@@ -28,10 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            button1 = new Button();
-            button2 = new Button();
-            button3 = new Button();
-            txtCosto = new TextBox();
+            btnAgregar = new Button();
+            btnLimpiar = new Button();
+            btnCancelar = new Button();
+            txtCostoTurista = new TextBox();
             cboTipoVuelo = new ComboBox();
             lblTipoVuelo = new Label();
             lblPartida = new Label();
@@ -40,46 +40,52 @@
             cboPartida = new ComboBox();
             cboDestino = new ComboBox();
             dtmVuelo = new DateTimePicker();
-            lblCosto = new Label();
+            lblCostoTurista = new Label();
             lblLLegada = new Label();
             lblHoraVuelo = new Label();
             lblDuracionVuelo = new Label();
             lblHoraSalida = new Label();
+            txtCostoPremium = new TextBox();
+            lblCostoPremium = new Label();
+            label1 = new Label();
+            cboAeronave = new ComboBox();
+            lblInfoAeronave = new Label();
             SuspendLayout();
             // 
-            // button1
+            // btnAgregar
             // 
-            button1.Location = new Point(39, 464);
-            button1.Name = "button1";
-            button1.Size = new Size(75, 23);
-            button1.TabIndex = 0;
-            button1.Text = "button1";
-            button1.UseVisualStyleBackColor = true;
+            btnAgregar.Location = new Point(33, 557);
+            btnAgregar.Name = "btnAgregar";
+            btnAgregar.Size = new Size(75, 23);
+            btnAgregar.TabIndex = 0;
+            btnAgregar.Text = "Agregar";
+            btnAgregar.UseVisualStyleBackColor = true;
+            btnAgregar.Click += btnAgregar_Click;
             // 
-            // button2
+            // btnLimpiar
             // 
-            button2.Location = new Point(129, 464);
-            button2.Name = "button2";
-            button2.Size = new Size(75, 23);
-            button2.TabIndex = 1;
-            button2.Text = "button2";
-            button2.UseVisualStyleBackColor = true;
+            btnLimpiar.Location = new Point(141, 557);
+            btnLimpiar.Name = "btnLimpiar";
+            btnLimpiar.Size = new Size(75, 23);
+            btnLimpiar.TabIndex = 1;
+            btnLimpiar.Text = "Limpiar";
+            btnLimpiar.UseVisualStyleBackColor = true;
             // 
-            // button3
+            // btnCancelar
             // 
-            button3.Location = new Point(224, 464);
-            button3.Name = "button3";
-            button3.Size = new Size(75, 23);
-            button3.TabIndex = 2;
-            button3.Text = "button3";
-            button3.UseVisualStyleBackColor = true;
+            btnCancelar.Location = new Point(257, 557);
+            btnCancelar.Name = "btnCancelar";
+            btnCancelar.Size = new Size(75, 23);
+            btnCancelar.TabIndex = 2;
+            btnCancelar.Text = "Cancelar";
+            btnCancelar.UseVisualStyleBackColor = true;
             // 
-            // txtCosto
+            // txtCostoTurista
             // 
-            txtCosto.Location = new Point(141, 318);
-            txtCosto.Name = "txtCosto";
-            txtCosto.Size = new Size(104, 23);
-            txtCosto.TabIndex = 3;
+            txtCostoTurista.Location = new Point(141, 294);
+            txtCostoTurista.Name = "txtCostoTurista";
+            txtCostoTurista.Size = new Size(104, 23);
+            txtCostoTurista.TabIndex = 3;
             // 
             // cboTipoVuelo
             // 
@@ -89,6 +95,8 @@
             cboTipoVuelo.Size = new Size(104, 23);
             cboTipoVuelo.TabIndex = 6;
             cboTipoVuelo.Text = "--Seleccione--";
+            cboTipoVuelo.SelectedIndexChanged += cboTipoVuelo_SelectedIndexChanged;
+            cboTipoVuelo.SelectionChangeCommitted += cboTipoVuelo_SelectionChangeCommitted;
             // 
             // lblTipoVuelo
             // 
@@ -104,7 +112,7 @@
             // 
             lblPartida.AutoSize = true;
             lblPartida.Font = new Font("Segoe UI Symbol", 9.75F, FontStyle.Italic, GraphicsUnit.Point);
-            lblPartida.Location = new Point(6, 77);
+            lblPartida.Location = new Point(2, 77);
             lblPartida.Name = "lblPartida";
             lblPartida.Size = new Size(117, 17);
             lblPartida.TabIndex = 8;
@@ -114,7 +122,7 @@
             // 
             lblDestino.AutoSize = true;
             lblDestino.Font = new Font("Segoe UI Symbol", 9.75F, FontStyle.Italic, GraphicsUnit.Point);
-            lblDestino.Location = new Point(10, 128);
+            lblDestino.Location = new Point(3, 128);
             lblDestino.Name = "lblDestino";
             lblDestino.Size = new Size(116, 17);
             lblDestino.TabIndex = 9;
@@ -124,7 +132,7 @@
             // 
             lblFechaVuelo.AutoSize = true;
             lblFechaVuelo.Font = new Font("Segoe UI Symbol", 9.75F, FontStyle.Italic, GraphicsUnit.Point);
-            lblFechaVuelo.Location = new Point(25, 175);
+            lblFechaVuelo.Location = new Point(21, 175);
             lblFechaVuelo.Name = "lblFechaVuelo";
             lblFechaVuelo.Size = new Size(98, 17);
             lblFechaVuelo.TabIndex = 10;
@@ -138,6 +146,7 @@
             cboPartida.Size = new Size(104, 23);
             cboPartida.TabIndex = 11;
             cboPartida.Text = "--Seleccione--";
+            cboPartida.SelectedIndexChanged += cboPartida_SelectedIndexChanged;
             // 
             // cboDestino
             // 
@@ -147,10 +156,12 @@
             cboDestino.Size = new Size(104, 23);
             cboDestino.TabIndex = 12;
             cboDestino.Text = "--Seleccione--";
+            cboDestino.SelectedIndexChanged += cboDestino_SelectedIndexChanged;
             // 
             // dtmVuelo
             // 
             dtmVuelo.Checked = false;
+            dtmVuelo.Enabled = false;
             dtmVuelo.Location = new Point(141, 169);
             dtmVuelo.MaxDate = new DateTime(2023, 12, 31, 0, 0, 0, 0);
             dtmVuelo.MinDate = new DateTime(2023, 1, 1, 0, 0, 0, 0);
@@ -159,15 +170,15 @@
             dtmVuelo.TabIndex = 13;
             dtmVuelo.ValueChanged += dtmVuelo_ValueChanged;
             // 
-            // lblCosto
+            // lblCostoTurista
             // 
-            lblCosto.AutoSize = true;
-            lblCosto.Font = new Font("Segoe UI Symbol", 9.75F, FontStyle.Italic, GraphicsUnit.Point);
-            lblCosto.Location = new Point(73, 324);
-            lblCosto.Name = "lblCosto";
-            lblCosto.Size = new Size(45, 17);
-            lblCosto.TabIndex = 14;
-            lblCosto.Text = "Costo:";
+            lblCostoTurista.AutoSize = true;
+            lblCostoTurista.Font = new Font("Segoe UI Symbol", 9.75F, FontStyle.Italic, GraphicsUnit.Point);
+            lblCostoTurista.Location = new Point(33, 300);
+            lblCostoTurista.Name = "lblCostoTurista";
+            lblCostoTurista.Size = new Size(85, 17);
+            lblCostoTurista.TabIndex = 14;
+            lblCostoTurista.Text = "Costo turista:";
             // 
             // lblLLegada
             // 
@@ -182,7 +193,7 @@
             // lblHoraVuelo
             // 
             lblHoraVuelo.AutoSize = true;
-            lblHoraVuelo.Location = new Point(141, 205);
+            lblHoraVuelo.Location = new Point(141, 215);
             lblHoraVuelo.Name = "lblHoraVuelo";
             lblHoraVuelo.Size = new Size(38, 15);
             lblHoraVuelo.TabIndex = 17;
@@ -201,22 +212,74 @@
             // 
             lblHoraSalida.AutoSize = true;
             lblHoraSalida.Font = new Font("Segoe UI Symbol", 9.75F, FontStyle.Italic, GraphicsUnit.Point);
-            lblHoraSalida.Location = new Point(73, 205);
+            lblHoraSalida.Location = new Point(72, 215);
             lblHoraSalida.Name = "lblHoraSalida";
             lblHoraSalida.Size = new Size(46, 17);
             lblHoraSalida.TabIndex = 19;
             lblHoraSalida.Text = "Salida:";
             // 
+            // txtCostoPremium
+            // 
+            txtCostoPremium.Location = new Point(141, 341);
+            txtCostoPremium.Name = "txtCostoPremium";
+            txtCostoPremium.Size = new Size(104, 23);
+            txtCostoPremium.TabIndex = 21;
+            // 
+            // lblCostoPremium
+            // 
+            lblCostoPremium.AutoSize = true;
+            lblCostoPremium.Font = new Font("Segoe UI Symbol", 9.75F, FontStyle.Italic, GraphicsUnit.Point);
+            lblCostoPremium.Location = new Point(15, 347);
+            lblCostoPremium.Name = "lblCostoPremium";
+            lblCostoPremium.Size = new Size(101, 17);
+            lblCostoPremium.TabIndex = 22;
+            lblCostoPremium.Text = "Costo premium:";
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Font = new Font("Segoe UI Symbol", 9.75F, FontStyle.Italic, GraphicsUnit.Point);
+            label1.Location = new Point(50, 407);
+            label1.Name = "label1";
+            label1.Size = new Size(66, 17);
+            label1.TabIndex = 23;
+            label1.Text = "Aeronave:";
+            // 
+            // cboAeronave
+            // 
+            cboAeronave.FormattingEnabled = true;
+            cboAeronave.Location = new Point(141, 401);
+            cboAeronave.Name = "cboAeronave";
+            cboAeronave.Size = new Size(104, 23);
+            cboAeronave.TabIndex = 24;
+            cboAeronave.Text = "--Seleccione--";
+            cboAeronave.SelectedIndexChanged += cboAeronave_SelectedIndexChanged;
+            // 
+            // lblInfoAeronave
+            // 
+            lblInfoAeronave.AutoSize = true;
+            lblInfoAeronave.Location = new Point(141, 439);
+            lblInfoAeronave.Name = "lblInfoAeronave";
+            lblInfoAeronave.Size = new Size(38, 15);
+            lblInfoAeronave.TabIndex = 25;
+            lblInfoAeronave.Text = "label2";
+            lblInfoAeronave.Visible = false;
+            // 
             // FrmVuelo
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(374, 509);
+            ClientSize = new Size(374, 639);
+            Controls.Add(lblInfoAeronave);
+            Controls.Add(cboAeronave);
+            Controls.Add(label1);
+            Controls.Add(lblCostoPremium);
+            Controls.Add(txtCostoPremium);
             Controls.Add(lblHoraSalida);
             Controls.Add(lblDuracionVuelo);
             Controls.Add(lblHoraVuelo);
             Controls.Add(lblLLegada);
-            Controls.Add(lblCosto);
+            Controls.Add(lblCostoTurista);
             Controls.Add(dtmVuelo);
             Controls.Add(cboDestino);
             Controls.Add(cboPartida);
@@ -225,10 +288,10 @@
             Controls.Add(lblPartida);
             Controls.Add(lblTipoVuelo);
             Controls.Add(cboTipoVuelo);
-            Controls.Add(txtCosto);
-            Controls.Add(button3);
-            Controls.Add(button2);
-            Controls.Add(button1);
+            Controls.Add(txtCostoTurista);
+            Controls.Add(btnCancelar);
+            Controls.Add(btnLimpiar);
+            Controls.Add(btnAgregar);
             Name = "FrmVuelo";
             Text = "FrmVuelo";
             Load += FrmVuelo_Load;
@@ -238,10 +301,10 @@
 
         #endregion
 
-        private Button button1;
-        private Button button2;
-        private Button button3;
-        private TextBox txtCosto;
+        private Button btnAgregar;
+        private Button btnLimpiar;
+        private Button btnCancelar;
+        private TextBox txtCostoTurista;
         private TextBox textBox3;
         private ComboBox cboTipoVuelo;
         private Label lblTipoVuelo;
@@ -251,10 +314,15 @@
         private ComboBox cboPartida;
         private ComboBox cboDestino;
         private DateTimePicker dtmVuelo;
-        private Label lblCosto;
+        private Label lblCostoTurista;
         private Label lblLLegada;
         private Label lblHoraVuelo;
         private Label lblDuracionVuelo;
         private Label lblHoraSalida;
+        private TextBox txtCostoPremium;
+        private Label lblCostoPremium;
+        private Label label1;
+        private ComboBox cboAeronave;
+        private Label lblInfoAeronave;
     }
 }

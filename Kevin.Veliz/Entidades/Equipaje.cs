@@ -10,6 +10,28 @@ namespace Entidades
     {
         public string? Tipo { get; set; }
         public double? Peso { get; set; }
-        
+
+        private Equipaje(){ }
+
+        public Equipaje(string tipo, double peso)
+        {
+            this.Tipo = tipo;
+            this.Peso = peso;
+        }
+
+        private string Informacion()
+        {
+            StringBuilder mensaje = new StringBuilder();
+            mensaje.AppendLine($"Tipo: {this.Tipo} ");
+            mensaje.AppendLine($"Peso: {this.Peso}kg ");
+            return mensaje.ToString();
+        }
+
+        public override string ToString()
+        {
+            return this.Informacion();
+        }
+
+
     }
 }

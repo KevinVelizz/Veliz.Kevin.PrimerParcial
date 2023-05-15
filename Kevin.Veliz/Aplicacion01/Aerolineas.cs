@@ -14,6 +14,7 @@ namespace Aplicacion01
         private List<Aeronave> aeronaves;
         private List<Vuelo> vuelos;
         private int index;
+        private int indexItemSeleccionado;
 
         public Aerolineas()
         {
@@ -28,30 +29,17 @@ namespace Aplicacion01
 
         private void Aerolineas_Load(object sender, EventArgs e)
         {
-
-            this.pasajeros = Archivos.DeserealizarPasajeros();
             this.aeronaves = Archivos.DeserealizarAeronaves();
+            this.pasajeros = Archivos.DeserealizarPasajeros();
+            this.vuelos = Archivos.DeserealizarVuelos();
 
             IngresarUsuario ingresarUsuario = new IngresarUsuario();
             ingresarUsuario.ShowDialog();
             if (ingresarUsuario.DialogResult == DialogResult.OK)
             {
                 this.usuario = ingresarUsuario.Usuario;
-                if (this.usuario.Perfil == "administrador")
-                {
-                    this.index = 1;
-                    this.VisualizacionDelUsuario(this.index, this.usuario.Perfil);
-                }
-                else if (this.usuario.Perfil == "supervisor")
-                {
-                    this.index = 1;
-                    this.VisualizacionDelUsuario(this.index, this.usuario.Perfil);
-                }
-                else if (this.usuario.Perfil == "vendedor")
-                {
-                    this.index = 1;
-                    this.VisualizacionDelUsuario(this.index, this.usuario.Perfil);
-                }
+                this.index = 1;
+                this.VisualizacionDelUsuario(this.index, this.usuario.Perfil);
             }
             else
             {
@@ -67,16 +55,19 @@ namespace Aplicacion01
             this.index = 0;
             ModificarColor(this.index);
             this.VisualizacionDelUsuario(this.index, this.usuario.Perfil);
+            this.ActualizarListaPasjeros();
         }
 
         private void stripVuelo_Click(object sender, EventArgs e)
         {
+
             this.panelModificar.Visible = true;
             this.panelInicio.Visible = false;
             this.lblNombreSeccion.Text = "Vuelos";
             this.index = 1;
             this.ModificarColor(this.index);
             this.VisualizacionDelUsuario(this.index, this.usuario.Perfil);
+            this.ActualizarListaVuelos();
         }
 
         private void stripAeronave_Click(object sender, EventArgs e)
@@ -86,6 +77,8 @@ namespace Aplicacion01
             this.lblNombreSeccion.Text = "Aeronaves";
             this.index = 2;
             ModificarColor(this.index);
+            this.VisualizacionDelUsuario(this.index, this.usuario.Perfil);
+            this.ActualizarListaAeronaves();
         }
 
         private void stripEstadistica_Click(object sender, EventArgs e)
@@ -105,6 +98,14 @@ namespace Aplicacion01
             ModificarColor(this.index);
         }
 
+        private void stripVender_Click(object sender, EventArgs e)
+        {
+            this.panelModificar.Visible = false;
+            this.panelInicio.Visible = false;
+            this.index = 5;
+            ModificarColor(this.index);
+        }
+
         private void ModificarColor(int index)
         {
             switch (index)
@@ -115,6 +116,8 @@ namespace Aplicacion01
                     this.stripAeronave.BackColor = Color.FromArgb(153, 180, 209);
                     this.stripEstadistica.BackColor = Color.FromArgb(153, 180, 209);
                     this.stripInicio.BackColor = Color.FromArgb(153, 180, 209);
+                    this.stripVender.BackColor = Color.FromArgb(153, 180, 209);
+
                     break;
                 case 1:
                     this.stripVuelo.BackColor = Color.Aqua;
@@ -122,6 +125,7 @@ namespace Aplicacion01
                     this.stripAeronave.BackColor = Color.FromArgb(153, 180, 209);
                     this.stripEstadistica.BackColor = Color.FromArgb(153, 180, 209);
                     this.stripInicio.BackColor = Color.FromArgb(153, 180, 209);
+                    this.stripVender.BackColor = Color.FromArgb(153, 180, 209);
                     break;
                 case 2:
                     this.stripAeronave.BackColor = Color.Aqua;
@@ -129,6 +133,7 @@ namespace Aplicacion01
                     this.stripVuelo.BackColor = Color.FromArgb(153, 180, 209);
                     this.stripEstadistica.BackColor = Color.FromArgb(153, 180, 209);
                     this.stripInicio.BackColor = Color.FromArgb(153, 180, 209);
+                    this.stripVender.BackColor = Color.FromArgb(153, 180, 209);
                     break;
                 case 3:
                     this.stripEstadistica.BackColor = Color.Aqua;
@@ -136,6 +141,7 @@ namespace Aplicacion01
                     this.stripAeronave.BackColor = Color.FromArgb(153, 180, 209);
                     this.stripVuelo.BackColor = Color.FromArgb(153, 180, 209);
                     this.stripInicio.BackColor = Color.FromArgb(153, 180, 209);
+                    this.stripVender.BackColor = Color.FromArgb(153, 180, 209);
                     break;
                 case 4:
                     this.stripInicio.BackColor = Color.Aqua;
@@ -143,36 +149,70 @@ namespace Aplicacion01
                     this.stripAeronave.BackColor = Color.FromArgb(153, 180, 209);
                     this.stripVuelo.BackColor = Color.FromArgb(153, 180, 209);
                     this.stripEstadistica.BackColor = Color.FromArgb(153, 180, 209);
+                    this.stripVender.BackColor = Color.FromArgb(153, 180, 209);
+                    break;
+                case 5:
+                    this.stripVender.BackColor = Color.Aqua;
+                    this.stripPasajero.BackColor = Color.FromArgb(153, 180, 209);
+                    this.stripAeronave.BackColor = Color.FromArgb(153, 180, 209);
+                    this.stripVuelo.BackColor = Color.FromArgb(153, 180, 209);
+                    this.stripEstadistica.BackColor = Color.FromArgb(153, 180, 209);
+                    this.stripInicio.BackColor = Color.FromArgb(153, 180, 209);
                     break;
             }
         }
 
         private void AgregarElementos(int index)
         {
+            bool encontro = false;
             switch (index)
             {
                 case 0:
-                    FrmPasajero frmPasajero = new FrmPasajero();
+                    FrmPasajero frmPasajero = new FrmPasajero(this.vuelos);
                     frmPasajero.ShowDialog();
 
                     if (frmPasajero.DialogResult == DialogResult.OK)
                     {
-                        foreach (Pasajero pasajero in this.pasajeros)
+                        if (this.pasajeros.Count > 0)
                         {
-                            if (pasajero != frmPasajero.Pasajero)
+                            foreach (Pasajero pasajero in this.pasajeros)
+                            {
+                                if (pasajero == frmPasajero.Pasajero)
+                                {
+                                    encontro = true;
+                                    break;
+                                }
+                            }
+                            if (encontro)
+                            {
+                                MessageBox.Show("Ya se encuentra el pasajero registrado.");
+                            }
+                            else
                             {
                                 this.pasajeros.Add(frmPasajero.Pasajero);
                             }
                         }
+                        else
+                        {
+                            this.pasajeros.Add(frmPasajero.Pasajero);
+                        }
+
                         Archivos.SerealizarViajeros(this.pasajeros);
                         this.ActualizarListaPasjeros();
-
                     }
                     break;
                 case 1:
-                    FrmVuelo vuelo = new FrmVuelo();
-                    vuelo.ShowDialog();
+                    FrmVuelo frmVuelo = new FrmVuelo(this.pasajeros,this.aeronaves);
+                    frmVuelo.ShowDialog();
+
+                    if (frmVuelo.DialogResult == DialogResult.OK)
+                    {
+                        this.vuelos.Add(frmVuelo.Vuelo);
+                    }
+                    Archivos.SerealizarVuelos(this.vuelos);
+                    this.ActualizarListaVuelos();
                     break;
+
                 case 2:
                     FrmAeronave frmAeronave = new FrmAeronave();
                     frmAeronave.ShowDialog();
@@ -181,6 +221,8 @@ namespace Aplicacion01
                     {
                         this.aeronaves.Add(frmAeronave.Aeronave);
                     }
+                    Archivos.SerealizarAeronaves(this.aeronaves);
+                    this.ActualizarListaAeronaves();
                     break;
             }
         }
@@ -194,7 +236,7 @@ namespace Aplicacion01
         {
             if ("administrador" == perfil)
             {
-                if (index == 1 || index == 0)
+                if (index == 0)
                 {
                     this.btnAgregar.Visible = false;
                     this.btnEliminar.Visible = false;
@@ -248,21 +290,53 @@ namespace Aplicacion01
 
         }
 
+        private void BorrarElemento(int index)
+        {
+            Pasajero pasajeroElimina;
+            Aeronave aeronaveElimina;
+            Vuelo vueloElimina;
+            this.indexItemSeleccionado = this.lstListaElementos.SelectedIndex;
+            if (this.indexItemSeleccionado != -1)
+            {
+                if (index == 0)
+                {
+
+                }
+            }
+
+        }
+
         private void ModificarElemento(int index)
         {
-            int indexItemSeleccionado;
-            Pasajero modifica;
-            indexItemSeleccionado = this.lstListaElementos.SelectedIndex;
-            if (indexItemSeleccionado != -1)
-            {
-                modifica = pasajeros.ElementAt(indexItemSeleccionado);
-                FrmPasajero frmPasajero = new FrmPasajero(modifica); 
 
-                if (frmPasajero.ShowDialog() == DialogResult.OK)
+            Pasajero pasajeroModifica;
+            Aeronave aeronaveModifica;
+            Vuelo vueloModifica;
+
+            this.indexItemSeleccionado = this.lstListaElementos.SelectedIndex;
+            if (this.indexItemSeleccionado != -1)
+            {
+                if (index == 0)
                 {
-                    this.pasajeros[indexItemSeleccionado] = frmPasajero.Pasajero;
-                    Archivos.SerealizarViajeros(this.pasajeros);
-                    this.ActualizarListaPasjeros();
+                    pasajeroModifica = this.pasajeros.ElementAt(this.indexItemSeleccionado);
+                    FrmPasajero frmPasajero = new FrmPasajero(pasajeroModifica, "Modificar");
+                    if (frmPasajero.ShowDialog() == DialogResult.OK)
+                    {
+                        this.pasajeros[this.indexItemSeleccionado] = frmPasajero.Pasajero;
+                        Archivos.SerealizarViajeros(this.pasajeros);
+                        this.ActualizarListaPasjeros();
+                    }
+                }
+                else if (index == 2)
+                {
+                    aeronaveModifica = this.aeronaves.ElementAt(this.indexItemSeleccionado);
+                    FrmAeronave frmAeronave = new FrmAeronave(aeronaveModifica, "Modificar");
+                    if (frmAeronave.ShowDialog() == DialogResult.OK)
+                    {
+                        this.aeronaves[this.indexItemSeleccionado] = frmAeronave.Aeronave;
+                        Archivos.SerealizarAeronaves(this.aeronaves);
+                        this.ActualizarListaAeronaves();
+                    }
                 }
             }
         }
@@ -272,10 +346,23 @@ namespace Aplicacion01
             this.lstListaElementos.DataSource = null;
             this.lstListaElementos.DataSource = this.pasajeros;
         }
+        private void ActualizarListaVuelos()
+        {
+            this.lstListaElementos.DataSource = null;
+            this.lstListaElementos.DataSource = this.vuelos;
+        }
+
+        private void ActualizarListaAeronaves()
+        {
+            this.lstListaElementos.DataSource = null;
+            this.lstListaElementos.DataSource = this.aeronaves;
+        }
 
         private void btnModificar_Click(object sender, EventArgs e)
         {
-
+            this.ModificarElemento(this.index);
         }
+
+
     }
 }

@@ -16,5 +16,10 @@ namespace Aplicacion01
         {
             InitializeComponent();
         }
+
+        private void FrmVenderVuelo_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

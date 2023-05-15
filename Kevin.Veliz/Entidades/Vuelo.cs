@@ -17,25 +17,27 @@ namespace Entidades
         private int cantidadAsientosDispTurista;
         private double costoClasePremium;
         private double costoClaseTurista;
-        private DateTime duracionVuelo;
-        private List<Pasajero> clientes;
+        private DateTime fechaDeLLegada;
+        private List<Pasajero> pasajeros;
         private string estado;
+        private bool disponible;
 
         private Vuelo()
         {
-            this.clientes = new List<Pasajero>();
-            this.duracionVuelo = new DateTime();
+            this.pasajeros = new List<Pasajero>();
+            this.fechaDeLLegada = new DateTime();
             this.costoClasePremium = 200;
             this.costoClaseTurista = 100;
+            this.disponible = true;
         }
-
-        public Vuelo(string ciudadDePartida, string ciudadDeDestino, DateTime fechaDeVuelo,Aeronave avion, DateTime duracionVuelo, List<Pasajero> clientes, string estado) :this()
+        
+        public Vuelo(string ciudadDePartida, string ciudadDeDestino, DateTime fechaDeVuelo,Aeronave avion, DateTime fechaDeLLegada, string estado) :this()
         {
             this.ciudadDePartida = ciudadDePartida;
             this.ciudadDeDestino = ciudadDeDestino;
             this.fechaDeVuelo = fechaDeVuelo;
             this.avion = avion;
-            this.clientes = clientes;
+            this.fechaDeLLegada = fechaDeLLegada;
             this.estado = estado;
         }
 
@@ -66,9 +68,11 @@ namespace Entidades
                     this.cantidadAsientosDispTurista = (int)Math.Round(aux,0);
                     return this.cantidadAsientosDispTurista;
                 }
-                return this.cantidadAsientosDispTurista = 0;
+                else
+                {
+                    return this.cantidadAsientosDispTurista = 0;
+                }
             }
-
             set { this.cantidadAsientosDispTurista = value; }
         }
 
@@ -82,11 +86,13 @@ namespace Entidades
                     this.cantidadAsientosDispPremium = (int)Math.Round(aux, 0);
                     return this.cantidadAsientosDispPremium;
                 }
-                return this.cantidadAsientosDispPremium = 0;
+                else
+                {
+                    return this.cantidadAsientosDispPremium = 0;
+                }
             }
             set { this.cantidadAsientosDispPremium = value; }
         }
-
 
         public double CostoClasePremium
         {
@@ -100,10 +106,10 @@ namespace Entidades
             set { this.costoClaseTurista = value; }
         }
 
-        public List<Pasajero> Clientes
+        public List<Pasajero> Pasajeros
         {
-            get { return this.clientes; }
-            set { this.clientes = value; }
+            get { return this.pasajeros; }
+            set { this.pasajeros = value; }
         }
 
         public string Estado
@@ -118,30 +124,36 @@ namespace Entidades
             set { this.avion = value; }
         }
         
-        public DateTime DuracionVuelo
+        public DateTime FechaDeLLegada
         {
-            get { return this.duracionVuelo; }
-            set { this.duracionVuelo = value; }
+            get { return this.fechaDeLLegada; }
+            set { this.fechaDeLLegada = value; }
         }
 
         private string Mostrar()
         {
             StringBuilder mensaje = new StringBuilder();
-
-            mensaje.AppendLine($"Ciudad de partida: {this.ciudadDePartida}");
-            mensaje.AppendLine($"Ciudad de destino: {this.ciudadDeDestino}");
-            mensaje.AppendLine($"Fecha de vuelo: {this.fechaDeVuelo}");
+            mensaje.AppendLine($"Partida: {this.ciudadDePartida}");
+            mensaje.AppendLine($"Destino: {this.ciudadDeDestino}");
+            mensaje.AppendLine($"Fecha salida: {this.fechaDeVuelo}");
+            mensaje.AppendLine($"Fecha llegada: {this.FechaDeLLegada}");
             mensaje.AppendLine($"Avion: {this.avion.Matricula}");
-            mensaje.AppendLine($"Asientos clase premium: {this.cantidadAsientosDispPremium}");
-            mensaje.AppendLine($"Asientos clase turista: {this.cantidadAsientosDispPremium}");
-            mensaje.AppendLine($"Costo clase premium {this.costoClasePremium}");
-            mensaje.AppendLine($"Costo clase turista {this.costoClaseTurista}");
-            mensaje.AppendLine($"Duracion vuelo: {this.duracionVuelo}");
-            mensaje.AppendLine($"Estado del vuelo: {this.estado}");
-
+            mensaje.AppendLine($"Asientos premium: {this.cantidadAsientosDispPremium}");
+            mensaje.AppendLine($"Asientos turista: {this.cantidadAsientosDispPremium}");
+            mensaje.AppendLine($"Costo premium {this.costoClasePremium}");
+            mensaje.AppendLine($"Costo turista {this.costoClaseTurista}");
+            mensaje.AppendLine($"Estado: {this.estado}");
             return mensaje.ToString();
         }
 
+        public string Informacion()
+        {
+            StringBuilder mensaje = new StringBuilder();
+            mensaje.AppendLine($"Partida: {this.ciudadDePartida} - ");
+            mensaje.AppendLine($"Destino: {this.ciudadDeDestino} - ");
+            mensaje.AppendLine($"Fecha salida: {this.fechaDeVuelo}  - ");
+            return mensaje.ToString();
+        }
 
         public override string ToString()
         {

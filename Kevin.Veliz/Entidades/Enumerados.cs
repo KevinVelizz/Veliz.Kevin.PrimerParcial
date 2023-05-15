@@ -2,7 +2,6 @@
 
 public enum EnumVuelosInternacionales
 {
-    [XmlEnum ("Recife")]
     Recife,
     Roma,
     Acapulco,
@@ -11,7 +10,6 @@ public enum EnumVuelosInternacionales
 
 public enum EnumVuelosNacionales
 {
-    [XmlEnum("Santa Rosa")]
     Santa_Rosa,
     Bariloche,
     Corrientes,
@@ -40,4 +38,10 @@ public enum EnumClase
 {
     Turista,
     Premium,
+}
+
+public enum EnumTipoVuelo
+{
+    Internacional,
+    Nacional,
 }

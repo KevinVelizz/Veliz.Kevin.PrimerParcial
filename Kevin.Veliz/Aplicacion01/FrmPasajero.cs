@@ -16,28 +16,41 @@ namespace Aplicacion01
         private double peso;
         private Pasajero pasajero;
         private List<Equipaje> equipajes;
+        private string claseSeleccionada;
+        private int pesoEquipaje1;
+        private int pesoEquipaje2;
+        private List<Vuelo> vuelos;
+        private int indexVueloSeleccionado;
 
         public FrmPasajero()
         {
             InitializeComponent();
             this.equipajes = new List<Equipaje>();
             this.StartPosition = FormStartPosition.CenterScreen;
+            this.pesoEquipaje1 = 0;
+            this.pesoEquipaje2 = 0;
+            this.txtPesoEquipaje.Text = "0";
+            this.txtPesoEquipaje2.Text = "0";
         }
 
-        public FrmPasajero(Pasajero pasajero) :this()
+        public FrmPasajero(List<Vuelo> vuelos) : this()
+        {
+            this.vuelos = vuelos;
+        }
+
+        public FrmPasajero(Pasajero pasajero, string accion) : this()
         {
             this.InicializarComponentesModificacion(pasajero);
+            this.btnAgregar.Text = accion;
         }
 
         private void FrmPasajero_Load(object sender, EventArgs e)
         {
             string auxEquipaje;
             string auxClase;
-            foreach (EnumEquipaje equipaje in Enum.GetValues(typeof(EnumEquipaje)))
+            foreach (Vuelo vuelo in this.vuelos)
             {
-                auxEquipaje = equipaje.ToString();
-                auxEquipaje = auxEquipaje.Replace("_", " ");
-                this.cboEquipaje.Items.Add(auxEquipaje);
+                this.cboVuelosDisponibles.Items.Add(vuelo.Informacion());
             }
 
             foreach (EnumClase clase in Enum.GetValues(typeof(EnumClase)))
@@ -61,13 +74,15 @@ namespace Aplicacion01
                     comboBox.Text = "--Seleccione--";
                 }
             }
+            this.txtPesoEquipaje.Text = "0";
+            this.txtPesoEquipaje2.Text = "0";
         }
 
         private void btnAgregar_Click(object sender, EventArgs e)
         {
             bool verificar = true;
             bool premium = false;
-            
+            bool equipajeMano = chkEquipajeMano.Checked;
             string equipajeSeleccionado;
             int edad = 0;
             int dni = 0;
@@ -76,7 +91,7 @@ namespace Aplicacion01
             {
                 if (control is TextBox textBox)
                 {
-                    if (textBox.Text == "" || this.cboEquipaje.SelectedItem is null || this.cboClase.SelectedItem is null)
+                    if (textBox.Text == "" || this.cboClase.SelectedItem is null)
                     {
                         MessageBox.Show("Complete todos los campos.");
                         verificar = false;
@@ -85,18 +100,24 @@ namespace Aplicacion01
                 }
             }
 
-            if (this.cboClase.SelectedItem != null && this.txtPesoEquipaje.Text != "")
+            if (this.cboClase.SelectedItem != null && this.txtPesoEquipaje.Text != "" && this.txtPesoEquipaje2.Text != "")
             {
-                equipajeSeleccionado = (string)this.cboEquipaje.SelectedItem;
-                this.peso = double.Parse(this.txtPesoEquipaje.Text);
-                Equipaje equipaje = new Equipaje();
-                equipaje.Tipo = equipajeSeleccionado;
-                equipaje.Peso = this.peso;
-                this.equipajes.Add(equipaje);
-
-                if ((string)this.cboClase.SelectedItem == "Premium")
+                if (double.TryParse(this.txtPesoEquipaje.Text, out double peso1) && double.TryParse(this.txtPesoEquipaje2.Text, out double peso2))
                 {
-                    premium = true;
+                    Equipaje equipaje = new Equipaje("De bodega", peso1);
+                    this.equipajes.Add(equipaje);
+                    if (this.claseSeleccionada == "Premium")
+                    {
+                        Equipaje equipaje1 = new Equipaje("De bodega", peso2);
+                        equipaje1.Peso = peso2;
+                        this.equipajes.Add(equipaje1);
+                        premium = true;
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Ingrese un valores númericos");
+                    verificar = false;
                 }
             }
 
@@ -113,7 +134,7 @@ namespace Aplicacion01
 
             if (verificar)
             {
-                this.pasajero = new Pasajero(this.txtNombre.Text, this.txtApellido.Text, dni, edad, this.equipajes, premium);
+                this.pasajero = new Pasajero(this.txtNombre.Text, this.txtApellido.Text, dni, edad, this.equipajes, premium, equipajeMano);
                 this.DialogResult = DialogResult.OK;
             }
         }
@@ -123,8 +144,11 @@ namespace Aplicacion01
             this.Close();
         }
 
-        public Pasajero Pasajero { get { return this.pasajero; } }
-
+        public Pasajero Pasajero
+        {
+            get { return this.pasajero; }
+            set { this.pasajero = value; }
+        }
 
         private void InicializarComponentesModificacion(Pasajero pasajero)
         {
@@ -132,7 +156,60 @@ namespace Aplicacion01
             this.txtNombre.Text = pasajero.Nombre;
             this.txtDNI.Text = pasajero.Dni.ToString();
             this.txtEdad.Text = pasajero.Edad.ToString();
-            this.txtPesoEquipaje.Text = this.peso.ToString();
+            if (pasajero.Premium)
+            {
+                this.cboClase.Text = "Premium";
+            }
+            else
+            {
+                this.cboClase.Text = "Turista";
+            }
+
+            this.txtPesoEquipaje.Text = pasajero.Equipajes[0].Peso.ToString();
+            if (pasajero.Equipajes.Count > 1)
+            {
+                this.txtPesoEquipaje2.Text = pasajero.Equipajes[1].Peso.ToString();
+            }
+            else
+            {
+                this.txtPesoEquipaje2.Text = "0";
+            }
+        }
+
+        private void cboClase_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            this.claseSeleccionada = cboClase.SelectedItem.ToString();
+
+            if (this.claseSeleccionada == "Turista")
+            {
+                this.txtPesoEquipaje.Enabled = true;
+                this.txtPesoEquipaje2.Enabled = false;
+            }
+            else if (this.claseSeleccionada == "Premium")
+            {
+                this.txtPesoEquipaje.Enabled = true;
+                this.txtPesoEquipaje2.Enabled = true;
+            }
+        }
+
+        private void FrmPasajero_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void cboVuelosDisponibles_Click(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void cboVuelosDisponibles_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            this.indexVueloSeleccionado = cboVuelosDisponibles.SelectedIndex;
+            this.lblInformacion.Visible = true;
+            this.lblInformacion.Text = this.vuelos[this.indexVueloSeleccionado].Avion.ToString();
+
+
+
         }
     }
 }

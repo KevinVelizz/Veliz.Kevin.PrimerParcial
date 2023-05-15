@@ -13,18 +13,19 @@ namespace Entidades
         private int edad;
         private List<Equipaje> equipajes;
         private bool premium;
-
+        private bool equipajeDeMano;
         private Pasajero()
         {
             this.equipajes = new List<Equipaje>();
         }
 
-        public Pasajero(string nombre, string apellido, int dni, int edad, List<Equipaje> equipajes, bool premium) : base(nombre,apellido)
+        public Pasajero(string nombre, string apellido, int dni, int edad, List<Equipaje> equipajes, bool premium, bool equipajeDeMano) : base(nombre,apellido)
         {
             this.dni = dni;
             this.edad = edad;
             this.equipajes = equipajes;
             this.premium = premium;
+            this.equipajeDeMano = equipajeDeMano;
         }
 
         public int Dni
@@ -38,18 +39,24 @@ namespace Entidades
             get { return this.edad; }
             set { this.edad = value; }
         }
-
         public List<Equipaje> Equipajes
         {
             get { return this.equipajes; }
             set { this.equipajes = value; }
         }
-
         public bool Premium
         {
             get { return this.premium; }
             set { this.premium = value; }
         }
+
+        public bool EquipajeDeMano
+        {
+            get { return this.equipajeDeMano; }
+            set { this.equipajeDeMano = value; }
+        }
+
+
         public static bool operator ==(Pasajero pasajero1, Pasajero pasajero2)
         {
             return pasajero1.dni == pasajero2.dni;
@@ -59,7 +66,6 @@ namespace Entidades
         {
             return !(pasajero1 == pasajero2);
         }
-
         public override bool Equals(object? obj)
         {
             bool retorno = false;
@@ -81,7 +87,7 @@ namespace Entidades
             mensaje.AppendLine($"Edad: {this.edad}");
             foreach (Equipaje equipajeClase in this.equipajes)
             {
-                mensaje.AppendLine($"{equipajeClase.Tipo} - {equipajeClase.Peso}");
+                mensaje.AppendLine(equipajeClase.ToString());
             }
             if (this.premium)
             {
@@ -90,6 +96,15 @@ namespace Entidades
             else
             {
                 mensaje.AppendLine("Clase: Turista");
+            }
+
+            if (this.equipajeDeMano)
+            {
+                mensaje.AppendLine($"Equipaje de mano: Si");
+            }    
+            else
+            {
+                mensaje.AppendLine($"Equipaje de mano: No");
             }
             return mensaje.ToString();
         }

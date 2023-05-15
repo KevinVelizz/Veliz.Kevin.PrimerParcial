@@ -41,7 +41,7 @@ class Program
         Aeronave aeronave1 = new Aeronave("fli2", 120, 4, true, false, 4000);
 
 
-        Vuelo vuelo = new Vuelo(EnumVuelosNacionales.Santa_Rosa.ToString(), EnumVuelosInternacionales.Recife.ToString(), tiempoSalida, aeronave1, tiempoLLegada, pasajeros, "no realizado");
+        Vuelo vuelo = new Vuelo(EnumVuelosNacionales.BuenosAires.ToString(), EnumVuelosNacionales.SantiagoDelEstero.ToString(), tiempoSalida, aeronave1, tiempoLLegada, pasajeros, "no realizado");
 
         vuelos.Add(vuelo);
 

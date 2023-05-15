@@ -4,12 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Text.Json;
+using System.Runtime.Intrinsics.X86;
 
 namespace Entidades
 {
     public class Aerolinea
     {
-
         public static Usuario? Login(string email, string clave)
         {
             List<Usuario> lista = Archivos.DeserealizarUsuarios();
@@ -25,55 +25,55 @@ namespace Entidades
             return aux;
         }
 
-        public static DateTime CalcularDuracion(DateTime fechaViaje)
+        public static double CalcularDuracion()
         {   
             Random numRandom = new Random();
-            double num = numRandom.Next(2, 5);
-            fechaViaje = fechaViaje.AddHours(num);
-            return fechaViaje;
+            double duracion = numRandom.Next(2, 5);
+            return duracion;
         }
 
-        public static double CalcularPrecio(Pasajero pasajero, string destino, DateTime fechaViaje)
+        public static double CalcularPrecio(bool premium, string destino,double duracion)
         {
-            int duracion = CalcularDuracion(fechaViaje).Hour;
-
             double valorPrecio = 0;
-            
-            foreach (EnumEquipaje equipaje in Enum.GetValues(typeof(EnumVuelosNacionales)))
+            string aux;
+            foreach (EnumVuelosNacionales des1 in Enum.GetValues(typeof(EnumVuelosNacionales)))
             {
-                if (destino == equipaje.ToString())
+                aux = des1.ToString();
+                aux = aux.Replace("_", " ");
+
+                if (destino == aux)
                 {
-                    if (pasajero.Premium)
+                    if (premium)
                     {
-                        valorPrecio = (duracion * 50) * 135 / 100;
-                        break;
+                        valorPrecio = (duracion * 50) * 1.35;
                     }
                     else
                     {
                         valorPrecio = duracion * 50;
                     }
+                    break;
                 }
             }
 
-            foreach (EnumEquipaje equipaje in Enum.GetValues(typeof(EnumVuelosInternacionales)))
+            foreach (EnumVuelosInternacionales des in Enum.GetValues(typeof(EnumVuelosInternacionales)))
             {
-                if (destino == equipaje.ToString())
+                aux = des.ToString();
+                aux = aux.Replace("_", " ");
+
+                if (destino == aux)
                 {
-                    if (pasajero.Premium)
+                    if (premium)
                     {
-                        valorPrecio = (duracion * 50) * 135 / 100;
-                        break;
+                        valorPrecio = (duracion * 100) * 1.35;
                     }
                     else
                     {
-                        valorPrecio = duracion * 50;
+                        valorPrecio = duracion * 100;
                     }
+                    break;
                 }
             }
             return valorPrecio;
         }
-
-
-        
     }
 }
