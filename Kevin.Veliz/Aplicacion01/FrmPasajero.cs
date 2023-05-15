@@ -48,10 +48,6 @@ namespace Aplicacion01
         {
             string auxEquipaje;
             string auxClase;
-            foreach (Vuelo vuelo in this.vuelos)
-            {
-                this.cboVuelosDisponibles.Items.Add(vuelo.Informacion());
-            }
 
             foreach (EnumClase clase in Enum.GetValues(typeof(EnumClase)))
             {
@@ -199,17 +195,9 @@ namespace Aplicacion01
 
         private void cboVuelosDisponibles_Click(object sender, EventArgs e)
         {
-            
-        }
-
-        private void cboVuelosDisponibles_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            this.indexVueloSeleccionado = cboVuelosDisponibles.SelectedIndex;
-            this.lblInformacion.Visible = true;
-            this.lblInformacion.Text = this.vuelos[this.indexVueloSeleccionado].Avion.ToString();
-
-
 
         }
+
+        
     }
 }

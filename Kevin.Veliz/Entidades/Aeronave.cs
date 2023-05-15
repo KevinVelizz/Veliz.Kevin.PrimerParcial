@@ -14,10 +14,12 @@ namespace Entidades
         private bool servicioInternet;
         private bool servicioComida;
         private double capacidadBodega;
+        private bool agregado;
 
         private Aeronave()
         {
             cantidadAsientos = 0;
+            this.agregado = false;
         }
 
         public Aeronave(string matricula, int cantidadAsientos, int cantidadDeBanios, bool servicioInternet, bool servicioComida, double capacidadBodega)
@@ -66,30 +68,44 @@ namespace Entidades
             set { this.capacidadBodega = value; }
         }
 
+        public bool Agregado
+        {
+            get { return this.agregado; }
+            set { this.agregado = value;}
+        }
 
         private string Infomacion()
         {
             StringBuilder mensaje = new StringBuilder();
-            mensaje.AppendLine($"Matricula: {this.matricula} ");
-            mensaje.AppendLine($"Cantidad de asientos: {this.cantidadAsientos} ");
-            mensaje.AppendLine($"Cantidad de baños: {this.cantidadDeBanios} ");
+            mensaje.AppendLine($"Matricula: {this.matricula} - ");
+            mensaje.AppendLine($"Cantidad de asientos: {this.cantidadAsientos} - ");
+            mensaje.AppendLine($"Cantidad de baños: {this.cantidadDeBanios} - ");
             if (this.servicioInternet)
             {
-                mensaje.AppendLine("Internet: Si");
+                mensaje.AppendLine("Internet: Si - ");
             }
             else
             {
-                mensaje.AppendLine("Internet: No");
+                mensaje.AppendLine("Internet: No - ");
             }
             if (this.servicioComida)
             {
-                mensaje.AppendLine("Comida: Si ");
+                mensaje.AppendLine("Comida: Si - ");
             }    
             else
             {
-                mensaje.AppendLine("Comida: No ");
+                mensaje.AppendLine("Comida: No - ");
             }
-            mensaje.AppendLine($"Capacidad Bodega: {this.capacidadBodega}");
+            mensaje.AppendLine($"Capacidad Bodega: {this.capacidadBodega} - ");
+
+            if (this.agregado)
+            {
+                mensaje.AppendLine("Agregado");
+            }
+            else
+            {
+                mensaje.AppendLine("No agregado");
+            }
             return mensaje.ToString();  
         }
 

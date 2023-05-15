@@ -61,7 +61,7 @@
             menuAerolinea.Margin = new Padding(10);
             menuAerolinea.Name = "menuAerolinea";
             menuAerolinea.Padding = new Padding(6, 10, 0, 10);
-            menuAerolinea.Size = new Size(1253, 41);
+            menuAerolinea.Size = new Size(1280, 41);
             menuAerolinea.TabIndex = 2;
             menuAerolinea.Text = "menuAerolinea";
             // 
@@ -97,6 +97,7 @@
             stripVender.Name = "stripVender";
             stripVender.Size = new Size(97, 40);
             stripVender.Text = "Vender vuelo";
+            stripVender.Visible = false;
             stripVender.Click += stripVender_Click;
             // 
             // stripAeronave
@@ -124,9 +125,9 @@
             panelModificar.Controls.Add(btnModificar);
             panelModificar.Controls.Add(btnEliminar);
             panelModificar.Controls.Add(btnAgregar);
-            panelModificar.Location = new Point(18, 77);
+            panelModificar.Location = new Point(12, 84);
             panelModificar.Name = "panelModificar";
-            panelModificar.Size = new Size(1223, 523);
+            panelModificar.Size = new Size(1256, 523);
             panelModificar.TabIndex = 3;
             panelModificar.Visible = false;
             // 
@@ -145,15 +146,15 @@
             lstListaElementos.Anchor = AnchorStyles.None;
             lstListaElementos.FormattingEnabled = true;
             lstListaElementos.ItemHeight = 15;
-            lstListaElementos.Location = new Point(21, 59);
+            lstListaElementos.Location = new Point(3, 59);
             lstListaElementos.Name = "lstListaElementos";
-            lstListaElementos.Size = new Size(1108, 424);
+            lstListaElementos.Size = new Size(1158, 424);
             lstListaElementos.TabIndex = 3;
             // 
             // btnModificar
             // 
             btnModificar.Anchor = AnchorStyles.None;
-            btnModificar.Location = new Point(1135, 216);
+            btnModificar.Location = new Point(1167, 214);
             btnModificar.Name = "btnModificar";
             btnModificar.Size = new Size(75, 51);
             btnModificar.TabIndex = 2;
@@ -166,7 +167,7 @@
             btnEliminar.Anchor = AnchorStyles.None;
             btnEliminar.Font = new Font("Segoe UI", 20.25F, FontStyle.Bold, GraphicsUnit.Point);
             btnEliminar.ForeColor = Color.Red;
-            btnEliminar.Location = new Point(1135, 136);
+            btnEliminar.Location = new Point(1167, 137);
             btnEliminar.Name = "btnEliminar";
             btnEliminar.Size = new Size(75, 50);
             btnEliminar.TabIndex = 1;
@@ -179,7 +180,7 @@
             btnAgregar.Anchor = AnchorStyles.None;
             btnAgregar.Font = new Font("Segoe UI", 20.25F, FontStyle.Bold, GraphicsUnit.Point);
             btnAgregar.ForeColor = Color.LimeGreen;
-            btnAgregar.Location = new Point(1135, 59);
+            btnAgregar.Location = new Point(1167, 59);
             btnAgregar.Name = "btnAgregar";
             btnAgregar.Size = new Size(75, 49);
             btnAgregar.TabIndex = 0;
@@ -189,9 +190,10 @@
             // 
             // pictureBox1
             // 
+            pictureBox1.Anchor = AnchorStyles.None;
             pictureBox1.BackColor = SystemColors.ActiveCaption;
             pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
-            pictureBox1.Location = new Point(418, 125);
+            pictureBox1.Location = new Point(-18, -78);
             pictureBox1.Name = "pictureBox1";
             pictureBox1.Size = new Size(103, 102);
             pictureBox1.TabIndex = 4;
@@ -203,14 +205,15 @@
             panelInicio.Controls.Add(pictureBox1);
             panelInicio.Location = new Point(12, 54);
             panelInicio.Name = "panelInicio";
-            panelInicio.Size = new Size(49, 46);
+            panelInicio.Size = new Size(53, 49);
             panelInicio.TabIndex = 5;
             // 
             // label1
             // 
+            label1.Anchor = AnchorStyles.None;
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI Symbol", 24F, FontStyle.Italic, GraphicsUnit.Point);
-            label1.Location = new Point(363, 245);
+            label1.Location = new Point(-77, 41);
             label1.Name = "label1";
             label1.Size = new Size(220, 45);
             label1.TabIndex = 5;
@@ -221,7 +224,7 @@
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.GradientInactiveCaption;
-            ClientSize = new Size(1253, 612);
+            ClientSize = new Size(1280, 627);
             Controls.Add(panelInicio);
             Controls.Add(panelModificar);
             Controls.Add(menuAerolinea);

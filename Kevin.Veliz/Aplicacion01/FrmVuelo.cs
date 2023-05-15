@@ -163,6 +163,8 @@ namespace Aplicacion01
             if (this.fechaSeleccionado != DateTime.Today && this.avioSeleccionado != null)
             {
                 this.vuelo = new Vuelo(this.salidaSeleccionado, this.destinoSeleccionado, this.fechaSeleccionado, this.aeronaves[this.indexAeronaveSeleccionada], this.fechaDeLlegada, "No viajó");
+                this.vuelo.CostoClasePremium = double.Parse(txtCostoPremium.Text);
+                this.vuelo.CostoClaseTurista = double.Parse(txtCostoTurista.Text);
                 this.DialogResult = DialogResult.OK;
             }
             else

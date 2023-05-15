@@ -55,6 +55,7 @@ namespace Aplicacion01
             this.index = 0;
             ModificarColor(this.index);
             this.VisualizacionDelUsuario(this.index, this.usuario.Perfil);
+            this.pasajeros = Archivos.DeserealizarPasajeros();
             this.ActualizarListaPasjeros();
         }
 
@@ -67,6 +68,7 @@ namespace Aplicacion01
             this.index = 1;
             this.ModificarColor(this.index);
             this.VisualizacionDelUsuario(this.index, this.usuario.Perfil);
+            this.vuelos = Archivos.DeserealizarVuelos();
             this.ActualizarListaVuelos();
         }
 
@@ -78,6 +80,7 @@ namespace Aplicacion01
             this.index = 2;
             ModificarColor(this.index);
             this.VisualizacionDelUsuario(this.index, this.usuario.Perfil);
+            this.aeronaves = Archivos.DeserealizarAeronaves();
             this.ActualizarListaAeronaves();
         }
 
@@ -104,6 +107,8 @@ namespace Aplicacion01
             this.panelInicio.Visible = false;
             this.index = 5;
             ModificarColor(this.index);
+            FrmVenderVuelo frmVenderVuelo = new FrmVenderVuelo(this.pasajeros, this.vuelos);
+            frmVenderVuelo.ShowDialog();
         }
 
         private void ModificarColor(int index)
@@ -202,7 +207,7 @@ namespace Aplicacion01
                     }
                     break;
                 case 1:
-                    FrmVuelo frmVuelo = new FrmVuelo(this.pasajeros,this.aeronaves);
+                    FrmVuelo frmVuelo = new FrmVuelo(this.pasajeros, this.aeronaves);
                     frmVuelo.ShowDialog();
 
                     if (frmVuelo.DialogResult == DialogResult.OK)
@@ -254,6 +259,7 @@ namespace Aplicacion01
             {
                 if (index == 1 || index == 2)
                 {
+                    this.stripVender.Visible = true;
                     this.btnAgregar.Visible = false;
                     this.btnEliminar.Visible = false;
                     this.btnModificar.Visible = false;
@@ -303,12 +309,10 @@ namespace Aplicacion01
 
                 }
             }
-
         }
 
         private void ModificarElemento(int index)
         {
-
             Pasajero pasajeroModifica;
             Aeronave aeronaveModifica;
             Vuelo vueloModifica;
@@ -318,13 +322,20 @@ namespace Aplicacion01
             {
                 if (index == 0)
                 {
-                    pasajeroModifica = this.pasajeros.ElementAt(this.indexItemSeleccionado);
-                    FrmPasajero frmPasajero = new FrmPasajero(pasajeroModifica, "Modificar");
-                    if (frmPasajero.ShowDialog() == DialogResult.OK)
+                    if (this.pasajeros[this.indexItemSeleccionado].EnVuelo == false && this.pasajeros[this.indexItemSeleccionado].Llego == false)
                     {
-                        this.pasajeros[this.indexItemSeleccionado] = frmPasajero.Pasajero;
-                        Archivos.SerealizarViajeros(this.pasajeros);
-                        this.ActualizarListaPasjeros();
+                        pasajeroModifica = this.pasajeros.ElementAt(this.indexItemSeleccionado);
+                        FrmPasajero frmPasajero = new FrmPasajero(pasajeroModifica, "Modificar");
+                        if (frmPasajero.ShowDialog() == DialogResult.OK)
+                        {
+                            this.pasajeros[this.indexItemSeleccionado] = frmPasajero.Pasajero;
+                            Archivos.SerealizarViajeros(this.pasajeros);
+                            this.ActualizarListaPasjeros();
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("El pasajero está en vuelo o ya llegó");
                     }
                 }
                 else if (index == 2)
@@ -362,7 +373,5 @@ namespace Aplicacion01
         {
             this.ModificarElemento(this.index);
         }
-
-
     }
 }

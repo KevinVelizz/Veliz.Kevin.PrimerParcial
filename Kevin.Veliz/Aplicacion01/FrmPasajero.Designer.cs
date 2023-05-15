@@ -46,14 +46,11 @@
             cboClase = new ComboBox();
             txtPesoEquipaje = new TextBox();
             lblPeso = new Label();
-            cboVuelosDisponibles = new ComboBox();
-            lblVuelo = new Label();
-            lblInformacion = new Label();
             SuspendLayout();
             // 
             // btnAgregar
             // 
-            btnAgregar.Location = new Point(462, 239);
+            btnAgregar.Location = new Point(14, 415);
             btnAgregar.Name = "btnAgregar";
             btnAgregar.Size = new Size(75, 23);
             btnAgregar.TabIndex = 0;
@@ -63,7 +60,7 @@
             // 
             // btnCancelar
             // 
-            btnCancelar.Location = new Point(783, 239);
+            btnCancelar.Location = new Point(222, 415);
             btnCancelar.Name = "btnCancelar";
             btnCancelar.Size = new Size(75, 23);
             btnCancelar.TabIndex = 1;
@@ -141,7 +138,7 @@
             // 
             // btnLimpiar
             // 
-            btnLimpiar.Location = new Point(627, 239);
+            btnLimpiar.Location = new Point(115, 415);
             btnLimpiar.Name = "btnLimpiar";
             btnLimpiar.Size = new Size(75, 23);
             btnLimpiar.TabIndex = 16;
@@ -215,47 +212,12 @@
             lblPeso.TabIndex = 51;
             lblPeso.Text = "Peso equipaje bodega:";
             // 
-            // cboVuelosDisponibles
-            // 
-            cboVuelosDisponibles.FormattingEnabled = true;
-            cboVuelosDisponibles.Location = new Point(462, 20);
-            cboVuelosDisponibles.Name = "cboVuelosDisponibles";
-            cboVuelosDisponibles.Size = new Size(396, 23);
-            cboVuelosDisponibles.TabIndex = 58;
-            cboVuelosDisponibles.Text = "--Seleccione--";
-            cboVuelosDisponibles.SelectedIndexChanged += cboVuelosDisponibles_SelectedIndexChanged;
-            cboVuelosDisponibles.Click += cboVuelosDisponibles_Click;
-            // 
-            // lblVuelo
-            // 
-            lblVuelo.AutoSize = true;
-            lblVuelo.Font = new Font("Segoe UI Symbol", 9.75F, FontStyle.Italic, GraphicsUnit.Point);
-            lblVuelo.Location = new Point(319, 26);
-            lblVuelo.Name = "lblVuelo";
-            lblVuelo.Size = new Size(122, 17);
-            lblVuelo.TabIndex = 59;
-            lblVuelo.Text = "Vuelos Disponibles:";
-            // 
-            // lblInformacion
-            // 
-            lblInformacion.AutoSize = true;
-            lblInformacion.Font = new Font("Segoe UI Symbol", 9.75F, FontStyle.Italic, GraphicsUnit.Point);
-            lblInformacion.Location = new Point(462, 70);
-            lblInformacion.Name = "lblInformacion";
-            lblInformacion.Size = new Size(43, 17);
-            lblInformacion.TabIndex = 60;
-            lblInformacion.Text = "label2";
-            lblInformacion.Visible = false;
-            // 
             // FrmPasajero
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.GradientInactiveCaption;
-            ClientSize = new Size(878, 465);
-            Controls.Add(lblInformacion);
-            Controls.Add(lblVuelo);
-            Controls.Add(cboVuelosDisponibles);
+            ClientSize = new Size(310, 450);
             Controls.Add(txtPesoEquipaje2);
             Controls.Add(lblPesoEquipaje2);
             Controls.Add(chkEquipajeMano);
@@ -302,8 +264,5 @@
         private ComboBox cboClase;
         private TextBox txtPesoEquipaje;
         private Label lblPeso;
-        private ComboBox cboVuelosDisponibles;
-        private Label lblVuelo;
-        private Label lblInformacion;
     }
 }

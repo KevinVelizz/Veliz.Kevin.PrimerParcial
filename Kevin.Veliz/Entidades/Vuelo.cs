@@ -21,6 +21,7 @@ namespace Entidades
         private List<Pasajero> pasajeros;
         private string estado;
         private bool disponible;
+        private double recaudacionTotal;
 
         private Vuelo()
         {
@@ -62,15 +63,15 @@ namespace Entidades
         {
             get
             {
-                if (avion.CantidadAsientos > 0)
+                if (this.cantidadAsientosDispTurista == 0)
                 {
-                    double aux = 80 * avion.CantidadAsientos / 100;
-                    this.cantidadAsientosDispTurista = (int)Math.Round(aux,0);
+                    double aux = this.avion.CantidadAsientos - (20 * this.avion.CantidadAsientos / 100);
+                    this.cantidadAsientosDispTurista = (int)Math.Floor(aux);
                     return this.cantidadAsientosDispTurista;
                 }
                 else
                 {
-                    return this.cantidadAsientosDispTurista = 0;
+                    return this.cantidadAsientosDispTurista;
                 }
             }
             set { this.cantidadAsientosDispTurista = value; }
@@ -80,15 +81,15 @@ namespace Entidades
         {
             get 
             {
-                if (avion.CantidadAsientos > 0)
+                if (this.cantidadAsientosDispPremium == 0)
                 {
-                    double aux = 20 * avion.CantidadAsientos / 100;
-                    this.cantidadAsientosDispPremium = (int)Math.Round(aux, 0);
+                    double aux = this.avion.CantidadAsientos - (80 * this.avion.CantidadAsientos / 100);
+                    this.cantidadAsientosDispPremium = (int)Math.Floor(aux);
                     return this.cantidadAsientosDispPremium;
                 }
                 else
                 {
-                    return this.cantidadAsientosDispPremium = 0;
+                    return this.cantidadAsientosDispPremium;
                 }
             }
             set { this.cantidadAsientosDispPremium = value; }
@@ -130,6 +131,32 @@ namespace Entidades
             set { this.fechaDeLLegada = value; }
         }
 
+        public double RecaudacionTotal
+        {
+            get { return this.recaudacionTotal; }
+            set { this.recaudacionTotal = value; }
+        }
+
+        public void RestarAsientos()
+        {
+            if (this.pasajeros.Count > 0)
+            {
+                foreach (Pasajero pasajero in this.pasajeros)
+                {
+                    if (pasajero.Premium)
+                    {
+                        this.cantidadAsientosDispPremium--;
+                        this.recaudacionTotal += this.CostoClasePremium;
+                    }
+                    else
+                    {
+                        this.cantidadAsientosDispTurista--;
+                        this.recaudacionTotal += this.CostoClaseTurista;
+                    }
+                }
+            }
+        }
+
         private string Mostrar()
         {
             StringBuilder mensaje = new StringBuilder();
@@ -138,8 +165,8 @@ namespace Entidades
             mensaje.AppendLine($"Fecha salida: {this.fechaDeVuelo}");
             mensaje.AppendLine($"Fecha llegada: {this.FechaDeLLegada}");
             mensaje.AppendLine($"Avion: {this.avion.Matricula}");
-            mensaje.AppendLine($"Asientos premium: {this.cantidadAsientosDispPremium}");
-            mensaje.AppendLine($"Asientos turista: {this.cantidadAsientosDispPremium}");
+            mensaje.AppendLine($"Asientos premium: {this.CantidadAsientosDispPremium}");
+            mensaje.AppendLine($"Asientos turista: {this.CantidadAsientosDispTurista}");
             mensaje.AppendLine($"Costo premium {this.costoClasePremium}");
             mensaje.AppendLine($"Costo turista {this.costoClaseTurista}");
             mensaje.AppendLine($"Estado: {this.estado}");
@@ -151,7 +178,7 @@ namespace Entidades
             StringBuilder mensaje = new StringBuilder();
             mensaje.AppendLine($"Partida: {this.ciudadDePartida} - ");
             mensaje.AppendLine($"Destino: {this.ciudadDeDestino} - ");
-            mensaje.AppendLine($"Fecha salida: {this.fechaDeVuelo}  - ");
+            mensaje.AppendLine($"Fecha salida: {this.fechaDeVuelo}");
             return mensaje.ToString();
         }
 
