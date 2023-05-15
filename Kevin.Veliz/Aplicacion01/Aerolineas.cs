@@ -56,6 +56,7 @@ namespace Aplicacion01
             ModificarColor(this.index);
             this.VisualizacionDelUsuario(this.index, this.usuario.Perfil);
             this.pasajeros = Archivos.DeserealizarPasajeros();
+            this.vuelos = Archivos.DeserealizarVuelos();
             this.ActualizarListaPasjeros();
         }
 
@@ -331,6 +332,7 @@ namespace Aplicacion01
                             this.pasajeros[this.indexItemSeleccionado] = frmPasajero.Pasajero;
                             Archivos.SerealizarViajeros(this.pasajeros);
                             this.ActualizarListaPasjeros();
+                           
                         }
                     }
                     else

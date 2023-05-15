@@ -22,6 +22,7 @@ namespace Entidades
         private string estado;
         private bool disponible;
         private double recaudacionTotal;
+        private int index;
 
         private Vuelo()
         {
@@ -40,6 +41,12 @@ namespace Entidades
             this.avion = avion;
             this.fechaDeLLegada = fechaDeLLegada;
             this.estado = estado;
+        }
+
+        public int Index
+        {
+            get { return this.index; }
+            set { this.index = value; }
         }
 
         public string CiudadDePartida

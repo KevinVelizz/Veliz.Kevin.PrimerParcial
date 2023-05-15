@@ -24,6 +24,7 @@ namespace Aplicacion01
         private string? destinoSeleccionado;
         private DateTime fechaSeleccionado;
         private string? avioSeleccionado;
+        private int index;
 
         public FrmVuelo()
         {
@@ -165,6 +166,8 @@ namespace Aplicacion01
                 this.vuelo = new Vuelo(this.salidaSeleccionado, this.destinoSeleccionado, this.fechaSeleccionado, this.aeronaves[this.indexAeronaveSeleccionada], this.fechaDeLlegada, "No viajó");
                 this.vuelo.CostoClasePremium = double.Parse(txtCostoPremium.Text);
                 this.vuelo.CostoClaseTurista = double.Parse(txtCostoTurista.Text);
+                this.vuelo.Index = this.index;
+                this.index++;
                 this.DialogResult = DialogResult.OK;
             }
             else
