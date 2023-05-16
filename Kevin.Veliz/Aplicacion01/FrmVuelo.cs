@@ -11,7 +11,7 @@ using System.Windows.Forms;
 
 namespace Aplicacion01
 {
-    public partial class FrmVuelo : Form
+    public partial class FrmVuelo : FrmBase
     {
         private string? seleccionadoTipo;
         private string? seleccionadoDestino;
@@ -24,7 +24,6 @@ namespace Aplicacion01
         private string? destinoSeleccionado;
         private DateTime fechaSeleccionado;
         private string? avioSeleccionado;
-        private int index;
 
         public FrmVuelo()
         {
@@ -42,14 +41,12 @@ namespace Aplicacion01
         {
             this.dtmVuelo.MinDate = DateTime.Today;
             this.lblHoraVuelo.Visible = false;
+            this.dtmVuelo.Format = DateTimePickerFormat.Custom;
+            this.dtmVuelo.CustomFormat = "MM/dd/yyyy hh:mm:ss";
             this.lblDuracionVuelo.Visible = false;
             this.txtCostoPremium.Enabled = false;
             this.txtCostoTurista.Enabled = false;
             this.cboTipoVuelo.Text = "--Ingrese--";
-            foreach (Aeronave aeronave in this.aeronaves)
-            {
-                this.cboAeronave.Items.Add(aeronave.Matricula);
-            }
             foreach (EnumTipoVuelo tipo in Enum.GetValues(typeof(EnumTipoVuelo)))
             {
                 this.cboTipoVuelo.Items.Add(tipo.ToString());
@@ -60,10 +57,12 @@ namespace Aplicacion01
         {
             if (this.destinoSeleccionado != null && this.seleccionadoTipo != null && this.salidaSeleccionado != null)
             {
+
                 this.lblHoraVuelo.Visible = true;
                 this.lblDuracionVuelo.Visible = true;
                 this.seleccionadoDestino = cboDestino.SelectedItem.ToString();
                 this.txtCostoTurista.Visible = true;
+
                 DateTime hora = dtmVuelo.Value;
                 this.lblHoraVuelo.Text = hora.ToString();
                 double duracion = Aerolinea.CalcularDuracion();
@@ -166,8 +165,15 @@ namespace Aplicacion01
                 this.vuelo = new Vuelo(this.salidaSeleccionado, this.destinoSeleccionado, this.fechaSeleccionado, this.aeronaves[this.indexAeronaveSeleccionada], this.fechaDeLlegada, "No viajó");
                 this.vuelo.CostoClasePremium = double.Parse(txtCostoPremium.Text);
                 this.vuelo.CostoClaseTurista = double.Parse(txtCostoTurista.Text);
-                this.vuelo.Index = this.index;
-                this.index++;
+                foreach (Aeronave aeronave in this.aeronaves)
+                {
+                    if (this.aeronaves[this.indexAeronaveSeleccionada].Matricula == aeronave.Matricula)
+                    {
+                        aeronave.Disponible = false;
+                        Archivos.SerealizarAeronaves(this.aeronaves);
+                        break;
+                    }
+                }
                 this.DialogResult = DialogResult.OK;
             }
             else
@@ -184,10 +190,24 @@ namespace Aplicacion01
             this.avioSeleccionado = cboAeronave.SelectedItem.ToString();
         }
 
+        private void cboAeronave_Click(object sender, EventArgs e)
+        {
+            cboAeronave.Items.Clear();
+            foreach (Aeronave aeronave in this.aeronaves)
+            {
+                if (aeronave.Disponible)
+                {
+                    cboAeronave.Items.Add(aeronave.Matricula);
+                }
+            }
+        }
+
         public Vuelo Vuelo
         {
             get { return this.vuelo; }
             set { this.vuelo = value; }
         }
+
+        
     }
 }

@@ -14,15 +14,15 @@ namespace Entidades
         private bool servicioInternet;
         private bool servicioComida;
         private double capacidadBodega;
-        private bool agregado;
+        private bool disponible;
 
         private Aeronave()
         {
             cantidadAsientos = 0;
-            this.agregado = false;
+            this.disponible = true;
         }
 
-        public Aeronave(string matricula, int cantidadAsientos, int cantidadDeBanios, bool servicioInternet, bool servicioComida, double capacidadBodega)
+        public Aeronave(string matricula, int cantidadAsientos, int cantidadDeBanios, bool servicioInternet, bool servicioComida, double capacidadBodega) :this()
         {
             this.matricula = matricula;
             this.cantidadAsientos = cantidadAsientos;
@@ -68,10 +68,10 @@ namespace Entidades
             set { this.capacidadBodega = value; }
         }
 
-        public bool Agregado
+        public bool Disponible
         {
-            get { return this.agregado; }
-            set { this.agregado = value;}
+            get { return this.disponible; }
+            set { this.disponible = value;}
         }
 
         private string Infomacion()
@@ -98,13 +98,13 @@ namespace Entidades
             }
             mensaje.AppendLine($"Capacidad Bodega: {this.capacidadBodega} - ");
 
-            if (this.agregado)
+            if (this.disponible)
             {
-                mensaje.AppendLine("Agregado");
+                mensaje.AppendLine("Disponible");
             }
             else
             {
-                mensaje.AppendLine("No agregado");
+                mensaje.AppendLine("No disponible");
             }
             return mensaje.ToString();  
         }

@@ -62,7 +62,6 @@ namespace Aplicacion01
 
         private void stripVuelo_Click(object sender, EventArgs e)
         {
-
             this.panelModificar.Visible = true;
             this.panelInicio.Visible = false;
             this.lblNombreSeccion.Text = "Vuelos";
@@ -70,6 +69,17 @@ namespace Aplicacion01
             this.ModificarColor(this.index);
             this.VisualizacionDelUsuario(this.index, this.usuario.Perfil);
             this.vuelos = Archivos.DeserealizarVuelos();
+            this.aeronaves = Archivos.DeserealizarAeronaves();
+            foreach (Vuelo vuelo in this.vuelos)
+            {
+                vuelo.VueloEnCurso();
+                vuelo.VueloRealizado();
+                if (vuelo.AuxViaje || vuelo.AuxRealizado)
+                {
+                    Archivos.SerealizarVuelos(this.vuelos);
+                    Archivos.DeserealizarVuelos();
+                }
+            }
             this.ActualizarListaVuelos();
         }
 
@@ -208,6 +218,7 @@ namespace Aplicacion01
                     }
                     break;
                 case 1:
+
                     FrmVuelo frmVuelo = new FrmVuelo(this.pasajeros, this.aeronaves);
                     frmVuelo.ShowDialog();
 
@@ -216,6 +227,7 @@ namespace Aplicacion01
                         this.vuelos.Add(frmVuelo.Vuelo);
                     }
                     Archivos.SerealizarVuelos(this.vuelos);
+                    Archivos.DeserealizarAeronaves();
                     this.ActualizarListaVuelos();
                     break;
 
@@ -323,7 +335,7 @@ namespace Aplicacion01
             {
                 if (index == 0)
                 {
-                    if (this.pasajeros[this.indexItemSeleccionado].EnVuelo == false && this.pasajeros[this.indexItemSeleccionado].Llego == false)
+                    if (this.pasajeros[this.indexItemSeleccionado].Agregado == false)
                     {
                         pasajeroModifica = this.pasajeros.ElementAt(this.indexItemSeleccionado);
                         FrmPasajero frmPasajero = new FrmPasajero(pasajeroModifica, "Modificar");
@@ -332,7 +344,6 @@ namespace Aplicacion01
                             this.pasajeros[this.indexItemSeleccionado] = frmPasajero.Pasajero;
                             Archivos.SerealizarViajeros(this.pasajeros);
                             this.ActualizarListaPasjeros();
-                           
                         }
                     }
                     else
@@ -374,6 +385,21 @@ namespace Aplicacion01
         private void btnModificar_Click(object sender, EventArgs e)
         {
             this.ModificarElemento(this.index);
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            this.StripTxtHora.Text = DateTime.Now.ToLongTimeString();
+        }
+
+        private void StripCerrarSesion_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void StripEstadisticaViajes_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -22,7 +22,8 @@ namespace Entidades
         private string estado;
         private bool disponible;
         private double recaudacionTotal;
-        private int index;
+        private bool auxViaje;
+        private bool auxRealizado;
 
         private Vuelo()
         {
@@ -43,11 +44,7 @@ namespace Entidades
             this.estado = estado;
         }
 
-        public int Index
-        {
-            get { return this.index; }
-            set { this.index = value; }
-        }
+        
 
         public string CiudadDePartida
         {
@@ -144,6 +141,18 @@ namespace Entidades
             set { this.recaudacionTotal = value; }
         }
 
+        [XmlIgnore]
+        public bool AuxViaje
+        {
+            get { return this.auxViaje; }
+        }
+
+        [XmlIgnore]
+        public bool AuxRealizado
+        {
+            get { return this.auxRealizado; }
+        }
+
         public void RestarAsientos()
         {
             if (this.pasajeros.Count > 0)
@@ -163,6 +172,25 @@ namespace Entidades
                 }
             }
         }
+
+        public void VueloEnCurso()
+        {
+            if (DateTime.Now >= this.fechaDeVuelo && DateTime.Now < this.fechaDeLLegada && this.auxViaje == false)
+            {
+                this.estado = "En viaje";
+                this.auxViaje = true;
+            }
+        }
+
+        public void VueloRealizado()
+        {
+            if (DateTime.Now >= this.FechaDeLLegada && this.auxRealizado == false)
+            {
+                this.estado = "Realizado";
+                this.auxRealizado = true;
+            }
+        }
+
 
         private string Mostrar()
         {

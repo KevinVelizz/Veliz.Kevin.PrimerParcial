@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Aerolineas));
             menuAerolinea = new MenuStrip();
             stripInicio = new ToolStripMenuItem();
@@ -36,6 +37,9 @@
             stripVender = new ToolStripMenuItem();
             stripAeronave = new ToolStripMenuItem();
             stripEstadistica = new ToolStripMenuItem();
+            StripCuenta = new ToolStripMenuItem();
+            StripCerrarSesion = new ToolStripMenuItem();
+            StripTxtHora = new ToolStripTextBox();
             panelModificar = new Panel();
             lblNombreSeccion = new Label();
             lstListaElementos = new ListBox();
@@ -45,6 +49,8 @@
             pictureBox1 = new PictureBox();
             panelInicio = new Panel();
             label1 = new Label();
+            timer1 = new System.Windows.Forms.Timer(components);
+            StripEstadisticaViajes = new ToolStripMenuItem();
             menuAerolinea.SuspendLayout();
             panelModificar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
@@ -56,7 +62,8 @@
             menuAerolinea.AutoSize = false;
             menuAerolinea.BackColor = SystemColors.ActiveCaption;
             menuAerolinea.Font = new Font("Segoe UI Symbol", 9.75F, FontStyle.Italic, GraphicsUnit.Point);
-            menuAerolinea.Items.AddRange(new ToolStripItem[] { stripInicio, stripPasajero, stripVuelo, stripVender, stripAeronave, stripEstadistica });
+            menuAerolinea.GripStyle = ToolStripGripStyle.Visible;
+            menuAerolinea.Items.AddRange(new ToolStripItem[] { stripInicio, stripPasajero, stripVuelo, stripVender, stripAeronave, stripEstadistica, StripCuenta, StripTxtHora });
             menuAerolinea.Location = new Point(0, 0);
             menuAerolinea.Margin = new Padding(10);
             menuAerolinea.Name = "menuAerolinea";
@@ -111,10 +118,32 @@
             // stripEstadistica
             // 
             stripEstadistica.AutoSize = false;
+            stripEstadistica.DropDownItems.AddRange(new ToolStripItem[] { StripEstadisticaViajes });
             stripEstadistica.Name = "stripEstadistica";
             stripEstadistica.Size = new Size(87, 40);
             stripEstadistica.Text = "Estadisticas";
             stripEstadistica.Click += stripEstadistica_Click;
+            // 
+            // StripCuenta
+            // 
+            StripCuenta.Alignment = ToolStripItemAlignment.Right;
+            StripCuenta.DropDownItems.AddRange(new ToolStripItem[] { StripCerrarSesion });
+            StripCuenta.Name = "StripCuenta";
+            StripCuenta.Size = new Size(60, 21);
+            StripCuenta.Text = "Cuenta";
+            // 
+            // StripCerrarSesion
+            // 
+            StripCerrarSesion.Name = "StripCerrarSesion";
+            StripCerrarSesion.Size = new Size(155, 22);
+            StripCerrarSesion.Text = "Cerrar Sesión";
+            StripCerrarSesion.Click += StripCerrarSesion_Click;
+            // 
+            // StripTxtHora
+            // 
+            StripTxtHora.Alignment = ToolStripItemAlignment.Right;
+            StripTxtHora.Name = "StripTxtHora";
+            StripTxtHora.Size = new Size(100, 21);
             // 
             // panelModificar
             // 
@@ -135,7 +164,7 @@
             // 
             lblNombreSeccion.AutoSize = true;
             lblNombreSeccion.Font = new Font("Segoe UI Symbol", 11.25F, FontStyle.Italic, GraphicsUnit.Point);
-            lblNombreSeccion.Location = new Point(538, 25);
+            lblNombreSeccion.Location = new Point(550, 36);
             lblNombreSeccion.Name = "lblNombreSeccion";
             lblNombreSeccion.Size = new Size(50, 20);
             lblNombreSeccion.TabIndex = 4;
@@ -219,6 +248,18 @@
             label1.TabIndex = 5;
             label1.Text = "BIENVENIDO!!";
             // 
+            // timer1
+            // 
+            timer1.Enabled = true;
+            timer1.Tick += timer1_Tick;
+            // 
+            // StripEstadisticaViajes
+            // 
+            StripEstadisticaViajes.Name = "StripEstadisticaViajes";
+            StripEstadisticaViajes.Size = new Size(180, 22);
+            StripEstadisticaViajes.Text = "Viajes";
+            StripEstadisticaViajes.Click += StripEstadisticaViajes_Click;
+            // 
             // Aerolineas
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -260,5 +301,10 @@
         private Panel panelInicio;
         private Label label1;
         private ToolStripMenuItem stripVender;
+        private ToolStripMenuItem StripCuenta;
+        private ToolStripMenuItem StripCerrarSesion;
+        private System.Windows.Forms.Timer timer1;
+        private ToolStripTextBox StripTxtHora;
+        private ToolStripMenuItem StripEstadisticaViajes;
     }
 }
