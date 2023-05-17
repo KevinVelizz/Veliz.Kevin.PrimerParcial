@@ -42,6 +42,11 @@
             StripCerrarSesion = new ToolStripMenuItem();
             StripTxtHora = new ToolStripTextBox();
             panelModificar = new Panel();
+            btnMostrarPasajeros = new Button();
+            txtBuscarDNI = new TextBox();
+            txtBuscarApellido = new TextBox();
+            btnBuscar = new Button();
+            txtBuscarNombre = new TextBox();
             lstListaElementos = new ListBox();
             lblNombreSeccion = new Label();
             btnModificar = new Button();
@@ -68,7 +73,7 @@
             menuAerolinea.Margin = new Padding(10, 11, 10, 11);
             menuAerolinea.Name = "menuAerolinea";
             menuAerolinea.Padding = new Padding(6, 11, 0, 11);
-            menuAerolinea.Size = new Size(1315, 46);
+            menuAerolinea.Size = new Size(1441, 46);
             menuAerolinea.TabIndex = 2;
             menuAerolinea.Text = "menuAerolinea";
             // 
@@ -157,16 +162,66 @@
             // 
             panelModificar.Anchor = AnchorStyles.None;
             panelModificar.BackColor = SystemColors.AppWorkspace;
+            panelModificar.Controls.Add(btnMostrarPasajeros);
+            panelModificar.Controls.Add(txtBuscarDNI);
+            panelModificar.Controls.Add(txtBuscarApellido);
+            panelModificar.Controls.Add(btnBuscar);
+            panelModificar.Controls.Add(txtBuscarNombre);
             panelModificar.Controls.Add(lstListaElementos);
             panelModificar.Controls.Add(lblNombreSeccion);
             panelModificar.Controls.Add(btnModificar);
             panelModificar.Controls.Add(btnEliminar);
             panelModificar.Controls.Add(btnAgregar);
-            panelModificar.Location = new Point(29, 95);
+            panelModificar.Location = new Point(0, 95);
             panelModificar.Name = "panelModificar";
-            panelModificar.Size = new Size(1286, 593);
+            panelModificar.Size = new Size(1441, 593);
             panelModificar.TabIndex = 3;
             panelModificar.Visible = false;
+            // 
+            // btnMostrarPasajeros
+            // 
+            btnMostrarPasajeros.Location = new Point(1354, 304);
+            btnMostrarPasajeros.Name = "btnMostrarPasajeros";
+            btnMostrarPasajeros.Size = new Size(75, 52);
+            btnMostrarPasajeros.TabIndex = 10;
+            btnMostrarPasajeros.Text = "Mostrar pasajeros";
+            btnMostrarPasajeros.UseVisualStyleBackColor = true;
+            btnMostrarPasajeros.Visible = false;
+            btnMostrarPasajeros.Click += btnMostrarPasajeros_Click;
+            // 
+            // txtBuscarDNI
+            // 
+            txtBuscarDNI.Location = new Point(239, 45);
+            txtBuscarDNI.Name = "txtBuscarDNI";
+            txtBuscarDNI.Size = new Size(100, 25);
+            txtBuscarDNI.TabIndex = 9;
+            txtBuscarDNI.Visible = false;
+            // 
+            // txtBuscarApellido
+            // 
+            txtBuscarApellido.Location = new Point(133, 45);
+            txtBuscarApellido.Name = "txtBuscarApellido";
+            txtBuscarApellido.Size = new Size(100, 25);
+            txtBuscarApellido.TabIndex = 8;
+            txtBuscarApellido.Visible = false;
+            // 
+            // btnBuscar
+            // 
+            btnBuscar.Location = new Point(363, 45);
+            btnBuscar.Name = "btnBuscar";
+            btnBuscar.Size = new Size(80, 25);
+            btnBuscar.TabIndex = 7;
+            btnBuscar.Text = "Filtrar";
+            btnBuscar.UseVisualStyleBackColor = true;
+            btnBuscar.Visible = false;
+            // 
+            // txtBuscarNombre
+            // 
+            txtBuscarNombre.Location = new Point(27, 45);
+            txtBuscarNombre.Name = "txtBuscarNombre";
+            txtBuscarNombre.Size = new Size(100, 25);
+            txtBuscarNombre.TabIndex = 6;
+            txtBuscarNombre.Visible = false;
             // 
             // lstListaElementos
             // 
@@ -174,8 +229,9 @@
             lstListaElementos.ItemHeight = 17;
             lstListaElementos.Location = new Point(3, 78);
             lstListaElementos.Name = "lstListaElementos";
-            lstListaElementos.Size = new Size(1190, 497);
+            lstListaElementos.Size = new Size(1345, 497);
             lstListaElementos.TabIndex = 5;
+            lstListaElementos.SelectedIndexChanged += lstListaElementos_SelectedIndexChanged;
             // 
             // lblNombreSeccion
             // 
@@ -190,7 +246,7 @@
             // btnModificar
             // 
             btnModificar.Anchor = AnchorStyles.None;
-            btnModificar.Location = new Point(1199, 243);
+            btnModificar.Location = new Point(1354, 203);
             btnModificar.Name = "btnModificar";
             btnModificar.Size = new Size(75, 58);
             btnModificar.TabIndex = 2;
@@ -203,7 +259,7 @@
             btnEliminar.Anchor = AnchorStyles.None;
             btnEliminar.Font = new Font("Segoe UI", 20.25F, FontStyle.Bold, GraphicsUnit.Point);
             btnEliminar.ForeColor = Color.Red;
-            btnEliminar.Location = new Point(1199, 156);
+            btnEliminar.Location = new Point(1354, 140);
             btnEliminar.Name = "btnEliminar";
             btnEliminar.Size = new Size(75, 57);
             btnEliminar.TabIndex = 1;
@@ -216,7 +272,7 @@
             btnAgregar.Anchor = AnchorStyles.None;
             btnAgregar.Font = new Font("Segoe UI", 20.25F, FontStyle.Bold, GraphicsUnit.Point);
             btnAgregar.ForeColor = Color.LimeGreen;
-            btnAgregar.Location = new Point(1199, 78);
+            btnAgregar.Location = new Point(1354, 78);
             btnAgregar.Name = "btnAgregar";
             btnAgregar.Size = new Size(75, 56);
             btnAgregar.TabIndex = 0;
@@ -265,7 +321,7 @@
             AutoScaleDimensions = new SizeF(7F, 17F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.GradientInactiveCaption;
-            ClientSize = new Size(1315, 711);
+            ClientSize = new Size(1441, 711);
             Controls.Add(panelInicio);
             Controls.Add(panelModificar);
             Controls.Add(menuAerolinea);
@@ -306,5 +362,10 @@
         protected Panel panelModificar;
         protected Panel panelInicio;
         private ListBox lstListaElementos;
+        private TextBox txtBuscarDNI;
+        private TextBox txtBuscarApellido;
+        private Button btnBuscar;
+        private TextBox txtBuscarNombre;
+        private Button btnMostrarPasajeros;
     }
 }

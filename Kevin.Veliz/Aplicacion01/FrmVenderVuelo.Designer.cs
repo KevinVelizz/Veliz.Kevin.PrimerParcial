@@ -55,7 +55,7 @@
             cboPasajeros.FormattingEnabled = true;
             cboPasajeros.Location = new Point(252, 12);
             cboPasajeros.Name = "cboPasajeros";
-            cboPasajeros.Size = new Size(309, 21);
+            cboPasajeros.Size = new Size(325, 21);
             cboPasajeros.TabIndex = 0;
             cboPasajeros.Text = "--Seleccione--";
             cboPasajeros.SelectedIndexChanged += cboPasajeros_SelectedIndexChanged;
@@ -161,6 +161,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackColor = SystemColors.GradientInactiveCaption;
             ClientSize = new Size(668, 285);
             Controls.Add(txtCosto);
             Controls.Add(lblCosto);

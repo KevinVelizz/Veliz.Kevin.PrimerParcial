@@ -12,7 +12,6 @@ namespace Entidades
         private string nombre;
         private string apellido;
 
-
         public Persona() {}
         public Persona(string nombre, string apellido)
         {
@@ -33,6 +32,7 @@ namespace Entidades
             get { return this.apellido; }
             set { this.apellido = value;}
         }
+
         protected abstract string Informacion();
 
         protected virtual string Mostrar()

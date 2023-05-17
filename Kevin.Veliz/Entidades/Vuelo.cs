@@ -22,8 +22,8 @@ namespace Entidades
         private string estado;
         private bool disponible;
         private double recaudacionTotal;
-        private bool auxViaje;
-        private bool auxRealizado;
+        private bool enViaje;
+        private bool realizado;
 
         private Vuelo()
         {
@@ -43,9 +43,7 @@ namespace Entidades
             this.fechaDeLLegada = fechaDeLLegada;
             this.estado = estado;
         }
-
         
-
         public string CiudadDePartida
         {
             get { return this.ciudadDePartida; }
@@ -144,13 +142,13 @@ namespace Entidades
         [XmlIgnore]
         public bool AuxViaje
         {
-            get { return this.auxViaje; }
+            get { return this.enViaje; }
         }
 
         [XmlIgnore]
         public bool AuxRealizado
         {
-            get { return this.auxRealizado; }
+            get { return this.realizado; }
         }
 
         public void RestarAsientos()
@@ -175,19 +173,20 @@ namespace Entidades
 
         public void VueloEnCurso()
         {
-            if (DateTime.Now >= this.fechaDeVuelo && DateTime.Now < this.fechaDeLLegada && this.auxViaje == false)
+            if (DateTime.Now >= this.fechaDeVuelo && DateTime.Now < this.fechaDeLLegada && this.enViaje == false)
             {
                 this.estado = "En viaje";
-                this.auxViaje = true;
+                this.enViaje = true;
             }
         }
 
         public void VueloRealizado()
         {
-            if (DateTime.Now >= this.FechaDeLLegada && this.auxRealizado == false)
+            if (DateTime.Now >= this.FechaDeLLegada && this.realizado == false)
             {
                 this.estado = "Realizado";
-                this.auxRealizado = true;
+                this.realizado = true;
+                this.enViaje = false;
             }
         }
 
@@ -205,6 +204,16 @@ namespace Entidades
             mensaje.AppendLine($"Costo premium {this.costoClasePremium}");
             mensaje.AppendLine($"Costo turista {this.costoClaseTurista}");
             mensaje.AppendLine($"Estado: {this.estado}");
+            return mensaje.ToString();
+        }
+
+        public string MostrarPasajeros()
+        {
+            StringBuilder mensaje = new StringBuilder();
+            foreach (Pasajero pasajero in pasajeros)
+            {
+                mensaje.AppendLine(pasajero.ToString());
+            }
             return mensaje.ToString();
         }
 

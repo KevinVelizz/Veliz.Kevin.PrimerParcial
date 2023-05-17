@@ -161,8 +161,6 @@ namespace Entidades
                 mensaje.AppendLine("En espera");
             }
             
-            
-
             return mensaje.ToString();
         }
 

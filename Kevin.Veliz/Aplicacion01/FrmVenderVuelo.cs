@@ -19,8 +19,8 @@ namespace Aplicacion01
         private int indexPasajeroSeleccionado;
         private bool comida;
         private bool internet;
-        private string pasajeroSeleccionado;
-        private string vueloSeleccionado;
+        private string? pasajeroSeleccionado;
+        private string? vueloSeleccionado;
 
         public FrmVenderVuelo(List<Pasajero> listaPasajeros, List<Vuelo> listaVuelos)
         {
@@ -73,21 +73,21 @@ namespace Aplicacion01
                 {
                     if (vuelo.Avion.ServicioComida && vuelo.Avion.ServicioInternet)
                     {
-                        this.cboViajes.Items.Add(vuelo.Informacion());
+                        this.cboViajes.Items.Add(vuelo);
                     }
                 }
                 else if (this.comida)
                 {
                     if (vuelo.Avion.ServicioComida)
                     {
-                        this.cboViajes.Items.Add(vuelo.Informacion());
+                        this.cboViajes.Items.Add(vuelo);
                     }
                 }
                 else if (this.internet)
                 {
                     if (vuelo.Avion.ServicioInternet)
                     {
-                        this.cboViajes.Items.Add(vuelo.Informacion());
+                        this.cboViajes.Items.Add(vuelo);
                     }
                 }
                 else
@@ -110,9 +110,9 @@ namespace Aplicacion01
             {
                 if (this.vuelos[this.indexVueloSeleccionado].Avion.CantidadAsientos > 0)
                 {
-                    this.vuelos[this.indexVueloSeleccionado].Pasajeros.Add(this.pasajeros[this.indexPasajeroSeleccionado]);
-                    this.vuelos[this.indexVueloSeleccionado].RestarAsientos();
-                    this.pasajeros[this.indexPasajeroSeleccionado].Agregado = true;
+                    ((Vuelo)this.cboViajes.Items[this.indexVueloSeleccionado]).Pasajeros.Add((Pasajero)this.cboPasajeros.Items[this.indexPasajeroSeleccionado]);
+                    ((Vuelo)this.cboViajes.Items[this.indexVueloSeleccionado]).RestarAsientos();
+                    ((Pasajero)this.cboPasajeros.Items[this.indexPasajeroSeleccionado]).Agregado = true;
                     Archivos.SerealizarViajeros(this.pasajeros);
                     Archivos.SerealizarVuelos(this.vuelos);
                     this.Close();
@@ -126,7 +126,7 @@ namespace Aplicacion01
             {
                 if (pasajero.Agregado == false)
                 {
-                    this.cboPasajeros.Items.Add(pasajero.Mostrar());
+                    this.cboPasajeros.Items.Add(pasajero);
                 }
             }
         }

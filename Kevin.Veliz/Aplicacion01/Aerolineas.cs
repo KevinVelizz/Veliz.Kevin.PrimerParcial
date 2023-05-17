@@ -4,6 +4,7 @@ using System.IO;
 using System.Text.Json.Serialization;
 using Entidades;
 using System.Runtime.Intrinsics.X86;
+using System.Linq;
 
 namespace Aplicacion01
 {
@@ -64,6 +65,9 @@ namespace Aplicacion01
         {
             this.panelModificar.Visible = true;
             this.panelInicio.Visible = false;
+
+            this.btnMostrarPasajeros.Visible = true;
+
             this.lblNombreSeccion.Text = "Vuelos";
             this.index = 1;
             this.ModificarColor(this.index);
@@ -227,7 +231,7 @@ namespace Aplicacion01
                         this.vuelos.Add(frmVuelo.Vuelo);
                     }
                     Archivos.SerealizarVuelos(this.vuelos);
-                    Archivos.DeserealizarAeronaves();
+                    this.aeronaves = Archivos.DeserealizarAeronaves();
                     this.ActualizarListaVuelos();
                     break;
 
@@ -355,12 +359,18 @@ namespace Aplicacion01
                 {
                     aeronaveModifica = this.aeronaves.ElementAt(this.indexItemSeleccionado);
                     FrmAeronave frmAeronave = new FrmAeronave(aeronaveModifica, "Modificar");
-                    if (frmAeronave.ShowDialog() == DialogResult.OK)
+
+                    if (this.aeronaves[this.indexItemSeleccionado].Disponible == false)
                     {
-                        this.aeronaves[this.indexItemSeleccionado] = frmAeronave.Aeronave;
-                        Archivos.SerealizarAeronaves(this.aeronaves);
-                        this.ActualizarListaAeronaves();
+                        if (frmAeronave.ShowDialog() == DialogResult.OK)
+                        {
+                            this.aeronaves[this.indexItemSeleccionado] = frmAeronave.Aeronave;
+                            Archivos.SerealizarAeronaves(this.aeronaves);
+                            this.ActualizarListaAeronaves();
+                        }
                     }
+
+
                 }
             }
         }
@@ -369,6 +379,11 @@ namespace Aplicacion01
         {
             this.lstListaElementos.DataSource = null;
             this.lstListaElementos.DataSource = this.pasajeros;
+
+            //if (int.TryParse("24", out _))
+            //{
+            //    this.pasajeros.FindAll(pasajeros => pasajeros.Dni.ToString().Contains());
+            //}
         }
         private void ActualizarListaVuelos()
         {
@@ -406,6 +421,19 @@ namespace Aplicacion01
         private void dtgvInformacion_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
+        }
+
+        private void lstListaElementos_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnMostrarPasajeros_Click(object sender, EventArgs e)
+        {
+            if (this.indexItemSeleccionado != -1)
+            {
+                MessageBox.Show(this.vuelos[this.indexItemSeleccionado].MostrarPasajeros());
+            }
         }
     }
 }

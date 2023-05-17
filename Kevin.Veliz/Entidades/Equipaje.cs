@@ -31,7 +31,5 @@ namespace Entidades
         {
             return this.Informacion();
         }
-
-
     }
 }

@@ -75,7 +75,7 @@ namespace Aplicacion01
                 }
                 this.fechaDeLlegada = hora.AddHours(duracion);
                 this.lblDuracionVuelo.Text = this.fechaDeLlegada.ToString();
-                double costoTurista = Aerolinea.CalcularPrecio(false, this.seleccionadoDestino, duracion);
+                double costoTurista = Aerolinea.CalcularPrecio(false, this.seleccionadoDestino ?? "", duracion);
                 double costoPremium = Aerolinea.CalcularPrecio(true, this.seleccionadoDestino, duracion);
                 this.txtCostoTurista.Text = costoTurista.ToString();
                 this.txtCostoPremium.Text = costoPremium.ToString();
@@ -171,18 +171,11 @@ namespace Aplicacion01
         {
             if (this.fechaSeleccionado != DateTime.Today && this.avioSeleccionado != null)
             {
-                this.vuelo = new Vuelo(this.salidaSeleccionado, this.destinoSeleccionado, this.fechaSeleccionado, this.aeronaves[this.indexAeronaveSeleccionada], this.fechaDeLlegada, "No viajó");
+                this.vuelo = new Vuelo(this.salidaSeleccionado ?? "", this.destinoSeleccionado ?? "", this.fechaSeleccionado, this.aeronaves[this.indexAeronaveSeleccionada], this.fechaDeLlegada, "No viajó");
                 this.vuelo.CostoClasePremium = double.Parse(txtCostoPremium.Text);
                 this.vuelo.CostoClaseTurista = double.Parse(txtCostoTurista.Text);
-                foreach (Aeronave aeronave in this.aeronaves)
-                {
-                    if (this.aeronaves[this.indexAeronaveSeleccionada].Matricula == aeronave.Matricula)
-                    {
-                        aeronave.Disponible = false;
-                        Archivos.SerealizarAeronaves(this.aeronaves);
-                        break;
-                    }
-                }
+                ((Aeronave)cboAeronave.Items[this.indexAeronaveSeleccionada]).Disponible = false;
+                Archivos.SerealizarAeronaves(this.aeronaves);
                 this.DialogResult = DialogResult.OK;
             }
             else
@@ -206,7 +199,7 @@ namespace Aplicacion01
             {
                 if (aeronave.Disponible)
                 {
-                    cboAeronave.Items.Add(aeronave.Matricula);
+                    cboAeronave.Items.Add(aeronave);
                 }
             }
         }

@@ -258,6 +258,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackColor = SystemColors.GradientInactiveCaption;
             ClientSize = new Size(393, 598);
             Controls.Add(lblInfoAeronave);
             Controls.Add(cboAeronave);
