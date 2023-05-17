@@ -49,3 +49,4 @@ C:\Users\veliz\Desktop\Veliz.Kevin.PrimerParcial\Kevin.Veliz\Aplicacion01\obj\De
 C:\Users\veliz\Desktop\Veliz.Kevin.PrimerParcial\Kevin.Veliz\Aplicacion01\obj\Debug\net6.0-windows\Aplicacion01.FrmVuelo.resources
 C:\Users\veliz\Desktop\Veliz.Kevin.PrimerParcial\Kevin.Veliz\Aplicacion01\obj\Debug\net6.0-windows\Aplicacion01.FrmVenderVuelo.resources
 C:\Users\veliz\Desktop\Veliz.Kevin.PrimerParcial\Kevin.Veliz\Aplicacion01\obj\Debug\net6.0-windows\Aplicacion01.FrmBase.resources
+C:\Users\veliz\Desktop\Veliz.Kevin.PrimerParcial\Kevin.Veliz\Aplicacion01\obj\Debug\net6.0-windows\Aplicacion01.FrmEstadisticaBase.resources

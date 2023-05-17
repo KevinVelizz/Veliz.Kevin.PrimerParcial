@@ -37,12 +37,13 @@
             stripVender = new ToolStripMenuItem();
             stripAeronave = new ToolStripMenuItem();
             stripEstadistica = new ToolStripMenuItem();
+            StripEstadisticaViajes = new ToolStripMenuItem();
             StripCuenta = new ToolStripMenuItem();
             StripCerrarSesion = new ToolStripMenuItem();
             StripTxtHora = new ToolStripTextBox();
             panelModificar = new Panel();
-            lblNombreSeccion = new Label();
             lstListaElementos = new ListBox();
+            lblNombreSeccion = new Label();
             btnModificar = new Button();
             btnEliminar = new Button();
             btnAgregar = new Button();
@@ -50,7 +51,6 @@
             panelInicio = new Panel();
             label1 = new Label();
             timer1 = new System.Windows.Forms.Timer(components);
-            StripEstadisticaViajes = new ToolStripMenuItem();
             menuAerolinea.SuspendLayout();
             panelModificar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
@@ -65,10 +65,10 @@
             menuAerolinea.GripStyle = ToolStripGripStyle.Visible;
             menuAerolinea.Items.AddRange(new ToolStripItem[] { stripInicio, stripPasajero, stripVuelo, stripVender, stripAeronave, stripEstadistica, StripCuenta, StripTxtHora });
             menuAerolinea.Location = new Point(0, 0);
-            menuAerolinea.Margin = new Padding(10);
+            menuAerolinea.Margin = new Padding(10, 11, 10, 11);
             menuAerolinea.Name = "menuAerolinea";
-            menuAerolinea.Padding = new Padding(6, 10, 0, 10);
-            menuAerolinea.Size = new Size(1280, 41);
+            menuAerolinea.Padding = new Padding(6, 11, 0, 11);
+            menuAerolinea.Size = new Size(1315, 46);
             menuAerolinea.TabIndex = 2;
             menuAerolinea.Text = "menuAerolinea";
             // 
@@ -124,12 +124,19 @@
             stripEstadistica.Text = "Estadisticas";
             stripEstadistica.Click += stripEstadistica_Click;
             // 
+            // StripEstadisticaViajes
+            // 
+            StripEstadisticaViajes.Name = "StripEstadisticaViajes";
+            StripEstadisticaViajes.Size = new Size(110, 22);
+            StripEstadisticaViajes.Text = "Viajes";
+            StripEstadisticaViajes.Click += StripEstadisticaViajes_Click;
+            // 
             // StripCuenta
             // 
             StripCuenta.Alignment = ToolStripItemAlignment.Right;
             StripCuenta.DropDownItems.AddRange(new ToolStripItem[] { StripCerrarSesion });
             StripCuenta.Name = "StripCuenta";
-            StripCuenta.Size = new Size(60, 21);
+            StripCuenta.Size = new Size(60, 24);
             StripCuenta.Text = "Cuenta";
             // 
             // StripCerrarSesion
@@ -142,50 +149,50 @@
             // StripTxtHora
             // 
             StripTxtHora.Alignment = ToolStripItemAlignment.Right;
+            StripTxtHora.Enabled = false;
             StripTxtHora.Name = "StripTxtHora";
-            StripTxtHora.Size = new Size(100, 21);
+            StripTxtHora.Size = new Size(100, 24);
             // 
             // panelModificar
             // 
             panelModificar.Anchor = AnchorStyles.None;
             panelModificar.BackColor = SystemColors.AppWorkspace;
-            panelModificar.Controls.Add(lblNombreSeccion);
             panelModificar.Controls.Add(lstListaElementos);
+            panelModificar.Controls.Add(lblNombreSeccion);
             panelModificar.Controls.Add(btnModificar);
             panelModificar.Controls.Add(btnEliminar);
             panelModificar.Controls.Add(btnAgregar);
-            panelModificar.Location = new Point(12, 84);
+            panelModificar.Location = new Point(29, 95);
             panelModificar.Name = "panelModificar";
-            panelModificar.Size = new Size(1256, 523);
+            panelModificar.Size = new Size(1286, 593);
             panelModificar.TabIndex = 3;
             panelModificar.Visible = false;
+            // 
+            // lstListaElementos
+            // 
+            lstListaElementos.FormattingEnabled = true;
+            lstListaElementos.ItemHeight = 17;
+            lstListaElementos.Location = new Point(3, 78);
+            lstListaElementos.Name = "lstListaElementos";
+            lstListaElementos.Size = new Size(1190, 497);
+            lstListaElementos.TabIndex = 5;
             // 
             // lblNombreSeccion
             // 
             lblNombreSeccion.AutoSize = true;
             lblNombreSeccion.Font = new Font("Segoe UI Symbol", 11.25F, FontStyle.Italic, GraphicsUnit.Point);
-            lblNombreSeccion.Location = new Point(550, 36);
+            lblNombreSeccion.Location = new Point(556, 52);
             lblNombreSeccion.Name = "lblNombreSeccion";
             lblNombreSeccion.Size = new Size(50, 20);
             lblNombreSeccion.TabIndex = 4;
             lblNombreSeccion.Text = "label1";
             // 
-            // lstListaElementos
-            // 
-            lstListaElementos.Anchor = AnchorStyles.None;
-            lstListaElementos.FormattingEnabled = true;
-            lstListaElementos.ItemHeight = 15;
-            lstListaElementos.Location = new Point(3, 59);
-            lstListaElementos.Name = "lstListaElementos";
-            lstListaElementos.Size = new Size(1158, 424);
-            lstListaElementos.TabIndex = 3;
-            // 
             // btnModificar
             // 
             btnModificar.Anchor = AnchorStyles.None;
-            btnModificar.Location = new Point(1167, 214);
+            btnModificar.Location = new Point(1199, 243);
             btnModificar.Name = "btnModificar";
-            btnModificar.Size = new Size(75, 51);
+            btnModificar.Size = new Size(75, 58);
             btnModificar.TabIndex = 2;
             btnModificar.Text = "Modificar";
             btnModificar.UseVisualStyleBackColor = true;
@@ -196,9 +203,9 @@
             btnEliminar.Anchor = AnchorStyles.None;
             btnEliminar.Font = new Font("Segoe UI", 20.25F, FontStyle.Bold, GraphicsUnit.Point);
             btnEliminar.ForeColor = Color.Red;
-            btnEliminar.Location = new Point(1167, 137);
+            btnEliminar.Location = new Point(1199, 156);
             btnEliminar.Name = "btnEliminar";
-            btnEliminar.Size = new Size(75, 50);
+            btnEliminar.Size = new Size(75, 57);
             btnEliminar.TabIndex = 1;
             btnEliminar.Text = "-";
             btnEliminar.UseVisualStyleBackColor = true;
@@ -209,9 +216,9 @@
             btnAgregar.Anchor = AnchorStyles.None;
             btnAgregar.Font = new Font("Segoe UI", 20.25F, FontStyle.Bold, GraphicsUnit.Point);
             btnAgregar.ForeColor = Color.LimeGreen;
-            btnAgregar.Location = new Point(1167, 59);
+            btnAgregar.Location = new Point(1199, 78);
             btnAgregar.Name = "btnAgregar";
-            btnAgregar.Size = new Size(75, 49);
+            btnAgregar.Size = new Size(75, 56);
             btnAgregar.TabIndex = 0;
             btnAgregar.Text = "+";
             btnAgregar.UseVisualStyleBackColor = true;
@@ -222,9 +229,9 @@
             pictureBox1.Anchor = AnchorStyles.None;
             pictureBox1.BackColor = SystemColors.ActiveCaption;
             pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
-            pictureBox1.Location = new Point(-18, -78);
+            pictureBox1.Location = new Point(-18, -88);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(103, 102);
+            pictureBox1.Size = new Size(103, 116);
             pictureBox1.TabIndex = 4;
             pictureBox1.TabStop = false;
             // 
@@ -232,9 +239,9 @@
             // 
             panelInicio.Controls.Add(label1);
             panelInicio.Controls.Add(pictureBox1);
-            panelInicio.Location = new Point(12, 54);
+            panelInicio.Location = new Point(12, 61);
             panelInicio.Name = "panelInicio";
-            panelInicio.Size = new Size(53, 49);
+            panelInicio.Size = new Size(53, 56);
             panelInicio.TabIndex = 5;
             // 
             // label1
@@ -242,7 +249,7 @@
             label1.Anchor = AnchorStyles.None;
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI Symbol", 24F, FontStyle.Italic, GraphicsUnit.Point);
-            label1.Location = new Point(-77, 41);
+            label1.Location = new Point(-77, 46);
             label1.Name = "label1";
             label1.Size = new Size(220, 45);
             label1.TabIndex = 5;
@@ -253,22 +260,16 @@
             timer1.Enabled = true;
             timer1.Tick += timer1_Tick;
             // 
-            // StripEstadisticaViajes
-            // 
-            StripEstadisticaViajes.Name = "StripEstadisticaViajes";
-            StripEstadisticaViajes.Size = new Size(180, 22);
-            StripEstadisticaViajes.Text = "Viajes";
-            StripEstadisticaViajes.Click += StripEstadisticaViajes_Click;
-            // 
             // Aerolineas
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(7F, 17F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.GradientInactiveCaption;
-            ClientSize = new Size(1280, 627);
+            ClientSize = new Size(1315, 711);
             Controls.Add(panelInicio);
             Controls.Add(panelModificar);
             Controls.Add(menuAerolinea);
+            Font = new Font("Segoe UI Symbol", 9.75F, FontStyle.Italic, GraphicsUnit.Point);
             MainMenuStrip = menuAerolinea;
             Name = "Aerolineas";
             Text = "Aerolineas";
@@ -284,21 +285,16 @@
         }
 
         #endregion
-
-        private MenuStrip menuAerolinea;
         private ToolStripMenuItem stripInicio;
         private ToolStripMenuItem stripPasajero;
         private ToolStripMenuItem stripVuelo;
         private ToolStripMenuItem stripEstadistica;
-        private Panel panelModificar;
         private Button btnModificar;
         private Button btnEliminar;
         private Button btnAgregar;
-        private ListBox lstListaElementos;
         private ToolStripMenuItem stripAeronave;
         private Label lblNombreSeccion;
         private PictureBox pictureBox1;
-        private Panel panelInicio;
         private Label label1;
         private ToolStripMenuItem stripVender;
         private ToolStripMenuItem StripCuenta;
@@ -306,5 +302,9 @@
         private System.Windows.Forms.Timer timer1;
         private ToolStripTextBox StripTxtHora;
         private ToolStripMenuItem StripEstadisticaViajes;
+        protected MenuStrip menuAerolinea;
+        protected Panel panelModificar;
+        protected Panel panelInicio;
+        private ListBox lstListaElementos;
     }
 }

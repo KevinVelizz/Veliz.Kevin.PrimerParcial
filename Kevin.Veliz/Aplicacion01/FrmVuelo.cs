@@ -62,10 +62,17 @@ namespace Aplicacion01
                 this.lblDuracionVuelo.Visible = true;
                 this.seleccionadoDestino = cboDestino.SelectedItem.ToString();
                 this.txtCostoTurista.Visible = true;
-
+                double duracion = 0;
                 DateTime hora = dtmVuelo.Value;
                 this.lblHoraVuelo.Text = hora.ToString();
-                double duracion = Aerolinea.CalcularDuracion();
+                if (this.seleccionadoTipo == "Nacional")
+                {
+                    duracion = Aerolinea.CalcularDuracionNacional();
+                }
+                else if (this.seleccionadoTipo == "Internacional")
+                {
+                    duracion = Aerolinea.CalcularDuracionInternacional();
+                }
                 this.fechaDeLlegada = hora.AddHours(duracion);
                 this.lblDuracionVuelo.Text = this.fechaDeLlegada.ToString();
                 double costoTurista = Aerolinea.CalcularPrecio(false, this.seleccionadoDestino, duracion);
@@ -90,6 +97,8 @@ namespace Aplicacion01
         {
             string auxInternacional;
             string auxNacional;
+            lblHoraVuelo.Text = "";
+            lblDuracionVuelo.Text = "";
             this.fechaSeleccionado = DateTime.Today;
             this.seleccionadoTipo = (string)cboTipoVuelo.SelectedItem;
             this.txtCostoPremium.Text = "";
@@ -202,12 +211,13 @@ namespace Aplicacion01
             }
         }
 
+
         public Vuelo Vuelo
         {
             get { return this.vuelo; }
             set { this.vuelo = value; }
         }
 
-        
+
     }
 }

@@ -55,8 +55,8 @@ namespace Aplicacion01
             this.index = 0;
             ModificarColor(this.index);
             this.VisualizacionDelUsuario(this.index, this.usuario.Perfil);
-            this.pasajeros = Archivos.DeserealizarPasajeros();
             this.vuelos = Archivos.DeserealizarVuelos();
+            this.pasajeros = Archivos.DeserealizarPasajeros();
             this.ActualizarListaPasjeros();
         }
 
@@ -398,6 +398,12 @@ namespace Aplicacion01
         }
 
         private void StripEstadisticaViajes_Click(object sender, EventArgs e)
+        {
+            FrmEstadisticaBase frmEstadisticaBase = new FrmEstadisticaBase(this.vuelos);
+            frmEstadisticaBase.ShowDialog();
+        }
+
+        private void dtgvInformacion_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
         }

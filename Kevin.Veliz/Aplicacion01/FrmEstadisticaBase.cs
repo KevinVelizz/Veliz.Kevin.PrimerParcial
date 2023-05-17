@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Entidades;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,14 +13,38 @@ namespace Aplicacion01
 {
     public partial class FrmEstadisticaBase : FrmBase
     {
-        public FrmEstadisticaBase()
+        List<Vuelo> listaVuelos;
+        double acumuladorDinero;
+
+        public FrmEstadisticaBase(List<Vuelo> vuelos)
         {
             InitializeComponent();
+            this.listaVuelos = vuelos;
+            this.StartPosition = FormStartPosition.CenterScreen;
         }
 
         private void FrmEstadisticaBase_Load(object sender, EventArgs e)
         {
+            foreach (Vuelo vuelo in this.listaVuelos)
+            {
+                int rows = dtgvViajes.Rows.Add();
 
+                this.dtgvViajes.Rows[rows].Cells[0].Value = vuelo.CiudadDePartida;
+                this.dtgvViajes.Rows[rows].Cells[1].Value = vuelo.CiudadDeDestino;
+                this.dtgvViajes.Rows[rows].Cells[2].Value = vuelo.FechaDeVuelo;
+            }
+        }
+
+        private void btnCalcular_Click(object sender, EventArgs e)
+        {
+            foreach (Vuelo vuelo in this.listaVuelos)
+            {
+                if (vuelo != null)
+                {
+                    this.acumuladorDinero += vuelo.RecaudacionTotal;
+                }
+            }
+            this.textBox1.Text = acumuladorDinero.ToString();
         }
     }
 }

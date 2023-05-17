@@ -25,10 +25,17 @@ namespace Entidades
             return aux;
         }
 
-        public static double CalcularDuracion()
+        public static double CalcularDuracionNacional()
         {   
             Random numRandom = new Random();
             double duracion = numRandom.Next(2, 5);
+            return duracion;
+        }
+
+        public static double CalcularDuracionInternacional()
+        {
+            Random numRandom = new Random();
+            double duracion = numRandom.Next(8, 13);
             return duracion;
         }
 
