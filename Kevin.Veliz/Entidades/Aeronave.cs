@@ -19,7 +19,7 @@ namespace Entidades
         private Aeronave()
         {
             cantidadAsientos = 0;
-            this.disponible = true;
+            disponible = true;
         }
 
         public Aeronave(string matricula, int cantidadAsientos, int cantidadDeBanios, bool servicioInternet, bool servicioComida, double capacidadBodega) :this()
@@ -74,6 +74,34 @@ namespace Entidades
             set { this.disponible = value;}
         }
 
+        public static bool operator ==(Aeronave aeronave, Aeronave aeronave1)
+        {
+            return aeronave.matricula == aeronave1.matricula;
+        }
+
+        public static bool operator !=(Aeronave aeronave, Aeronave aeronave1)
+        {
+            return !(aeronave == aeronave1);
+        }
+
+        public override bool Equals(object? obj)
+        {
+            bool retorno = false;
+            if (obj is Aeronave)
+            {
+                if (this == (Aeronave)obj)
+                {
+                    retorno = true;
+                }
+            }
+            return retorno;
+        }
+
+        public override int GetHashCode()
+        {
+            return this.matricula.GetHashCode();
+        }
+
         private string Infomacion()
         {
             StringBuilder mensaje = new StringBuilder();
@@ -113,7 +141,5 @@ namespace Entidades
         {
             return this.Infomacion();
         }
-
-
     }
 }

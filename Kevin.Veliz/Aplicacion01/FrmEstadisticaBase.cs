@@ -27,16 +27,19 @@ namespace Aplicacion01
         {
             foreach (Vuelo vuelo in this.listaVuelos)
             {
-                int rows = dtgvViajes.Rows.Add();
-
-                this.dtgvViajes.Rows[rows].Cells[0].Value = vuelo.CiudadDePartida;
-                this.dtgvViajes.Rows[rows].Cells[1].Value = vuelo.CiudadDeDestino;
-                this.dtgvViajes.Rows[rows].Cells[2].Value = vuelo.FechaDeVuelo;
+                if (vuelo.AuxRealizado)
+                {
+                    int rows = dtgvViajes.Rows.Add();
+                    this.dtgvViajes.Rows[rows].Cells[0].Value = vuelo.CiudadDePartida;
+                    this.dtgvViajes.Rows[rows].Cells[1].Value = vuelo.CiudadDeDestino;
+                    this.dtgvViajes.Rows[rows].Cells[2].Value = vuelo.FechaDeVuelo;
+                }
             }
         }
 
         private void btnCalcular_Click(object sender, EventArgs e)
         {
+            this.acumuladorDinero = 0;
             foreach (Vuelo vuelo in this.listaVuelos)
             {
                 if (vuelo != null)

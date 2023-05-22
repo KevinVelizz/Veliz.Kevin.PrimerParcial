@@ -23,6 +23,7 @@ namespace Entidades
             this.equipajes = new List<Equipaje>();
             this.enVuelo = false;
             this.llego = false;
+            this.agregado = false;
         }
 
         public Pasajero(string nombre, string apellido, int dni, int edad, List<Equipaje> equipajes, bool premium, bool equipajeDeMano) : base(nombre,apellido)
@@ -109,6 +110,11 @@ namespace Entidades
                 }
             }
             return retorno;
+        }
+
+        public override int GetHashCode()
+        {
+            return this.dni.GetHashCode();
         }
 
         protected override string Informacion()

@@ -76,7 +76,7 @@ namespace Aplicacion01
                 this.fechaDeLlegada = hora.AddHours(duracion);
                 this.lblDuracionVuelo.Text = this.fechaDeLlegada.ToString();
                 double costoTurista = Aerolinea.CalcularPrecio(false, this.seleccionadoDestino ?? "", duracion);
-                double costoPremium = Aerolinea.CalcularPrecio(true, this.seleccionadoDestino, duracion);
+                double costoPremium = Aerolinea.CalcularPrecio(true, this.seleccionadoDestino ?? "", duracion);
                 this.txtCostoTurista.Text = costoTurista.ToString();
                 this.txtCostoPremium.Text = costoPremium.ToString();
                 this.fechaSeleccionado = this.dtmVuelo.Value;

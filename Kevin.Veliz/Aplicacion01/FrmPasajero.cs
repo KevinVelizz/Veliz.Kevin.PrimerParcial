@@ -79,7 +79,6 @@ namespace Aplicacion01
             bool verificar = true;
             bool premium = false;
             bool equipajeMano = chkEquipajeMano.Checked;
-            string equipajeSeleccionado;
             int edad = 0;
             int dni = 0;
 
@@ -100,11 +99,11 @@ namespace Aplicacion01
             {
                 if (double.TryParse(this.txtPesoEquipaje.Text, out double peso1) && double.TryParse(this.txtPesoEquipaje2.Text, out double peso2))
                 {
-                    Equipaje equipaje = new Equipaje("De bodega", peso1);
+                    Equipaje equipaje = new("De bodega", peso1);
                     this.equipajes.Add(equipaje);
                     if (this.claseSeleccionada == "Premium")
                     {
-                        Equipaje equipaje1 = new Equipaje("De bodega", peso2);
+                        Equipaje equipaje1 = new("De bodega", peso2);
                         equipaje1.Peso = peso2;
                         this.equipajes.Add(equipaje1);
                         premium = true;
@@ -174,7 +173,7 @@ namespace Aplicacion01
 
         private void cboClase_SelectedIndexChanged(object sender, EventArgs e)
         {
-            this.claseSeleccionada = cboClase.SelectedItem.ToString();
+            this.claseSeleccionada = cboClase.SelectedItem.ToString() ?? "";
 
             if (this.claseSeleccionada == "Turista")
             {
@@ -197,7 +196,5 @@ namespace Aplicacion01
         {
 
         }
-
-        
     }
 }

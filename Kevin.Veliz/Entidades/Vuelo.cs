@@ -20,7 +20,6 @@ namespace Entidades
         private DateTime fechaDeLLegada;
         private List<Pasajero> pasajeros;
         private string estado;
-        private bool disponible;
         private double recaudacionTotal;
         private bool enViaje;
         private bool realizado;
@@ -31,7 +30,6 @@ namespace Entidades
             this.fechaDeLLegada = new DateTime();
             this.costoClasePremium = 200;
             this.costoClaseTurista = 100;
-            this.disponible = true;
         }
         
         public Vuelo(string ciudadDePartida, string ciudadDeDestino, DateTime fechaDeVuelo,Aeronave avion, DateTime fechaDeLLegada, string estado) :this()
@@ -108,7 +106,7 @@ namespace Entidades
             get { return this.costoClaseTurista; }
             set { this.costoClaseTurista = value; }
         }
-
+        
         public List<Pasajero> Pasajeros
         {
             get { return this.pasajeros; }
@@ -139,13 +137,11 @@ namespace Entidades
             set { this.recaudacionTotal = value; }
         }
 
-        [XmlIgnore]
         public bool AuxViaje
         {
             get { return this.enViaje; }
         }
 
-        [XmlIgnore]
         public bool AuxRealizado
         {
             get { return this.realizado; }
@@ -189,7 +185,6 @@ namespace Entidades
                 this.enViaje = false;
             }
         }
-
 
         private string Mostrar()
         {

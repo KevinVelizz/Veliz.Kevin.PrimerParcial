@@ -52,6 +52,8 @@ namespace Aplicacion01
         {
             this.panelModificar.Visible = true;
             this.panelInicio.Visible = false;
+            this.btnMostrarPasajeros.Visible = false;
+
             this.lblNombreSeccion.Text = "Pasajeros";
             this.index = 0;
             ModificarColor(this.index);
@@ -65,6 +67,7 @@ namespace Aplicacion01
         {
             this.panelModificar.Visible = true;
             this.panelInicio.Visible = false;
+            this.btnMostrarPasajeros.Visible = false;
 
             this.btnMostrarPasajeros.Visible = true;
 
@@ -81,7 +84,7 @@ namespace Aplicacion01
                 if (vuelo.AuxViaje || vuelo.AuxRealizado)
                 {
                     Archivos.SerealizarVuelos(this.vuelos);
-                    Archivos.DeserealizarVuelos();
+                    this.vuelos = Archivos.DeserealizarVuelos();
                 }
             }
             this.ActualizarListaVuelos();
@@ -91,6 +94,7 @@ namespace Aplicacion01
         {
             this.panelModificar.Visible = true;
             this.panelInicio.Visible = false;
+            this.btnMostrarPasajeros.Visible = false;
             this.lblNombreSeccion.Text = "Aeronaves";
             this.index = 2;
             ModificarColor(this.index);
@@ -231,7 +235,6 @@ namespace Aplicacion01
                         this.vuelos.Add(frmVuelo.Vuelo);
                     }
                     Archivos.SerealizarVuelos(this.vuelos);
-                    this.aeronaves = Archivos.DeserealizarAeronaves();
                     this.ActualizarListaVuelos();
                     break;
 
@@ -310,7 +313,7 @@ namespace Aplicacion01
 
         private void btnEliminar_Click(object sender, EventArgs e)
         {
-
+            BorrarElemento(this.index);
         }
 
         private void BorrarElemento(int index)
@@ -321,10 +324,36 @@ namespace Aplicacion01
             this.indexItemSeleccionado = this.lstListaElementos.SelectedIndex;
             if (this.indexItemSeleccionado != -1)
             {
-                if (index == 0)
+                switch (index)
                 {
-
+                    case 0:
+                        if (this.pasajeros[this.indexItemSeleccionado].Agregado == false)
+                        {
+                            if (MessageBox.Show("Desea eliminar al pasajero? ", "Aviso", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1) == DialogResult.Yes)
+                            {
+                                this.pasajeros.RemoveAt(this.indexItemSeleccionado);
+                                Archivos.SerealizarViajeros(this.pasajeros);
+                                this.ActualizarListaPasjeros();
+                            }
+                        }
+                        else
+                        {
+                            MessageBox.Show("El pasajero está en un vuelo, no puede ser eliminado.");
+                        }
+                        break;
+                    case 1:
+                        if (this.vuelos[this.indexItemSeleccionado].AuxRealizado == false && this.vuelos[this.indexItemSeleccionado].AuxViaje == false)
+                        {
+                            if (MessageBox.Show("Desea eliminar al pasajero? ", "Aviso", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1) == DialogResult.Yes)
+                            {
+                                this.vuelos.RemoveAt(this.indexItemSeleccionado);
+                                Archivos.SerealizarVuelos(this.vuelos);
+                                this.ActualizarListaVuelos();
+                            }
+                        }
+                        break;
                 }
+
             }
         }
 
@@ -352,16 +381,17 @@ namespace Aplicacion01
                     }
                     else
                     {
-                        MessageBox.Show("El pasajero está en vuelo o ya llegó");
+                        MessageBox.Show("El pasajero está en un vuelo, no puede ser modificado.");
                     }
                 }
+
+
                 else if (index == 2)
                 {
                     aeronaveModifica = this.aeronaves.ElementAt(this.indexItemSeleccionado);
-                    FrmAeronave frmAeronave = new FrmAeronave(aeronaveModifica, "Modificar");
-
-                    if (this.aeronaves[this.indexItemSeleccionado].Disponible == false)
+                    if (aeronaveModifica.Disponible == true)
                     {
+                        FrmAeronave frmAeronave = new FrmAeronave(aeronaveModifica, "Modificar");
                         if (frmAeronave.ShowDialog() == DialogResult.OK)
                         {
                             this.aeronaves[this.indexItemSeleccionado] = frmAeronave.Aeronave;
@@ -369,8 +399,10 @@ namespace Aplicacion01
                             this.ActualizarListaAeronaves();
                         }
                     }
-
-
+                    else
+                    {
+                        MessageBox.Show("El avión fue agregado a un vuelo, no puede ser modificado.");
+                    }
                 }
             }
         }
@@ -379,11 +411,6 @@ namespace Aplicacion01
         {
             this.lstListaElementos.DataSource = null;
             this.lstListaElementos.DataSource = this.pasajeros;
-
-            //if (int.TryParse("24", out _))
-            //{
-            //    this.pasajeros.FindAll(pasajeros => pasajeros.Dni.ToString().Contains());
-            //}
         }
         private void ActualizarListaVuelos()
         {
@@ -402,6 +429,14 @@ namespace Aplicacion01
             this.ModificarElemento(this.index);
         }
 
+        private void buscarPasajero()
+        {
+            //if (int.TryParse("24", out _))
+            //{
+            //    this.pasajeros.FindAll(pasajeros => pasajeros.Dni.ToString().Contains());
+            //}
+        }
+
         private void timer1_Tick(object sender, EventArgs e)
         {
             this.StripTxtHora.Text = DateTime.Now.ToLongTimeString();
@@ -418,10 +453,7 @@ namespace Aplicacion01
             frmEstadisticaBase.ShowDialog();
         }
 
-        private void dtgvInformacion_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
+        
 
         private void lstListaElementos_SelectedIndexChanged(object sender, EventArgs e)
         {

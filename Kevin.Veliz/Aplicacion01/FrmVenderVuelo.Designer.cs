@@ -151,6 +151,7 @@
             // 
             // txtCosto
             // 
+            txtCosto.Enabled = false;
             txtCosto.Font = new Font("Segoe UI Symbol", 9.75F, FontStyle.Italic, GraphicsUnit.Point);
             txtCosto.Location = new Point(543, 93);
             txtCosto.Name = "txtCosto";

@@ -60,7 +60,7 @@
             // btnCalcular
             // 
             btnCalcular.Font = new Font("Segoe UI Symbol", 9.75F, FontStyle.Italic, GraphicsUnit.Point);
-            btnCalcular.Location = new Point(626, 183);
+            btnCalcular.Location = new Point(713, 94);
             btnCalcular.Name = "btnCalcular";
             btnCalcular.Size = new Size(75, 23);
             btnCalcular.TabIndex = 6;
@@ -71,7 +71,7 @@
             // lblMontoTotal
             // 
             lblMontoTotal.AutoSize = true;
-            lblMontoTotal.Location = new Point(487, 83);
+            lblMontoTotal.Location = new Point(487, 102);
             lblMontoTotal.Name = "lblMontoTotal";
             lblMontoTotal.Size = new Size(108, 15);
             lblMontoTotal.TabIndex = 7;
@@ -79,7 +79,7 @@
             // 
             // textBox1
             // 
-            textBox1.Location = new Point(601, 75);
+            textBox1.Location = new Point(601, 94);
             textBox1.Name = "textBox1";
             textBox1.Size = new Size(100, 23);
             textBox1.TabIndex = 8;

@@ -148,9 +148,6 @@ namespace Entidades
 
         public static List<Vuelo> DeserealizarVuelos()
         {
-
-            
-
             List<Vuelo> listaVuelosXML = new List<Vuelo>();
             if (File.Exists(Archivos.pathVuelos))
             {
