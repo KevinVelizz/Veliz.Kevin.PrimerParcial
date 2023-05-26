@@ -15,12 +15,12 @@ namespace Aplicacion01
     {
         private List<Pasajero> pasajeros;
         private List<Vuelo> vuelos;
-        private int indexVueloSeleccionado;
-        private int indexPasajeroSeleccionado;
+
+        Vuelo? vueloSeleccionado;
+        Pasajero? pasajeroSeleccionado;
+
         private bool comida;
         private bool internet;
-        private string? pasajeroSeleccionado;
-        private string? vueloSeleccionado;
 
         public FrmVenderVuelo(List<Pasajero> listaPasajeros, List<Vuelo> listaVuelos)
         {
@@ -30,27 +30,34 @@ namespace Aplicacion01
             this.vuelos = listaVuelos;
             this.comida = false;
             this.internet = false;
+            this.dtgvVuelosDisponibles.Columns.Add("LugarSalida", "Salida");
+            this.dtgvVuelosDisponibles.Columns.Add("LugarDestino", "Destino");
+            this.dtgvVuelosDisponibles.Columns.Add("FechaSalida", "Fecha de salida");
+            this.dtgvVuelosDisponibles.Columns.Add("FechaLlegada", "Fecha de llegada");
+
+            this.dtgvPasajerosDisponibles.Columns.Add("Nombre", "Nombre");
+            this.dtgvPasajerosDisponibles.Columns.Add("Apellido", "Apellido");
+            this.dtgvPasajerosDisponibles.Columns.Add("DNI", "DNI");
         }
 
         private void FrmVenderVuelo_Load(object sender, EventArgs e)
         {
+            dtgvVuelosDisponibles.ClearSelection();
 
-        }
-
-        private void cboViajes_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            this.indexVueloSeleccionado = this.cboViajes.SelectedIndex;
-            this.lblInfoAvion.Visible = true;
-            this.lblInfoAvion.Text = this.vuelos[this.indexVueloSeleccionado].Avion.ToString();
-            this.vueloSeleccionado = this.cboViajes.SelectedItem.ToString() ?? "";
-
-            if (this.pasajeros[this.indexPasajeroSeleccionado].Premium)
+            if (this.pasajeros.Count > 0)
             {
-                this.txtCosto.Text = this.vuelos[this.indexVueloSeleccionado].CostoClasePremium.ToString();
-            }
-            else
-            {
-                this.txtCosto.Text = this.vuelos[this.indexVueloSeleccionado].CostoClaseTurista.ToString();
+                foreach (Pasajero pasajero in this.pasajeros)
+                {
+                    if (pasajero.Agregado == false)
+                    {
+                        int rowIndex = this.dtgvPasajerosDisponibles.Rows.Add();
+                        DataGridViewRow row = dtgvPasajerosDisponibles.Rows[rowIndex];
+                        row.Tag = pasajero;
+                        row.Cells["Nombre"].Value = pasajero.Nombre;
+                        row.Cells["Apellido"].Value = pasajero.Edad;
+                        row.Cells["DNI"].Value = pasajero.Dni;
+                    }
+                }
             }
         }
 
@@ -64,71 +71,123 @@ namespace Aplicacion01
             this.internet = chkInternet.Checked;
         }
 
-        private void cboViajes_Click(object sender, EventArgs e)
+        private void btnVender_Click(object sender, EventArgs e)
         {
-            this.cboViajes.Items.Clear();
+            if (this.pasajeroSeleccionado is not null && this.vueloSeleccionado is not null)
+            {
+                this.vueloSeleccionado.Pasajeros.Add(this.pasajeroSeleccionado);
+                this.pasajeroSeleccionado.Agregado = true;
+                this.vueloSeleccionado.RestarAsientos();
+                Archivos.SerealizarViajeros(this.pasajeros);
+                Archivos.SerealizarVuelos(this.vuelos);
+                this.Close();
+            }
+        }
+
+        private void cboPasajeros_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnBuscarVuelo_Click(object sender, EventArgs e)
+        {
+            dtgvVuelosDisponibles.Rows.Clear();
+
             foreach (Vuelo vuelo in this.vuelos)
             {
                 if (this.comida && this.internet)
                 {
                     if (vuelo.Avion.ServicioComida && vuelo.Avion.ServicioInternet)
                     {
-                        this.cboViajes.Items.Add(vuelo);
+                        int rowIndex = this.dtgvVuelosDisponibles.Rows.Add();
+                        DataGridViewRow row = dtgvVuelosDisponibles.Rows[rowIndex];
+                        row.Tag = vuelo;
+
+                        row.Cells["LugarSalida"].Value = vuelo.CiudadDePartida;
+                        row.Cells["LugarDestino"].Value = vuelo.CiudadDeDestino;
+                        row.Cells["FechaSalida"].Value = vuelo.FechaDeVuelo;
+                        row.Cells["FechaLlegada"].Value = vuelo.FechaDeLLegada;
                     }
                 }
                 else if (this.comida)
                 {
                     if (vuelo.Avion.ServicioComida)
                     {
-                        this.cboViajes.Items.Add(vuelo);
+                        int rowIndex = this.dtgvVuelosDisponibles.Rows.Add();
+                        DataGridViewRow row = dtgvVuelosDisponibles.Rows[rowIndex];
+                        row.Tag = vuelo;
+
+                        row.Cells["LugarSalida"].Value = vuelo.CiudadDePartida;
+                        row.Cells["LugarDestino"].Value = vuelo.CiudadDeDestino;
+                        row.Cells["FechaSalida"].Value = vuelo.FechaDeVuelo;
+                        row.Cells["FechaLlegada"].Value = vuelo.FechaDeLLegada;
                     }
                 }
                 else if (this.internet)
                 {
                     if (vuelo.Avion.ServicioInternet)
                     {
-                        this.cboViajes.Items.Add(vuelo);
+                        int rowIndex = this.dtgvVuelosDisponibles.Rows.Add();
+                        DataGridViewRow row = dtgvVuelosDisponibles.Rows[rowIndex];
+                        row.Tag = vuelo;
+
+                        row.Cells["LugarSalida"].Value = vuelo.CiudadDePartida;
+                        row.Cells["LugarDestino"].Value = vuelo.CiudadDeDestino;
+                        row.Cells["FechaSalida"].Value = vuelo.FechaDeVuelo;
+                        row.Cells["FechaLlegada"].Value = vuelo.FechaDeLLegada;
                     }
                 }
                 else
                 {
                     if (vuelo.Avion.ServicioComida == false && vuelo.Avion.ServicioInternet == false)
-                        this.cboViajes.Items.Add(vuelo);
+                    {
+                        int rowIndex = this.dtgvVuelosDisponibles.Rows.Add();
+                        DataGridViewRow row = dtgvVuelosDisponibles.Rows[rowIndex];
+                        row.Tag = vuelo;
+
+                        row.Cells["LugarSalida"].Value = vuelo.CiudadDePartida;
+                        row.Cells["LugarDestino"].Value = vuelo.CiudadDeDestino;
+                        row.Cells["FechaSalida"].Value = vuelo.FechaDeVuelo;
+                        row.Cells["FechaLlegada"].Value = vuelo.FechaDeLLegada;
+                    }
                 }
             }
         }
 
-        private void cboPasajeros_SelectedIndexChanged(object sender, EventArgs e)
+        private void dtgvVuelosDisponibles_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            this.pasajeroSeleccionado = this.cboPasajeros.SelectedItem.ToString() ?? "";
-            this.indexPasajeroSeleccionado = this.cboPasajeros.SelectedIndex;
-        }
-
-        private void btnVender_Click(object sender, EventArgs e)
-        {
-            if (this.pasajeroSeleccionado != null && this.vueloSeleccionado != null)
+            if (e.RowIndex >= 0 && e.RowIndex < this.dtgvVuelosDisponibles.Rows.Count)
             {
-                if (this.vuelos[this.indexVueloSeleccionado].Avion.CantidadAsientos > 0)
+                DataGridViewRow filaSeleccionada = dtgvVuelosDisponibles.Rows[e.RowIndex];
+                this.vueloSeleccionado = filaSeleccionada.Tag as Vuelo;
+
+                foreach (Vuelo vuelo in this.vuelos)
                 {
-                    ((Vuelo)this.cboViajes.Items[this.indexVueloSeleccionado]).Pasajeros.Add((Pasajero)this.cboPasajeros.Items[this.indexPasajeroSeleccionado]);
-                    ((Vuelo)this.cboViajes.Items[this.indexVueloSeleccionado]).RestarAsientos();
-                    ((Pasajero)this.cboPasajeros.Items[this.indexPasajeroSeleccionado]).Agregado = true;
-                    Archivos.SerealizarViajeros(this.pasajeros);
-                    Archivos.SerealizarVuelos(this.vuelos);
-                    this.Close();
+                    if (vuelo.Equals(this.vueloSeleccionado))
+                    {
+                        if (this.pasajeroSeleccionado is not null)
+                        {
+                            if (this.pasajeroSeleccionado.Premium)
+                            {
+                                this.txtCostoBruto.Text = this.vueloSeleccionado.CostoClasePremium.ToString();
+                                this.txtCostoNeto.Text = (this.vueloSeleccionado.CostoClasePremium * 1.21).ToString();
+                            }
+                            else
+                            {
+                                this.txtCostoBruto.Text = this.vueloSeleccionado.CostoClaseTurista.ToString();
+                                this.txtCostoNeto.Text = (this.vueloSeleccionado.CostoClaseTurista * 1.21).ToString();
+                            }
+                        }
+                        break;
+                    }
                 }
             }
         }
 
-        private void cboPasajeros_Click(object sender, EventArgs e)
+        private void dtgvPasajerosDisponibles_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            foreach (Pasajero pasajero in this.pasajeros)
-            {
-                if (pasajero.Agregado == false)
-                {
-                    this.cboPasajeros.Items.Add(pasajero);
-                }
-            }
+            DataGridViewRow filaSeleccionada = dtgvPasajerosDisponibles.Rows[e.RowIndex];
+            this.pasajeroSeleccionado = filaSeleccionada.Tag as Pasajero;
         }
     }
 }

@@ -32,6 +32,8 @@ namespace Entidades
             this.capacidadBodega = capacidadBodega;
         }
 
+
+
         public string Matricula
         {
             get { return this.matricula; }

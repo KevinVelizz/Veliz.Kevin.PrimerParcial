@@ -1,14 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Text.Json;
-using System.Runtime.Intrinsics.X86;
-
-namespace Entidades
+﻿namespace Entidades
 {
-    public class Aerolinea
+    public class Funcionalidades
     {
         public static Usuario? Login(string email, string clave)
         {
@@ -22,6 +14,7 @@ namespace Entidades
                     aux = user;
                 }
             }
+            Archivos.SerealizarDatosUser(aux);
             return aux;
         }
 

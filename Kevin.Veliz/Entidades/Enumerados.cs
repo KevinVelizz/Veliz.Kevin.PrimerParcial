@@ -45,3 +45,27 @@ public enum EnumTipoVuelo
     Internacional,
     Nacional,
 }
+
+public enum EnumDestinos
+{
+    Santa_Rosa,
+    Bariloche,
+    Corrientes,
+    Cordoba,
+    Jujuy,
+    Medonza,
+    Neuquen,
+    Posadas,
+    Iguazu,
+    Salta,
+    Santiago_Del_Estero,
+    Trelew,
+    Tucuman,
+    Puerto_Madryn,
+    Ushuaia,
+    Buenos_Aires,
+    Recife,
+    Roma,
+    Acapulco,
+    Miami,
+}

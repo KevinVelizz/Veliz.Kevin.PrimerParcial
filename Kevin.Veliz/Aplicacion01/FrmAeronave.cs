@@ -53,7 +53,7 @@ namespace Aplicacion01
                 }
             }
 
-            if (int.TryParse(this.txtCantAsientos.Text, out int numero) && int.TryParse(this.txtCantAsientos.Text, out int numero1) && double.TryParse(this.txtCantAsientos.Text, out double numero2))
+            if (int.TryParse(this.txtCantAsientos.Text, out int numero) && int.TryParse(this.txtCantBanios.Text, out int numero1) && double.TryParse(this.txtCapacidadBodega.Text, out double numero2))
             {
                 cantidadAsientos = numero;
                 cantidadBanios = numero1;

@@ -48,6 +48,7 @@
             label1 = new Label();
             cboAeronave = new ComboBox();
             lblInfoAeronave = new Label();
+            btnModifcar = new Button();
             SuspendLayout();
             // 
             // btnCancelar
@@ -60,6 +61,7 @@
             // 
             // btnAgregar
             // 
+            btnAgregar.Font = new Font("Segoe UI Symbol", 9F, FontStyle.Italic, GraphicsUnit.Point);
             btnAgregar.Location = new Point(41, 559);
             btnAgregar.Name = "btnAgregar";
             btnAgregar.Size = new Size(75, 23);
@@ -254,12 +256,23 @@
             lblInfoAeronave.Text = "label2";
             lblInfoAeronave.Visible = false;
             // 
+            // btnModifcar
+            // 
+            btnModifcar.Font = new Font("Segoe UI Symbol", 9F, FontStyle.Italic, GraphicsUnit.Point);
+            btnModifcar.Location = new Point(41, 530);
+            btnModifcar.Name = "btnModifcar";
+            btnModifcar.Size = new Size(75, 23);
+            btnModifcar.TabIndex = 26;
+            btnModifcar.Text = "Modificar";
+            btnModifcar.UseVisualStyleBackColor = true;
+            // 
             // FrmVuelo
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.GradientInactiveCaption;
             ClientSize = new Size(393, 598);
+            Controls.Add(btnModifcar);
             Controls.Add(lblInfoAeronave);
             Controls.Add(cboAeronave);
             Controls.Add(label1);
@@ -305,6 +318,7 @@
             Controls.SetChildIndex(label1, 0);
             Controls.SetChildIndex(cboAeronave, 0);
             Controls.SetChildIndex(lblInfoAeronave, 0);
+            Controls.SetChildIndex(btnModifcar, 0);
             ResumeLayout(false);
             PerformLayout();
         }
@@ -313,7 +327,6 @@
 
         private Button btnAgregar;
         private TextBox txtCostoTurista;
-        private TextBox textBox3;
         private ComboBox cboTipoVuelo;
         private Label lblTipoVuelo;
         private Label lblPartida;
@@ -332,5 +345,6 @@
         private Label label1;
         private ComboBox cboAeronave;
         private Label lblInfoAeronave;
+        private Button btnModifcar;
     }
 }

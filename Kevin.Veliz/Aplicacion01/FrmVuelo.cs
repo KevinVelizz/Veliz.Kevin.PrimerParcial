@@ -16,14 +16,14 @@ namespace Aplicacion01
         private string? seleccionadoTipo;
         private string? seleccionadoDestino;
         private DateTime fechaDeLlegada;
-        private List<Pasajero> pasajeros;
         private List<Aeronave> aeronaves;
+        private List<Pasajero> pasajeros;
         private Vuelo vuelo;
         private int indexAeronaveSeleccionada;
         private string? salidaSeleccionado;
         private string? destinoSeleccionado;
         private DateTime fechaSeleccionado;
-        private string? avioSeleccionado;
+        private string? avionSeleccionado;
 
         public FrmVuelo()
         {
@@ -35,6 +35,15 @@ namespace Aplicacion01
         {
             this.pasajeros = listaPasajeros;
             this.aeronaves = listaAeronaves;
+            this.btnAgregar.Visible = true;
+        }
+
+        public FrmVuelo(Vuelo vuelo, List<Aeronave> aeronaves) : this()
+        {
+            this.vuelo = vuelo;
+            this.aeronaves = aeronaves;
+            this.btnModifcar.Location = new System.Drawing.Point(this.btnAgregar.Location.X, this.btnAgregar.Location.Y);
+            this.btnAgregar.Visible = false;
         }
 
         private void FrmVuelo_Load(object sender, EventArgs e)
@@ -51,6 +60,8 @@ namespace Aplicacion01
             {
                 this.cboTipoVuelo.Items.Add(tipo.ToString());
             }
+
+            this.InicializarComponentes();
         }
 
         private void dtmVuelo_ValueChanged(object sender, EventArgs e)
@@ -67,16 +78,16 @@ namespace Aplicacion01
                 this.lblHoraVuelo.Text = hora.ToString();
                 if (this.seleccionadoTipo == "Nacional")
                 {
-                    duracion = Aerolinea.CalcularDuracionNacional();
+                    duracion = Funcionalidades.CalcularDuracionNacional();
                 }
                 else if (this.seleccionadoTipo == "Internacional")
                 {
-                    duracion = Aerolinea.CalcularDuracionInternacional();
+                    duracion = Funcionalidades.CalcularDuracionInternacional();
                 }
                 this.fechaDeLlegada = hora.AddHours(duracion);
                 this.lblDuracionVuelo.Text = this.fechaDeLlegada.ToString();
-                double costoTurista = Aerolinea.CalcularPrecio(false, this.seleccionadoDestino ?? "", duracion);
-                double costoPremium = Aerolinea.CalcularPrecio(true, this.seleccionadoDestino ?? "", duracion);
+                double costoTurista = Funcionalidades.CalcularPrecio(false, this.seleccionadoDestino ?? "", duracion);
+                double costoPremium = Funcionalidades.CalcularPrecio(true, this.seleccionadoDestino ?? "", duracion);
                 this.txtCostoTurista.Text = costoTurista.ToString();
                 this.txtCostoPremium.Text = costoPremium.ToString();
                 this.fechaSeleccionado = this.dtmVuelo.Value;
@@ -169,9 +180,9 @@ namespace Aplicacion01
 
         private void btnAgregar_Click(object sender, EventArgs e)
         {
-            if (this.fechaSeleccionado != DateTime.Today && this.avioSeleccionado != null)
+            if (this.fechaSeleccionado != DateTime.Today && this.avionSeleccionado != null)
             {
-                this.vuelo = new Vuelo(this.salidaSeleccionado ?? "", this.destinoSeleccionado ?? "", this.fechaSeleccionado, this.aeronaves[this.indexAeronaveSeleccionada], this.fechaDeLlegada, "No viajó");
+                this.vuelo = new Vuelo(this.salidaSeleccionado ?? "", this.destinoSeleccionado ?? "", this.fechaSeleccionado, ((Aeronave)cboAeronave.Items[this.indexAeronaveSeleccionada]), this.fechaDeLlegada, "No viajó");
                 this.vuelo.CostoClasePremium = double.Parse(txtCostoPremium.Text);
                 this.vuelo.CostoClaseTurista = double.Parse(txtCostoTurista.Text);
                 ((Aeronave)cboAeronave.Items[this.indexAeronaveSeleccionada]).Disponible = false;
@@ -188,8 +199,8 @@ namespace Aplicacion01
         {
             this.indexAeronaveSeleccionada = cboAeronave.SelectedIndex;
             this.lblInfoAeronave.Visible = true;
-            this.lblInfoAeronave.Text = this.aeronaves[indexAeronaveSeleccionada].ToString();
-            this.avioSeleccionado = cboAeronave.SelectedItem.ToString();
+            this.lblInfoAeronave.Text = ((Aeronave)cboAeronave.Items[this.indexAeronaveSeleccionada]).ToString();
+            this.avionSeleccionado = ((Aeronave)cboAeronave.Items[this.indexAeronaveSeleccionada]).ToString();
         }
 
         private void cboAeronave_Click(object sender, EventArgs e)
@@ -204,7 +215,10 @@ namespace Aplicacion01
             }
         }
 
-
+        private void InicializarComponentes()
+        {
+            int indexCboSalida = cboPartida.FindStringExact(this.vuelo.CiudadDePartida);
+        }
         public Vuelo Vuelo
         {
             get { return this.vuelo; }

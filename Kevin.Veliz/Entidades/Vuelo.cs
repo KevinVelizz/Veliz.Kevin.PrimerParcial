@@ -28,8 +28,8 @@ namespace Entidades
         {
             this.pasajeros = new List<Pasajero>();
             this.fechaDeLLegada = new DateTime();
-            this.costoClasePremium = 200;
-            this.costoClaseTurista = 100;
+            this.costoClasePremium = 100;
+            this.costoClaseTurista = 50;
         }
         
         public Vuelo(string ciudadDePartida, string ciudadDeDestino, DateTime fechaDeVuelo,Aeronave avion, DateTime fechaDeLLegada, string estado) :this()
@@ -137,12 +137,12 @@ namespace Entidades
             set { this.recaudacionTotal = value; }
         }
 
-        public bool AuxViaje
+        public bool EnViaje
         {
             get { return this.enViaje; }
         }
 
-        public bool AuxRealizado
+        public bool Realizado
         {
             get { return this.realizado; }
         }
@@ -156,15 +156,54 @@ namespace Entidades
                     if (pasajero.Premium)
                     {
                         this.cantidadAsientosDispPremium--;
-                        this.recaudacionTotal += this.CostoClasePremium;
+                        this.recaudacionTotal += this.CostoClasePremium * 1.21;
                     }
                     else
                     {
                         this.cantidadAsientosDispTurista--;
-                        this.recaudacionTotal += this.CostoClaseTurista;
+                        this.recaudacionTotal += this.CostoClaseTurista * 1.21;
                     }
                 }
             }
+        }
+
+        public static bool operator ==(Vuelo vuelo, Vuelo vuelo1)
+        {
+            return vuelo.avion == vuelo1.avion;
+        }
+
+        public static bool operator !=(Vuelo vuelo, Vuelo vuelo1)
+        {
+            return !(vuelo == vuelo1);
+        }
+
+        public override bool Equals(object? obj)
+        {
+            bool retorno = false;
+            if (obj is Vuelo)
+            {
+                if (this == (Vuelo)obj)
+                {
+                    retorno = true;
+                }
+            }
+            return retorno;
+        }
+
+        public override int GetHashCode()
+        {
+            return Avion.Matricula.GetHashCode();  
+        }
+
+
+        public static bool operator ==(Vuelo vuelo, Pasajero pasajero)
+        {
+            return vuelo.pasajeros.Contains(pasajero);
+        }
+
+        public static bool operator != (Vuelo vuelo, Pasajero pasajero)
+        {
+            return !(vuelo == pasajero);
         }
 
         public void VueloEnCurso()
@@ -173,6 +212,11 @@ namespace Entidades
             {
                 this.estado = "En viaje";
                 this.enViaje = true;
+
+                foreach (Pasajero pasajero in this.pasajeros)
+                {
+                    pasajero.EnVuelo = true;
+                }
             }
         }
 
@@ -183,6 +227,12 @@ namespace Entidades
                 this.estado = "Realizado";
                 this.realizado = true;
                 this.enViaje = false;
+
+                foreach (Pasajero pasajero in this.pasajeros)
+                {
+                    pasajero.Agregado = false;
+                    pasajero.EnVuelo = false;
+                }
             }
         }
 

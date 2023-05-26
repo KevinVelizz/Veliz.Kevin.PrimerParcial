@@ -39,13 +39,17 @@
             label3 = new Label();
             lblEdad = new Label();
             btnLimpiar = new Button();
-            txtPesoEquipaje2 = new TextBox();
             lblPesoEquipaje2 = new Label();
             chkEquipajeMano = new CheckBox();
             label1 = new Label();
             cboClase = new ComboBox();
-            txtPesoEquipaje = new TextBox();
             lblPeso = new Label();
+            nudPesoEquipaje1 = new NumericUpDown();
+            nudPesoEquipaje2 = new NumericUpDown();
+            btnModificar = new Button();
+            chkVacunado = new CheckBox();
+            ((System.ComponentModel.ISupportInitialize)nudPesoEquipaje1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)nudPesoEquipaje2).BeginInit();
             SuspendLayout();
             // 
             // btnAgregar
@@ -146,14 +150,6 @@
             btnLimpiar.UseVisualStyleBackColor = true;
             btnLimpiar.Click += btnLimpiar_Click;
             // 
-            // txtPesoEquipaje2
-            // 
-            txtPesoEquipaje2.Enabled = false;
-            txtPesoEquipaje2.Location = new Point(176, 299);
-            txtPesoEquipaje2.Name = "txtPesoEquipaje2";
-            txtPesoEquipaje2.Size = new Size(100, 23);
-            txtPesoEquipaje2.TabIndex = 57;
-            // 
             // lblPesoEquipaje2
             // 
             lblPesoEquipaje2.AutoSize = true;
@@ -194,14 +190,6 @@
             cboClase.Text = "--Seleccione--";
             cboClase.SelectedIndexChanged += cboClase_SelectedIndexChanged;
             // 
-            // txtPesoEquipaje
-            // 
-            txtPesoEquipaje.Enabled = false;
-            txtPesoEquipaje.Location = new Point(176, 250);
-            txtPesoEquipaje.Name = "txtPesoEquipaje";
-            txtPesoEquipaje.Size = new Size(100, 23);
-            txtPesoEquipaje.TabIndex = 52;
-            // 
             // lblPeso
             // 
             lblPeso.AutoSize = true;
@@ -212,18 +200,62 @@
             lblPeso.TabIndex = 51;
             lblPeso.Text = "Peso equipaje bodega:";
             // 
+            // nudPesoEquipaje1
+            // 
+            nudPesoEquipaje1.Font = new Font("Segoe UI Symbol", 9.75F, FontStyle.Italic, GraphicsUnit.Point);
+            nudPesoEquipaje1.Location = new Point(176, 250);
+            nudPesoEquipaje1.Maximum = new decimal(new int[] { 25, 0, 0, 0 });
+            nudPesoEquipaje1.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
+            nudPesoEquipaje1.Name = "nudPesoEquipaje1";
+            nudPesoEquipaje1.Size = new Size(100, 25);
+            nudPesoEquipaje1.TabIndex = 57;
+            nudPesoEquipaje1.Value = new decimal(new int[] { 1, 0, 0, 0 });
+            // 
+            // nudPesoEquipaje2
+            // 
+            nudPesoEquipaje2.Font = new Font("Segoe UI Symbol", 9.75F, FontStyle.Italic, GraphicsUnit.Point);
+            nudPesoEquipaje2.Location = new Point(176, 299);
+            nudPesoEquipaje2.Maximum = new decimal(new int[] { 21, 0, 0, 0 });
+            nudPesoEquipaje2.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
+            nudPesoEquipaje2.Name = "nudPesoEquipaje2";
+            nudPesoEquipaje2.Size = new Size(100, 25);
+            nudPesoEquipaje2.TabIndex = 58;
+            nudPesoEquipaje2.Value = new decimal(new int[] { 1, 0, 0, 0 });
+            // 
+            // btnModificar
+            // 
+            btnModificar.Location = new Point(14, 386);
+            btnModificar.Name = "btnModificar";
+            btnModificar.Size = new Size(75, 23);
+            btnModificar.TabIndex = 59;
+            btnModificar.Text = "Modificar";
+            btnModificar.UseVisualStyleBackColor = true;
+            btnModificar.Click += btnModificar_Click;
+            // 
+            // chkVacunado
+            // 
+            chkVacunado.AutoSize = true;
+            chkVacunado.Location = new Point(176, 373);
+            chkVacunado.Name = "chkVacunado";
+            chkVacunado.Size = new Size(64, 19);
+            chkVacunado.TabIndex = 60;
+            chkVacunado.Text = "Vacuna";
+            chkVacunado.UseVisualStyleBackColor = true;
+            // 
             // FrmPasajero
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.GradientInactiveCaption;
             ClientSize = new Size(310, 450);
-            Controls.Add(txtPesoEquipaje2);
+            Controls.Add(chkVacunado);
+            Controls.Add(btnModificar);
+            Controls.Add(nudPesoEquipaje2);
+            Controls.Add(nudPesoEquipaje1);
             Controls.Add(lblPesoEquipaje2);
             Controls.Add(chkEquipajeMano);
             Controls.Add(label1);
             Controls.Add(cboClase);
-            Controls.Add(txtPesoEquipaje);
             Controls.Add(lblPeso);
             Controls.Add(btnLimpiar);
             Controls.Add(lblEdad);
@@ -239,7 +271,8 @@
             Name = "FrmPasajero";
             Text = "FrmPasajero";
             Load += FrmPasajero_Load;
-            Click += FrmPasajero_Click;
+            ((System.ComponentModel.ISupportInitialize)nudPesoEquipaje1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)nudPesoEquipaje2).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -257,12 +290,17 @@
         private Label label3;
         private Label lblEdad;
         private Button btnLimpiar;
-        private TextBox txtPesoEquipaje2;
         private Label lblPesoEquipaje2;
         private CheckBox chkEquipajeMano;
         private Label label1;
         private ComboBox cboClase;
         private TextBox txtPesoEquipaje;
         private Label lblPeso;
+        private NumericUpDown numericUpDown1;
+        private NumericUpDown nudEquipaje1;
+        private NumericUpDown nudPesoEquipaje1;
+        private NumericUpDown nudPesoEquipaje2;
+        private Button btnModificar;
+        private CheckBox chkVacunado;
     }
 }

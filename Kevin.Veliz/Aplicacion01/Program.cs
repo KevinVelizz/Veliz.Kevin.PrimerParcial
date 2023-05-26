@@ -11,7 +11,7 @@ namespace Aplicacion01
             // To customize application configuration such as set high DPI settings or default font,
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
-            Application.Run(new Aerolineas());
+            Application.Run(new FrmAerolinea());
             //Application.Run(new IngresarUsuario());
             //Application.Run(new FrmIniciarSesion());
         }

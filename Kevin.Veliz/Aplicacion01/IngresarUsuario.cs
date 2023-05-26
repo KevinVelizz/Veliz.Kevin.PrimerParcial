@@ -20,7 +20,7 @@ namespace Aplicacion01
         }
         private void btnIngresar_Click(object sender, EventArgs e)
         {
-            Usuario? aux = Aerolinea.Login(txtCorreo.Text, txtContraseña.Text);
+            Usuario? aux = Funcionalidades.Login(txtCorreo.Text, txtContraseña.Text);
 
             if (aux != null)
             {

@@ -1,17 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Text;
 using System.Xml.Serialization;
-using System.IO;
 using System.Xml;
-using System.Xml.Linq;
 using System.Text.Json;
 
 namespace Entidades
 {
     public class Archivos
     {
-        private static string desktopPath = Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory);
+        private static string desktopPath = Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory); 
         private static string folderPath = Path.Combine(Archivos.desktopPath, @"Veliz.Kevin.PrimerParcial\Kevin.Veliz\");
 
         //Path Aeronaves.
@@ -23,8 +19,19 @@ namespace Entidades
         //Path Viajeros.
         private static string pathViajeros = Path.Combine(Archivos.folderPath + @"listaViajeros.xml");
 
-        private static string pathVuelos = Path.Combine(Archivos.folderPath + @"listaVuelos.xml");
+        private static string pathVuelos = Path.Combine(Archivos.folderPath + @"listaVuelos.json");
+
+        private static string pathDataUsuario = Path.Combine(Archivos.folderPath + @"usuarios.log");
         
+
+        public static void SerealizarDatosUser(Usuario usuario)
+        {
+            if (usuario != null)
+            {
+                using TextWriter writer = new StreamWriter(Archivos.pathDataUsuario, true);
+                writer.Write($"{DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss")} - {usuario}");
+            }
+        }
 
         public static void SerealizarAeronaves(List<Aeronave> aeronaves)
         {
@@ -68,11 +75,9 @@ namespace Entidades
             {
                 try
                 {
-                    // Crear un JsonReader a partir del archivo JSON
                     using (StreamReader sr = new StreamReader(Archivos.pathUsuario))
                     {
                         string json_str = sr.ReadToEnd();
-
                         usuarios = JsonSerializer.Deserialize(json_str, typeof(List<Usuario>)) as List<Usuario> ?? new(); // el operador as es para expresiones que devuelven nulos. ?? me pregunto si es nulo
                     }
                 }
@@ -85,9 +90,6 @@ namespace Entidades
             {
                 Console.WriteLine("No se encontroó el path");
             }
-            
-
-            
             return usuarios;
         }
 
@@ -109,35 +111,33 @@ namespace Entidades
 
         public static List<Pasajero> DeserealizarPasajeros()
         {
-
             List<Pasajero> listaPasajerosXML = new List<Pasajero>();
-            try
+
+            if (File.Exists(Archivos.pathViajeros))
             {
-                using (XmlTextReader sr = new XmlTextReader(Archivos.pathViajeros))
+                try
                 {
-                    XmlSerializer serializer = new XmlSerializer((typeof(List<Pasajero>)));
-                    listaPasajerosXML = serializer.Deserialize(sr) as List<Pasajero> ?? new();
+                    using (XmlTextReader sr = new XmlTextReader(Archivos.pathViajeros))
+                    {
+                        XmlSerializer serializer = new XmlSerializer((typeof(List<Pasajero>)));
+                        listaPasajerosXML = serializer.Deserialize(sr) as List<Pasajero> ?? new();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"ERROR: {ex.Message} - {ex.StackTrace}");
                 }
             }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"ERROR: {ex.Message} - {ex.StackTrace}");
-            }
-            
-            
             return listaPasajerosXML;
         }
 
         public static void SerealizarVuelos(List<Vuelo> vuelos)
         {
-            
-
             try
             {
-                using (XmlTextWriter writer = new XmlTextWriter(Archivos.pathVuelos, Encoding.UTF8))
+                using (TextWriter writer = new StreamWriter(Archivos.pathVuelos))
                 {
-                    XmlSerializer ser = new XmlSerializer((typeof(List<Vuelo>)));
-                    ser.Serialize(writer, vuelos);
+                    writer.Write(JsonSerializer.Serialize(vuelos));
                 }
             }
             catch (Exception ex)
@@ -148,15 +148,14 @@ namespace Entidades
 
         public static List<Vuelo> DeserealizarVuelos()
         {
-            List<Vuelo> listaVuelosXML = new List<Vuelo>();
+            List<Vuelo> listaVuelos = new List<Vuelo>();
             if (File.Exists(Archivos.pathVuelos))
             {
                 try
                 {
-                    using (XmlTextReader sr = new XmlTextReader(Archivos.pathVuelos))
+                    using (TextReader sr = new StreamReader(Archivos.pathVuelos))
                     {
-                        XmlSerializer serializer = new XmlSerializer((typeof(List<Vuelo>)));
-                        listaVuelosXML = serializer.Deserialize(sr) as List<Vuelo> ?? new();
+                        listaVuelos = JsonSerializer.Deserialize<List<Vuelo>>(sr.ReadToEnd()) ?? new();
                     }
                 }
                 catch (Exception ex)
@@ -168,7 +167,7 @@ namespace Entidades
             {
                 Console.WriteLine("No existe el archivo");
             }
-            return listaVuelosXML;
+            return listaVuelos;
         }
     }
 }
