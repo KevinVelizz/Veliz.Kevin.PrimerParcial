@@ -3,7 +3,7 @@ Primer Parcial laboratorio-II
 
 # Aerolinea Veliz
 
-### Mi nombre es Kevin Veliz y este trabajo fue un desafío con pro y contras a lo largo de su implementanción, ya que mi experencía con la programación no es muy amplía. No se me fue fácil, pero aprendí demasiado.
+### Mi nombre es Kevin Veliz y este trabajo fue un desafío con pro y contras a lo largo de su implementanción. No se me fue fácil, pero aprendí demasiado.
 
 ### La aplicación cuenta con un login en el que iniciara sesión cualquier susuario, una vez iniciada la sesión en el programa principal dependiendo el tipo de usuario se les mostrará la información que le corresponda para sus funcionalides desarrolladas para cada tipo.
 
@@ -52,11 +52,6 @@ public Pasajero(string nombre, string apellido, int dni, int edad, List<Equipaje
 
         public Pasajero(string nombre, string apellido, int dni, int edad, List<Equipaje> equipajes, bool premium, bool equipajeDeMano, bool vacunado) : this(nombre, apellido, dni, edad, equipajes, premium, equipajeDeMano)
         {
-            this.dni = dni;
-            this.edad = edad;
-            this.equipajes = equipajes;
-            this.premium = premium;
-            this.equipajeDeMano = equipajeDeMano;
             this.vacunado = vacunado;
         }
 ````
