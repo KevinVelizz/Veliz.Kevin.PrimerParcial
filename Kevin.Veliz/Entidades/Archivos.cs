@@ -7,22 +7,21 @@ namespace Entidades
 {
     public static class Archivos
     {
-        private static string desktopPath = Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory); 
-        private static string folderPath = Path.Combine(Archivos.desktopPath, @"Veliz.Kevin.PrimerParcial\Kevin.Veliz\");
+        public static string desktopPath = Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory);
+        public static string folderPath = Path.Combine(Archivos.desktopPath, @"Veliz.Kevin.PrimerParcial\Kevin.Veliz\");
 
         //Path Aeronaves.
-        private static string pathAeronaves = Path.Combine(Archivos.folderPath + @"listaAeronaves.xml");
+        public static string pathAeronaves = Path.Combine(Archivos.folderPath + @"listaAeronaves.xml");
 
         //Path Usuarios.
-        private static string pathUsuario = Path.Combine(Archivos.folderPath + @"MOCK_DATA.json");
+        public static string pathUsuario = Path.Combine(Archivos.folderPath + @"MOCK_DATA.json");
 
         //Path Viajeros.
-        private static string pathViajeros = Path.Combine(Archivos.folderPath + @"listaViajeros.xml");
+        public static string pathPasajeros = Path.Combine(Archivos.folderPath + @"listaViajeros.xml");
 
-        private static string pathVuelos = Path.Combine(Archivos.folderPath + @"listaVuelos.json");
+        public static string pathVuelos = Path.Combine(Archivos.folderPath + @"listaVuelos.json");
 
-        private static string pathDataUsuario = Path.Combine(Archivos.folderPath + @"usuarios.log");
-        
+        public static string pathDataUsuario = Path.Combine(Archivos.folderPath + @"usuarios.log");
 
         public static void SerealizarDatosUser(Usuario usuario)
         {
@@ -33,14 +32,14 @@ namespace Entidades
             }
         }
 
-        public static void SerealizarAeronaves(List<Aeronave> aeronaves)
+        public static void SerealizarDatos <T>(List<T> lista, string path)
         {
             try
             {
-                using (XmlTextWriter writer = new XmlTextWriter(Archivos.pathAeronaves, Encoding.UTF8))
+                using (XmlTextWriter writer = new XmlTextWriter(path, Encoding.UTF8))
                 {
                     XmlSerializer ser = new XmlSerializer((typeof(List<Aeronave>)));
-                    ser.Serialize(writer, aeronaves);
+                    ser.Serialize(writer, lista);
                 }
             }
             catch (Exception ex)
@@ -48,11 +47,9 @@ namespace Entidades
                 Console.WriteLine($"ERROR:{ex.Message} - {ex.StackTrace}");
             }
         }
-
         public static List<Aeronave> DeserealizarAeronaves()
         {
             List<Aeronave> listXML = new List<Aeronave>();
-            
             try
                 {
                     using (XmlTextReader sr = new XmlTextReader(Archivos.pathAeronaves))
@@ -93,31 +90,15 @@ namespace Entidades
             return usuarios;
         }
 
-        public static void SerealizarViajeros(List<Pasajero> pasajeros)
-        {
-            try
-            {
-                using (XmlTextWriter writer = new XmlTextWriter(Archivos.pathViajeros, Encoding.UTF8))
-                {
-                    XmlSerializer ser = new XmlSerializer((typeof(List<Pasajero>)));
-                    ser.Serialize(writer, pasajeros);
-                }
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"ERROR:{ex.Message} - {ex.StackTrace}");
-            }
-        }
-
         public static List<Pasajero> DeserealizarPasajeros()
         {
             List<Pasajero> listaPasajerosXML = new List<Pasajero>();
 
-            if (File.Exists(Archivos.pathViajeros))
+            if (File.Exists(Archivos.pathPasajeros))
             {
                 try
                 {
-                    using (XmlTextReader sr = new XmlTextReader(Archivos.pathViajeros))
+                    using (XmlTextReader sr = new XmlTextReader(Archivos.pathPasajeros))
                     {
                         XmlSerializer serializer = new XmlSerializer((typeof(List<Pasajero>)));
                         listaPasajerosXML = serializer.Deserialize(sr) as List<Pasajero> ?? new();

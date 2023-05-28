@@ -71,7 +71,7 @@ namespace Aplicacion01
             this.VisualizacionDelUsuario(this.index, this.usuario.Perfil);
             this.vuelos = Archivos.DeserealizarVuelos();
             this.pasajeros = Archivos.DeserealizarPasajeros();
-            this.ActualizarListaPasjeros();
+            this.ActualizarLista(this.pasajeros);
         }
 
         private void stripVuelo_Click(object sender, EventArgs e)
@@ -107,7 +107,7 @@ namespace Aplicacion01
                 }
             }
             this.vuelos = Archivos.DeserealizarVuelos();
-            this.ActualizarListaVuelos();
+            this.ActualizarLista(this.vuelos);
         }
 
         private void stripAeronave_Click(object sender, EventArgs e)
@@ -251,9 +251,9 @@ namespace Aplicacion01
                             this.pasajeros.Add(frmPasajero.Pasajero);
                         }
 
-                        Archivos.SerealizarViajeros(this.pasajeros);
+                        Archivos.SerealizarDatos(this.pasajeros, Archivos.pathPasajeros);
                         this.pasajeros = Archivos.DeserealizarPasajeros();
-                        this.ActualizarListaPasjeros();
+                        this.ActualizarLista(this.pasajeros);
                     }
                     break;
                 case 1:
@@ -265,7 +265,7 @@ namespace Aplicacion01
                     }
                     Archivos.SerealizarVuelos(this.vuelos);
                     this.vuelos = Archivos.DeserealizarVuelos();
-                    this.ActualizarListaVuelos();
+                    this.ActualizarLista(this.vuelos);
                     break;
                 case 2:
                     FrmAeronave frmAeronave = new FrmAeronave();
@@ -275,7 +275,7 @@ namespace Aplicacion01
                     {
                         this.aeronaves.Add(frmAeronave.Aeronave);
                     }
-                    Archivos.SerealizarAeronaves(this.aeronaves);
+                    Archivos.SerealizarDatos(this.aeronaves, Archivos.pathAeronaves);
                     this.aeronaves = Archivos.DeserealizarAeronaves();
                     this.ActualizarListaAeronaves();
                     break;
@@ -361,9 +361,9 @@ namespace Aplicacion01
                             if (MessageBox.Show("Desea eliminar al pasajero? ", "Aviso", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1) == DialogResult.Yes)
                             {
                                 this.pasajeros.Remove(this.pasajeroSeleccionado);
-                                Archivos.SerealizarViajeros(this.pasajeros);
+                                Archivos.SerealizarDatos(this.pasajeros, Archivos.pathPasajeros);
                                 this.pasajeros = Archivos.DeserealizarPasajeros();
-                                this.ActualizarListaPasjeros();
+                                this.ActualizarLista(this.pasajeros);
                             }
                         }
                         else
@@ -399,10 +399,10 @@ namespace Aplicacion01
 
                                     this.vuelos.Remove(this.vueloSeleccionado);
                                     Archivos.SerealizarVuelos(this.vuelos);
-                                    Archivos.SerealizarViajeros(this.pasajeros);
-                                    Archivos.SerealizarAeronaves(this.aeronaves);
+                                    Archivos.SerealizarDatos(this.pasajeros, Archivos.pathPasajeros);
+                                    Archivos.SerealizarDatos(this.aeronaves, Archivos.pathAeronaves);
                                     this.vuelos = Archivos.DeserealizarVuelos();
-                                    this.ActualizarListaVuelos();
+                                    this.ActualizarLista(this.vuelos);
                                 }
                             }
                             else
@@ -419,7 +419,7 @@ namespace Aplicacion01
                                 this.aeronaves.Remove(this.aeronaveSeleccionado);
                                 Archivos.SerealizarVuelos(this.vuelos);
                                 this.vuelos = Archivos.DeserealizarVuelos();
-                                this.ActualizarListaVuelos();
+                                this.ActualizarLista(this.vuelos);
                             }
                         }
                         break;
@@ -449,11 +449,11 @@ namespace Aplicacion01
                                         break;
                                     }
                                 }
-                                Archivos.SerealizarViajeros(this.pasajeros);
+                                Archivos.SerealizarDatos(this.pasajeros,Archivos.pathPasajeros);
                                 Archivos.SerealizarVuelos(this.vuelos);
                                 this.pasajeros = Archivos.DeserealizarPasajeros();
                                 this.vuelos = Archivos.DeserealizarVuelos();
-                                this.ActualizarListaPasjeros();
+                                this.ActualizarLista(this.pasajeros);
                             }
                         }
                         else
@@ -489,7 +489,7 @@ namespace Aplicacion01
                                         break;
                                     }
                                 }
-                                Archivos.SerealizarAeronaves(this.aeronaves);
+                                Archivos.SerealizarDatos(this.aeronaves, Archivos.pathAeronaves);
                                 Archivos.SerealizarVuelos(this.vuelos);
                                 this.aeronaves = Archivos.DeserealizarAeronaves();
                                 this.vuelos = Archivos.DeserealizarVuelos();
@@ -506,16 +506,11 @@ namespace Aplicacion01
             }
         }
 
-        private void ActualizarListaPasjeros()
+        private void ActualizarLista<T>(List<T> listaDatos)
         {
             this.dtgvElementos.DataSource = null;
-            this.dtgvElementos.DataSource = this.pasajeros;
-        }
-        private void ActualizarListaVuelos()
-        {
-            this.dtgvElementos.DataSource = null;
-            this.dtgvElementos.DataSource = this.vuelos;
-        }
+            this.dtgvElementos.DataSource = listaDatos;
+        } 
 
         private void ActualizarListaAeronaves()
         {
@@ -528,7 +523,7 @@ namespace Aplicacion01
                 }
             }
             this.dtgvElementos.DataSource = this.aeronaves;
-            Archivos.SerealizarAeronaves(this.aeronaves);
+            Archivos.SerealizarDatos(this.aeronaves, Archivos.pathAeronaves);
         }
 
         private void btnModificar_Click(object sender, EventArgs e)
@@ -538,7 +533,7 @@ namespace Aplicacion01
 
         private void buscarPasajero()
         {
-            this.ActualizarListaPasjeros();
+            this.ActualizarLista(this.pasajeros);
 
             if (int.TryParse(this.txtBuscarDNI.Text, out _))
             {

@@ -87,15 +87,15 @@ Utilice una clase **ABSTRACTA** denominada **Persona** que es la clase **padre**
 ```` C# 
 public abstract class Persona
 {
-    protected abstract string      Informacion();
+    protected abstract string Informacion();
 
-        protected virtual string Mostrar()
-        {
-            StringBuilder mensaje = new StringBuilder();
-            mensaje.AppendLine($"Nombre: {this.nombre}");
-            mensaje.Append($"Apellido: {this.apellido}");
-            return mensaje.ToString();
-        }
+    protected virtual string Mostrar()
+    {
+        StringBuilder mensaje = new StringBuilder();
+        mensaje.AppendLine($"Nombre: {this.nombre}");
+        mensaje.Append($"Apellido: {this.apellido}");
+        return mensaje.ToString();
+    }
 }
 ````
 ---

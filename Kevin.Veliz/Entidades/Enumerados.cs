@@ -1,6 +1,4 @@
-﻿using System.Xml.Serialization;
-
-public enum EnumVuelosInternacionales
+﻿public enum EnumVuelosInternacionales
 {
     Recife,
     Roma,

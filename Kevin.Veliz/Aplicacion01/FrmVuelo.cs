@@ -150,7 +150,7 @@ namespace Aplicacion01
                 this.vuelo.CostoClasePremium = double.Parse(txtCostoPremium.Text);
                 this.vuelo.CostoClaseTurista = double.Parse(txtCostoTurista.Text);
                 ((Aeronave)cboAeronave.Items[this.indexAeronaveSeleccionada]).Disponible = false;
-                Archivos.SerealizarAeronaves(this.aeronaves);
+                Archivos.SerealizarDatos(this.aeronaves, Archivos.pathAeronaves);
                 this.DialogResult = DialogResult.OK;
             }
             else
@@ -236,7 +236,7 @@ namespace Aplicacion01
             this.vuelo.CostoClasePremium = double.Parse(txtCostoPremium.Text);
             this.vuelo.CostoClaseTurista = double.Parse(txtCostoTurista.Text);
             ((Aeronave)cboAeronave.Items[this.indexAeronaveSeleccionada]).Disponible = false;
-            Archivos.SerealizarAeronaves(this.aeronaves);
+            Archivos.SerealizarDatos(this.aeronaves, Archivos.pathAeronaves);
             this.DialogResult = DialogResult.OK;
         }
 

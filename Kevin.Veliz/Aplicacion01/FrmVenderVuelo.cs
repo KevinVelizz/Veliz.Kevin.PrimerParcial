@@ -78,7 +78,7 @@ namespace Aplicacion01
                 this.vueloSeleccionado.Pasajeros.Add(this.pasajeroSeleccionado);
                 this.pasajeroSeleccionado.Agregado = true;
                 this.vueloSeleccionado.RestarAsientos();
-                Archivos.SerealizarViajeros(this.pasajeros);
+                Archivos.SerealizarDatos(this.pasajeros, Archivos.pathAeronaves);
                 Archivos.SerealizarVuelos(this.vuelos);
                 this.Close();
             }
