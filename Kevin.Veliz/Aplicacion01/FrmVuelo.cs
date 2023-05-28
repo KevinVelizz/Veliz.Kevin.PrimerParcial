@@ -13,17 +13,18 @@ namespace Aplicacion01
 {
     public partial class FrmVuelo : FrmBase
     {
-        private string? seleccionadoTipo;
+        private EnumTipoVuelo tipoSeleccionado;
         private string? seleccionadoDestino;
         private DateTime fechaDeLlegada;
         private List<Aeronave> aeronaves;
-        private List<Pasajero> pasajeros;
         private Vuelo vuelo;
         private int indexAeronaveSeleccionada;
         private string? salidaSeleccionado;
         private string? destinoSeleccionado;
         private DateTime fechaSeleccionado;
         private string? avionSeleccionado;
+        private bool modifica;
+
 
         public FrmVuelo()
         {
@@ -31,11 +32,11 @@ namespace Aplicacion01
             this.StartPosition = FormStartPosition.CenterScreen;
         }
 
-        public FrmVuelo(List<Pasajero> listaPasajeros, List<Aeronave> listaAeronaves) : this()
+        public FrmVuelo(List<Aeronave> listaAeronaves) : this()
         {
-            this.pasajeros = listaPasajeros;
             this.aeronaves = listaAeronaves;
             this.btnAgregar.Visible = true;
+            this.btnModifcar.Visible = false;
         }
 
         public FrmVuelo(Vuelo vuelo, List<Aeronave> aeronaves) : this()
@@ -44,6 +45,7 @@ namespace Aplicacion01
             this.aeronaves = aeronaves;
             this.btnModifcar.Location = new System.Drawing.Point(this.btnAgregar.Location.X, this.btnAgregar.Location.Y);
             this.btnAgregar.Visible = false;
+            this.modifica = true;
         }
 
         private void FrmVuelo_Load(object sender, EventArgs e)
@@ -58,17 +60,19 @@ namespace Aplicacion01
             this.cboTipoVuelo.Text = "--Ingrese--";
             foreach (EnumTipoVuelo tipo in Enum.GetValues(typeof(EnumTipoVuelo)))
             {
-                this.cboTipoVuelo.Items.Add(tipo.ToString());
+                this.cboTipoVuelo.Items.Add(tipo);
             }
 
-            this.InicializarComponentes();
+            if (modifica)
+            {
+                this.InicializarComponentes();
+            }
         }
 
         private void dtmVuelo_ValueChanged(object sender, EventArgs e)
         {
-            if (this.destinoSeleccionado != null && this.seleccionadoTipo != null && this.salidaSeleccionado != null)
+            if (this.destinoSeleccionado != null && this.tipoSeleccionado != null && this.salidaSeleccionado != null)
             {
-
                 this.lblHoraVuelo.Visible = true;
                 this.lblDuracionVuelo.Visible = true;
                 this.seleccionadoDestino = cboDestino.SelectedItem.ToString();
@@ -76,11 +80,11 @@ namespace Aplicacion01
                 double duracion = 0;
                 DateTime hora = dtmVuelo.Value;
                 this.lblHoraVuelo.Text = hora.ToString();
-                if (this.seleccionadoTipo == "Nacional")
+                if (this.tipoSeleccionado == EnumTipoVuelo.Nacional)
                 {
                     duracion = Funcionalidades.CalcularDuracionNacional();
                 }
-                else if (this.seleccionadoTipo == "Internacional")
+                else if (this.tipoSeleccionado == EnumTipoVuelo.Internacional)
                 {
                     duracion = Funcionalidades.CalcularDuracionInternacional();
                 }
@@ -106,46 +110,8 @@ namespace Aplicacion01
 
         private void cboTipoVuelo_SelectedIndexChanged(object sender, EventArgs e)
         {
-            string auxInternacional;
-            string auxNacional;
-            lblHoraVuelo.Text = "";
-            lblDuracionVuelo.Text = "";
-            this.fechaSeleccionado = DateTime.Today;
-            this.seleccionadoTipo = (string)cboTipoVuelo.SelectedItem;
-            this.txtCostoPremium.Text = "";
-            this.txtCostoTurista.Text = "";
-            this.dtmVuelo.Enabled = false;
 
-            if (this.seleccionadoTipo == "Nacional")
-            {
-                this.cboPartida.Items.Clear();
-                this.cboDestino.Items.Clear();
-                this.cboPartida.Text = "--Seleccione--";
-                this.cboDestino.Text = "--Seleccione--";
-                foreach (EnumVuelosNacionales clase in Enum.GetValues(typeof(EnumVuelosNacionales)))
-                {
-                    auxNacional = clase.ToString();
-                    auxNacional = auxNacional.Replace('_', ' ');
-                    this.cboPartida.Items.Add(auxNacional);
-                }
-            }
-            else if (this.seleccionadoTipo == "Internacional")
-            {
-                this.cboPartida.Items.Clear();
-                this.cboDestino.Items.Clear();
-                this.cboPartida.Text = "--Seleccione--";
-                this.cboDestino.Text = "--Seleccione--";
-                string aux = EnumVuelosNacionales.Buenos_Aires.ToString();
-                aux = aux.Replace('_', ' ');
-                this.cboPartida.Items.Add(aux);
-
-                foreach (EnumVuelosInternacionales equipaje in Enum.GetValues(typeof(EnumVuelosInternacionales)))
-                {
-                    auxInternacional = equipaje.ToString();
-                    auxInternacional = auxInternacional.Replace('_', ' ');
-                    this.cboDestino.Items.Add(auxInternacional);
-                }
-            }
+            this.AgregarElementosComboBox();
         }
 
         private void cboPartida_SelectedIndexChanged(object sender, EventArgs e)
@@ -163,16 +129,14 @@ namespace Aplicacion01
 
         public void FiltrarLugares(ComboBox comboBox, ComboBox comboBox1)
         {
-            if (this.seleccionadoTipo == "Nacional")
+            if (this.tipoSeleccionado == EnumTipoVuelo.Nacional)
             {
                 comboBox.Items.Clear();
                 foreach (EnumVuelosNacionales clase in Enum.GetValues(typeof(EnumVuelosNacionales)))
                 {
-                    string aux = clase.ToString();
-                    aux = aux.Replace("_", " ");
-                    if (!aux.Equals(comboBox1.SelectedItem.ToString()))
+                    if (!Funcionalidades.ReemplazarGuionBajo(clase).Equals(comboBox1.SelectedItem.ToString()))
                     {
-                        comboBox.Items.Add(aux);
+                        comboBox.Items.Add(Funcionalidades.ReemplazarGuionBajo(clase));
                     }
                 }
             }
@@ -205,20 +169,77 @@ namespace Aplicacion01
 
         private void cboAeronave_Click(object sender, EventArgs e)
         {
-            cboAeronave.Items.Clear();
             foreach (Aeronave aeronave in this.aeronaves)
             {
-                if (aeronave.Disponible)
+                if (aeronave.Disponible && !cboAeronave.Items.Contains(aeronave))
                 {
                     cboAeronave.Items.Add(aeronave);
                 }
             }
         }
 
+        private void AgregarElementosComboBox()
+        {
+            lblHoraVuelo.Text = "";
+            lblDuracionVuelo.Text = "";
+            this.fechaSeleccionado = DateTime.Today;
+            this.tipoSeleccionado = (EnumTipoVuelo)cboTipoVuelo.SelectedItem;
+            this.txtCostoPremium.Text = "";
+            this.txtCostoTurista.Text = "";
+            this.dtmVuelo.Enabled = false;
+
+            if (this.tipoSeleccionado == EnumTipoVuelo.Nacional)
+            {
+                this.cboPartida.Items.Clear();
+                this.cboDestino.Items.Clear();
+                this.cboPartida.Text = "--Seleccione--";
+                this.cboDestino.Text = "--Seleccione--";
+                foreach (EnumVuelosNacionales clase in Enum.GetValues(typeof(EnumVuelosNacionales)))
+                {
+                    this.cboPartida.Items.Add(Funcionalidades.ReemplazarGuionBajo(clase));
+                }
+            }
+            else if (this.tipoSeleccionado == EnumTipoVuelo.Internacional)
+            {
+                this.cboPartida.Items.Clear();
+                this.cboDestino.Items.Clear();
+                this.cboPartida.Text = "--Seleccione--";
+                this.cboDestino.Text = "--Seleccione--";
+                string aux = EnumVuelosNacionales.Buenos_Aires.ToString();
+                aux = aux.Replace('_', ' ');
+                this.cboPartida.Items.Add(aux);
+
+                foreach (EnumVuelosInternacionales equipaje in Enum.GetValues(typeof(EnumVuelosInternacionales)))
+                {
+                    this.cboDestino.Items.Add(Funcionalidades.ReemplazarGuionBajo(equipaje));
+                }
+            }
+        }
+
         private void InicializarComponentes()
         {
-            int indexCboSalida = cboPartida.FindStringExact(this.vuelo.CiudadDePartida);
+            this.cboAeronave.Items.Add(this.vuelo.Avion);
+            this.cboTipoVuelo.SelectedIndex = cboTipoVuelo.FindStringExact(this.vuelo.Tipo.ToString());
+            this.cboPartida.SelectedIndex = cboPartida.FindStringExact(this.vuelo.CiudadDePartida);
+            this.cboDestino.SelectedIndex = cboDestino.FindStringExact(this.vuelo.CiudadDeDestino);
+            this.dtmVuelo.Value = this.vuelo.FechaDeVuelo;
+            this.cboAeronave.SelectedIndex = cboAeronave.FindStringExact(this.vuelo.Avion.ToString());
         }
+
+        private void btnModifcar_Click(object sender, EventArgs e)
+        {
+            this.vuelo.Avion = (Aeronave)this.cboAeronave.Items[this.indexAeronaveSeleccionada];
+            this.vuelo.CiudadDePartida = this.salidaSeleccionado ?? "";
+            this.vuelo.CiudadDeDestino = this.destinoSeleccionado ?? "";
+            this.vuelo.Tipo = this.tipoSeleccionado;
+            this.vuelo.FechaDeVuelo = this.fechaSeleccionado;
+            this.vuelo.CostoClasePremium = double.Parse(txtCostoPremium.Text);
+            this.vuelo.CostoClaseTurista = double.Parse(txtCostoTurista.Text);
+            ((Aeronave)cboAeronave.Items[this.indexAeronaveSeleccionada]).Disponible = false;
+            Archivos.SerealizarAeronaves(this.aeronaves);
+            this.DialogResult = DialogResult.OK;
+        }
+
         public Vuelo Vuelo
         {
             get { return this.vuelo; }

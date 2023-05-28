@@ -64,13 +64,18 @@ namespace Entidades
             return mensaje.ToString();
         }
 
+        protected override string Mostrar()
+        {
+            return this.Informacion();
+        }
+
         /// <summary>
         /// El metodo sobreescribe el metodo ToString, es decir, cuando se invoque el ToString se va a mostrar lo que contiene mi metodo Informacio()
         /// </summary>
         /// <returns>La informacion en string</returns>
         public override string ToString()
         {
-            return this.Informacion();
+            return this.Mostrar();
         }
     }
 }

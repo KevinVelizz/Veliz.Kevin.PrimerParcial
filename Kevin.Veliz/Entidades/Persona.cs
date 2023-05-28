@@ -1,16 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Text;
 using System.Text.Json.Serialization;
-using System.Threading.Tasks;
 
 namespace Entidades
 {
     public abstract class Persona
     {
-        private string nombre;
-        private string apellido;
+        private string? nombre;
+        private string? apellido;
 
         public Persona() {}
         public Persona(string nombre, string apellido)
@@ -22,14 +18,14 @@ namespace Entidades
         [JsonPropertyName("nombre")]
         public string Nombre
         {
-            get { return this.nombre; }
+            get { return this.nombre ?? ""; }
             set { this.nombre = value; }
         }
 
         [JsonPropertyName("apellido")]
         public string Apellido
         {
-            get { return this.apellido; }
+            get { return this.apellido ?? ""; }
             set { this.apellido = value;}
         }
 

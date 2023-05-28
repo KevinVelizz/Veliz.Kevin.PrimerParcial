@@ -1,6 +1,6 @@
 ﻿namespace Entidades
 {
-    public class Funcionalidades
+    public static class Funcionalidades
     {
         public static Usuario? Login(string email, string clave)
         {
@@ -30,6 +30,11 @@
             Random numRandom = new Random();
             double duracion = numRandom.Next(8, 13);
             return duracion;
+        }
+
+        public static string ReemplazarGuionBajo<T>(T elemento)
+        {
+            return elemento.ToString().Replace("_", " ");
         }
 
         public static double CalcularPrecio(bool premium, string destino,double duracion)

@@ -97,8 +97,6 @@ namespace Aplicacion01
             this.VisualizacionDelUsuario(this.index, this.usuario.Perfil);
             this.pasajeros = Archivos.DeserealizarPasajeros();
             this.aeronaves = Archivos.DeserealizarAeronaves();
-            this.vuelos = Archivos.DeserealizarVuelos();
-            this.aeronaves = Archivos.DeserealizarAeronaves();
             foreach (Vuelo vuelo in this.vuelos)
             {
                 vuelo.VueloEnCurso();
@@ -106,9 +104,9 @@ namespace Aplicacion01
                 if (vuelo.EnViaje || vuelo.Realizado)
                 {
                     Archivos.SerealizarVuelos(this.vuelos);
-                    this.vuelos = Archivos.DeserealizarVuelos();
                 }
             }
+            this.vuelos = Archivos.DeserealizarVuelos();
             this.ActualizarListaVuelos();
         }
 
@@ -259,7 +257,7 @@ namespace Aplicacion01
                     }
                     break;
                 case 1:
-                    FrmVuelo frmVuelo = new FrmVuelo(this.pasajeros, this.aeronaves);
+                    FrmVuelo frmVuelo = new FrmVuelo(this.aeronaves);
                     frmVuelo.ShowDialog();
                     if (frmVuelo.DialogResult == DialogResult.OK)
                     {
@@ -467,25 +465,43 @@ namespace Aplicacion01
                         if (this.vueloSeleccionado.EnViaje == false || this.vueloSeleccionado.Realizado == false)
                         {
                             FrmVuelo frmVuelo = new FrmVuelo(this.vueloSeleccionado, this.aeronaves);
-                            frmVuelo.ShowDialog();//tengo que hacer el constructor.
+                            frmVuelo.ShowDialog();
+
+                            if (frmVuelo.DialogResult == DialogResult.OK)
+                            {
+                                Archivos.SerealizarVuelos(this.vuelos);
+                                this.vuelos = Archivos.DeserealizarVuelos();
+                                this.aeronaves = Archivos.DeserealizarAeronaves();
+                            }
                         }
                         break;
                     case 2:
-                        if (this.aeronaveSeleccionado.Disponible == true)
+                        if (this.vueloSeleccionado.EnViaje == false || this.vueloSeleccionado.Realizado == false)
                         {
-                            FrmAeronave frmAeronave = new FrmAeronave(this.aeronaveSeleccionado, "Modificar");
+                            FrmAeronave frmAeronave = new FrmAeronave(this.aeronaveSeleccionado);
                             if (frmAeronave.ShowDialog() == DialogResult.OK)
                             {
-                                this.aeronaves[this.indexItemSeleccionado] = frmAeronave.Aeronave;
+                                foreach (Vuelo vuelo in this.vuelos)
+                                {
+                                    if (vuelo.Avion == frmAeronave.Aeronave)
+                                    {
+                                        vuelo.Avion = frmAeronave.Aeronave;
+                                        break;
+                                    }
+                                }
                                 Archivos.SerealizarAeronaves(this.aeronaves);
+                                Archivos.SerealizarVuelos(this.vuelos);
+                                this.aeronaves = Archivos.DeserealizarAeronaves();
+                                this.vuelos = Archivos.DeserealizarVuelos();
                                 this.ActualizarListaAeronaves();
                             }
                         }
                         else
                         {
-                            MessageBox.Show("El avión fue agregado a un vuelo, no puede ser modificado.");
+                            MessageBox.Show("El avión está en vuelo, no puede ser modificado.");
                         }
                         break;
+
                 }
             }
         }
@@ -504,7 +520,15 @@ namespace Aplicacion01
         private void ActualizarListaAeronaves()
         {
             this.dtgvElementos.DataSource = null;
+            foreach (Aeronave aeronave in this.aeronaves)
+            {
+                if (this.vuelos.All(vuelo => vuelo.Avion != aeronave))
+                {
+                    aeronave.Disponible = true;
+                }
+            }
             this.dtgvElementos.DataSource = this.aeronaves;
+            Archivos.SerealizarAeronaves(this.aeronaves);
         }
 
         private void btnModificar_Click(object sender, EventArgs e)
@@ -518,15 +542,15 @@ namespace Aplicacion01
 
             if (int.TryParse(this.txtBuscarDNI.Text, out _))
             {
-                this.dtgvElementos.DataSource = this.pasajeros.FindAll(pasajeros => pasajeros.Dni.ToString().Contains(this.txtBuscarDNI.Text));
+                this.dtgvElementos.DataSource = this.pasajeros.FindAll(pasajero => pasajero.Dni.ToString().Contains(this.txtBuscarDNI.Text));
             }
             else if (!Regex.IsMatch(this.txtBuscarNombre.Text, @"\d"))
             {
-                this.dtgvElementos.DataSource = this.pasajeros.FindAll(pasajeros => pasajeros.Nombre.Contains(this.txtBuscarNombre.Text, StringComparison.OrdinalIgnoreCase));
+                this.dtgvElementos.DataSource = this.pasajeros.FindAll(pasajero => pasajero.Nombre.Contains(this.txtBuscarNombre.Text, StringComparison.OrdinalIgnoreCase));
             }
             else if (!Regex.IsMatch(this.txtBuscarNombre.Text, @"\d"))
             {
-                this.dtgvElementos.DataSource = this.pasajeros.FindAll(pasajeros => pasajeros.Apellido.Contains(this.txtBuscarApellido.Text, StringComparison.OrdinalIgnoreCase));
+                this.dtgvElementos.DataSource = this.pasajeros.FindAll(pasajero => pasajero.Apellido.Contains(this.txtBuscarApellido.Text, StringComparison.OrdinalIgnoreCase));
             }
             else
             {

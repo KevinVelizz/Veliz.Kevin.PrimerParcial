@@ -265,6 +265,7 @@
             btnModifcar.TabIndex = 26;
             btnModifcar.Text = "Modificar";
             btnModifcar.UseVisualStyleBackColor = true;
+            btnModifcar.Click += btnModifcar_Click;
             // 
             // FrmVuelo
             // 

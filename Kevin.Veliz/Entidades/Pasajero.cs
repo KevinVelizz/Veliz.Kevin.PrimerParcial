@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Xml.Serialization;
+﻿using System.Text;
 
 namespace Entidades
 {
@@ -34,11 +29,6 @@ namespace Entidades
 
         public Pasajero(string nombre, string apellido, int dni, int edad, List<Equipaje> equipajes, bool premium, bool equipajeDeMano, bool vacunado) : this(nombre, apellido, dni, edad, equipajes, premium, equipajeDeMano)
         {
-            this.dni = dni;
-            this.edad = edad;
-            this.equipajes = equipajes;
-            this.premium = premium;
-            this.equipajeDeMano = equipajeDeMano;
             this.vacunado = vacunado;
         }
 
@@ -56,7 +46,7 @@ namespace Entidades
 
         public List<Equipaje> Equipajes
         {
-            get { return this.equipajes; }
+            get { return this.equipajes ?? new List<Equipaje>(); }
             set { this.equipajes = value; }
         }
 
@@ -104,13 +94,19 @@ namespace Entidades
         }
         public void AgregarEquipaje(Equipaje equipaje)
         {
-            this.equipajes.Add(equipaje);
+            if (this.equipajes != null)
+            {
+                this.equipajes.Add(equipaje);
+            }
         }
 
         public void AgregarEquipaje(string descripcion, double peso)
         {
             Equipaje equipaje = new Equipaje(descripcion, peso);
-            this.equipajes.Add(equipaje);
+            if (this.equipajes != null)
+            {
+                this.equipajes.Add(equipaje);
+            }
         }
 
         public static bool operator ==(Pasajero pasajero1, Pasajero pasajero2)
@@ -146,18 +142,22 @@ namespace Entidades
             mensaje.AppendLine($"{base.Mostrar()}");
             mensaje.AppendLine($"DNI: {this.dni}");
             mensaje.AppendLine($"Edad: {this.edad}");
-            foreach (Equipaje equipajeClase in this.equipajes)
+
+            if (this.equipajes != null )
             {
-                mensaje.AppendLine(equipajeClase.ToString());
-            }
-            if (this.premium)
-            {
-                mensaje.AppendLine($"Clase: Premium");
-            }
-            else
-            {
-                mensaje.AppendLine("Clase: Turista");
-            }
+                foreach (Equipaje equipajeClase in this.equipajes)
+                {
+                    mensaje.AppendLine(equipajeClase.ToString());
+                }
+                if (this.premium)
+                {
+                    mensaje.AppendLine($"Clase: Premium");
+                }
+                else
+                {
+                    mensaje.AppendLine("Clase: Turista");
+                }
+            }    
 
             if (this.equipajeDeMano)
             {

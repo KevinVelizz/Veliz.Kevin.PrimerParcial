@@ -31,17 +31,24 @@
             txtMatricula = new TextBox();
             txtCantAsientos = new TextBox();
             txtCantBanios = new TextBox();
-            btnCancelar = new Button();
             lblMatricula = new Label();
             lblCantAsientos = new Label();
             lblCantBanios = new Label();
             chkInternet = new CheckBox();
             chkComida = new CheckBox();
             btnAgregar = new Button();
-            btnLimpiar = new Button();
             txtCapacidadBodega = new TextBox();
             lblCapacidadBodega = new Label();
+            btnModificar = new Button();
             SuspendLayout();
+            // 
+            // btnCancelar
+            // 
+            btnCancelar.Location = new Point(234, 302);
+            // 
+            // btnLimpiar
+            // 
+            btnLimpiar.Location = new Point(144, 302);
             // 
             // txtMatricula
             // 
@@ -63,16 +70,6 @@
             txtCantBanios.Name = "txtCantBanios";
             txtCantBanios.Size = new Size(100, 23);
             txtCantBanios.TabIndex = 2;
-            // 
-            // btnCancelar
-            // 
-            btnCancelar.Location = new Point(230, 302);
-            btnCancelar.Name = "btnCancelar";
-            btnCancelar.Size = new Size(75, 23);
-            btnCancelar.TabIndex = 7;
-            btnCancelar.Text = "Cancelar";
-            btnCancelar.UseVisualStyleBackColor = true;
-            btnCancelar.Click += btnCancelar_Click;
             // 
             // lblMatricula
             // 
@@ -126,6 +123,7 @@
             // 
             // btnAgregar
             // 
+            btnAgregar.Font = new Font("Segoe UI Symbol", 9F, FontStyle.Italic, GraphicsUnit.Point);
             btnAgregar.Location = new Point(54, 302);
             btnAgregar.Name = "btnAgregar";
             btnAgregar.Size = new Size(75, 23);
@@ -133,16 +131,6 @@
             btnAgregar.Text = "Agregar";
             btnAgregar.UseVisualStyleBackColor = true;
             btnAgregar.Click += btnAgregar_Click;
-            // 
-            // btnLimpiar
-            // 
-            btnLimpiar.Location = new Point(144, 302);
-            btnLimpiar.Name = "btnLimpiar";
-            btnLimpiar.Size = new Size(75, 23);
-            btnLimpiar.TabIndex = 16;
-            btnLimpiar.Text = "Limpiar";
-            btnLimpiar.UseVisualStyleBackColor = true;
-            btnLimpiar.Click += btnLimpiar_Click;
             // 
             // txtCapacidadBodega
             // 
@@ -160,6 +148,17 @@
             lblCapacidadBodega.TabIndex = 18;
             lblCapacidadBodega.Text = "Capacidad de bodega:";
             // 
+            // btnModificar
+            // 
+            btnModificar.Font = new Font("Segoe UI Symbol", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            btnModificar.Location = new Point(54, 273);
+            btnModificar.Name = "btnModificar";
+            btnModificar.Size = new Size(75, 23);
+            btnModificar.TabIndex = 19;
+            btnModificar.Text = "Modificar";
+            btnModificar.UseVisualStyleBackColor = true;
+            btnModificar.Click += btnModificar_Click;
+            // 
             // FrmAeronave
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -167,22 +166,35 @@
             BackColor = SystemColors.GradientInactiveCaption;
             ClientSize = new Size(332, 350);
             ControlBox = false;
+            Controls.Add(btnModificar);
             Controls.Add(lblCapacidadBodega);
             Controls.Add(txtCapacidadBodega);
-            Controls.Add(btnLimpiar);
             Controls.Add(btnAgregar);
             Controls.Add(chkComida);
             Controls.Add(chkInternet);
             Controls.Add(lblCantBanios);
             Controls.Add(lblCantAsientos);
             Controls.Add(lblMatricula);
-            Controls.Add(btnCancelar);
             Controls.Add(txtCantBanios);
             Controls.Add(txtCantAsientos);
             Controls.Add(txtMatricula);
             Name = "FrmAeronave";
             Text = "FrmAeronave";
             Load += FrmAeronave_Load;
+            Controls.SetChildIndex(txtMatricula, 0);
+            Controls.SetChildIndex(txtCantAsientos, 0);
+            Controls.SetChildIndex(txtCantBanios, 0);
+            Controls.SetChildIndex(lblMatricula, 0);
+            Controls.SetChildIndex(lblCantAsientos, 0);
+            Controls.SetChildIndex(lblCantBanios, 0);
+            Controls.SetChildIndex(chkInternet, 0);
+            Controls.SetChildIndex(chkComida, 0);
+            Controls.SetChildIndex(btnAgregar, 0);
+            Controls.SetChildIndex(txtCapacidadBodega, 0);
+            Controls.SetChildIndex(lblCapacidadBodega, 0);
+            Controls.SetChildIndex(btnCancelar, 0);
+            Controls.SetChildIndex(btnLimpiar, 0);
+            Controls.SetChildIndex(btnModificar, 0);
             ResumeLayout(false);
             PerformLayout();
         }
@@ -192,7 +204,6 @@
         private TextBox txtMatricula;
         private TextBox txtCantAsientos;
         private TextBox txtCantBanios;
-        private Button btnCancelar;
         private Label lblMatricula;
         private Label lblCantAsientos;
         private Label lblCantBanios;
@@ -201,8 +212,8 @@
         private Label lblInternet;
         private Label lblComida;
         private Button btnAgregar;
-        private Button btnLimpiar;
         private TextBox txtCapacidadBodega;
         private Label lblCapacidadBodega;
+        private Button btnModificar;
     }
 }

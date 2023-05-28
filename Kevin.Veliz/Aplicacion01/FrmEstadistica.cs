@@ -35,22 +35,22 @@ namespace Aplicacion01
 
             foreach (Vuelo vuelo in this.listaVuelos)
             {
-                //if (vuelo.AuxRealizado)
-                //{
-                int rows = dtgvViajes.Rows.Add();
-                this.dtgvViajes.Rows[rows].Cells[0].Value = vuelo.CiudadDePartida;
-                this.dtgvViajes.Rows[rows].Cells[1].Value = vuelo.CiudadDeDestino;
-                this.dtgvViajes.Rows[rows].Cells[2].Value = vuelo.FechaDeVuelo;
-                this.dtgvViajes.Rows[rows].Cells[3].Value = vuelo.FechaDeLLegada;
-                this.dtgvViajes.Rows[rows].Cells[4].Value = vuelo.Avion;
-                this.dtgvViajes.Rows[rows].Cells[5].Value = vuelo.CantidadAsientosDispPremium;
-                this.dtgvViajes.Rows[rows].Cells[6].Value = vuelo.CantidadAsientosDispTurista;
-                this.dtgvViajes.Rows[rows].Cells[7].Value = vuelo.CostoClasePremium;
-                this.dtgvViajes.Rows[rows].Cells[8].Value = vuelo.CostoClaseTurista;
-                this.dtgvViajes.Rows[rows].Cells[9].Value = vuelo.Pasajeros;
-                this.dtgvViajes.Rows[rows].Cells[10].Value = vuelo.Estado;
-                this.dtgvViajes.Rows[rows].Cells[11].Value = vuelo.RecaudacionTotal;
-                //}
+                if (vuelo.Realizado)
+                {
+                    int rows = dtgvViajes.Rows.Add();
+                    this.dtgvViajes.Rows[rows].Cells[0].Value = vuelo.CiudadDePartida;
+                    this.dtgvViajes.Rows[rows].Cells[1].Value = vuelo.CiudadDeDestino;
+                    this.dtgvViajes.Rows[rows].Cells[2].Value = vuelo.FechaDeVuelo;
+                    this.dtgvViajes.Rows[rows].Cells[3].Value = vuelo.FechaDeLLegada;
+                    this.dtgvViajes.Rows[rows].Cells[4].Value = vuelo.Avion;
+                    this.dtgvViajes.Rows[rows].Cells[5].Value = vuelo.CantidadAsientosDispPremium;
+                    this.dtgvViajes.Rows[rows].Cells[6].Value = vuelo.CantidadAsientosDispTurista;
+                    this.dtgvViajes.Rows[rows].Cells[7].Value = vuelo.CostoClasePremium;
+                    this.dtgvViajes.Rows[rows].Cells[8].Value = vuelo.CostoClaseTurista;
+                    this.dtgvViajes.Rows[rows].Cells[9].Value = vuelo.Pasajeros;
+                    this.dtgvViajes.Rows[rows].Cells[10].Value = vuelo.Estado;
+                    this.dtgvViajes.Rows[rows].Cells[11].Value = vuelo.RecaudacionTotal;
+                }
             }
 
             foreach (EnumDestinos destino in Enum.GetValues(typeof(EnumDestinos)))
@@ -59,9 +59,12 @@ namespace Aplicacion01
                 auxDestino = auxDestino.Replace("_", " ");
                 foreach (Vuelo vuelo in this.listaVuelos)
                 {
-                    if (vuelo.CiudadDeDestino == auxDestino)
+                    if (vuelo.Realizado)
                     {
-                        this.acumuladorDineroPorDestino += vuelo.RecaudacionTotal;
+                        if (vuelo.CiudadDeDestino == auxDestino)
+                        {
+                            this.acumuladorDineroPorDestino += vuelo.RecaudacionTotal;
+                        }
                     }
                 }
                 this.recaudacionDestino.Add(auxDestino, this.acumuladorDineroPorDestino);
@@ -86,10 +89,10 @@ namespace Aplicacion01
             this.acumuladorDinero = 0;
             foreach (Vuelo vuelo in this.listaVuelos)
             {
-                //if (vuelo != null && vuelo.AuxRealizado)
-                //{
-                this.acumuladorDinero += vuelo.RecaudacionTotal;
-                //}
+                if (vuelo is not null && vuelo.Realizado)
+                {
+                    this.acumuladorDinero += vuelo.RecaudacionTotal;
+                }
             }
             this.textBox1.Text = acumuladorDinero.ToString();
         }

@@ -86,6 +86,7 @@ namespace Entidades
             return !(aeronave == aeronave1);
         }
 
+
         public override bool Equals(object? obj)
         {
             bool retorno = false;

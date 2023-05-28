@@ -199,9 +199,11 @@
             // 
             // dtgvElementos
             // 
+            dtgvElementos.Anchor = AnchorStyles.None;
             dtgvElementos.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dtgvElementos.Location = new Point(27, 99);
             dtgvElementos.Name = "dtgvElementos";
+            dtgvElementos.ReadOnly = true;
             dtgvElementos.RowTemplate.Height = 25;
             dtgvElementos.Size = new Size(1321, 415);
             dtgvElementos.TabIndex = 14;

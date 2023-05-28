@@ -239,8 +239,6 @@ namespace Aplicacion01
                 this.pasajero.Apellido = txtApellido.Text;              
                 this.DialogResult = DialogResult.OK;
             }
-
-            
         }
         public Pasajero Pasajero
         {

@@ -5,7 +5,7 @@ using System.Text.Json;
 
 namespace Entidades
 {
-    public class Archivos
+    public static class Archivos
     {
         private static string desktopPath = Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory); 
         private static string folderPath = Path.Combine(Archivos.desktopPath, @"Veliz.Kevin.PrimerParcial\Kevin.Veliz\");

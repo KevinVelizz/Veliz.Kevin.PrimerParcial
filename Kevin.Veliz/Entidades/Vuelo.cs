@@ -23,6 +23,7 @@ namespace Entidades
         private double recaudacionTotal;
         private bool enViaje;
         private bool realizado;
+        private EnumTipoVuelo tipo;
 
         private Vuelo()
         {
@@ -40,6 +41,7 @@ namespace Entidades
             this.avion = avion;
             this.fechaDeLLegada = fechaDeLLegada;
             this.estado = estado;
+            this.InicializarTipo();
         }
         
         public string CiudadDePartida
@@ -140,11 +142,19 @@ namespace Entidades
         public bool EnViaje
         {
             get { return this.enViaje; }
+            set { this.enViaje = value; }
         }
 
         public bool Realizado
         {
             get { return this.realizado; }
+            set { this.realizado = value; }
+        }
+
+        public EnumTipoVuelo Tipo
+        {
+            get { return this.tipo; }
+            set { this.tipo = value; }
         }
 
         public void RestarAsientos()
@@ -201,16 +211,17 @@ namespace Entidades
             return vuelo.pasajeros.Contains(pasajero);
         }
 
-        public static bool operator != (Vuelo vuelo, Pasajero pasajero)
+        public static bool operator !=(Vuelo vuelo, Pasajero pasajero)
         {
             return !(vuelo == pasajero);
         }
 
+       
         public void VueloEnCurso()
         {
             if (DateTime.Now >= this.fechaDeVuelo && DateTime.Now < this.fechaDeLLegada && this.enViaje == false)
             {
-                this.estado = "En viaje";
+                this.Estado = "En viaje";
                 this.enViaje = true;
 
                 foreach (Pasajero pasajero in this.pasajeros)
@@ -232,6 +243,31 @@ namespace Entidades
                 {
                     pasajero.Agregado = false;
                     pasajero.EnVuelo = false;
+                }
+            }
+        }
+
+        private void InicializarTipo()
+        {
+            foreach (EnumVuelosNacionales clase in Enum.GetValues(typeof(EnumVuelosNacionales)))
+            {
+                if (Funcionalidades.ReemplazarGuionBajo(clase) == this.ciudadDeDestino)
+                {
+                    this.tipo = EnumTipoVuelo.Nacional;
+                    break;
+                }
+            }
+
+            if (this.tipo == null)
+            {
+                foreach (EnumVuelosInternacionales clase in Enum.GetValues(typeof(EnumVuelosInternacionales)))
+                {
+                   
+                    if (Funcionalidades.ReemplazarGuionBajo(clase) == this.ciudadDeDestino)
+                    {
+                        this.tipo = EnumTipoVuelo.Internacional;
+                        break;
+                    }
                 }
             }
         }

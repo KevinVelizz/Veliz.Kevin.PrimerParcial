@@ -92,63 +92,65 @@ namespace Aplicacion01
         private void btnBuscarVuelo_Click(object sender, EventArgs e)
         {
             dtgvVuelosDisponibles.Rows.Clear();
-
             foreach (Vuelo vuelo in this.vuelos)
             {
-                if (this.comida && this.internet)
+                if (!vuelo.EnViaje && !vuelo.Realizado)
                 {
-                    if (vuelo.Avion.ServicioComida && vuelo.Avion.ServicioInternet)
+                    if (this.comida && this.internet)
                     {
-                        int rowIndex = this.dtgvVuelosDisponibles.Rows.Add();
-                        DataGridViewRow row = dtgvVuelosDisponibles.Rows[rowIndex];
-                        row.Tag = vuelo;
+                        if (vuelo.Avion.ServicioComida && vuelo.Avion.ServicioInternet)
+                        {
+                            int rowIndex = this.dtgvVuelosDisponibles.Rows.Add();
+                            DataGridViewRow row = dtgvVuelosDisponibles.Rows[rowIndex];
+                            row.Tag = vuelo;
 
-                        row.Cells["LugarSalida"].Value = vuelo.CiudadDePartida;
-                        row.Cells["LugarDestino"].Value = vuelo.CiudadDeDestino;
-                        row.Cells["FechaSalida"].Value = vuelo.FechaDeVuelo;
-                        row.Cells["FechaLlegada"].Value = vuelo.FechaDeLLegada;
+                            row.Cells["LugarSalida"].Value = vuelo.CiudadDePartida;
+                            row.Cells["LugarDestino"].Value = vuelo.CiudadDeDestino;
+                            row.Cells["FechaSalida"].Value = vuelo.FechaDeVuelo;
+                            row.Cells["FechaLlegada"].Value = vuelo.FechaDeLLegada;
+                        }
                     }
-                }
-                else if (this.comida)
-                {
-                    if (vuelo.Avion.ServicioComida)
+                    else if (this.comida)
                     {
-                        int rowIndex = this.dtgvVuelosDisponibles.Rows.Add();
-                        DataGridViewRow row = dtgvVuelosDisponibles.Rows[rowIndex];
-                        row.Tag = vuelo;
+                        if (vuelo.Avion.ServicioComida)
+                        {
+                            int rowIndex = this.dtgvVuelosDisponibles.Rows.Add();
+                            DataGridViewRow row = dtgvVuelosDisponibles.Rows[rowIndex];
+                            row.Tag = vuelo;
 
-                        row.Cells["LugarSalida"].Value = vuelo.CiudadDePartida;
-                        row.Cells["LugarDestino"].Value = vuelo.CiudadDeDestino;
-                        row.Cells["FechaSalida"].Value = vuelo.FechaDeVuelo;
-                        row.Cells["FechaLlegada"].Value = vuelo.FechaDeLLegada;
+                            row.Cells["LugarSalida"].Value = vuelo.CiudadDePartida;
+                            row.Cells["LugarDestino"].Value = vuelo.CiudadDeDestino;
+                            row.Cells["FechaSalida"].Value = vuelo.FechaDeVuelo;
+                            row.Cells["FechaLlegada"].Value = vuelo.FechaDeLLegada;
+                        }
                     }
-                }
-                else if (this.internet)
-                {
-                    if (vuelo.Avion.ServicioInternet)
+                    else if (this.internet)
                     {
-                        int rowIndex = this.dtgvVuelosDisponibles.Rows.Add();
-                        DataGridViewRow row = dtgvVuelosDisponibles.Rows[rowIndex];
-                        row.Tag = vuelo;
+                        if (vuelo.Avion.ServicioInternet)
+                        {
+                            int rowIndex = this.dtgvVuelosDisponibles.Rows.Add();
+                            DataGridViewRow row = dtgvVuelosDisponibles.Rows[rowIndex];
+                            row.Tag = vuelo;
 
-                        row.Cells["LugarSalida"].Value = vuelo.CiudadDePartida;
-                        row.Cells["LugarDestino"].Value = vuelo.CiudadDeDestino;
-                        row.Cells["FechaSalida"].Value = vuelo.FechaDeVuelo;
-                        row.Cells["FechaLlegada"].Value = vuelo.FechaDeLLegada;
+                            row.Cells["LugarSalida"].Value = vuelo.CiudadDePartida;
+                            row.Cells["LugarDestino"].Value = vuelo.CiudadDeDestino;
+                            row.Cells["FechaSalida"].Value = vuelo.FechaDeVuelo;
+                            row.Cells["FechaLlegada"].Value = vuelo.FechaDeLLegada;
+                        }
                     }
-                }
-                else
-                {
-                    if (vuelo.Avion.ServicioComida == false && vuelo.Avion.ServicioInternet == false)
+                    else
                     {
-                        int rowIndex = this.dtgvVuelosDisponibles.Rows.Add();
-                        DataGridViewRow row = dtgvVuelosDisponibles.Rows[rowIndex];
-                        row.Tag = vuelo;
+                        if (vuelo.Avion.ServicioComida == false && vuelo.Avion.ServicioInternet == false)
+                        {
+                            int rowIndex = this.dtgvVuelosDisponibles.Rows.Add();
+                            DataGridViewRow row = dtgvVuelosDisponibles.Rows[rowIndex];
+                            row.Tag = vuelo;
 
-                        row.Cells["LugarSalida"].Value = vuelo.CiudadDePartida;
-                        row.Cells["LugarDestino"].Value = vuelo.CiudadDeDestino;
-                        row.Cells["FechaSalida"].Value = vuelo.FechaDeVuelo;
-                        row.Cells["FechaLlegada"].Value = vuelo.FechaDeLLegada;
+                            row.Cells["LugarSalida"].Value = vuelo.CiudadDePartida;
+                            row.Cells["LugarDestino"].Value = vuelo.CiudadDeDestino;
+                            row.Cells["FechaSalida"].Value = vuelo.FechaDeVuelo;
+                            row.Cells["FechaLlegada"].Value = vuelo.FechaDeLLegada;
+                        }
                     }
                 }
             }
