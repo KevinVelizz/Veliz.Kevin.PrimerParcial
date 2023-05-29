@@ -41,24 +41,34 @@
             dtgvPasajerosDisponibles = new DataGridView();
             dtgvVuelosDisponibles = new DataGridView();
             btnBuscarVuelo = new Button();
+            lblDniBuscar = new Label();
+            lblApellidoBuscar = new Label();
+            lblNombreBuscar = new Label();
+            txtBuscarDNI = new TextBox();
+            txtBuscarApellido = new TextBox();
+            btnBuscar = new Button();
+            txtBuscarNombre = new TextBox();
             ((System.ComponentModel.ISupportInitialize)dtgvPasajerosDisponibles).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dtgvVuelosDisponibles).BeginInit();
             SuspendLayout();
             // 
             // btnCancelar
             // 
-            btnCancelar.Location = new Point(983, 483);
+            btnCancelar.Anchor = AnchorStyles.None;
+            btnCancelar.Location = new Point(839, 486);
             // 
             // btnLimpiar
             // 
+            btnLimpiar.Anchor = AnchorStyles.None;
             btnLimpiar.Font = new Font("Segoe UI Symbol", 9.75F, FontStyle.Italic, GraphicsUnit.Point);
-            btnLimpiar.Location = new Point(893, 483);
+            btnLimpiar.Location = new Point(749, 486);
             // 
             // chkComida
             // 
+            chkComida.Anchor = AnchorStyles.None;
             chkComida.AutoSize = true;
             chkComida.Font = new Font("Segoe UI Symbol", 9.75F, FontStyle.Italic, GraphicsUnit.Point);
-            chkComida.Location = new Point(155, 37);
+            chkComida.Location = new Point(711, 40);
             chkComida.Name = "chkComida";
             chkComida.Size = new Size(72, 21);
             chkComida.TabIndex = 3;
@@ -68,9 +78,10 @@
             // 
             // chkInternet
             // 
+            chkInternet.Anchor = AnchorStyles.None;
             chkInternet.AutoSize = true;
             chkInternet.Font = new Font("Segoe UI Symbol", 9.75F, FontStyle.Italic, GraphicsUnit.Point);
-            chkInternet.Location = new Point(155, 79);
+            chkInternet.Location = new Point(789, 40);
             chkInternet.Name = "chkInternet";
             chkInternet.Size = new Size(71, 21);
             chkInternet.TabIndex = 4;
@@ -80,9 +91,10 @@
             // 
             // lblInfoAvion
             // 
+            lblInfoAvion.Anchor = AnchorStyles.None;
             lblInfoAvion.AutoSize = true;
             lblInfoAvion.Font = new Font("Segoe UI Symbol", 9.75F, FontStyle.Italic, GraphicsUnit.Point);
-            lblInfoAvion.Location = new Point(613, 237);
+            lblInfoAvion.Location = new Point(469, 260);
             lblInfoAvion.Name = "lblInfoAvion";
             lblInfoAvion.Size = new Size(43, 17);
             lblInfoAvion.TabIndex = 5;
@@ -91,8 +103,9 @@
             // 
             // btnVender
             // 
+            btnVender.Anchor = AnchorStyles.None;
             btnVender.Font = new Font("Segoe UI Symbol", 9.75F, FontStyle.Italic, GraphicsUnit.Point);
-            btnVender.Location = new Point(806, 483);
+            btnVender.Location = new Point(662, 486);
             btnVender.Name = "btnVender";
             btnVender.Size = new Size(75, 23);
             btnVender.TabIndex = 6;
@@ -104,7 +117,7 @@
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI Symbol", 9.75F, FontStyle.Italic, GraphicsUnit.Point);
-            label1.Location = new Point(391, 17);
+            label1.Location = new Point(12, 50);
             label1.Name = "label1";
             label1.Size = new Size(67, 17);
             label1.TabIndex = 7;
@@ -114,7 +127,7 @@
             // 
             label2.AutoSize = true;
             label2.Font = new Font("Segoe UI Symbol", 9.75F, FontStyle.Italic, GraphicsUnit.Point);
-            label2.Location = new Point(786, 17);
+            label2.Location = new Point(496, 47);
             label2.Name = "label2";
             label2.Size = new Size(121, 17);
             label2.TabIndex = 8;
@@ -122,9 +135,10 @@
             // 
             // lblCosto
             // 
+            lblCosto.Anchor = AnchorStyles.None;
             lblCosto.AutoSize = true;
             lblCosto.Font = new Font("Segoe UI Symbol", 9.75F, FontStyle.Italic, GraphicsUnit.Point);
-            lblCosto.Location = new Point(855, 270);
+            lblCosto.Location = new Point(711, 315);
             lblCosto.Name = "lblCosto";
             lblCosto.Size = new Size(85, 17);
             lblCosto.TabIndex = 9;
@@ -132,27 +146,30 @@
             // 
             // txtCostoBruto
             // 
+            txtCostoBruto.Anchor = AnchorStyles.None;
             txtCostoBruto.Enabled = false;
             txtCostoBruto.Font = new Font("Segoe UI Symbol", 9.75F, FontStyle.Italic, GraphicsUnit.Point);
-            txtCostoBruto.Location = new Point(946, 262);
+            txtCostoBruto.Location = new Point(802, 307);
             txtCostoBruto.Name = "txtCostoBruto";
             txtCostoBruto.Size = new Size(112, 25);
             txtCostoBruto.TabIndex = 10;
             // 
             // txtCostoNeto
             // 
+            txtCostoNeto.Anchor = AnchorStyles.None;
             txtCostoNeto.Enabled = false;
             txtCostoNeto.Font = new Font("Segoe UI Symbol", 9.75F, FontStyle.Italic, GraphicsUnit.Point);
-            txtCostoNeto.Location = new Point(946, 320);
+            txtCostoNeto.Location = new Point(802, 361);
             txtCostoNeto.Name = "txtCostoNeto";
             txtCostoNeto.Size = new Size(112, 25);
             txtCostoNeto.TabIndex = 11;
             // 
             // lblCostoNeto
             // 
+            lblCostoNeto.Anchor = AnchorStyles.None;
             lblCostoNeto.AutoSize = true;
             lblCostoNeto.Font = new Font("Segoe UI Symbol", 9.75F, FontStyle.Italic, GraphicsUnit.Point);
-            lblCostoNeto.Location = new Point(855, 328);
+            lblCostoNeto.Location = new Point(711, 369);
             lblCostoNeto.Name = "lblCostoNeto";
             lblCostoNeto.Size = new Size(79, 17);
             lblCostoNeto.TabIndex = 12;
@@ -160,20 +177,22 @@
             // 
             // dtgvPasajerosDisponibles
             // 
+            dtgvPasajerosDisponibles.Anchor = AnchorStyles.None;
             dtgvPasajerosDisponibles.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dtgvPasajerosDisponibles.Location = new Point(273, 37);
+            dtgvPasajerosDisponibles.Location = new Point(12, 73);
             dtgvPasajerosDisponibles.MultiSelect = false;
             dtgvPasajerosDisponibles.Name = "dtgvPasajerosDisponibles";
             dtgvPasajerosDisponibles.ReadOnly = true;
             dtgvPasajerosDisponibles.RowTemplate.Height = 25;
-            dtgvPasajerosDisponibles.Size = new Size(318, 184);
+            dtgvPasajerosDisponibles.Size = new Size(469, 178);
             dtgvPasajerosDisponibles.TabIndex = 13;
             dtgvPasajerosDisponibles.CellClick += dtgvPasajerosDisponibles_CellClick;
             // 
             // dtgvVuelosDisponibles
             // 
+            dtgvVuelosDisponibles.Anchor = AnchorStyles.None;
             dtgvVuelosDisponibles.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dtgvVuelosDisponibles.Location = new Point(613, 37);
+            dtgvVuelosDisponibles.Location = new Point(496, 67);
             dtgvVuelosDisponibles.MultiSelect = false;
             dtgvVuelosDisponibles.Name = "dtgvVuelosDisponibles";
             dtgvVuelosDisponibles.ReadOnly = true;
@@ -184,8 +203,9 @@
             // 
             // btnBuscarVuelo
             // 
+            btnBuscarVuelo.Anchor = AnchorStyles.None;
             btnBuscarVuelo.Font = new Font("Segoe UI Symbol", 9.75F, FontStyle.Italic, GraphicsUnit.Point);
-            btnBuscarVuelo.Location = new Point(151, 126);
+            btnBuscarVuelo.Location = new Point(866, 38);
             btnBuscarVuelo.Name = "btnBuscarVuelo";
             btnBuscarVuelo.Size = new Size(75, 23);
             btnBuscarVuelo.TabIndex = 15;
@@ -193,12 +213,80 @@
             btnBuscarVuelo.UseVisualStyleBackColor = true;
             btnBuscarVuelo.Click += btnBuscarVuelo_Click;
             // 
+            // lblDniBuscar
+            // 
+            lblDniBuscar.AutoSize = true;
+            lblDniBuscar.Font = new Font("Segoe UI Symbol", 11.25F, FontStyle.Italic, GraphicsUnit.Point);
+            lblDniBuscar.Location = new Point(324, 21);
+            lblDniBuscar.Name = "lblDniBuscar";
+            lblDniBuscar.Size = new Size(38, 20);
+            lblDniBuscar.TabIndex = 22;
+            lblDniBuscar.Text = "DNI:";
+            // 
+            // lblApellidoBuscar
+            // 
+            lblApellidoBuscar.AutoSize = true;
+            lblApellidoBuscar.Font = new Font("Segoe UI Symbol", 11.25F, FontStyle.Italic, GraphicsUnit.Point);
+            lblApellidoBuscar.Location = new Point(206, 21);
+            lblApellidoBuscar.Name = "lblApellidoBuscar";
+            lblApellidoBuscar.Size = new Size(69, 20);
+            lblApellidoBuscar.TabIndex = 21;
+            lblApellidoBuscar.Text = "Apellido:";
+            // 
+            // lblNombreBuscar
+            // 
+            lblNombreBuscar.AutoSize = true;
+            lblNombreBuscar.Font = new Font("Segoe UI Symbol", 11.25F, FontStyle.Italic, GraphicsUnit.Point);
+            lblNombreBuscar.Location = new Point(102, 21);
+            lblNombreBuscar.Name = "lblNombreBuscar";
+            lblNombreBuscar.Size = new Size(67, 20);
+            lblNombreBuscar.TabIndex = 20;
+            lblNombreBuscar.Text = "Nombre:";
+            // 
+            // txtBuscarDNI
+            // 
+            txtBuscarDNI.Location = new Point(295, 44);
+            txtBuscarDNI.Name = "txtBuscarDNI";
+            txtBuscarDNI.Size = new Size(100, 23);
+            txtBuscarDNI.TabIndex = 19;
+            // 
+            // txtBuscarApellido
+            // 
+            txtBuscarApellido.Location = new Point(192, 44);
+            txtBuscarApellido.Name = "txtBuscarApellido";
+            txtBuscarApellido.Size = new Size(100, 23);
+            txtBuscarApellido.TabIndex = 18;
+            // 
+            // btnBuscar
+            // 
+            btnBuscar.Location = new Point(401, 42);
+            btnBuscar.Name = "btnBuscar";
+            btnBuscar.Size = new Size(80, 25);
+            btnBuscar.TabIndex = 17;
+            btnBuscar.Text = "Filtrar";
+            btnBuscar.UseVisualStyleBackColor = true;
+            btnBuscar.Click += btnBuscar_Click;
+            // 
+            // txtBuscarNombre
+            // 
+            txtBuscarNombre.Location = new Point(86, 44);
+            txtBuscarNombre.Name = "txtBuscarNombre";
+            txtBuscarNombre.Size = new Size(100, 23);
+            txtBuscarNombre.TabIndex = 16;
+            // 
             // FrmVenderVuelo
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.GradientInactiveCaption;
-            ClientSize = new Size(1073, 535);
+            ClientSize = new Size(953, 535);
+            Controls.Add(lblDniBuscar);
+            Controls.Add(lblApellidoBuscar);
+            Controls.Add(lblNombreBuscar);
+            Controls.Add(txtBuscarDNI);
+            Controls.Add(txtBuscarApellido);
+            Controls.Add(btnBuscar);
+            Controls.Add(txtBuscarNombre);
             Controls.Add(btnBuscarVuelo);
             Controls.Add(dtgvVuelosDisponibles);
             Controls.Add(dtgvPasajerosDisponibles);
@@ -230,6 +318,13 @@
             Controls.SetChildIndex(dtgvPasajerosDisponibles, 0);
             Controls.SetChildIndex(dtgvVuelosDisponibles, 0);
             Controls.SetChildIndex(btnBuscarVuelo, 0);
+            Controls.SetChildIndex(txtBuscarNombre, 0);
+            Controls.SetChildIndex(btnBuscar, 0);
+            Controls.SetChildIndex(txtBuscarApellido, 0);
+            Controls.SetChildIndex(txtBuscarDNI, 0);
+            Controls.SetChildIndex(lblNombreBuscar, 0);
+            Controls.SetChildIndex(lblApellidoBuscar, 0);
+            Controls.SetChildIndex(lblDniBuscar, 0);
             ((System.ComponentModel.ISupportInitialize)dtgvPasajerosDisponibles).EndInit();
             ((System.ComponentModel.ISupportInitialize)dtgvVuelosDisponibles).EndInit();
             ResumeLayout(false);
@@ -250,5 +345,12 @@
         private DataGridView dtgvPasajerosDisponibles;
         private DataGridView dtgvVuelosDisponibles;
         private Button btnBuscarVuelo;
+        private Label lblDniBuscar;
+        private Label lblApellidoBuscar;
+        private Label lblNombreBuscar;
+        private TextBox txtBuscarDNI;
+        private TextBox txtBuscarApellido;
+        private Button btnBuscar;
+        private TextBox txtBuscarNombre;
     }
 }

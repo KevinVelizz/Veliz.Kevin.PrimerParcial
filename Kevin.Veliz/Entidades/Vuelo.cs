@@ -65,7 +65,7 @@ namespace Entidades
         {
             get
             {
-                if (this.cantidadAsientosDispTurista == 0)
+                if (this.cantidadAsientosDispTurista == 0 && this.recaudacionTotal == 0)
                 {
                     double aux = this.avion.CantidadAsientos - (20 * this.avion.CantidadAsientos / 100);
                     this.cantidadAsientosDispTurista = (int)Math.Floor(aux);
@@ -83,7 +83,7 @@ namespace Entidades
         {
             get 
             {
-                if (this.cantidadAsientosDispPremium == 0)
+                if (this.cantidadAsientosDispPremium == 0 && this.recaudacionTotal == 0)
                 {
                     double aux = this.avion.CantidadAsientos - (80 * this.avion.CantidadAsientos / 100);
                     this.cantidadAsientosDispPremium = (int)Math.Floor(aux);
@@ -157,22 +157,27 @@ namespace Entidades
             set { this.tipo = value; }
         }
 
-        public void RestarAsientos()
+        public void RestarAsientos(Pasajero pasajero)
         {
             if (this.pasajeros.Count > 0)
             {
-                foreach (Pasajero pasajero in this.pasajeros)
+                foreach (Pasajero pasajeroAux in this.pasajeros)
                 {
-                    if (pasajero.Premium)
+                    if (pasajeroAux ==  pasajero)
                     {
-                        this.cantidadAsientosDispPremium--;
-                        this.recaudacionTotal += this.CostoClasePremium * 1.21;
+                        if (pasajero.Premium)
+                        {
+                            this.cantidadAsientosDispPremium--;
+                            this.recaudacionTotal += this.CostoClasePremium * 1.21;
+                        }
+                        else
+                        {
+                            this.cantidadAsientosDispTurista--;
+                            this.recaudacionTotal += this.CostoClaseTurista * 1.21;
+                        }
+                        break;
                     }
-                    else
-                    {
-                        this.cantidadAsientosDispTurista--;
-                        this.recaudacionTotal += this.CostoClaseTurista * 1.21;
-                    }
+                    
                 }
             }
         }

@@ -9,7 +9,7 @@ namespace Entidades
     public class Equipaje
     {
         public string? Tipo { get; set; }
-        public double? Peso { get; set; }
+        public double Peso { get; set; }
 
         public Equipaje(){ }
 

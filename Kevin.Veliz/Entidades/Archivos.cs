@@ -31,14 +31,13 @@ namespace Entidades
                 writer.Write($"{DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss")} - {usuario}");
             }
         }
-
         public static void SerealizarDatos <T>(List<T> lista, string path)
         {
             try
             {
                 using (XmlTextWriter writer = new XmlTextWriter(path, Encoding.UTF8))
                 {
-                    XmlSerializer ser = new XmlSerializer((typeof(List<Aeronave>)));
+                    XmlSerializer ser = new XmlSerializer((typeof(List<T>)));
                     ser.Serialize(writer, lista);
                 }
             }

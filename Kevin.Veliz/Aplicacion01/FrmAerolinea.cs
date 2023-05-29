@@ -362,6 +362,14 @@ namespace Aplicacion01
                             {
                                 this.pasajeros.Remove(this.pasajeroSeleccionado);
                                 Archivos.SerealizarDatos(this.pasajeros, Archivos.pathPasajeros);
+                                foreach (Vuelo vuelo in this.vuelos)
+                                {
+                                    if (vuelo.Pasajeros.Contains(this.pasajeroSeleccionado))
+                                    {
+                                        int indice = vuelo.Pasajeros.FindIndex(p => p == this.pasajeroSeleccionado);
+                                        vuelo.Pasajeros.RemoveAt(indice);
+                                    }
+                                }
                                 this.pasajeros = Archivos.DeserealizarPasajeros();
                                 this.ActualizarLista(this.pasajeros);
                             }
@@ -372,54 +380,61 @@ namespace Aplicacion01
                         }
                         break;
                     case 1:
-                        if (this.vueloSeleccionado.Realizado == false && this.vueloSeleccionado.EnViaje == false)
+                        if (this.vueloSeleccionado is not null)
                         {
-                            if (this.vueloSeleccionado.Realizado == false || this.vueloSeleccionado.EnViaje == false)
+                            if (this.vueloSeleccionado.Realizado == false && this.vueloSeleccionado.EnViaje == false)
                             {
-                                if (MessageBox.Show("Desea eliminar el vuelo? ", "Aviso", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1) == DialogResult.Yes)
+                                if (this.vueloSeleccionado.Realizado == false || this.vueloSeleccionado.EnViaje == false)
                                 {
-                                    foreach (Pasajero pasajero in this.vueloSeleccionado.Pasajeros)
+                                    if (MessageBox.Show("Desea eliminar el vuelo? ", "Aviso", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1) == DialogResult.Yes)
                                     {
-                                        foreach (Pasajero aux in this.pasajeros)
+                                        foreach (Pasajero pasajero in this.vueloSeleccionado.Pasajeros)
                                         {
-                                            if (pasajero == aux)
+                                            foreach (Pasajero aux in this.pasajeros)
                                             {
-                                                aux.Agregado = false;
+                                                if (pasajero == aux)
+                                                {
+                                                    aux.Agregado = false;
+                                                }
                                             }
                                         }
-                                    }
 
-                                    foreach (Aeronave aeronave in this.aeronaves)
-                                    {
-                                        if (this.vueloSeleccionado.Avion == aeronave)
+                                        foreach (Aeronave aeronave in this.aeronaves)
                                         {
-                                            aeronave.Disponible = true;
+                                            if (this.vueloSeleccionado.Avion == aeronave)
+                                            {
+                                                aeronave.Disponible = true;
+                                            }
                                         }
-                                    }
 
-                                    this.vuelos.Remove(this.vueloSeleccionado);
+                                        this.vuelos.Remove(this.vueloSeleccionado);
+                                        Archivos.SerealizarVuelos(this.vuelos);
+                                        Archivos.SerealizarDatos(this.pasajeros, Archivos.pathPasajeros);
+                                        Archivos.SerealizarDatos(this.aeronaves, Archivos.pathAeronaves);
+                                        this.vuelos = Archivos.DeserealizarVuelos();
+                                        this.ActualizarLista(this.vuelos);
+                                    }
+                                }
+                                else
+                                {
+                                    MessageBox.Show("No se puede eliminar porque está en vuelo o ya se ha realizado");
+                                }
+                            }
+                        }
+                        
+                        break;
+                    case 2:
+                        if (this.aeronaveSeleccionado is not null)
+                        {
+                            if (this.aeronaveSeleccionado.Disponible == false)
+                            {
+                                if (MessageBox.Show("Desea eliminar la aeronave? ", "Aviso", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1) == DialogResult.Yes)
+                                {
+                                    this.aeronaves.Remove(this.aeronaveSeleccionado);
                                     Archivos.SerealizarVuelos(this.vuelos);
-                                    Archivos.SerealizarDatos(this.pasajeros, Archivos.pathPasajeros);
-                                    Archivos.SerealizarDatos(this.aeronaves, Archivos.pathAeronaves);
                                     this.vuelos = Archivos.DeserealizarVuelos();
                                     this.ActualizarLista(this.vuelos);
                                 }
-                            }
-                            else
-                            {
-                                MessageBox.Show("No se puede eliminar porque está en vuelo o ya se ha realizado");
-                            }
-                        }
-                        break;
-                    case 2:
-                        if (this.aeronaveSeleccionado.Disponible == false)
-                        {
-                            if (MessageBox.Show("Desea eliminar la aeronave? ", "Aviso", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1) == DialogResult.Yes)
-                            {
-                                this.aeronaves.Remove(this.aeronaveSeleccionado);
-                                Archivos.SerealizarVuelos(this.vuelos);
-                                this.vuelos = Archivos.DeserealizarVuelos();
-                                this.ActualizarLista(this.vuelos);
                             }
                         }
                         break;
@@ -429,12 +444,13 @@ namespace Aplicacion01
 
         private void ModificarElemento(int index)
         {
-            if (this.aeronaveSeleccionado is not null || this.vueloSeleccionado is not null || this.pasajeroSeleccionado is not null)
-            {
+            
 
-                switch (index)
-                {
-                    case 0:
+            switch (index)
+            {
+                case 0:
+                    if (this.pasajeroSeleccionado is not null)
+                    {
                         if (this.pasajeroSeleccionado.EnVuelo == false)
                         {
                             FrmPasajero frmPasajero = new FrmPasajero(this.pasajeroSeleccionado);
@@ -449,7 +465,7 @@ namespace Aplicacion01
                                         break;
                                     }
                                 }
-                                Archivos.SerealizarDatos(this.pasajeros,Archivos.pathPasajeros);
+                                Archivos.SerealizarDatos(this.pasajeros, Archivos.pathPasajeros);
                                 Archivos.SerealizarVuelos(this.vuelos);
                                 this.pasajeros = Archivos.DeserealizarPasajeros();
                                 this.vuelos = Archivos.DeserealizarVuelos();
@@ -459,9 +475,14 @@ namespace Aplicacion01
                         else
                         {
                             MessageBox.Show("El pasajero está en un vuelo, no puede ser modificado.");
-                        }
-                        break;
-                    case 1:
+                        }    
+                    }
+                    break;
+
+                case 1:
+
+                    if (this.vueloSeleccionado is not null)
+                    {
                         if (this.vueloSeleccionado.EnViaje == false || this.vueloSeleccionado.Realizado == false)
                         {
                             FrmVuelo frmVuelo = new FrmVuelo(this.vueloSeleccionado, this.aeronaves);
@@ -474,8 +495,13 @@ namespace Aplicacion01
                                 this.aeronaves = Archivos.DeserealizarAeronaves();
                             }
                         }
-                        break;
-                    case 2:
+                    }
+                    
+                    break;
+                case 2:
+
+                    if (this.vueloSeleccionado is not null)
+                    {
                         if (this.vueloSeleccionado.EnViaje == false || this.vueloSeleccionado.Realizado == false)
                         {
                             FrmAeronave frmAeronave = new FrmAeronave(this.aeronaveSeleccionado);
@@ -496,14 +522,15 @@ namespace Aplicacion01
                                 this.ActualizarListaAeronaves();
                             }
                         }
-                        else
-                        {
-                            MessageBox.Show("El avión está en vuelo, no puede ser modificado.");
-                        }
-                        break;
+                    }
+                    else
+                    {
+                        MessageBox.Show("El avión está en vuelo, no puede ser modificado.");
+                    }
+                    break;
 
-                }
             }
+            
         }
 
         private void ActualizarLista<T>(List<T> listaDatos)
@@ -534,7 +561,6 @@ namespace Aplicacion01
         private void buscarPasajero()
         {
             this.ActualizarLista(this.pasajeros);
-
             if (int.TryParse(this.txtBuscarDNI.Text, out _))
             {
                 this.dtgvElementos.DataSource = this.pasajeros.FindAll(pasajero => pasajero.Dni.ToString().Contains(this.txtBuscarDNI.Text));
@@ -572,8 +598,11 @@ namespace Aplicacion01
 
         private void btnMostrarPasajeros_Click(object sender, EventArgs e)
         {
-            FrmPasajerosDelVuelo pasajerosDelVuelo = new FrmPasajerosDelVuelo(this.vueloSeleccionado);
-            pasajerosDelVuelo.ShowDialog();
+            if (this.vueloSeleccionado is not null)
+            {
+                FrmPasajerosDelVuelo pasajerosDelVuelo = new FrmPasajerosDelVuelo(this.vueloSeleccionado);
+                pasajerosDelVuelo.ShowDialog();
+            }
         }
 
         private void btnBuscar_Click(object sender, EventArgs e)
@@ -606,9 +635,6 @@ namespace Aplicacion01
             }
         }
 
-        private void menuAerolinea_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
-        {
-
-        }
+       
     }
 }

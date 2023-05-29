@@ -1,4 +1,5 @@
 ﻿using System.Text;
+using System.Xml.Serialization;
 
 namespace Entidades
 {
@@ -46,7 +47,7 @@ namespace Entidades
 
         public List<Equipaje> Equipajes
         {
-            get { return this.equipajes ?? new List<Equipaje>(); }
+            get { return this.equipajes; }
             set { this.equipajes = value; }
         }
 

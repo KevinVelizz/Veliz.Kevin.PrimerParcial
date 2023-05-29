@@ -81,7 +81,6 @@
             menuAerolinea.Size = new Size(1441, 46);
             menuAerolinea.TabIndex = 2;
             menuAerolinea.Text = "menuAerolinea";
-            menuAerolinea.ItemClicked += menuAerolinea_ItemClicked;
             // 
             // stripInicio
             // 

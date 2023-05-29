@@ -144,7 +144,7 @@ namespace Aplicacion01
 
         private void btnAgregar_Click(object sender, EventArgs e)
         {
-            if (this.fechaSeleccionado != DateTime.Today && this.avionSeleccionado != null)
+            if (this.fechaSeleccionado != DateTime.Today && this.avionSeleccionado != null && this.txtCostoPremium.Text != "" && this.txtCostoTurista.Text != "")
             {
                 this.vuelo = new Vuelo(this.salidaSeleccionado ?? "", this.destinoSeleccionado ?? "", this.fechaSeleccionado, ((Aeronave)cboAeronave.Items[this.indexAeronaveSeleccionada]), this.fechaDeLlegada, "No viajó");
                 this.vuelo.CostoClasePremium = double.Parse(txtCostoPremium.Text);

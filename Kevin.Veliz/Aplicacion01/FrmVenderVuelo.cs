@@ -6,6 +6,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -15,10 +16,8 @@ namespace Aplicacion01
     {
         private List<Pasajero> pasajeros;
         private List<Vuelo> vuelos;
-
-        Vuelo? vueloSeleccionado;
-        Pasajero? pasajeroSeleccionado;
-
+        Vuelo vueloSeleccionado;
+        Pasajero pasajeroSeleccionado;
         private bool comida;
         private bool internet;
 
@@ -35,9 +34,7 @@ namespace Aplicacion01
             this.dtgvVuelosDisponibles.Columns.Add("FechaSalida", "Fecha de salida");
             this.dtgvVuelosDisponibles.Columns.Add("FechaLlegada", "Fecha de llegada");
 
-            this.dtgvPasajerosDisponibles.Columns.Add("Nombre", "Nombre");
-            this.dtgvPasajerosDisponibles.Columns.Add("Apellido", "Apellido");
-            this.dtgvPasajerosDisponibles.Columns.Add("DNI", "DNI");
+           
         }
 
         private void FrmVenderVuelo_Load(object sender, EventArgs e)
@@ -46,18 +43,7 @@ namespace Aplicacion01
 
             if (this.pasajeros.Count > 0)
             {
-                foreach (Pasajero pasajero in this.pasajeros)
-                {
-                    if (pasajero.Agregado == false)
-                    {
-                        int rowIndex = this.dtgvPasajerosDisponibles.Rows.Add();
-                        DataGridViewRow row = dtgvPasajerosDisponibles.Rows[rowIndex];
-                        row.Tag = pasajero;
-                        row.Cells["Nombre"].Value = pasajero.Nombre;
-                        row.Cells["Apellido"].Value = pasajero.Edad;
-                        row.Cells["DNI"].Value = pasajero.Dni;
-                    }
-                }
+                this.dtgvPasajerosDisponibles.DataSource = this.pasajeros.FindAll(pasajero => !pasajero.Agregado);
             }
         }
 
@@ -73,14 +59,60 @@ namespace Aplicacion01
 
         private void btnVender_Click(object sender, EventArgs e)
         {
+            bool validar = true;
+
             if (this.pasajeroSeleccionado is not null && this.vueloSeleccionado is not null)
             {
-                this.vueloSeleccionado.Pasajeros.Add(this.pasajeroSeleccionado);
-                this.pasajeroSeleccionado.Agregado = true;
-                this.vueloSeleccionado.RestarAsientos();
-                Archivos.SerealizarDatos(this.pasajeros, Archivos.pathAeronaves);
-                Archivos.SerealizarVuelos(this.vuelos);
-                this.Close();
+                if (this.pasajeroSeleccionado.Equipajes.Count > 0)
+                {
+                    if (this.pasajeroSeleccionado.Equipajes.Count > 1)
+                    {
+                        this.vueloSeleccionado.Avion.CapacidadBodega -= this.pasajeroSeleccionado.Equipajes[0].Peso + this.pasajeroSeleccionado.Equipajes[1].Peso;
+                        if (this.vueloSeleccionado.Avion.CapacidadBodega < 0)
+                        {
+                            this.vueloSeleccionado.Avion.CapacidadBodega += this.pasajeroSeleccionado.Equipajes[0].Peso + this.pasajeroSeleccionado.Equipajes[1].Peso;
+                            validar = false;
+                        }           
+                    }
+                    else
+                    {
+                        this.vueloSeleccionado.Avion.CapacidadBodega -= this.pasajeroSeleccionado.Equipajes[0].Peso;
+                        if (this.vueloSeleccionado.Avion.CapacidadBodega < 0)
+                        {
+                            this.vueloSeleccionado.Avion.CapacidadBodega += this.pasajeroSeleccionado.Equipajes[0].Peso;
+                            validar = false;
+                        }            
+                    }
+                }
+
+                if ((this.pasajeroSeleccionado.Premium == false && this.vueloSeleccionado.CantidadAsientosDispTurista > 0) || (this.pasajeroSeleccionado.Premium && this.vueloSeleccionado.CantidadAsientosDispPremium > 0))
+                {
+                    if (validar)
+                    {
+                        this.vueloSeleccionado.Pasajeros.Add(this.pasajeroSeleccionado);
+                        this.pasajeroSeleccionado.Agregado = true;
+                        this.vueloSeleccionado.RestarAsientos(this.pasajeroSeleccionado);
+
+                        Archivos.SerealizarDatos(this.pasajeros, Archivos.pathPasajeros);
+                        Archivos.SerealizarVuelos(this.vuelos);
+                        this.Close();
+                    }
+                    else
+                    {
+                        MessageBox.Show($"El peso de equipaje excede el limite de capacidad de peso.\n Capacidad disponible:{this.vueloSeleccionado.Avion.CapacidadBodega}kg");
+                    }
+                }
+                else
+                {
+                    if ( this.pasajeroSeleccionado.Premium)
+                    {
+                        MessageBox.Show("Ya no hay asientos para la clase: premium");
+                    }
+                    else
+                    {
+                        MessageBox.Show("Ya no hay asientos para la clase: turista");
+                    }
+                }
             }
         }
 
@@ -94,7 +126,7 @@ namespace Aplicacion01
             dtgvVuelosDisponibles.Rows.Clear();
             foreach (Vuelo vuelo in this.vuelos)
             {
-                if (!vuelo.EnViaje && !vuelo.Realizado)
+                if (!vuelo.EnViaje && !vuelo.Realizado && (vuelo.CantidadAsientosDispPremium > 0 || vuelo.CantidadAsientosDispTurista > 0) && vuelo.Avion.CapacidadBodega > 0)
                 {
                     if (this.comida && this.internet)
                     {
@@ -189,7 +221,41 @@ namespace Aplicacion01
         private void dtgvPasajerosDisponibles_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             DataGridViewRow filaSeleccionada = dtgvPasajerosDisponibles.Rows[e.RowIndex];
-            this.pasajeroSeleccionado = filaSeleccionada.Tag as Pasajero;
+            this.pasajeroSeleccionado = filaSeleccionada.DataBoundItem as Pasajero;
+        }
+
+        private void btnBuscar_Click(object sender, EventArgs e)
+        {
+            this.buscarPasajero();
+        }
+
+
+        private void buscarPasajero()
+        {
+            this.ActualizarLista(this.pasajeros);
+            if (int.TryParse(this.txtBuscarDNI.Text, out _))
+            {
+                this.dtgvPasajerosDisponibles.DataSource = this.pasajeros.FindAll(pasajero => pasajero.Dni.ToString().Contains(this.txtBuscarDNI.Text) && !pasajero.Agregado);
+            }
+            else if (!Regex.IsMatch(this.txtBuscarNombre.Text, @"\d"))
+            {
+                this.dtgvPasajerosDisponibles.DataSource = this.pasajeros.FindAll(pasajero => pasajero.Nombre.Contains(this.txtBuscarNombre.Text, StringComparison.OrdinalIgnoreCase) && !pasajero.Agregado);
+            }
+            else if (!Regex.IsMatch(this.txtBuscarNombre.Text, @"\d"))
+            {
+                this.dtgvPasajerosDisponibles.DataSource = this.pasajeros.FindAll(pasajero => pasajero.Apellido.Contains(this.txtBuscarApellido.Text, StringComparison.OrdinalIgnoreCase) && !pasajero.Agregado);
+            }
+            else
+            {
+                this.dtgvPasajerosDisponibles.DataSource = null;
+            }
+        }
+
+
+        private void ActualizarLista<T>(List<T> listaDatos)
+        {
+            this.dtgvPasajerosDisponibles.DataSource = null;
+            this.dtgvPasajerosDisponibles.DataSource = listaDatos;
         }
     }
 }

@@ -1,4 +1,6 @@
-﻿namespace Entidades
+﻿using System.Text.RegularExpressions;
+
+namespace Entidades
 {
     public static class Funcionalidades
     {
@@ -79,6 +81,6 @@
                 }
             }
             return valorPrecio;
-        }
+        }    
     }
 }
