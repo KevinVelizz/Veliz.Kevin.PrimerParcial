@@ -75,7 +75,7 @@ namespace Aplicacion01
 
         private void almacenarVueloRecaudacion()
         {
-            Dictionary<string,double> diccionarioOrdenado = this.recaudacionDestino.OrderByDescending(x => x.Value).ToDictionary(x => x.Key, x => x.Value);
+            Dictionary<string, double> diccionarioOrdenado = this.recaudacionDestino.OrderByDescending(x => x.Value).ToDictionary(x => x.Key, x => x.Value);
             foreach (KeyValuePair<string, double> kvp in diccionarioOrdenado)
             {
                 int rows = dtgvMontoDestinos.Rows.Add();

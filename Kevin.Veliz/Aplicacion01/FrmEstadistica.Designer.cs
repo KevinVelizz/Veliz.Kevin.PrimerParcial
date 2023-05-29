@@ -57,11 +57,13 @@
             // 
             btnCancelar.Anchor = AnchorStyles.None;
             btnCancelar.Location = new Point(755, 519);
+            btnCancelar.Text = "Salir";
             // 
             // btnLimpiar
             // 
             btnLimpiar.Anchor = AnchorStyles.None;
             btnLimpiar.Location = new Point(661, 519);
+            btnLimpiar.Visible = false;
             // 
             // lblTitulo
             // 
@@ -73,6 +75,7 @@
             lblTitulo.Size = new Size(109, 17);
             lblTitulo.TabIndex = 5;
             lblTitulo.Text = "Viajes Realizados";
+            lblTitulo.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // btnCalcular
             // 
@@ -90,9 +93,10 @@
             // 
             lblMontoTotal.Anchor = AnchorStyles.None;
             lblMontoTotal.AutoSize = true;
-            lblMontoTotal.Location = new Point(522, 37);
+            lblMontoTotal.Font = new Font("Segoe UI Symbol", 9.75F, FontStyle.Italic, GraphicsUnit.Point);
+            lblMontoTotal.Location = new Point(510, 37);
             lblMontoTotal.Name = "lblMontoTotal";
-            lblMontoTotal.Size = new Size(108, 15);
+            lblMontoTotal.Size = new Size(120, 17);
             lblMontoTotal.TabIndex = 7;
             lblMontoTotal.Text = "Monto Recaudado:";
             // 
@@ -189,9 +193,11 @@
             label1.Size = new Size(148, 17);
             label1.TabIndex = 11;
             label1.Text = "Monto de cada destino:";
+            label1.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // dtgvMontoDestinos
             // 
+            dtgvMontoDestinos.Anchor = AnchorStyles.None;
             dtgvMontoDestinos.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dtgvMontoDestinos.Columns.AddRange(new DataGridViewColumn[] { DestinoLugar, MontoDestino });
             dtgvMontoDestinos.Location = new Point(12, 323);
@@ -225,7 +231,7 @@
             Controls.Add(btnCalcular);
             Controls.Add(lblTitulo);
             Name = "FrmEstadistica";
-            Text = "FrmEstadisticaBase";
+            Text = "Estadisticas";
             Load += FrmEstadisticaBase_Load;
             Controls.SetChildIndex(btnCancelar, 0);
             Controls.SetChildIndex(btnLimpiar, 0);

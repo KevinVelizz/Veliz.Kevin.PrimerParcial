@@ -243,7 +243,6 @@ namespace Entidades
                 this.estado = "Realizado";
                 this.realizado = true;
                 this.enViaje = false;
-
                 foreach (Pasajero pasajero in this.pasajeros)
                 {
                     pasajero.Agregado = false;

@@ -251,7 +251,6 @@ namespace Aplicacion01
             }
         }
 
-
         private void ActualizarLista<T>(List<T> listaDatos)
         {
             this.dtgvPasajerosDisponibles.DataSource = null;

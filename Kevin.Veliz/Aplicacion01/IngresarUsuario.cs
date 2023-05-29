@@ -16,7 +16,7 @@ namespace Aplicacion01
 
         private void IngresarUsuario_Load(object sender, EventArgs e)
         {
-
+            MessageBox.Show(Archivos.TryGetSolutionDirectoryInfo().Parent.FullName);
         }
         private void btnIngresar_Click(object sender, EventArgs e)
         {

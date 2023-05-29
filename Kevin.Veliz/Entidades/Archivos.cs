@@ -7,21 +7,29 @@ namespace Entidades
 {
     public static class Archivos
     {
-        public static string desktopPath = Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory);
-        public static string folderPath = Path.Combine(Archivos.desktopPath, @"Veliz.Kevin.PrimerParcial\Kevin.Veliz\");
+        public static DirectoryInfo TryGetSolutionDirectoryInfo(string currentPath = null)
+        {
+            var directory = new DirectoryInfo(
+                currentPath ?? Directory.GetCurrentDirectory());
+            while (directory != null && !directory.GetFiles("Program.cs").Any())
+            {
+                directory = directory.Parent;
+            }
+            return directory;
+        }
 
-        //Path Aeronaves.
-        public static string pathAeronaves = Path.Combine(Archivos.folderPath + @"listaAeronaves.xml");
+        
+        public static string pathAeronaves = Path.Combine(Archivos.TryGetSolutionDirectoryInfo().Parent.FullName, @"listaAeronaves.xml");
 
         //Path Usuarios.
-        public static string pathUsuario = Path.Combine(Archivos.folderPath + @"MOCK_DATA.json");
+        public static string pathUsuario = Path.Combine(Archivos.TryGetSolutionDirectoryInfo().Parent.FullName, @"MOCK_DATA.json");
 
         //Path Viajeros.
-        public static string pathPasajeros = Path.Combine(Archivos.folderPath + @"listaViajeros.xml");
+        public static string pathPasajeros = Path.Combine(Archivos.TryGetSolutionDirectoryInfo().Parent.FullName, @"listaViajeros.xml");
 
-        public static string pathVuelos = Path.Combine(Archivos.folderPath + @"listaVuelos.json");
+        public static string pathVuelos = Path.Combine(Archivos.TryGetSolutionDirectoryInfo().Parent.FullName, @"listaVuelos.json");
 
-        public static string pathDataUsuario = Path.Combine(Archivos.folderPath + @"usuarios.log");
+        public static string pathDataUsuario = Path.Combine(Archivos.TryGetSolutionDirectoryInfo().Parent.FullName, @"usuarios.log");
 
         public static void SerealizarDatosUser(Usuario usuario)
         {
