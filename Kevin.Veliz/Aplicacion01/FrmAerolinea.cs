@@ -105,25 +105,25 @@ namespace Aplicacion01
             {
                 vuelo.VueloEnCurso();
                 vuelo.VueloRealizado();
-                if (vuelo.EnViaje || vuelo.Realizado)
+                
+                foreach (Aeronave aeronave in this.aeronaves)
                 {
-                    Archivos.SerealizarVuelos(this.vuelos);
-                    
-                    foreach (Aeronave aeronave in this.aeronaves)
+                    if (vuelo.Avion == aeronave)
                     {
-                        if (vuelo.Avion vuelo.Avion == aeronave && vuelo.EnViaje && !vuelo.Realizado)
+                        if (vuelo.Realizado)
+                        {
+                            aeronave.Disponible = true;
+                        }
+                        else
                         {
                             aeronave.Disponible = false;
                         }
-
-                        if (vuelo.Avion == aeronave && vuelo.Realizado && !vuelo.EnViaje)
-                        {
-                            aeronave.Disponible = true; 
-                        }
-                        Archivos.SerealizarDatos(this.aeronaves, Archivos.pathAeronaves);
+                        break;
                     }
                 }
+                Archivos.SerealizarDatos(this.aeronaves, Archivos.pathAeronaves);
             }
+            Archivos.SerealizarVuelos(this.vuelos);
             this.vuelos = Archivos.DeserealizarVuelos();
             this.aeronaves = Archivos.DeserealizarAeronaves();
             this.ActualizarLista(this.vuelos);
@@ -400,9 +400,8 @@ namespace Aplicacion01
                 case 1:
                     if (this.vueloSeleccionado is not null)
                     {
-                        if (this.vueloSeleccionado.Realizado == false && this.vueloSeleccionado.EnViaje == false)
+                        if (!this.vueloSeleccionado.Realizado && !this.vueloSeleccionado.EnViaje)
                         {
-                                
                             if (MessageBox.Show("Desea eliminar el vuelo? ", "Aviso", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1) == DialogResult.Yes)
                             {
                                 foreach (Pasajero pasajero in this.vueloSeleccionado.Pasajeros)
@@ -501,7 +500,7 @@ namespace Aplicacion01
 
                     if (this.vueloSeleccionado is not null)
                     {
-                        if (this.vueloSeleccionado.EnViaje == false || this.vueloSeleccionado.Realizado == false)
+                        if (!this.vueloSeleccionado.EnViaje && !this.vueloSeleccionado.Realizado)
                         {
                             FrmVuelo frmVuelo = new FrmVuelo(this.vueloSeleccionado, this.aeronaves);
                             frmVuelo.ShowDialog();
@@ -518,17 +517,7 @@ namespace Aplicacion01
                 case 2:
                     if (this.aeronaveSeleccionado is not null)
                     {
-                        bool validar = false;
-
-                        foreach (Vuelo vueloAux in this.vuelos)
-                        {
-                            if (vueloAux.Avion == this.aeronaveSeleccionado && (!vueloAux.EnViaje || !vueloAux.Realizado))
-                            {
-                                validar = true;
-                            }
-                        }
-
-                        if (validar)
+                        if (this.aeronaveSeleccionado.Disponible == false)
                         {
                             FrmAeronave frmAeronave = new FrmAeronave(this.aeronaveSeleccionado);
                             if (frmAeronave.ShowDialog() == DialogResult.OK)
@@ -550,10 +539,9 @@ namespace Aplicacion01
                         }
                         else
                         {
-                            MessageBox.Show("El avión está en vuelo o ya se realizó el viaje, no puede ser modificado.");
+                            MessageBox.Show("No se puede modificar, la aeronave ya fue agregada a un vuelo.");
                         }
                     }
-                    
                     break;
             }
         }

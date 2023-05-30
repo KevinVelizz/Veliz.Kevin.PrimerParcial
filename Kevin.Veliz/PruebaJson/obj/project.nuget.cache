@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "HipflvG1PN48EtRT7AEAwktsMJg9aksCSTu2/AC9cfB+S9brhKD0sXp3u9VketkHTTovDEr4o4QlOTBJUgwtsg==",
+  "dgSpecHash": "wsrv6PT4QJPjtj0VtFcvE+mqlaR0UQ9rduJylLKIsEUOMeQ3TWCWcG95I+Bz+ZCs05kyMzih0EBaaAbnSQyhsg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\veliz\\Desktop\\Veliz.Kevin.PrimerParcial\\Kevin.Veliz\\PruebaJson\\PruebaJson.csproj",
+  "projectFilePath": "C:\\Users\\veliz\\Downloads\\Veliz.Kevin.PrimerParcial-Recuperatorio.Veliz.Kevin\\Kevin.Veliz\\PruebaJson\\PruebaJson.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\veliz\\.nuget\\packages\\newtonsoft.json\\13.0.3\\newtonsoft.json.13.0.3.nupkg.sha512"
   ],

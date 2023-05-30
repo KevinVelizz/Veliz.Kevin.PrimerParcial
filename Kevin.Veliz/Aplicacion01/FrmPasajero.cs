@@ -1,13 +1,4 @@
 ﻿using Entidades;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace Aplicacion01
 {
@@ -136,7 +127,7 @@ namespace Aplicacion01
 
             if (verificar)
             {
-                this.pasajero = new Pasajero(this.txtNombre.Text, this.txtApellido.Text, dni, edad, this.equipajes, premium, equipajeMano);
+                this.pasajero = new Pasajero(this.txtNombre.Text, this.txtApellido.Text, dni, edad, this.equipajes, premium, equipajeMano,this.chkVacunado.Checked);
                 this.DialogResult = DialogResult.OK;
             }
         }
@@ -146,8 +137,6 @@ namespace Aplicacion01
             this.Close();
         }
 
-        
-
         private void InicializarComponentesModificacion()
         {
             this.txtApellido.Text = this.pasajero.Apellido;
@@ -155,7 +144,6 @@ namespace Aplicacion01
             this.txtDNI.Text = this.pasajero.Dni.ToString();
             this.txtEdad.Text = this.pasajero.Edad.ToString();
             
-
              if (this.pasajero is not null && this.pasajero.Equipajes is not null)
             {
                 this.nudPesoEquipaje1.Value = (decimal)this.pasajero.Equipajes[0].Peso;
@@ -224,6 +212,7 @@ namespace Aplicacion01
 
             if (int.TryParse(this.txtDNI.Text, out int numero) && int.TryParse(this.txtEdad.Text, out int numero1))
             {
+
                 this.pasajero.Dni = numero;
                 this.pasajero.Edad = numero1;
             }

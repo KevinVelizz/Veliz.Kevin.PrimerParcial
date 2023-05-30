@@ -31,6 +31,8 @@ namespace Entidades
 
         public static string pathDataUsuario = Path.Combine(Archivos.TryGetSolutionDirectoryInfo().Parent.FullName, @"usuarios.log");
 
+        public static string pathEstadistica = Path.Combine(Archivos.TryGetSolutionDirectoryInfo().Parent.FullName, @"estadistica.log");
+
         public static void SerealizarDatosUser(Usuario usuario)
         {
             if (usuario != null)
@@ -54,6 +56,7 @@ namespace Entidades
                 Console.WriteLine($"ERROR:{ex.Message} - {ex.StackTrace}");
             }
         }
+
         public static List<Aeronave> DeserealizarAeronaves()
         {
             List<Aeronave> listXML = new List<Aeronave>();
@@ -126,6 +129,26 @@ namespace Entidades
                 using (TextWriter writer = new StreamWriter(Archivos.pathVuelos))
                 {
                     writer.Write(JsonSerializer.Serialize(vuelos));
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"ERROR:{ex.Message} - {ex.StackTrace}");
+            }
+        }
+
+        public static void SerealizarEstadistica(Dictionary<string,double> infoCadaDestino, double montoTotal)
+        {
+            try
+            {
+                using (TextWriter writer = new StreamWriter(Archivos.pathEstadistica))
+                {
+                    writer.WriteLine("Monto recuadado cada destino:");
+                    foreach (KeyValuePair<string,double> info in infoCadaDestino)
+                    {
+                        writer.WriteLine($"{info.Key} - ${info.Value}");
+                    }
+                    writer.WriteLine($"Monto total: ${montoTotal}");
                 }
             }
             catch (Exception ex)

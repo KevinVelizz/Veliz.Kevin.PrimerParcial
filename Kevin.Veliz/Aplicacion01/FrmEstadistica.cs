@@ -1,14 +1,6 @@
 ﻿using Entidades;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+
 
 namespace Aplicacion01
 {
@@ -18,6 +10,7 @@ namespace Aplicacion01
         double acumuladorDinero;
         double acumuladorDineroPorDestino;
         Dictionary<string, double> recaudacionDestino;
+        Dictionary<string, double> diccionarioOrdenado;
 
         public FrmEstadistica(List<Vuelo> vuelos)
         {
@@ -26,12 +19,13 @@ namespace Aplicacion01
             this.acumuladorDinero = 0;
             this.StartPosition = FormStartPosition.CenterScreen;
             this.recaudacionDestino = new Dictionary<string, double>();
+            this.diccionarioOrdenado = new Dictionary<string, double>();
         }
 
         private void FrmEstadisticaBase_Load(object sender, EventArgs e)
         {
-
             string auxDestino = "";
+
 
             foreach (Vuelo vuelo in this.listaVuelos)
             {
@@ -47,9 +41,7 @@ namespace Aplicacion01
                     this.dtgvViajes.Rows[rows].Cells[6].Value = vuelo.CantidadAsientosDispTurista;
                     this.dtgvViajes.Rows[rows].Cells[7].Value = vuelo.CostoClasePremium;
                     this.dtgvViajes.Rows[rows].Cells[8].Value = vuelo.CostoClaseTurista;
-                    this.dtgvViajes.Rows[rows].Cells[9].Value = vuelo.Pasajeros;
-                    this.dtgvViajes.Rows[rows].Cells[10].Value = vuelo.Estado;
-                    this.dtgvViajes.Rows[rows].Cells[11].Value = vuelo.RecaudacionTotal;
+                    this.dtgvViajes.Rows[rows].Cells[9].Value = vuelo.RecaudacionTotal;
                 }
             }
 
@@ -70,12 +62,14 @@ namespace Aplicacion01
                 this.recaudacionDestino.Add(auxDestino, this.acumuladorDineroPorDestino);
                 this.acumuladorDineroPorDestino = 0;
             }
+
+            this.lblDestino.Text = Funcionalidades.DestinoMasSeleccionado(this.listaVuelos);
             this.almacenarVueloRecaudacion();
         }
 
         private void almacenarVueloRecaudacion()
         {
-            Dictionary<string, double> diccionarioOrdenado = this.recaudacionDestino.OrderByDescending(x => x.Value).ToDictionary(x => x.Key, x => x.Value);
+            this.diccionarioOrdenado = this.recaudacionDestino.OrderByDescending(x => x.Value).ToDictionary(x => x.Key, x => x.Value);
             foreach (KeyValuePair<string, double> kvp in diccionarioOrdenado)
             {
                 int rows = dtgvMontoDestinos.Rows.Add();
@@ -95,6 +89,11 @@ namespace Aplicacion01
                 }
             }
             this.textBox1.Text = acumuladorDinero.ToString();
+        }
+
+        private void btnCancelar_Click(object sender, EventArgs e)
+        {
+            Archivos.SerealizarEstadistica(this.diccionarioOrdenado, this.acumuladorDinero);
         }
     }
 }

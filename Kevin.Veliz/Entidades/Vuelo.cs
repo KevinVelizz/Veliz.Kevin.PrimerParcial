@@ -19,7 +19,6 @@ namespace Entidades
         private double costoClaseTurista;
         private DateTime fechaDeLLegada;
         private List<Pasajero> pasajeros;
-        private string estado;
         private double recaudacionTotal;
         private bool enViaje;
         private bool realizado;
@@ -33,14 +32,14 @@ namespace Entidades
             this.costoClaseTurista = 50;
         }
         
-        public Vuelo(string ciudadDePartida, string ciudadDeDestino, DateTime fechaDeVuelo,Aeronave avion, DateTime fechaDeLLegada, string estado) :this()
+        public Vuelo(string ciudadDePartida, string ciudadDeDestino, DateTime fechaDeVuelo,Aeronave avion, DateTime fechaDeLLegada) :this()
         {
             this.ciudadDePartida = ciudadDePartida;
             this.ciudadDeDestino = ciudadDeDestino;
             this.fechaDeVuelo = fechaDeVuelo;
             this.avion = avion;
             this.fechaDeLLegada = fechaDeLLegada;
-            this.estado = estado;
+
             this.InicializarTipo();
         }
         
@@ -113,12 +112,6 @@ namespace Entidades
         {
             get { return this.pasajeros; }
             set { this.pasajeros = value; }
-        }
-
-        public string Estado
-        {
-            get { return this.estado; }
-            set { this.estado = value;}
         }
 
         public Aeronave Avion
@@ -226,8 +219,8 @@ namespace Entidades
         {
             if (DateTime.Now >= this.fechaDeVuelo && DateTime.Now < this.fechaDeLLegada && this.enViaje == false)
             {
-                this.Estado = "En viaje";
                 this.enViaje = true;
+                this.Realizado = false;
 
                 foreach (Pasajero pasajero in this.pasajeros)
                 {
@@ -240,7 +233,6 @@ namespace Entidades
         {
             if (DateTime.Now >= this.FechaDeLLegada && this.realizado == false)
             {
-                this.estado = "Realizado";
                 this.realizado = true;
                 this.enViaje = false;
                 foreach (Pasajero pasajero in this.pasajeros)

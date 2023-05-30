@@ -81,6 +81,20 @@ namespace Entidades
                 }
             }
             return valorPrecio;
-        }    
+        }
+
+
+        public static string DestinoMasSeleccionado(List<Vuelo> listaVuelos)
+        {
+            string? destinoFavorito = "";
+
+            if (listaVuelos.Count > 0 && listaVuelos is not null)
+            {
+                destinoFavorito = listaVuelos.GroupBy(v => v.CiudadDeDestino).OrderByDescending(g => g.Count()).Select(g => g.Key).FirstOrDefault();
+            
+            }
+            return destinoFavorito ?? "";
+        }
+
     }
 }

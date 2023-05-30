@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "P255CT5Y5w4AxK/Z/RMzX/k0NwiN9+z9RkrN9XEOpuVMZ9V/JWShQD/yz2+yToFFtfgm9dJEg63KtbvTFS+XKw==",
+  "dgSpecHash": "+nq7fdko4Y2xZyXSw7+ok2xL5odvqTdefEp5P9VCyijE4vKmUniXwqOtmtlYi/nHXIIyUkUPASwmR0VWvqPkjg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\veliz\\Desktop\\Veliz.Kevin.PrimerParcial\\Kevin.Veliz\\Entidades\\Entidades.csproj",
+  "projectFilePath": "C:\\Users\\veliz\\Downloads\\Veliz.Kevin.PrimerParcial-Recuperatorio.Veliz.Kevin\\Kevin.Veliz\\Entidades\\Entidades.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\veliz\\.nuget\\packages\\newtonsoft.json\\13.0.3\\newtonsoft.json.13.0.3.nupkg.sha512"
   ],

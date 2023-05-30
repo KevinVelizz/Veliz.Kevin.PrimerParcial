@@ -42,13 +42,14 @@
             CantAsientosTurista = new DataGridViewTextBoxColumn();
             CostoClasePremium = new DataGridViewTextBoxColumn();
             CostoClaseTurista = new DataGridViewTextBoxColumn();
-            Pasajeros = new DataGridViewTextBoxColumn();
             Estado = new DataGridViewTextBoxColumn();
             RecaudacionTotal = new DataGridViewTextBoxColumn();
             label1 = new Label();
             dtgvMontoDestinos = new DataGridView();
             DestinoLugar = new DataGridViewTextBoxColumn();
             MontoDestino = new DataGridViewTextBoxColumn();
+            lblDestinoFavorito = new Label();
+            lblDestino = new Label();
             ((System.ComponentModel.ISupportInitialize)dtgvViajes).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dtgvMontoDestinos).BeginInit();
             SuspendLayout();
@@ -58,6 +59,7 @@
             btnCancelar.Anchor = AnchorStyles.None;
             btnCancelar.Location = new Point(755, 519);
             btnCancelar.Text = "Salir";
+            btnCancelar.Click += btnCancelar_Click;
             // 
             // btnLimpiar
             // 
@@ -115,7 +117,7 @@
             // 
             dtgvViajes.Anchor = AnchorStyles.None;
             dtgvViajes.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dtgvViajes.Columns.AddRange(new DataGridViewColumn[] { Partida, Destino, FechaSalida, FechaLlegada, Avion, CantAsientosPremium, CantAsientosTurista, CostoClasePremium, CostoClaseTurista, Pasajeros, Estado, RecaudacionTotal });
+            dtgvViajes.Columns.AddRange(new DataGridViewColumn[] { Partida, Destino, FechaSalida, FechaLlegada, Avion, CantAsientosPremium, CantAsientosTurista, CostoClasePremium, CostoClaseTurista, Estado, RecaudacionTotal });
             dtgvViajes.Location = new Point(12, 29);
             dtgvViajes.MultiSelect = false;
             dtgvViajes.Name = "dtgvViajes";
@@ -168,11 +170,6 @@
             CostoClaseTurista.HeaderText = "Costo turista";
             CostoClaseTurista.Name = "CostoClaseTurista";
             // 
-            // Pasajeros
-            // 
-            Pasajeros.HeaderText = "Pasajeros";
-            Pasajeros.Name = "Pasajeros";
-            // 
             // Estado
             // 
             Estado.HeaderText = "Estado";
@@ -217,12 +214,37 @@
             MontoDestino.HeaderText = "Monto";
             MontoDestino.Name = "MontoDestino";
             // 
+            // lblDestinoFavorito
+            // 
+            lblDestinoFavorito.Anchor = AnchorStyles.None;
+            lblDestinoFavorito.AutoSize = true;
+            lblDestinoFavorito.Font = new Font("Segoe UI Symbol", 9.75F, FontStyle.Italic, GraphicsUnit.Point);
+            lblDestinoFavorito.Location = new Point(281, 323);
+            lblDestinoFavorito.Name = "lblDestinoFavorito";
+            lblDestinoFavorito.Size = new Size(106, 17);
+            lblDestinoFavorito.TabIndex = 13;
+            lblDestinoFavorito.Text = "Destino Favorito:";
+            // 
+            // lblDestino
+            // 
+            lblDestino.Anchor = AnchorStyles.None;
+            lblDestino.AutoSize = true;
+            lblDestino.Font = new Font("Segoe UI Symbol", 9.75F, FontStyle.Italic, GraphicsUnit.Point);
+            lblDestino.Location = new Point(281, 365);
+            lblDestino.Name = "lblDestino";
+            lblDestino.Size = new Size(15, 17);
+            lblDestino.TabIndex = 14;
+            lblDestino.Text = "a";
+            // 
             // FrmEstadistica
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.GradientInactiveCaption;
             ClientSize = new Size(856, 554);
+            ControlBox = false;
+            Controls.Add(lblDestino);
+            Controls.Add(lblDestinoFavorito);
             Controls.Add(dtgvMontoDestinos);
             Controls.Add(label1);
             Controls.Add(dtgvViajes);
@@ -242,6 +264,8 @@
             Controls.SetChildIndex(dtgvViajes, 0);
             Controls.SetChildIndex(label1, 0);
             Controls.SetChildIndex(dtgvMontoDestinos, 0);
+            Controls.SetChildIndex(lblDestinoFavorito, 0);
+            Controls.SetChildIndex(lblDestino, 0);
             ((System.ComponentModel.ISupportInitialize)dtgvViajes).EndInit();
             ((System.ComponentModel.ISupportInitialize)dtgvMontoDestinos).EndInit();
             ResumeLayout(false);
@@ -254,21 +278,22 @@
         private Label lblMontoTotal;
         private TextBox textBox1;
         private DataGridView dtgvViajes;
+        private Label label1;
+        private DataGridView dtgvMontoDestinos;
+        private DataGridViewTextBoxColumn DestinoLugar;
+        private DataGridViewTextBoxColumn MontoDestino;
         private DataGridViewTextBoxColumn Partida;
         private DataGridViewTextBoxColumn Destino;
         private DataGridViewTextBoxColumn FechaSalida;
         private DataGridViewTextBoxColumn FechaLlegada;
-        private Label label1;
         private DataGridViewTextBoxColumn Avion;
         private DataGridViewTextBoxColumn CantAsientosPremium;
         private DataGridViewTextBoxColumn CantAsientosTurista;
         private DataGridViewTextBoxColumn CostoClasePremium;
         private DataGridViewTextBoxColumn CostoClaseTurista;
-        private DataGridViewTextBoxColumn Pasajeros;
         private DataGridViewTextBoxColumn Estado;
         private DataGridViewTextBoxColumn RecaudacionTotal;
-        private DataGridView dtgvMontoDestinos;
-        private DataGridViewTextBoxColumn DestinoLugar;
-        private DataGridViewTextBoxColumn MontoDestino;
+        private Label lblDestinoFavorito;
+        private Label lblDestino;
     }
 }
