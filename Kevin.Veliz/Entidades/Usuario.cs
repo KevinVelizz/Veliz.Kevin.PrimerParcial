@@ -1,18 +1,16 @@
-﻿using System.Reflection.Metadata;
-using System.Collections.Generic;
-using System.Text.Json.Serialization;
+﻿using System.Text.Json.Serialization;
 using System.Text;
 
 namespace Entidades
 {
     public class Usuario : Persona
     {
-        private int legajo;      
-        private string correo;       
-        private string clave; 
+        private int legajo;
+        private string correo;
+        private string clave;
         private string perfil;
 
-        public Usuario (string apellido, string nombre, int legajo, string correo, string clave, string perfil) :base(nombre,apellido)
+        public Usuario(string apellido, string nombre, int legajo, string correo, string clave, string perfil) : base(nombre, apellido)
         {
             this.legajo = legajo;
             this.correo = correo;
@@ -31,7 +29,7 @@ namespace Entidades
         public string Correo
         {
             get { return this.correo; }
-            set { this.correo = value;}
+            set { this.correo = value; }
         }
 
         [JsonPropertyName("clave")]

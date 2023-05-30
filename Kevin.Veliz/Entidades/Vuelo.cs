@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Xml.Serialization;
-
+﻿using System.Text;
 namespace Entidades
 {
     public class Vuelo
@@ -12,7 +6,7 @@ namespace Entidades
         private string ciudadDePartida;
         private string ciudadDeDestino;
         private DateTime fechaDeVuelo;
-        private Aeronave avion;
+        private Aeronave Aeronave;
         private int cantidadAsientosDispPremium;
         private int cantidadAsientosDispTurista;
         private double costoClasePremium;
@@ -31,18 +25,17 @@ namespace Entidades
             this.costoClasePremium = 100;
             this.costoClaseTurista = 50;
         }
-        
-        public Vuelo(string ciudadDePartida, string ciudadDeDestino, DateTime fechaDeVuelo,Aeronave avion, DateTime fechaDeLLegada) :this()
+
+        public Vuelo(string ciudadDePartida, string ciudadDeDestino, DateTime fechaDeVuelo, Aeronave avion, DateTime fechaDeLLegada) : this()
         {
             this.ciudadDePartida = ciudadDePartida;
             this.ciudadDeDestino = ciudadDeDestino;
             this.fechaDeVuelo = fechaDeVuelo;
-            this.avion = avion;
+            this.Aeronave = avion;
             this.fechaDeLLegada = fechaDeLLegada;
-
             this.InicializarTipo();
         }
-        
+
         public string CiudadDePartida
         {
             get { return this.ciudadDePartida; }
@@ -66,7 +59,7 @@ namespace Entidades
             {
                 if (this.cantidadAsientosDispTurista == 0 && this.recaudacionTotal == 0)
                 {
-                    double aux = this.avion.CantidadAsientos - (20 * this.avion.CantidadAsientos / 100);
+                    double aux = this.Aeronave.CantidadAsientos - (20 * this.Aeronave.CantidadAsientos / 100);
                     this.cantidadAsientosDispTurista = (int)Math.Floor(aux);
                     return this.cantidadAsientosDispTurista;
                 }
@@ -80,11 +73,11 @@ namespace Entidades
 
         public int CantidadAsientosDispPremium
         {
-            get 
+            get
             {
                 if (this.cantidadAsientosDispPremium == 0 && this.recaudacionTotal == 0)
                 {
-                    double aux = this.avion.CantidadAsientos - (80 * this.avion.CantidadAsientos / 100);
+                    double aux = this.Aeronave.CantidadAsientos - (80 * this.Aeronave.CantidadAsientos / 100);
                     this.cantidadAsientosDispPremium = (int)Math.Floor(aux);
                     return this.cantidadAsientosDispPremium;
                 }
@@ -98,8 +91,8 @@ namespace Entidades
 
         public double CostoClasePremium
         {
-            get {return this.costoClasePremium; }
-            set { this.costoClasePremium  = value; }
+            get { return this.costoClasePremium; }
+            set { this.costoClasePremium = value; }
         }
 
         public double CostoClaseTurista
@@ -107,7 +100,7 @@ namespace Entidades
             get { return this.costoClaseTurista; }
             set { this.costoClaseTurista = value; }
         }
-        
+
         public List<Pasajero> Pasajeros
         {
             get { return this.pasajeros; }
@@ -116,10 +109,10 @@ namespace Entidades
 
         public Aeronave Avion
         {
-            get { return this.avion; }
-            set { this.avion = value; }
+            get { return this.Aeronave; }
+            set { this.Aeronave = value; }
         }
-        
+
         public DateTime FechaDeLLegada
         {
             get { return this.fechaDeLLegada; }
@@ -156,7 +149,7 @@ namespace Entidades
             {
                 foreach (Pasajero pasajeroAux in this.pasajeros)
                 {
-                    if (pasajeroAux ==  pasajero)
+                    if (pasajeroAux == pasajero)
                     {
                         if (pasajero.Premium)
                         {
@@ -170,14 +163,20 @@ namespace Entidades
                         }
                         break;
                     }
-                    
+
                 }
             }
         }
 
+        public static explicit operator double(Vuelo vuelo)
+        {
+            return vuelo.recaudacionTotal;
+        }
+
+
         public static bool operator ==(Vuelo vuelo, Vuelo vuelo1)
         {
-            return vuelo.avion == vuelo1.avion;
+            return vuelo.Aeronave == vuelo1.Aeronave && vuelo.enViaje == vuelo1.enViaje;
         }
 
         public static bool operator !=(Vuelo vuelo, Vuelo vuelo1)
@@ -200,9 +199,8 @@ namespace Entidades
 
         public override int GetHashCode()
         {
-            return Avion.Matricula.GetHashCode();  
+            return Avion.Matricula.GetHashCode();
         }
-
 
         public static bool operator ==(Vuelo vuelo, Pasajero pasajero)
         {
@@ -214,7 +212,24 @@ namespace Entidades
             return !(vuelo == pasajero);
         }
 
-       
+        public static Vuelo operator +(Vuelo vuelo, Pasajero pasajero)
+        {
+            if (vuelo != pasajero)
+            {
+                vuelo.pasajeros.Add(pasajero);
+            }
+            return vuelo;
+        }
+
+        public static Vuelo operator -(Vuelo vuelo, Pasajero pasajero)
+        {
+            if (vuelo == pasajero)
+            {
+                vuelo.pasajeros.Remove(pasajero);
+            }
+            return vuelo;
+        }
+
         public void VueloEnCurso()
         {
             if (DateTime.Now >= this.fechaDeVuelo && DateTime.Now < this.fechaDeLLegada && this.enViaje == false)
@@ -258,7 +273,7 @@ namespace Entidades
             {
                 foreach (EnumVuelosInternacionales clase in Enum.GetValues(typeof(EnumVuelosInternacionales)))
                 {
-                   
+
                     if (Funcionalidades.ReemplazarGuionBajo(clase) == this.ciudadDeDestino)
                     {
                         this.tipo = EnumTipoVuelo.Internacional;
@@ -275,12 +290,12 @@ namespace Entidades
             mensaje.AppendLine($"Destino: {this.ciudadDeDestino}");
             mensaje.AppendLine($"Fecha salida: {this.fechaDeVuelo}");
             mensaje.AppendLine($"Fecha llegada: {this.FechaDeLLegada}");
-            mensaje.AppendLine($"Avion: {this.avion.Matricula}");
+            mensaje.AppendLine($"Avion: {this.Aeronave.Matricula}");
             mensaje.AppendLine($"Asientos premium: {this.CantidadAsientosDispPremium}");
             mensaje.AppendLine($"Asientos turista: {this.CantidadAsientosDispTurista}");
             mensaje.AppendLine($"Costo premium {this.costoClasePremium}");
             mensaje.AppendLine($"Costo turista {this.costoClaseTurista}");
-            mensaje.AppendLine($"Estado: {this.estado}");
+
             return mensaje.ToString();
         }
 

@@ -1,5 +1,4 @@
 ﻿using Entidades;
-using System.Runtime.CompilerServices;
 
 namespace Aplicacion01
 {
@@ -14,32 +13,23 @@ namespace Aplicacion01
         {
             InitializeComponent();
             this.StartPosition = FormStartPosition.CenterScreen;
-            this.btnAgregar.Visible = true;
-            this.btnModificar.Visible = false;
+            this.btnAgregar1.Visible = true;
+            this.btnModificar1.Visible = false;
         }
 
         public FrmAeronave(Aeronave aeronave) : this()
         {
             this.aeronave = aeronave;
             this.InicializarComponentesModificacion(aeronave);
-            this.btnAgregar.Visible = false;
-            this.btnModificar.Visible = true;
+            this.btnAgregar1.Visible = false;
+            this.btnModificar1.Visible = true;
             this.txtMatricula.Enabled = false;
-            this.btnModificar.Location = new System.Drawing.Point(this.btnAgregar.Location.X, this.btnAgregar.Location.Y);
+            this.btnModificar1.Location = new System.Drawing.Point(this.btnAgregar1.Location.X, this.btnAgregar1.Location.Y);
         }
 
         private void FrmAeronave_Load(object sender, EventArgs e)
         {
-
-        }
-
-        private void btnAgregar_Click(object sender, EventArgs e)
-        {
-            if (this.ValidarComponentes())
-            {
-                this.aeronave = new Aeronave(this.txtMatricula.Text, cantidadAsientos, cantidadBanios, this.chkInternet.Checked, this.chkComida.Checked, capacidadBodegas);
-                this.DialogResult = DialogResult.OK;
-            }
+            //this.MinimumSize = new System.Drawing.Size()
         }
 
         private bool ValidarComponentes()
@@ -103,6 +93,22 @@ namespace Aplicacion01
 
         private void btnModificar_Click(object sender, EventArgs e)
         {
+
+        }
+
+        private void btnAgregar1_Click(object sender, EventArgs e)
+        {
+            if (this.ValidarComponentes())
+            {
+                this.aeronave = new Aeronave(this.txtMatricula.Text, cantidadAsientos, cantidadBanios, this.chkInternet.Checked, this.chkComida.Checked, capacidadBodegas);
+                this.cerrar = true;
+                this.DialogResult = DialogResult.OK;
+            }
+        }
+
+        private void btnModificar1_Click(object sender, EventArgs e)
+        {
+
             if (this.ValidarComponentes())
             {
                 this.aeronave.CapacidadBodega = this.capacidadBodegas;
@@ -110,6 +116,7 @@ namespace Aplicacion01
                 this.aeronave.CantidadAsientos = this.cantidadAsientos;
                 this.aeronave.ServicioComida = this.chkComida.Checked;
                 this.aeronave.ServicioInternet = this.chkInternet.Checked;
+                this.cerrar = true;
                 this.DialogResult = DialogResult.OK;
             }
         }

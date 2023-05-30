@@ -29,28 +29,20 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(IngresarUsuario));
-            btnIngresar = new Button();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges1 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges2 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges3 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges4 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             txtCorreo = new TextBox();
             txtContraseña = new TextBox();
             lblCorreo = new Label();
             lblContraseña = new Label();
             pictureBox1 = new PictureBox();
-            btnLimpiar = new Button();
             lblOlvidoContra = new Label();
+            btnIngresar1 = new Guna.UI2.WinForms.Guna2Button();
+            btnLimpiar1 = new Guna.UI2.WinForms.Guna2Button();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
-            // 
-            // btnIngresar
-            // 
-            btnIngresar.Anchor = AnchorStyles.None;
-            btnIngresar.Location = new Point(188, 205);
-            btnIngresar.Name = "btnIngresar";
-            btnIngresar.Size = new Size(100, 25);
-            btnIngresar.TabIndex = 0;
-            btnIngresar.Text = "Ingresar";
-            btnIngresar.UseVisualStyleBackColor = true;
-            btnIngresar.Click += btnIngresar_Click;
-            btnIngresar.MouseHover += btnIngresar_MouseHover;
             // 
             // txtCorreo
             // 
@@ -103,17 +95,6 @@
             pictureBox1.TabIndex = 8;
             pictureBox1.TabStop = false;
             // 
-            // btnLimpiar
-            // 
-            btnLimpiar.Anchor = AnchorStyles.None;
-            btnLimpiar.Location = new Point(188, 236);
-            btnLimpiar.Name = "btnLimpiar";
-            btnLimpiar.Size = new Size(100, 25);
-            btnLimpiar.TabIndex = 12;
-            btnLimpiar.Text = "Limpiar";
-            btnLimpiar.UseVisualStyleBackColor = true;
-            btnLimpiar.Click += btnLimpiar_Click;
-            // 
             // lblOlvidoContra
             // 
             lblOlvidoContra.Anchor = AnchorStyles.None;
@@ -124,20 +105,60 @@
             lblOlvidoContra.TabIndex = 13;
             lblOlvidoContra.Text = "¿olvidaste tu contraseña?";
             // 
+            // btnIngresar1
+            // 
+            btnIngresar1.Animated = true;
+            btnIngresar1.CustomizableEdges = customizableEdges1;
+            btnIngresar1.DisabledState.BorderColor = Color.DarkGray;
+            btnIngresar1.DisabledState.CustomBorderColor = Color.DarkGray;
+            btnIngresar1.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
+            btnIngresar1.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
+            btnIngresar1.FillColor = Color.FromArgb(255, 224, 192);
+            btnIngresar1.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            btnIngresar1.ForeColor = Color.Black;
+            btnIngresar1.Location = new Point(188, 207);
+            btnIngresar1.Name = "btnIngresar1";
+            btnIngresar1.PressedColor = Color.IndianRed;
+            btnIngresar1.ShadowDecoration.CustomizableEdges = customizableEdges2;
+            btnIngresar1.Size = new Size(100, 23);
+            btnIngresar1.TabIndex = 14;
+            btnIngresar1.Text = "Ingresar";
+            btnIngresar1.Click += btnIngresar1_Click;
+            // 
+            // btnLimpiar1
+            // 
+            btnLimpiar1.Animated = true;
+            btnLimpiar1.CustomizableEdges = customizableEdges3;
+            btnLimpiar1.DisabledState.BorderColor = Color.DarkGray;
+            btnLimpiar1.DisabledState.CustomBorderColor = Color.DarkGray;
+            btnLimpiar1.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
+            btnLimpiar1.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
+            btnLimpiar1.FillColor = Color.FromArgb(255, 224, 192);
+            btnLimpiar1.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            btnLimpiar1.ForeColor = Color.Black;
+            btnLimpiar1.Location = new Point(188, 236);
+            btnLimpiar1.Name = "btnLimpiar1";
+            btnLimpiar1.PressedColor = Color.IndianRed;
+            btnLimpiar1.ShadowDecoration.CustomizableEdges = customizableEdges4;
+            btnLimpiar1.Size = new Size(100, 23);
+            btnLimpiar1.TabIndex = 15;
+            btnLimpiar1.Text = "Limpiar";
+            btnLimpiar1.Click += btnLimpiar1_Click;
+            // 
             // IngresarUsuario
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.GradientInactiveCaption;
             ClientSize = new Size(465, 318);
+            Controls.Add(btnLimpiar1);
+            Controls.Add(btnIngresar1);
             Controls.Add(lblOlvidoContra);
-            Controls.Add(btnLimpiar);
             Controls.Add(pictureBox1);
             Controls.Add(lblContraseña);
             Controls.Add(lblCorreo);
             Controls.Add(txtContraseña);
             Controls.Add(txtCorreo);
-            Controls.Add(btnIngresar);
             Name = "IngresarUsuario";
             Text = " ";
             Load += IngresarUsuario_Load;
@@ -147,14 +168,13 @@
         }
 
         #endregion
-
-        private Button btnIngresar;
         private TextBox txtCorreo;
         private TextBox txtContraseña;
         private Label lblCorreo;
         private Label lblContraseña;
         private PictureBox pictureBox1;
-        private Button btnLimpiar;
         private Label lblOlvidoContra;
+        protected Guna.UI2.WinForms.Guna2Button btnIngresar1;
+        protected Guna.UI2.WinForms.Guna2Button btnLimpiar1;
     }
 }

@@ -28,6 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges1 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges2 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges3 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges4 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges5 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges6 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             txtMatricula = new TextBox();
             txtCantAsientos = new TextBox();
             txtCantBanios = new TextBox();
@@ -36,19 +42,31 @@
             lblCantBanios = new Label();
             chkInternet = new CheckBox();
             chkComida = new CheckBox();
-            btnAgregar = new Button();
             txtCapacidadBodega = new TextBox();
             lblCapacidadBodega = new Label();
-            btnModificar = new Button();
+            btnAgregar1 = new Guna.UI2.WinForms.Guna2Button();
+            btnModificar1 = new Guna.UI2.WinForms.Guna2Button();
             SuspendLayout();
-            // 
-            // btnCancelar
-            // 
-            btnCancelar.Location = new Point(234, 302);
             // 
             // btnLimpiar
             // 
-            btnLimpiar.Location = new Point(144, 302);
+            btnLimpiar.DialogResult = DialogResult.None;
+            btnLimpiar.DisabledState.BorderColor = Color.DarkGray;
+            btnLimpiar.DisabledState.CustomBorderColor = Color.DarkGray;
+            btnLimpiar.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
+            btnLimpiar.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
+            btnLimpiar.Location = new Point(143, 302);
+            btnLimpiar.ShadowDecoration.CustomizableEdges = customizableEdges1;
+            // 
+            // btnSalir
+            // 
+            btnSalir.DialogResult = DialogResult.None;
+            btnSalir.DisabledState.BorderColor = Color.DarkGray;
+            btnSalir.DisabledState.CustomBorderColor = Color.DarkGray;
+            btnSalir.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
+            btnSalir.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
+            btnSalir.Location = new Point(242, 302);
+            btnSalir.ShadowDecoration.CustomizableEdges = customizableEdges2;
             // 
             // txtMatricula
             // 
@@ -121,17 +139,6 @@
             chkComida.Text = "Comida";
             chkComida.UseVisualStyleBackColor = true;
             // 
-            // btnAgregar
-            // 
-            btnAgregar.Font = new Font("Segoe UI Symbol", 9F, FontStyle.Italic, GraphicsUnit.Point);
-            btnAgregar.Location = new Point(54, 302);
-            btnAgregar.Name = "btnAgregar";
-            btnAgregar.Size = new Size(75, 23);
-            btnAgregar.TabIndex = 15;
-            btnAgregar.Text = "Agregar";
-            btnAgregar.UseVisualStyleBackColor = true;
-            btnAgregar.Click += btnAgregar_Click;
-            // 
             // txtCapacidadBodega
             // 
             txtCapacidadBodega.Location = new Point(144, 177);
@@ -148,16 +155,47 @@
             lblCapacidadBodega.TabIndex = 18;
             lblCapacidadBodega.Text = "Capacidad de bodega:";
             // 
-            // btnModificar
+            // btnAgregar1
             // 
-            btnModificar.Font = new Font("Segoe UI Symbol", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            btnModificar.Location = new Point(54, 273);
-            btnModificar.Name = "btnModificar";
-            btnModificar.Size = new Size(75, 23);
-            btnModificar.TabIndex = 19;
-            btnModificar.Text = "Modificar";
-            btnModificar.UseVisualStyleBackColor = true;
-            btnModificar.Click += btnModificar_Click;
+            btnAgregar1.Animated = true;
+            btnAgregar1.BorderStyle = System.Drawing.Drawing2D.DashStyle.DashDot;
+            btnAgregar1.CustomizableEdges = customizableEdges3;
+            btnAgregar1.DisabledState.BorderColor = Color.DarkGray;
+            btnAgregar1.DisabledState.CustomBorderColor = Color.DarkGray;
+            btnAgregar1.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
+            btnAgregar1.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
+            btnAgregar1.FillColor = Color.FromArgb(255, 224, 192);
+            btnAgregar1.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            btnAgregar1.ForeColor = Color.Black;
+            btnAgregar1.Location = new Point(49, 302);
+            btnAgregar1.Name = "btnAgregar1";
+            btnAgregar1.PressedColor = Color.IndianRed;
+            btnAgregar1.ShadowDecoration.CustomizableEdges = customizableEdges4;
+            btnAgregar1.Size = new Size(78, 23);
+            btnAgregar1.TabIndex = 20;
+            btnAgregar1.Text = "Agregar";
+            btnAgregar1.Click += btnAgregar1_Click;
+            // 
+            // btnModificar1
+            // 
+            btnModificar1.Animated = true;
+            btnModificar1.BorderStyle = System.Drawing.Drawing2D.DashStyle.DashDot;
+            btnModificar1.CustomizableEdges = customizableEdges5;
+            btnModificar1.DisabledState.BorderColor = Color.DarkGray;
+            btnModificar1.DisabledState.CustomBorderColor = Color.DarkGray;
+            btnModificar1.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
+            btnModificar1.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
+            btnModificar1.FillColor = Color.FromArgb(255, 224, 192);
+            btnModificar1.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            btnModificar1.ForeColor = Color.Black;
+            btnModificar1.Location = new Point(49, 263);
+            btnModificar1.Name = "btnModificar1";
+            btnModificar1.PressedColor = Color.IndianRed;
+            btnModificar1.ShadowDecoration.CustomizableEdges = customizableEdges6;
+            btnModificar1.Size = new Size(78, 23);
+            btnModificar1.TabIndex = 21;
+            btnModificar1.Text = "Modificar";
+            btnModificar1.Click += btnModificar1_Click;
             // 
             // FrmAeronave
             // 
@@ -165,11 +203,10 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.GradientInactiveCaption;
             ClientSize = new Size(332, 350);
-            ControlBox = false;
-            Controls.Add(btnModificar);
+            Controls.Add(btnModificar1);
+            Controls.Add(btnAgregar1);
             Controls.Add(lblCapacidadBodega);
             Controls.Add(txtCapacidadBodega);
-            Controls.Add(btnAgregar);
             Controls.Add(chkComida);
             Controls.Add(chkInternet);
             Controls.Add(lblCantBanios);
@@ -178,9 +215,12 @@
             Controls.Add(txtCantBanios);
             Controls.Add(txtCantAsientos);
             Controls.Add(txtMatricula);
+            FormBorderStyle = FormBorderStyle.Sizable;
             Name = "FrmAeronave";
             Text = "FrmAeronave";
             Load += FrmAeronave_Load;
+            Controls.SetChildIndex(btnLimpiar, 0);
+            Controls.SetChildIndex(btnSalir, 0);
             Controls.SetChildIndex(txtMatricula, 0);
             Controls.SetChildIndex(txtCantAsientos, 0);
             Controls.SetChildIndex(txtCantBanios, 0);
@@ -189,12 +229,10 @@
             Controls.SetChildIndex(lblCantBanios, 0);
             Controls.SetChildIndex(chkInternet, 0);
             Controls.SetChildIndex(chkComida, 0);
-            Controls.SetChildIndex(btnAgregar, 0);
             Controls.SetChildIndex(txtCapacidadBodega, 0);
             Controls.SetChildIndex(lblCapacidadBodega, 0);
-            Controls.SetChildIndex(btnCancelar, 0);
-            Controls.SetChildIndex(btnLimpiar, 0);
-            Controls.SetChildIndex(btnModificar, 0);
+            Controls.SetChildIndex(btnAgregar1, 0);
+            Controls.SetChildIndex(btnModificar1, 0);
             ResumeLayout(false);
             PerformLayout();
         }
@@ -211,9 +249,9 @@
         private CheckBox chkComida;
         private Label lblInternet;
         private Label lblComida;
-        private Button btnAgregar;
         private TextBox txtCapacidadBodega;
         private Label lblCapacidadBodega;
-        private Button btnModificar;
+        protected Guna.UI2.WinForms.Guna2Button btnAgregar1;
+        protected Guna.UI2.WinForms.Guna2Button btnModificar1;
     }
 }

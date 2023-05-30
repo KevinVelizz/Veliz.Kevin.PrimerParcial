@@ -21,7 +21,7 @@ namespace Entidades
         }
 
         public static double CalcularDuracionNacional()
-        {   
+        {
             Random numRandom = new Random();
             double duracion = numRandom.Next(2, 5);
             return duracion;
@@ -39,7 +39,7 @@ namespace Entidades
             return elemento.ToString().Replace("_", " ");
         }
 
-        public static double CalcularPrecio(bool premium, string destino,double duracion)
+        public static double CalcularPrecio(bool premium, string destino, double duracion)
         {
             double valorPrecio = 0;
             string aux;
@@ -91,7 +91,7 @@ namespace Entidades
             if (listaVuelos.Count > 0 && listaVuelos is not null)
             {
                 destinoFavorito = listaVuelos.GroupBy(v => v.CiudadDeDestino).OrderByDescending(g => g.Count()).Select(g => g.Key).FirstOrDefault();
-            
+
             }
             return destinoFavorito ?? "";
         }

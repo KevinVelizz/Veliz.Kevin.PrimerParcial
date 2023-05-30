@@ -113,6 +113,10 @@ Dictionary<string,double> diccionarioOrdenado = this.recaudacionDestino.OrderByD
 ### **Contras**
 
 * Al momento de que un vuelo este este en el estado de "en vuelo" o en "realizado" se necesitará volver a presionar en el strip de "Vuelos", para recargar su información.
+* Manipulación de las listas y no la "lista" del DataGridView, debido a incovenientes en el uso de dicho componente. Así justificando las serealizaciones y deserealizaciones constantes.
+
+
+### Valor Agregado
 
 
 

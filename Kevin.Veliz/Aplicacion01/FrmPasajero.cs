@@ -8,7 +8,6 @@ namespace Aplicacion01
         private List<Equipaje> equipajes;
         private string claseSeleccionada;
         private List<Vuelo> vuelos;
-        private int indexVueloSeleccionado;
         private bool modifica;
 
         public FrmPasajero()
@@ -78,7 +77,7 @@ namespace Aplicacion01
                     comboBox.Text = "--Seleccione--";
                 }
             }
-            
+
         }
 
         private void btnAgregar_Click(object sender, EventArgs e)
@@ -127,7 +126,7 @@ namespace Aplicacion01
 
             if (verificar)
             {
-                this.pasajero = new Pasajero(this.txtNombre.Text, this.txtApellido.Text, dni, edad, this.equipajes, premium, equipajeMano,this.chkVacunado.Checked);
+                this.pasajero = new Pasajero(this.txtNombre.Text, this.txtApellido.Text, dni, edad, this.equipajes, premium, equipajeMano, this.chkVacunado.Checked);
                 this.DialogResult = DialogResult.OK;
             }
         }
@@ -143,12 +142,12 @@ namespace Aplicacion01
             this.txtNombre.Text = this.pasajero.Nombre;
             this.txtDNI.Text = this.pasajero.Dni.ToString();
             this.txtEdad.Text = this.pasajero.Edad.ToString();
-            
-             if (this.pasajero is not null && this.pasajero.Equipajes is not null)
+
+            if (this.pasajero is not null && this.pasajero.Equipajes is not null)
             {
                 this.nudPesoEquipaje1.Value = (decimal)this.pasajero.Equipajes[0].Peso;
             }
-            
+
             if (pasajero.Equipajes.Count > 1)
             {
                 this.nudPesoEquipaje2.Value = (decimal)this.pasajero.Equipajes[1].Peso;
@@ -225,7 +224,7 @@ namespace Aplicacion01
             if (verificar)
             {
                 this.pasajero.Nombre = txtNombre.Text;
-                this.pasajero.Apellido = txtApellido.Text;              
+                this.pasajero.Apellido = txtApellido.Text;
                 this.DialogResult = DialogResult.OK;
             }
         }

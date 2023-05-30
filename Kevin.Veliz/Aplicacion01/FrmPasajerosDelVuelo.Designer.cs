@@ -28,20 +28,32 @@
         /// </summary>
         private void InitializeComponent()
         {
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges1 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges2 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             dtgvPasajerosDelVuelo = new DataGridView();
             lblNombre = new Label();
             ((System.ComponentModel.ISupportInitialize)dtgvPasajerosDelVuelo).BeginInit();
             SuspendLayout();
             // 
-            // btnCancelar
-            // 
-            btnCancelar.Location = new Point(450, 311);
-            btnCancelar.Text = "Salir";
-            // 
             // btnLimpiar
             // 
-            btnLimpiar.Location = new Point(369, 312);
-            btnLimpiar.Visible = false;
+            btnLimpiar.DialogResult = DialogResult.None;
+            btnLimpiar.DisabledState.BorderColor = Color.DarkGray;
+            btnLimpiar.DisabledState.CustomBorderColor = Color.DarkGray;
+            btnLimpiar.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
+            btnLimpiar.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
+            btnLimpiar.Location = new Point(363, 312);
+            btnLimpiar.ShadowDecoration.CustomizableEdges = customizableEdges1;
+            // 
+            // btnSalir
+            // 
+            btnSalir.DialogResult = DialogResult.None;
+            btnSalir.DisabledState.BorderColor = Color.DarkGray;
+            btnSalir.DisabledState.CustomBorderColor = Color.DarkGray;
+            btnSalir.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
+            btnSalir.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
+            btnSalir.Location = new Point(447, 312);
+            btnSalir.ShadowDecoration.CustomizableEdges = customizableEdges2;
             // 
             // dtgvPasajerosDelVuelo
             // 
@@ -76,10 +88,10 @@
             Name = "FrmPasajerosDelVuelo";
             Text = "FrmModificaPasajero";
             Load += FrmPasajerosDelVuelo_Load;
+            Controls.SetChildIndex(btnLimpiar, 0);
+            Controls.SetChildIndex(btnSalir, 0);
             Controls.SetChildIndex(dtgvPasajerosDelVuelo, 0);
             Controls.SetChildIndex(lblNombre, 0);
-            Controls.SetChildIndex(btnCancelar, 0);
-            Controls.SetChildIndex(btnLimpiar, 0);
             ((System.ComponentModel.ISupportInitialize)dtgvPasajerosDelVuelo).EndInit();
             ResumeLayout(false);
             PerformLayout();

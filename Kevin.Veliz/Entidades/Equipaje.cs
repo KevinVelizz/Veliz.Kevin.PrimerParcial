@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Text;
 
 namespace Entidades
 {
@@ -11,7 +7,7 @@ namespace Entidades
         public string? Tipo { get; set; }
         public double Peso { get; set; }
 
-        public Equipaje(){ }
+        public Equipaje() { }
 
         public Equipaje(string tipo, double peso)
         {

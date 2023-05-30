@@ -28,6 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges1 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges2 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             lblTitulo = new Label();
             btnCalcular = new Button();
             lblMontoTotal = new Label();
@@ -42,7 +44,6 @@
             CantAsientosTurista = new DataGridViewTextBoxColumn();
             CostoClasePremium = new DataGridViewTextBoxColumn();
             CostoClaseTurista = new DataGridViewTextBoxColumn();
-            Estado = new DataGridViewTextBoxColumn();
             RecaudacionTotal = new DataGridViewTextBoxColumn();
             label1 = new Label();
             dtgvMontoDestinos = new DataGridView();
@@ -54,18 +55,25 @@
             ((System.ComponentModel.ISupportInitialize)dtgvMontoDestinos).BeginInit();
             SuspendLayout();
             // 
-            // btnCancelar
-            // 
-            btnCancelar.Anchor = AnchorStyles.None;
-            btnCancelar.Location = new Point(755, 519);
-            btnCancelar.Text = "Salir";
-            btnCancelar.Click += btnCancelar_Click;
-            // 
             // btnLimpiar
             // 
-            btnLimpiar.Anchor = AnchorStyles.None;
-            btnLimpiar.Location = new Point(661, 519);
-            btnLimpiar.Visible = false;
+            btnLimpiar.DialogResult = DialogResult.None;
+            btnLimpiar.DisabledState.BorderColor = Color.DarkGray;
+            btnLimpiar.DisabledState.CustomBorderColor = Color.DarkGray;
+            btnLimpiar.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
+            btnLimpiar.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
+            btnLimpiar.Location = new Point(658, 519);
+            btnLimpiar.ShadowDecoration.CustomizableEdges = customizableEdges1;
+            // 
+            // btnSalir
+            // 
+            btnSalir.DialogResult = DialogResult.None;
+            btnSalir.DisabledState.BorderColor = Color.DarkGray;
+            btnSalir.DisabledState.CustomBorderColor = Color.DarkGray;
+            btnSalir.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
+            btnSalir.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
+            btnSalir.Location = new Point(752, 519);
+            btnSalir.ShadowDecoration.CustomizableEdges = customizableEdges2;
             // 
             // lblTitulo
             // 
@@ -117,7 +125,7 @@
             // 
             dtgvViajes.Anchor = AnchorStyles.None;
             dtgvViajes.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dtgvViajes.Columns.AddRange(new DataGridViewColumn[] { Partida, Destino, FechaSalida, FechaLlegada, Avion, CantAsientosPremium, CantAsientosTurista, CostoClasePremium, CostoClaseTurista, Estado, RecaudacionTotal });
+            dtgvViajes.Columns.AddRange(new DataGridViewColumn[] { Partida, Destino, FechaSalida, FechaLlegada, Avion, CantAsientosPremium, CantAsientosTurista, CostoClasePremium, CostoClaseTurista, RecaudacionTotal });
             dtgvViajes.Location = new Point(12, 29);
             dtgvViajes.MultiSelect = false;
             dtgvViajes.Name = "dtgvViajes";
@@ -169,11 +177,6 @@
             // 
             CostoClaseTurista.HeaderText = "Costo turista";
             CostoClaseTurista.Name = "CostoClaseTurista";
-            // 
-            // Estado
-            // 
-            Estado.HeaderText = "Estado";
-            Estado.Name = "Estado";
             // 
             // RecaudacionTotal
             // 
@@ -242,7 +245,6 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.GradientInactiveCaption;
             ClientSize = new Size(856, 554);
-            ControlBox = false;
             Controls.Add(lblDestino);
             Controls.Add(lblDestinoFavorito);
             Controls.Add(dtgvMontoDestinos);
@@ -255,7 +257,7 @@
             Name = "FrmEstadistica";
             Text = "Estadisticas";
             Load += FrmEstadisticaBase_Load;
-            Controls.SetChildIndex(btnCancelar, 0);
+            Controls.SetChildIndex(btnSalir, 0);
             Controls.SetChildIndex(btnLimpiar, 0);
             Controls.SetChildIndex(lblTitulo, 0);
             Controls.SetChildIndex(btnCalcular, 0);
@@ -282,6 +284,8 @@
         private DataGridView dtgvMontoDestinos;
         private DataGridViewTextBoxColumn DestinoLugar;
         private DataGridViewTextBoxColumn MontoDestino;
+        private Label lblDestinoFavorito;
+        private Label lblDestino;
         private DataGridViewTextBoxColumn Partida;
         private DataGridViewTextBoxColumn Destino;
         private DataGridViewTextBoxColumn FechaSalida;
@@ -291,9 +295,6 @@
         private DataGridViewTextBoxColumn CantAsientosTurista;
         private DataGridViewTextBoxColumn CostoClasePremium;
         private DataGridViewTextBoxColumn CostoClaseTurista;
-        private DataGridViewTextBoxColumn Estado;
         private DataGridViewTextBoxColumn RecaudacionTotal;
-        private Label lblDestinoFavorito;
-        private Label lblDestino;
     }
 }

@@ -28,7 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
-            btnAgregar = new Button();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges1 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges2 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges3 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges4 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges5 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges6 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             txtCostoTurista = new TextBox();
             cboTipoVuelo = new ComboBox();
             lblTipoVuelo = new Label();
@@ -48,27 +53,30 @@
             label1 = new Label();
             cboAeronave = new ComboBox();
             lblInfoAeronave = new Label();
-            btnModifcar = new Button();
+            btnModificar1 = new Guna.UI2.WinForms.Guna2Button();
+            btnAgregar1 = new Guna.UI2.WinForms.Guna2Button();
             SuspendLayout();
-            // 
-            // btnCancelar
-            // 
-            btnCancelar.Location = new Point(252, 559);
             // 
             // btnLimpiar
             // 
-            btnLimpiar.Location = new Point(141, 559);
+            btnLimpiar.DialogResult = DialogResult.None;
+            btnLimpiar.DisabledState.BorderColor = Color.DarkGray;
+            btnLimpiar.DisabledState.CustomBorderColor = Color.DarkGray;
+            btnLimpiar.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
+            btnLimpiar.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
+            btnLimpiar.Location = new Point(155, 559);
+            btnLimpiar.ShadowDecoration.CustomizableEdges = customizableEdges1;
             // 
-            // btnAgregar
+            // btnSalir
             // 
-            btnAgregar.Font = new Font("Segoe UI Symbol", 9F, FontStyle.Italic, GraphicsUnit.Point);
-            btnAgregar.Location = new Point(41, 559);
-            btnAgregar.Name = "btnAgregar";
-            btnAgregar.Size = new Size(75, 23);
-            btnAgregar.TabIndex = 0;
-            btnAgregar.Text = "Agregar";
-            btnAgregar.UseVisualStyleBackColor = true;
-            btnAgregar.Click += btnAgregar_Click;
+            btnSalir.DialogResult = DialogResult.None;
+            btnSalir.DisabledState.BorderColor = Color.DarkGray;
+            btnSalir.DisabledState.CustomBorderColor = Color.DarkGray;
+            btnSalir.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
+            btnSalir.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
+            btnSalir.Location = new Point(275, 559);
+            btnSalir.ShadowDecoration.CustomizableEdges = customizableEdges2;
+            btnSalir.Text = "Cancelar";
             // 
             // txtCostoTurista
             // 
@@ -86,7 +94,6 @@
             cboTipoVuelo.TabIndex = 6;
             cboTipoVuelo.Text = "--Seleccione--";
             cboTipoVuelo.SelectedIndexChanged += cboTipoVuelo_SelectedIndexChanged;
-            cboTipoVuelo.SelectionChangeCommitted += cboTipoVuelo_SelectionChangeCommitted;
             // 
             // lblTipoVuelo
             // 
@@ -256,24 +263,54 @@
             lblInfoAeronave.Text = "label2";
             lblInfoAeronave.Visible = false;
             // 
-            // btnModifcar
+            // btnModificar1
             // 
-            btnModifcar.Font = new Font("Segoe UI Symbol", 9F, FontStyle.Italic, GraphicsUnit.Point);
-            btnModifcar.Location = new Point(41, 530);
-            btnModifcar.Name = "btnModifcar";
-            btnModifcar.Size = new Size(75, 23);
-            btnModifcar.TabIndex = 26;
-            btnModifcar.Text = "Modificar";
-            btnModifcar.UseVisualStyleBackColor = true;
-            btnModifcar.Click += btnModifcar_Click;
+            btnModificar1.Animated = true;
+            btnModificar1.CustomizableEdges = customizableEdges3;
+            btnModificar1.DisabledState.BorderColor = Color.DarkGray;
+            btnModificar1.DisabledState.CustomBorderColor = Color.DarkGray;
+            btnModificar1.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
+            btnModificar1.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
+            btnModificar1.FillColor = Color.FromArgb(255, 224, 192);
+            btnModificar1.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            btnModificar1.ForeColor = Color.Black;
+            btnModificar1.Location = new Point(50, 520);
+            btnModificar1.Name = "btnModificar1";
+            btnModificar1.PressedColor = Color.IndianRed;
+            btnModificar1.ShadowDecoration.CustomizableEdges = customizableEdges4;
+            btnModificar1.Size = new Size(78, 23);
+            btnModificar1.TabIndex = 28;
+            btnModificar1.Text = "Modificar";
+            btnModificar1.Click += btnModificar1_Click;
+            // 
+            // btnAgregar1
+            // 
+            btnAgregar1.Animated = true;
+            btnAgregar1.CustomizableEdges = customizableEdges5;
+            btnAgregar1.DisabledState.BorderColor = Color.DarkGray;
+            btnAgregar1.DisabledState.CustomBorderColor = Color.DarkGray;
+            btnAgregar1.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
+            btnAgregar1.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
+            btnAgregar1.FillColor = Color.FromArgb(255, 224, 192);
+            btnAgregar1.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            btnAgregar1.ForeColor = Color.Black;
+            btnAgregar1.Location = new Point(50, 559);
+            btnAgregar1.Name = "btnAgregar1";
+            btnAgregar1.PressedColor = Color.IndianRed;
+            btnAgregar1.ShadowDecoration.CustomizableEdges = customizableEdges6;
+            btnAgregar1.Size = new Size(78, 23);
+            btnAgregar1.TabIndex = 27;
+            btnAgregar1.Text = "Agregar";
+            btnAgregar1.Click += btnAgregar1_Click;
             // 
             // FrmVuelo
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
-            AutoScaleMode = AutoScaleMode.Font;
+            AutoScaleDimensions = new SizeF(96F, 96F);
+            AutoScaleMode = AutoScaleMode.Dpi;
             BackColor = SystemColors.GradientInactiveCaption;
             ClientSize = new Size(393, 598);
-            Controls.Add(btnModifcar);
+            Controls.Add(btnModificar1);
+            Controls.Add(btnAgregar1);
             Controls.Add(lblInfoAeronave);
             Controls.Add(cboAeronave);
             Controls.Add(label1);
@@ -293,13 +330,11 @@
             Controls.Add(lblTipoVuelo);
             Controls.Add(cboTipoVuelo);
             Controls.Add(txtCostoTurista);
-            Controls.Add(btnAgregar);
             Name = "FrmVuelo";
             Text = "FrmVuelo";
             Load += FrmVuelo_Load;
-            Controls.SetChildIndex(btnCancelar, 0);
             Controls.SetChildIndex(btnLimpiar, 0);
-            Controls.SetChildIndex(btnAgregar, 0);
+            Controls.SetChildIndex(btnSalir, 0);
             Controls.SetChildIndex(txtCostoTurista, 0);
             Controls.SetChildIndex(cboTipoVuelo, 0);
             Controls.SetChildIndex(lblTipoVuelo, 0);
@@ -319,14 +354,13 @@
             Controls.SetChildIndex(label1, 0);
             Controls.SetChildIndex(cboAeronave, 0);
             Controls.SetChildIndex(lblInfoAeronave, 0);
-            Controls.SetChildIndex(btnModifcar, 0);
+            Controls.SetChildIndex(btnAgregar1, 0);
+            Controls.SetChildIndex(btnModificar1, 0);
             ResumeLayout(false);
             PerformLayout();
         }
 
         #endregion
-
-        private Button btnAgregar;
         private TextBox txtCostoTurista;
         private ComboBox cboTipoVuelo;
         private Label lblTipoVuelo;
@@ -346,6 +380,7 @@
         private Label label1;
         private ComboBox cboAeronave;
         private Label lblInfoAeronave;
-        private Button btnModifcar;
+        protected Guna.UI2.WinForms.Guna2Button btnModificar1;
+        protected Guna.UI2.WinForms.Guna2Button btnAgregar1;
     }
 }

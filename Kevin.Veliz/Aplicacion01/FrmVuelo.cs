@@ -35,16 +35,16 @@ namespace Aplicacion01
         public FrmVuelo(List<Aeronave> listaAeronaves) : this()
         {
             this.aeronaves = listaAeronaves;
-            this.btnAgregar.Visible = true;
-            this.btnModifcar.Visible = false;
+            this.btnAgregar1.Visible = true;
+            this.btnModificar1.Visible = false;
         }
 
         public FrmVuelo(Vuelo vuelo, List<Aeronave> aeronaves) : this()
         {
             this.vuelo = vuelo;
             this.aeronaves = aeronaves;
-            this.btnModifcar.Location = new System.Drawing.Point(this.btnAgregar.Location.X, this.btnAgregar.Location.Y);
-            this.btnAgregar.Visible = false;
+            this.btnModificar1.Location = new System.Drawing.Point(this.btnAgregar1.Location.X, this.btnAgregar1.Location.Y);
+            this.btnAgregar1.Visible = false;
             this.modifica = true;
         }
 
@@ -103,11 +103,6 @@ namespace Aplicacion01
             }
         }
 
-        private void cboTipoVuelo_SelectionChangeCommitted(object sender, EventArgs e)
-        {
-
-        }
-
         private void cboTipoVuelo_SelectedIndexChanged(object sender, EventArgs e)
         {
 
@@ -139,23 +134,6 @@ namespace Aplicacion01
                         comboBox.Items.Add(Funcionalidades.ReemplazarGuionBajo(clase));
                     }
                 }
-            }
-        }
-
-        private void btnAgregar_Click(object sender, EventArgs e)
-        {
-            if (this.fechaSeleccionado != DateTime.Today && this.avionSeleccionado != null && this.txtCostoPremium.Text != "" && this.txtCostoTurista.Text != "")
-            {
-                this.vuelo = new Vuelo(this.salidaSeleccionado ?? "", this.destinoSeleccionado ?? "", this.fechaSeleccionado, ((Aeronave)cboAeronave.Items[this.indexAeronaveSeleccionada]), this.fechaDeLlegada, "No viajó");
-                this.vuelo.CostoClasePremium = double.Parse(txtCostoPremium.Text);
-                this.vuelo.CostoClaseTurista = double.Parse(txtCostoTurista.Text);
-                ((Aeronave)cboAeronave.Items[this.indexAeronaveSeleccionada]).Disponible = false;
-                Archivos.SerealizarDatos(this.aeronaves, Archivos.pathAeronaves);
-                this.DialogResult = DialogResult.OK;
-            }
-            else
-            {
-                MessageBox.Show("Complete los campos.");
             }
         }
 
@@ -226,7 +204,26 @@ namespace Aplicacion01
             this.cboAeronave.SelectedIndex = cboAeronave.FindStringExact(this.vuelo.Avion.ToString());
         }
 
-        private void btnModifcar_Click(object sender, EventArgs e)
+
+        private void btnAgregar1_Click(object sender, EventArgs e)
+        {
+            if (this.fechaSeleccionado != DateTime.Today && this.avionSeleccionado != null && this.txtCostoPremium.Text != "" && this.txtCostoTurista.Text != "")
+            {
+                this.vuelo = new Vuelo(this.salidaSeleccionado ?? "", this.destinoSeleccionado ?? "", this.fechaSeleccionado, ((Aeronave)cboAeronave.Items[this.indexAeronaveSeleccionada]), this.fechaDeLlegada);
+                this.vuelo.CostoClasePremium = double.Parse(txtCostoPremium.Text);
+                this.vuelo.CostoClaseTurista = double.Parse(txtCostoTurista.Text);
+                ((Aeronave)cboAeronave.Items[this.indexAeronaveSeleccionada]).Disponible = false;
+                Archivos.SerealizarDatos(this.aeronaves, Archivos.PathAeronaves);
+                this.cerrar = true;
+                this.DialogResult = DialogResult.OK;
+            }
+            else
+            {
+                MessageBox.Show("Complete los campos.");
+            }
+        }
+
+        private void btnModificar1_Click(object sender, EventArgs e)
         {
             this.vuelo.Avion = (Aeronave)this.cboAeronave.Items[this.indexAeronaveSeleccionada];
             this.vuelo.CiudadDePartida = this.salidaSeleccionado ?? "";
@@ -236,7 +233,8 @@ namespace Aplicacion01
             this.vuelo.CostoClasePremium = double.Parse(txtCostoPremium.Text);
             this.vuelo.CostoClaseTurista = double.Parse(txtCostoTurista.Text);
             ((Aeronave)cboAeronave.Items[this.indexAeronaveSeleccionada]).Disponible = false;
-            Archivos.SerealizarDatos(this.aeronaves, Archivos.pathAeronaves);
+            Archivos.SerealizarDatos(this.aeronaves, Archivos.PathAeronaves);
+            this.cerrar = true;
             this.DialogResult = DialogResult.OK;
         }
 
@@ -245,7 +243,5 @@ namespace Aplicacion01
             get { return this.vuelo; }
             set { this.vuelo = value; }
         }
-
-
     }
 }

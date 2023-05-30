@@ -5,33 +5,55 @@ using System.Text.Json;
 
 namespace Entidades
 {
-    public static class Archivos
+    public sealed class Archivos
     {
-        public static DirectoryInfo TryGetSolutionDirectoryInfo(string currentPath = null)
+        private static string pathAeronaves = Path.Combine(Archivos.TryGetSolutionDirectoryInfo().Parent.FullName, @"listaAeronaves.xml");
+        private static string pathUsuario = Path.Combine(Archivos.TryGetSolutionDirectoryInfo().Parent.FullName, @"MOCK_DATA.json");
+        public static string pathPasajeros = Path.Combine(Archivos.TryGetSolutionDirectoryInfo().Parent.FullName, @"listaViajeros.xml");
+        public static string pathVuelos = Path.Combine(Archivos.TryGetSolutionDirectoryInfo().Parent.FullName, @"listaVuelos.json");
+        public static string pathDataUsuario = Path.Combine(Archivos.TryGetSolutionDirectoryInfo().Parent.FullName, @"usuarios.log");
+        public static string pathEstadistica = Path.Combine(Archivos.TryGetSolutionDirectoryInfo().Parent.FullName, @"estadistica.log");
+
+        public static string PathAeronaves
         {
-            var directory = new DirectoryInfo(
-                currentPath ?? Directory.GetCurrentDirectory());
+            get { return pathAeronaves; }
+        }
+
+        public static string PathUsuario
+        {
+            get { return pathAeronaves; }
+        }
+
+        public static string PathPasajeros
+        {
+            get { return pathPasajeros; }
+        }
+
+        public static string PathVuelos
+        {
+            get { return PathVuelos; }
+        }
+
+        public static string PathDataUsuario
+        {
+            get { return pathDataUsuario; }
+        }
+
+
+        public static string PathEstadistica
+        {
+            get { return pathEstadistica; }
+        }
+
+        public static DirectoryInfo? TryGetSolutionDirectoryInfo(string currentPath = null)
+        {
+            DirectoryInfo? directory = new DirectoryInfo(currentPath ?? Directory.GetCurrentDirectory());
             while (directory != null && !directory.GetFiles("Program.cs").Any())
             {
                 directory = directory.Parent;
             }
             return directory;
         }
-
-        
-        public static string pathAeronaves = Path.Combine(Archivos.TryGetSolutionDirectoryInfo().Parent.FullName, @"listaAeronaves.xml");
-
-        //Path Usuarios.
-        public static string pathUsuario = Path.Combine(Archivos.TryGetSolutionDirectoryInfo().Parent.FullName, @"MOCK_DATA.json");
-
-        //Path Viajeros.
-        public static string pathPasajeros = Path.Combine(Archivos.TryGetSolutionDirectoryInfo().Parent.FullName, @"listaViajeros.xml");
-
-        public static string pathVuelos = Path.Combine(Archivos.TryGetSolutionDirectoryInfo().Parent.FullName, @"listaVuelos.json");
-
-        public static string pathDataUsuario = Path.Combine(Archivos.TryGetSolutionDirectoryInfo().Parent.FullName, @"usuarios.log");
-
-        public static string pathEstadistica = Path.Combine(Archivos.TryGetSolutionDirectoryInfo().Parent.FullName, @"estadistica.log");
 
         public static void SerealizarDatosUser(Usuario usuario)
         {
@@ -41,7 +63,7 @@ namespace Entidades
                 writer.Write($"{DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss")} - {usuario}");
             }
         }
-        public static void SerealizarDatos <T>(List<T> lista, string path)
+        public static void SerealizarDatos<T>(List<T> lista, string path)
         {
             try
             {
@@ -61,17 +83,17 @@ namespace Entidades
         {
             List<Aeronave> listXML = new List<Aeronave>();
             try
+            {
+                using (XmlTextReader sr = new XmlTextReader(Archivos.pathAeronaves))
                 {
-                    using (XmlTextReader sr = new XmlTextReader(Archivos.pathAeronaves))
-                    {
-                        XmlSerializer serializer = new XmlSerializer((typeof(List<Aeronave>)));
-                        listXML = serializer.Deserialize(sr) as List<Aeronave> ?? new();
-                    }
+                    XmlSerializer serializer = new XmlSerializer((typeof(List<Aeronave>)));
+                    listXML = serializer.Deserialize(sr) as List<Aeronave> ?? new();
                 }
-                catch (Exception ex)
-                {
-                    Console.WriteLine($"ERROR: {ex.Message} - {ex.StackTrace}");
-                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"ERROR: {ex.Message} - {ex.StackTrace}");
+            }
             return listXML;
         }
 
@@ -137,14 +159,14 @@ namespace Entidades
             }
         }
 
-        public static void SerealizarEstadistica(Dictionary<string,double> infoCadaDestino, double montoTotal)
+        public static void SerealizarEstadistica(Dictionary<string, double> infoCadaDestino, double montoTotal)
         {
             try
             {
                 using (TextWriter writer = new StreamWriter(Archivos.pathEstadistica))
                 {
                     writer.WriteLine("Monto recuadado cada destino:");
-                    foreach (KeyValuePair<string,double> info in infoCadaDestino)
+                    foreach (KeyValuePair<string, double> info in infoCadaDestino)
                     {
                         writer.WriteLine($"{info.Key} - ${info.Value}");
                     }

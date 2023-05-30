@@ -19,9 +19,9 @@ namespace Entidades
             this.equipajes = new List<Equipaje>();
         }
 
-        public Pasajero(string nombre, string apellido, int dni, int edad, List<Equipaje> equipajes, bool premium, bool equipajeDeMano) : base(nombre,apellido)
+        public Pasajero(string nombre, string apellido, int dni, int edad, List<Equipaje> equipajes, bool premium, bool equipajeDeMano) : base(nombre, apellido)
         {
-            this.dni = dni; 
+            this.dni = dni;
             this.edad = edad;
             this.equipajes = equipajes;
             this.premium = premium;
@@ -56,7 +56,7 @@ namespace Entidades
             get
             {
                 return this.equipajes[index];
-              
+
             }
             set
             {
@@ -110,6 +110,16 @@ namespace Entidades
             }
         }
 
+        public static implicit operator int(Pasajero pasajero)
+        {
+            return pasajero.Dni;
+        }
+
+        public static explicit operator Pasajero(int dni)
+        {
+            return new Pasajero("", "", dni, 0, new List<Equipaje>(), false, false);
+        }
+
         public static bool operator ==(Pasajero pasajero1, Pasajero pasajero2)
         {
             return pasajero1.dni == pasajero2.dni;
@@ -144,7 +154,7 @@ namespace Entidades
             mensaje.AppendLine($"DNI: {this.dni}");
             mensaje.AppendLine($"Edad: {this.edad}");
 
-            if (this.equipajes != null )
+            if (this.equipajes != null)
             {
                 foreach (Equipaje equipajeClase in this.equipajes)
                 {
@@ -158,12 +168,12 @@ namespace Entidades
                 {
                     mensaje.AppendLine("Clase: Turista");
                 }
-            }    
+            }
 
             if (this.equipajeDeMano)
             {
                 mensaje.AppendLine($"Equipaje de mano: Si  ");
-            }    
+            }
             else
             {
                 mensaje.AppendLine($"Equipaje de mano: No  ");
@@ -176,7 +186,7 @@ namespace Entidades
             else
             {
                 mensaje.AppendLine("No agregado  ");
-            }      
+            }
 
             if (this.enVuelo)
             {

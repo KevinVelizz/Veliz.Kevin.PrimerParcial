@@ -8,7 +8,7 @@ namespace Entidades
         private string? nombre;
         private string? apellido;
 
-        public Persona() {}
+        public Persona() { }
         public Persona(string nombre, string apellido)
         {
             this.nombre = nombre;
@@ -26,7 +26,7 @@ namespace Entidades
         public string Apellido
         {
             get { return this.apellido ?? ""; }
-            set { this.apellido = value;}
+            set { this.apellido = value; }
         }
 
         protected abstract string Informacion();

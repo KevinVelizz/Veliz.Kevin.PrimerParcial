@@ -28,10 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges1 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges2 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges3 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges4 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             chkComida = new CheckBox();
             chkInternet = new CheckBox();
             lblInfoAvion = new Label();
-            btnVender = new Button();
             label1 = new Label();
             label2 = new Label();
             lblCosto = new Label();
@@ -48,20 +51,30 @@
             txtBuscarApellido = new TextBox();
             btnBuscar = new Button();
             txtBuscarNombre = new TextBox();
+            btnVender = new Guna.UI2.WinForms.Guna2Button();
             ((System.ComponentModel.ISupportInitialize)dtgvPasajerosDisponibles).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dtgvVuelosDisponibles).BeginInit();
             SuspendLayout();
             // 
-            // btnCancelar
-            // 
-            btnCancelar.Anchor = AnchorStyles.None;
-            btnCancelar.Location = new Point(839, 486);
-            // 
             // btnLimpiar
             // 
-            btnLimpiar.Anchor = AnchorStyles.None;
-            btnLimpiar.Font = new Font("Segoe UI Symbol", 9.75F, FontStyle.Italic, GraphicsUnit.Point);
-            btnLimpiar.Location = new Point(749, 486);
+            btnLimpiar.DialogResult = DialogResult.None;
+            btnLimpiar.DisabledState.BorderColor = Color.DarkGray;
+            btnLimpiar.DisabledState.CustomBorderColor = Color.DarkGray;
+            btnLimpiar.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
+            btnLimpiar.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
+            btnLimpiar.Location = new Point(755, 486);
+            btnLimpiar.ShadowDecoration.CustomizableEdges = customizableEdges1;
+            // 
+            // btnSalir
+            // 
+            btnSalir.DialogResult = DialogResult.None;
+            btnSalir.DisabledState.BorderColor = Color.DarkGray;
+            btnSalir.DisabledState.CustomBorderColor = Color.DarkGray;
+            btnSalir.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
+            btnSalir.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
+            btnSalir.Location = new Point(848, 486);
+            btnSalir.ShadowDecoration.CustomizableEdges = customizableEdges2;
             // 
             // chkComida
             // 
@@ -100,18 +113,6 @@
             lblInfoAvion.TabIndex = 5;
             lblInfoAvion.Text = "label1";
             lblInfoAvion.Visible = false;
-            // 
-            // btnVender
-            // 
-            btnVender.Anchor = AnchorStyles.None;
-            btnVender.Font = new Font("Segoe UI Symbol", 9.75F, FontStyle.Italic, GraphicsUnit.Point);
-            btnVender.Location = new Point(662, 486);
-            btnVender.Name = "btnVender";
-            btnVender.Size = new Size(75, 23);
-            btnVender.TabIndex = 6;
-            btnVender.Text = "Vender";
-            btnVender.UseVisualStyleBackColor = true;
-            btnVender.Click += btnVender_Click;
             // 
             // label1
             // 
@@ -274,12 +275,33 @@
             txtBuscarNombre.Size = new Size(100, 23);
             txtBuscarNombre.TabIndex = 16;
             // 
+            // btnVender
+            // 
+            btnVender.Animated = true;
+            btnVender.CustomizableEdges = customizableEdges3;
+            btnVender.DisabledState.BorderColor = Color.DarkGray;
+            btnVender.DisabledState.CustomBorderColor = Color.DarkGray;
+            btnVender.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
+            btnVender.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
+            btnVender.FillColor = Color.FromArgb(255, 224, 192);
+            btnVender.Font = new Font("Segoe UI Symbol", 9F, FontStyle.Italic, GraphicsUnit.Point);
+            btnVender.ForeColor = Color.Black;
+            btnVender.Location = new Point(658, 486);
+            btnVender.Name = "btnVender";
+            btnVender.PressedColor = Color.IndianRed;
+            btnVender.ShadowDecoration.CustomizableEdges = customizableEdges4;
+            btnVender.Size = new Size(78, 23);
+            btnVender.TabIndex = 23;
+            btnVender.Text = "Vender";
+            btnVender.Click += btnVender_Click_1;
+            // 
             // FrmVenderVuelo
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.GradientInactiveCaption;
             ClientSize = new Size(953, 535);
+            Controls.Add(btnVender);
             Controls.Add(lblDniBuscar);
             Controls.Add(lblApellidoBuscar);
             Controls.Add(lblNombreBuscar);
@@ -296,19 +318,17 @@
             Controls.Add(lblCosto);
             Controls.Add(label2);
             Controls.Add(label1);
-            Controls.Add(btnVender);
             Controls.Add(lblInfoAvion);
             Controls.Add(chkInternet);
             Controls.Add(chkComida);
             Name = "FrmVenderVuelo";
             Text = "FrmVenderVuelo";
             Load += FrmVenderVuelo_Load;
+            Controls.SetChildIndex(btnSalir, 0);
             Controls.SetChildIndex(btnLimpiar, 0);
             Controls.SetChildIndex(chkComida, 0);
             Controls.SetChildIndex(chkInternet, 0);
             Controls.SetChildIndex(lblInfoAvion, 0);
-            Controls.SetChildIndex(btnVender, 0);
-            Controls.SetChildIndex(btnCancelar, 0);
             Controls.SetChildIndex(label1, 0);
             Controls.SetChildIndex(label2, 0);
             Controls.SetChildIndex(lblCosto, 0);
@@ -325,6 +345,7 @@
             Controls.SetChildIndex(lblNombreBuscar, 0);
             Controls.SetChildIndex(lblApellidoBuscar, 0);
             Controls.SetChildIndex(lblDniBuscar, 0);
+            Controls.SetChildIndex(btnVender, 0);
             ((System.ComponentModel.ISupportInitialize)dtgvPasajerosDisponibles).EndInit();
             ((System.ComponentModel.ISupportInitialize)dtgvVuelosDisponibles).EndInit();
             ResumeLayout(false);
@@ -335,7 +356,6 @@
         private CheckBox chkComida;
         private CheckBox chkInternet;
         private Label lblInfoAvion;
-        private Button btnVender;
         private Label label1;
         private Label label2;
         private Label lblCosto;
@@ -352,5 +372,6 @@
         private TextBox txtBuscarApellido;
         private Button btnBuscar;
         private TextBox txtBuscarNombre;
+        protected Guna.UI2.WinForms.Guna2Button btnVender;
     }
 }

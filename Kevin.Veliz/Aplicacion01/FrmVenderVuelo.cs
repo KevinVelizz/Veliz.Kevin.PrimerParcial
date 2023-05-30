@@ -34,7 +34,6 @@ namespace Aplicacion01
             this.dtgvVuelosDisponibles.Columns.Add("FechaSalida", "Fecha de salida");
             this.dtgvVuelosDisponibles.Columns.Add("FechaLlegada", "Fecha de llegada");
 
-           
         }
 
         private void FrmVenderVuelo_Load(object sender, EventArgs e)
@@ -57,64 +56,6 @@ namespace Aplicacion01
             this.internet = chkInternet.Checked;
         }
 
-        private void btnVender_Click(object sender, EventArgs e)
-        {
-            bool validar = true;
-
-            if (this.pasajeroSeleccionado is not null && this.vueloSeleccionado is not null)
-            {
-                if (this.pasajeroSeleccionado.Equipajes.Count > 0)
-                {
-                    if (this.pasajeroSeleccionado.Equipajes.Count > 1)
-                    {
-                        this.vueloSeleccionado.Avion.CapacidadBodega -= this.pasajeroSeleccionado.Equipajes[0].Peso + this.pasajeroSeleccionado.Equipajes[1].Peso;
-                        if (this.vueloSeleccionado.Avion.CapacidadBodega < 0)
-                        {
-                            this.vueloSeleccionado.Avion.CapacidadBodega += this.pasajeroSeleccionado.Equipajes[0].Peso + this.pasajeroSeleccionado.Equipajes[1].Peso;
-                            validar = false;
-                        }           
-                    }
-                    else
-                    {
-                        this.vueloSeleccionado.Avion.CapacidadBodega -= this.pasajeroSeleccionado.Equipajes[0].Peso;
-                        if (this.vueloSeleccionado.Avion.CapacidadBodega < 0)
-                        {
-                            this.vueloSeleccionado.Avion.CapacidadBodega += this.pasajeroSeleccionado.Equipajes[0].Peso;
-                            validar = false;
-                        }            
-                    }
-                }
-
-                if ((this.pasajeroSeleccionado.Premium == false && this.vueloSeleccionado.CantidadAsientosDispTurista > 0) || (this.pasajeroSeleccionado.Premium && this.vueloSeleccionado.CantidadAsientosDispPremium > 0))
-                {
-                    if (validar)
-                    {
-                        this.vueloSeleccionado.Pasajeros.Add(this.pasajeroSeleccionado);
-                        this.pasajeroSeleccionado.Agregado = true;
-                        this.vueloSeleccionado.RestarAsientos(this.pasajeroSeleccionado);
-
-                        Archivos.SerealizarDatos(this.pasajeros, Archivos.pathPasajeros);
-                        Archivos.SerealizarVuelos(this.vuelos);
-                        this.Close();
-                    }
-                    else
-                    {
-                        MessageBox.Show($"El peso de equipaje excede el limite de capacidad de peso.\n Capacidad disponible:{this.vueloSeleccionado.Avion.CapacidadBodega}kg");
-                    }
-                }
-                else
-                {
-                    if ( this.pasajeroSeleccionado.Premium)
-                    {
-                        MessageBox.Show("Ya no hay asientos para la clase: premium");
-                    }
-                    else
-                    {
-                        MessageBox.Show("Ya no hay asientos para la clase: turista");
-                    }
-                }
-            }
-        }
 
         private void cboPasajeros_Click(object sender, EventArgs e)
         {
@@ -235,19 +176,79 @@ namespace Aplicacion01
             this.ActualizarLista(this.pasajeros);
             if (int.TryParse(this.txtBuscarDNI.Text, out _))
             {
-                this.dtgvPasajerosDisponibles.DataSource = this.pasajeros.FindAll(pasajero => pasajero.Dni.ToString().Contains(this.txtBuscarDNI.Text) && !pasajero.Agregado);
+                this.dtgvPasajerosDisponibles.DataSource = this.pasajeros.FindAll(pasajero => pasajero.Dni.ToString().Contains(this.txtBuscarDNI.Text) && pasajero.Agregado == false);
             }
             else if (!Regex.IsMatch(this.txtBuscarNombre.Text, @"\d"))
             {
-                this.dtgvPasajerosDisponibles.DataSource = this.pasajeros.FindAll(pasajero => pasajero.Nombre.Contains(this.txtBuscarNombre.Text, StringComparison.OrdinalIgnoreCase) && !pasajero.Agregado);
+                this.dtgvPasajerosDisponibles.DataSource = this.pasajeros.FindAll(pasajero => pasajero.Nombre.Contains(this.txtBuscarNombre.Text, StringComparison.OrdinalIgnoreCase) && pasajero.Agregado == false);
             }
             else if (!Regex.IsMatch(this.txtBuscarNombre.Text, @"\d"))
             {
-                this.dtgvPasajerosDisponibles.DataSource = this.pasajeros.FindAll(pasajero => pasajero.Apellido.Contains(this.txtBuscarApellido.Text, StringComparison.OrdinalIgnoreCase) && !pasajero.Agregado);
+                this.dtgvPasajerosDisponibles.DataSource = this.pasajeros.FindAll(pasajero => pasajero.Apellido.Contains(this.txtBuscarApellido.Text, StringComparison.OrdinalIgnoreCase) && pasajero.Agregado == false);
             }
             else
             {
                 this.dtgvPasajerosDisponibles.DataSource = null;
+            }
+        }
+
+        private void btnVender_Click_1(object sender, EventArgs e)
+        {
+            bool validar = true;
+
+            if (this.pasajeroSeleccionado is not null && this.vueloSeleccionado is not null)
+            {
+                if (this.pasajeroSeleccionado.Equipajes.Count > 0)
+                {
+                    if (this.pasajeroSeleccionado.Equipajes.Count > 1)
+                    {
+                        this.vueloSeleccionado.Avion.CapacidadBodega -= this.pasajeroSeleccionado.Equipajes[0].Peso + this.pasajeroSeleccionado.Equipajes[1].Peso;
+                        if (this.vueloSeleccionado.Avion.CapacidadBodega < 0)
+                        {
+                            this.vueloSeleccionado.Avion.CapacidadBodega += this.pasajeroSeleccionado.Equipajes[0].Peso + this.pasajeroSeleccionado.Equipajes[1].Peso;
+                            validar = false;
+                        }
+                    }
+                    else
+                    {
+                        this.vueloSeleccionado.Avion.CapacidadBodega -= this.pasajeroSeleccionado.Equipajes[0].Peso;
+                        if (this.vueloSeleccionado.Avion.CapacidadBodega < 0)
+                        {
+                            this.vueloSeleccionado.Avion.CapacidadBodega += this.pasajeroSeleccionado.Equipajes[0].Peso;
+                            validar = false;
+                        }
+                    }
+                }
+
+                if ((this.pasajeroSeleccionado.Premium == false && this.vueloSeleccionado.CantidadAsientosDispTurista > 0) || (this.pasajeroSeleccionado.Premium && this.vueloSeleccionado.CantidadAsientosDispPremium > 0))
+                {
+                    if (validar)
+                    {
+                        this.vueloSeleccionado.Pasajeros.Add(this.pasajeroSeleccionado);
+                        this.pasajeroSeleccionado.Agregado = true;
+                        this.vueloSeleccionado.RestarAsientos(this.pasajeroSeleccionado);
+
+                        Archivos.SerealizarDatos(this.pasajeros, Archivos.pathPasajeros);
+                        Archivos.SerealizarVuelos(this.vuelos);
+                        this.cerrar = true;
+                        this.Close();
+                    }
+                    else
+                    {
+                        MessageBox.Show($"El peso de equipaje excede el limite de capacidad de peso.\n Capacidad disponible:{this.vueloSeleccionado.Avion.CapacidadBodega}kg");
+                    }
+                }
+                else
+                {
+                    if (this.pasajeroSeleccionado.Premium)
+                    {
+                        MessageBox.Show("Ya no hay asientos para la clase: premium");
+                    }
+                    else
+                    {
+                        MessageBox.Show("Ya no hay asientos para la clase: turista");
+                    }
+                }
             }
         }
 

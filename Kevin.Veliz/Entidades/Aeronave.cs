@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Text;
 
 namespace Entidades
 {
@@ -22,7 +18,7 @@ namespace Entidades
             disponible = true;
         }
 
-        public Aeronave(string matricula, int cantidadAsientos, int cantidadDeBanios, bool servicioInternet, bool servicioComida, double capacidadBodega) :this()
+        public Aeronave(string matricula, int cantidadAsientos, int cantidadDeBanios, bool servicioInternet, bool servicioComida, double capacidadBodega) : this()
         {
             this.matricula = matricula;
             this.cantidadAsientos = cantidadAsientos;
@@ -31,8 +27,6 @@ namespace Entidades
             this.servicioComida = servicioComida;
             this.capacidadBodega = capacidadBodega;
         }
-
-
 
         public string Matricula
         {
@@ -55,7 +49,7 @@ namespace Entidades
         public bool ServicioInternet
         {
             get { return this.servicioInternet; }
-            set { this.servicioInternet = value;}
+            set { this.servicioInternet = value; }
         }
 
         public bool ServicioComida
@@ -73,7 +67,7 @@ namespace Entidades
         public bool Disponible
         {
             get { return this.disponible; }
-            set { this.disponible = value;}
+            set { this.disponible = value; }
         }
 
         public static bool operator ==(Aeronave aeronave, Aeronave aeronave1)
@@ -85,7 +79,6 @@ namespace Entidades
         {
             return !(aeronave == aeronave1);
         }
-
 
         public override bool Equals(object? obj)
         {
@@ -105,6 +98,24 @@ namespace Entidades
             return this.matricula.GetHashCode();
         }
 
+        public static explicit operator Aeronave(string infoAeronave)
+        {
+            string[] datos = infoAeronave.Split(',');
+            string matricula = datos[0];
+            int cantidadAsientos = int.Parse(datos[1]);
+            int cantidadDeBanios = int.Parse(datos[2]);
+            bool servicioInternet = bool.Parse(datos[3]);
+            bool servicioComida = bool.Parse(datos[4]);
+            double capacidadBodega = double.Parse(datos[5]);
+            return new Aeronave(matricula, cantidadAsientos, cantidadDeBanios, servicioInternet, servicioComida, capacidadBodega);
+        }
+
+        public static implicit operator string(Aeronave aeronave)
+        {
+            string infoAeronave = $"{aeronave.matricula}, {aeronave.cantidadAsientos}, {aeronave.cantidadDeBanios}, {aeronave.servicioInternet}, {aeronave.servicioComida}, {aeronave.capacidadBodega}";
+            return infoAeronave;
+        }
+
         private string Infomacion()
         {
             StringBuilder mensaje = new StringBuilder();
@@ -122,7 +133,7 @@ namespace Entidades
             if (this.servicioComida)
             {
                 mensaje.AppendLine("Comida: Si - ");
-            }    
+            }
             else
             {
                 mensaje.AppendLine("Comida: No - ");
@@ -137,7 +148,7 @@ namespace Entidades
             {
                 mensaje.AppendLine("No disponible");
             }
-            return mensaje.ToString();  
+            return mensaje.ToString();
         }
 
         public override string ToString()

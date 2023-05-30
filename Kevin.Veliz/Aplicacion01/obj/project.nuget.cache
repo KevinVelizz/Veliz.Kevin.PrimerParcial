@@ -1,10 +1,13 @@
 {
   "version": 2,
-  "dgSpecHash": "Wahw+WSYPuAY5bpU+KEhrCU9eMGmAKbCGmNU6VX4PvLReXlgJpCy2491y36fwDwdIQSppW6MIpWe3c7VfieR2Q==",
+  "dgSpecHash": "9tgFWHJG1jYWxqkZt2qSMPRVYJxRD18w9Vd4hq8w2Aaut7f/QrZKMJAv+J5AouixYVMhb1Mf+pEOIqBR6r5KQw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\veliz\\Downloads\\Veliz.Kevin.PrimerParcial-Recuperatorio.Veliz.Kevin\\Kevin.Veliz\\Aplicacion01\\Aplicacion01.csproj",
+  "projectFilePath": "C:\\Users\\veliz\\Desktop\\Veliz.Kevin.PrimerParcial\\Kevin.Veliz\\Aplicacion01\\Aplicacion01.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\veliz\\.nuget\\packages\\newtonsoft.json\\13.0.3\\newtonsoft.json.13.0.3.nupkg.sha512"
+    "C:\\Users\\veliz\\.nuget\\packages\\guna.ui2.winforms\\2.0.4.4\\guna.ui2.winforms.2.0.4.4.nupkg.sha512",
+    "C:\\Users\\veliz\\.nuget\\packages\\newtonsoft.json\\13.0.3\\newtonsoft.json.13.0.3.nupkg.sha512",
+    "C:\\Users\\veliz\\.nuget\\packages\\system.codedom\\6.0.0\\system.codedom.6.0.0.nupkg.sha512",
+    "C:\\Users\\veliz\\.nuget\\packages\\system.management\\6.0.0\\system.management.6.0.0.nupkg.sha512"
   ],
   "logs": []
 }

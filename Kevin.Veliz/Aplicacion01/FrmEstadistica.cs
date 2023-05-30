@@ -1,5 +1,6 @@
 ﻿using Entidades;
 using System.Data;
+using System.Xml.Linq;
 
 
 namespace Aplicacion01
@@ -26,6 +27,11 @@ namespace Aplicacion01
         {
             string auxDestino = "";
 
+            // Obtén la posición del control en relación con el formulario
+
+            // Calcula la posición de desplazamiento necesaria
+
+            // Ajusta el desplazamiento del formulario
 
             foreach (Vuelo vuelo in this.listaVuelos)
             {
@@ -91,7 +97,8 @@ namespace Aplicacion01
             this.textBox1.Text = acumuladorDinero.ToString();
         }
 
-        private void btnCancelar_Click(object sender, EventArgs e)
+
+        private void FrmEstadistica_FormClosing(object sender, FormClosingEventArgs e)
         {
             Archivos.SerealizarEstadistica(this.diccionarioOrdenado, this.acumuladorDinero);
         }

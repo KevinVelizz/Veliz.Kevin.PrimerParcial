@@ -1,24 +1,23 @@
 ﻿using Entidades;
-using System.Text.Json;
 
 namespace Aplicacion01
 {
     public partial class IngresarUsuario : Form
     {
-        public Usuario Usuario { get; private set; } // solo se puede setear desde IngresarUsuario.
+        public Usuario Usuario { get; private set; }
 
         public IngresarUsuario()
         {
             InitializeComponent();
             this.StartPosition = FormStartPosition.CenterScreen;
-
         }
 
         private void IngresarUsuario_Load(object sender, EventArgs e)
         {
-            MessageBox.Show(Archivos.TryGetSolutionDirectoryInfo().Parent.FullName);
+
         }
-        private void btnIngresar_Click(object sender, EventArgs e)
+
+        private void btnIngresar1_Click(object sender, EventArgs e)
         {
             Usuario? aux = Funcionalidades.Login(txtCorreo.Text, txtContraseña.Text);
 
@@ -33,12 +32,8 @@ namespace Aplicacion01
                 MessageBox.Show("Error al ingresar. Verifique los datos.");
             }
         }
-        private void btnIngresar_MouseHover(object sender, EventArgs e)
-        {
 
-        }
-
-        private void btnLimpiar_Click(object sender, EventArgs e)
+        private void btnLimpiar1_Click(object sender, EventArgs e)
         {
             txtCorreo.Text = "";
             txtContraseña.Text = "";
