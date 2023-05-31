@@ -47,9 +47,6 @@
             lblDniBuscar = new Label();
             lblApellidoBuscar = new Label();
             lblNombreBuscar = new Label();
-            panelInicio = new Panel();
-            label1 = new Label();
-            pictureBox1 = new PictureBox();
             btnMostrarPasajeros = new Button();
             txtBuscarDNI = new TextBox();
             txtBuscarApellido = new TextBox();
@@ -59,12 +56,15 @@
             btnModificar = new Button();
             btnEliminar = new Button();
             btnAgregar = new Button();
+            panelInicio = new Panel();
+            label1 = new Label();
+            pcbImagen = new PictureBox();
             timer1 = new System.Windows.Forms.Timer(components);
             menuAerolinea.SuspendLayout();
             panelModificar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dtgvElementos).BeginInit();
             panelInicio.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pcbImagen).BeginInit();
             SuspendLayout();
             // 
             // menuAerolinea
@@ -179,7 +179,6 @@
             panelModificar.Controls.Add(lblDniBuscar);
             panelModificar.Controls.Add(lblApellidoBuscar);
             panelModificar.Controls.Add(lblNombreBuscar);
-            panelModificar.Controls.Add(panelInicio);
             panelModificar.Controls.Add(btnMostrarPasajeros);
             panelModificar.Controls.Add(txtBuscarDNI);
             panelModificar.Controls.Add(txtBuscarApellido);
@@ -189,9 +188,9 @@
             panelModificar.Controls.Add(btnModificar);
             panelModificar.Controls.Add(btnEliminar);
             panelModificar.Controls.Add(btnAgregar);
-            panelModificar.Location = new Point(0, 43);
+            panelModificar.Location = new Point(27, 60);
             panelModificar.Name = "panelModificar";
-            panelModificar.Size = new Size(1441, 678);
+            panelModificar.Size = new Size(1414, 661);
             panelModificar.TabIndex = 3;
             panelModificar.Visible = false;
             panelModificar.Paint += panelModificar_Paint;
@@ -200,19 +199,20 @@
             // 
             dtgvElementos.Anchor = AnchorStyles.None;
             dtgvElementos.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dtgvElementos.Location = new Point(27, 99);
+            dtgvElementos.Location = new Point(14, 89);
             dtgvElementos.Name = "dtgvElementos";
             dtgvElementos.ReadOnly = true;
             dtgvElementos.RowTemplate.Height = 25;
-            dtgvElementos.Size = new Size(1321, 415);
+            dtgvElementos.Size = new Size(1321, 499);
             dtgvElementos.TabIndex = 14;
             dtgvElementos.CellClick += dtgvElementos_CellClick;
             // 
             // lblDniBuscar
             // 
+            lblDniBuscar.Anchor = AnchorStyles.None;
             lblDniBuscar.AutoSize = true;
             lblDniBuscar.Font = new Font("Segoe UI Symbol", 11.25F, FontStyle.Italic, GraphicsUnit.Point);
-            lblDniBuscar.Location = new Point(269, 45);
+            lblDniBuscar.Location = new Point(256, 36);
             lblDniBuscar.Name = "lblDniBuscar";
             lblDniBuscar.Size = new Size(38, 20);
             lblDniBuscar.TabIndex = 13;
@@ -220,9 +220,10 @@
             // 
             // lblApellidoBuscar
             // 
+            lblApellidoBuscar.Anchor = AnchorStyles.None;
             lblApellidoBuscar.AutoSize = true;
             lblApellidoBuscar.Font = new Font("Segoe UI Symbol", 11.25F, FontStyle.Italic, GraphicsUnit.Point);
-            lblApellidoBuscar.Location = new Point(148, 45);
+            lblApellidoBuscar.Location = new Point(135, 36);
             lblApellidoBuscar.Name = "lblApellidoBuscar";
             lblApellidoBuscar.Size = new Size(69, 20);
             lblApellidoBuscar.TabIndex = 12;
@@ -230,48 +231,19 @@
             // 
             // lblNombreBuscar
             // 
+            lblNombreBuscar.Anchor = AnchorStyles.None;
             lblNombreBuscar.AutoSize = true;
             lblNombreBuscar.Font = new Font("Segoe UI Symbol", 11.25F, FontStyle.Italic, GraphicsUnit.Point);
-            lblNombreBuscar.Location = new Point(40, 45);
+            lblNombreBuscar.Location = new Point(27, 36);
             lblNombreBuscar.Name = "lblNombreBuscar";
             lblNombreBuscar.Size = new Size(67, 20);
             lblNombreBuscar.TabIndex = 11;
             lblNombreBuscar.Text = "Nombre:";
             // 
-            // panelInicio
-            // 
-            panelInicio.Controls.Add(label1);
-            panelInicio.Controls.Add(pictureBox1);
-            panelInicio.Location = new Point(1385, 5);
-            panelInicio.Name = "panelInicio";
-            panelInicio.Size = new Size(53, 56);
-            panelInicio.TabIndex = 5;
-            // 
-            // label1
-            // 
-            label1.Anchor = AnchorStyles.None;
-            label1.AutoSize = true;
-            label1.Font = new Font("Segoe UI Symbol", 24F, FontStyle.Italic, GraphicsUnit.Point);
-            label1.Location = new Point(-77, 46);
-            label1.Name = "label1";
-            label1.Size = new Size(220, 45);
-            label1.TabIndex = 5;
-            label1.Text = "BIENVENIDO!!";
-            // 
-            // pictureBox1
-            // 
-            pictureBox1.Anchor = AnchorStyles.None;
-            pictureBox1.BackColor = SystemColors.ActiveCaption;
-            pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
-            pictureBox1.Location = new Point(-18, -88);
-            pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(103, 116);
-            pictureBox1.TabIndex = 4;
-            pictureBox1.TabStop = false;
-            // 
             // btnMostrarPasajeros
             // 
-            btnMostrarPasajeros.Location = new Point(1354, 287);
+            btnMostrarPasajeros.Anchor = AnchorStyles.None;
+            btnMostrarPasajeros.Location = new Point(1341, 278);
             btnMostrarPasajeros.Name = "btnMostrarPasajeros";
             btnMostrarPasajeros.Size = new Size(75, 52);
             btnMostrarPasajeros.TabIndex = 10;
@@ -282,7 +254,8 @@
             // 
             // txtBuscarDNI
             // 
-            txtBuscarDNI.Location = new Point(239, 67);
+            txtBuscarDNI.Anchor = AnchorStyles.None;
+            txtBuscarDNI.Location = new Point(226, 58);
             txtBuscarDNI.Name = "txtBuscarDNI";
             txtBuscarDNI.Size = new Size(100, 25);
             txtBuscarDNI.TabIndex = 9;
@@ -290,7 +263,8 @@
             // 
             // txtBuscarApellido
             // 
-            txtBuscarApellido.Location = new Point(133, 67);
+            txtBuscarApellido.Anchor = AnchorStyles.None;
+            txtBuscarApellido.Location = new Point(120, 58);
             txtBuscarApellido.Name = "txtBuscarApellido";
             txtBuscarApellido.Size = new Size(100, 25);
             txtBuscarApellido.TabIndex = 8;
@@ -298,7 +272,8 @@
             // 
             // btnBuscar
             // 
-            btnBuscar.Location = new Point(364, 67);
+            btnBuscar.Anchor = AnchorStyles.None;
+            btnBuscar.Location = new Point(351, 58);
             btnBuscar.Name = "btnBuscar";
             btnBuscar.Size = new Size(80, 25);
             btnBuscar.TabIndex = 7;
@@ -309,7 +284,8 @@
             // 
             // txtBuscarNombre
             // 
-            txtBuscarNombre.Location = new Point(27, 68);
+            txtBuscarNombre.Anchor = AnchorStyles.None;
+            txtBuscarNombre.Location = new Point(14, 59);
             txtBuscarNombre.Name = "txtBuscarNombre";
             txtBuscarNombre.Size = new Size(100, 25);
             txtBuscarNombre.TabIndex = 6;
@@ -317,9 +293,10 @@
             // 
             // lblNombreSeccion
             // 
+            lblNombreSeccion.Anchor = AnchorStyles.None;
             lblNombreSeccion.AutoSize = true;
             lblNombreSeccion.Font = new Font("Segoe UI Symbol", 11.25F, FontStyle.Italic, GraphicsUnit.Point);
-            lblNombreSeccion.Location = new Point(556, 52);
+            lblNombreSeccion.Location = new Point(621, 67);
             lblNombreSeccion.Name = "lblNombreSeccion";
             lblNombreSeccion.Size = new Size(50, 20);
             lblNombreSeccion.TabIndex = 4;
@@ -328,7 +305,7 @@
             // btnModificar
             // 
             btnModificar.Anchor = AnchorStyles.None;
-            btnModificar.Location = new Point(1354, 223);
+            btnModificar.Location = new Point(1341, 214);
             btnModificar.Name = "btnModificar";
             btnModificar.Size = new Size(75, 58);
             btnModificar.TabIndex = 2;
@@ -341,7 +318,7 @@
             btnEliminar.Anchor = AnchorStyles.None;
             btnEliminar.Font = new Font("Segoe UI", 20.25F, FontStyle.Bold, GraphicsUnit.Point);
             btnEliminar.ForeColor = Color.Red;
-            btnEliminar.Location = new Point(1354, 160);
+            btnEliminar.Location = new Point(1341, 151);
             btnEliminar.Name = "btnEliminar";
             btnEliminar.Size = new Size(75, 57);
             btnEliminar.TabIndex = 1;
@@ -354,13 +331,46 @@
             btnAgregar.Anchor = AnchorStyles.None;
             btnAgregar.Font = new Font("Segoe UI", 20.25F, FontStyle.Bold, GraphicsUnit.Point);
             btnAgregar.ForeColor = Color.LimeGreen;
-            btnAgregar.Location = new Point(1354, 98);
+            btnAgregar.Location = new Point(1341, 89);
             btnAgregar.Name = "btnAgregar";
             btnAgregar.Size = new Size(75, 56);
             btnAgregar.TabIndex = 0;
             btnAgregar.Text = "+";
             btnAgregar.UseVisualStyleBackColor = true;
             btnAgregar.Click += btnAgregar_Click;
+            // 
+            // panelInicio
+            // 
+            panelInicio.Controls.Add(label1);
+            panelInicio.Controls.Add(pcbImagen);
+            panelInicio.Location = new Point(12, 72);
+            panelInicio.Name = "panelInicio";
+            panelInicio.Size = new Size(10, 44);
+            panelInicio.TabIndex = 5;
+            panelInicio.Paint += panelInicio_Paint;
+            // 
+            // label1
+            // 
+            label1.Anchor = AnchorStyles.None;
+            label1.AutoSize = true;
+            label1.Font = new Font("Segoe UI Symbol", 24F, FontStyle.Italic, GraphicsUnit.Point);
+            label1.ForeColor = SystemColors.MenuHighlight;
+            label1.Location = new Point(-3, 34);
+            label1.Name = "label1";
+            label1.Size = new Size(229, 45);
+            label1.TabIndex = 5;
+            label1.Text = "BIENVENIDO!!!";
+            // 
+            // pcbImagen
+            // 
+            pcbImagen.Anchor = AnchorStyles.None;
+            pcbImagen.BackColor = SystemColors.ActiveCaption;
+            pcbImagen.Image = (Image)resources.GetObject("pcbImagen.Image");
+            pcbImagen.Location = new Point(-3, 82);
+            pcbImagen.Name = "pcbImagen";
+            pcbImagen.Size = new Size(103, 116);
+            pcbImagen.TabIndex = 4;
+            pcbImagen.TabStop = false;
             // 
             // timer1
             // 
@@ -375,10 +385,13 @@
             ClientSize = new Size(1441, 711);
             Controls.Add(panelModificar);
             Controls.Add(menuAerolinea);
+            Controls.Add(panelInicio);
             Font = new Font("Segoe UI Symbol", 9.75F, FontStyle.Italic, GraphicsUnit.Point);
             MainMenuStrip = menuAerolinea;
+            MinimumSize = new Size(1440, 700);
             Name = "FrmAerolinea";
             Text = "Aerolineas";
+            FormClosing += FrmAerolinea_FormClosing_1;
             Load += Aerolineas_Load;
             menuAerolinea.ResumeLayout(false);
             menuAerolinea.PerformLayout();
@@ -387,7 +400,7 @@
             ((System.ComponentModel.ISupportInitialize)dtgvElementos).EndInit();
             panelInicio.ResumeLayout(false);
             panelInicio.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pcbImagen).EndInit();
             ResumeLayout(false);
         }
 
@@ -401,7 +414,7 @@
         private Button btnAgregar;
         private ToolStripMenuItem stripAeronave;
         private Label lblNombreSeccion;
-        private PictureBox pictureBox1;
+        private PictureBox pcbImagen;
         private Label label1;
         private ToolStripMenuItem stripVender;
         private ToolStripMenuItem StripCuenta;

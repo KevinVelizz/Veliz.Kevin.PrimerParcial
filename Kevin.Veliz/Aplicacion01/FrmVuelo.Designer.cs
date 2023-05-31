@@ -80,6 +80,7 @@
             // 
             // txtCostoTurista
             // 
+            txtCostoTurista.Anchor = AnchorStyles.None;
             txtCostoTurista.Location = new Point(141, 319);
             txtCostoTurista.Name = "txtCostoTurista";
             txtCostoTurista.Size = new Size(104, 23);
@@ -87,6 +88,7 @@
             // 
             // cboTipoVuelo
             // 
+            cboTipoVuelo.Anchor = AnchorStyles.None;
             cboTipoVuelo.FormattingEnabled = true;
             cboTipoVuelo.Location = new Point(141, 20);
             cboTipoVuelo.Name = "cboTipoVuelo";
@@ -97,6 +99,7 @@
             // 
             // lblTipoVuelo
             // 
+            lblTipoVuelo.Anchor = AnchorStyles.None;
             lblTipoVuelo.AutoSize = true;
             lblTipoVuelo.Font = new Font("Segoe UI Symbol", 9.75F, FontStyle.Italic, GraphicsUnit.Point);
             lblTipoVuelo.Location = new Point(47, 26);
@@ -107,6 +110,7 @@
             // 
             // lblPartida
             // 
+            lblPartida.Anchor = AnchorStyles.None;
             lblPartida.AutoSize = true;
             lblPartida.Font = new Font("Segoe UI Symbol", 9.75F, FontStyle.Italic, GraphicsUnit.Point);
             lblPartida.Location = new Point(2, 74);
@@ -117,6 +121,7 @@
             // 
             // lblDestino
             // 
+            lblDestino.Anchor = AnchorStyles.None;
             lblDestino.AutoSize = true;
             lblDestino.Font = new Font("Segoe UI Symbol", 9.75F, FontStyle.Italic, GraphicsUnit.Point);
             lblDestino.Location = new Point(3, 126);
@@ -127,6 +132,7 @@
             // 
             // lblFechaVuelo
             // 
+            lblFechaVuelo.Anchor = AnchorStyles.None;
             lblFechaVuelo.AutoSize = true;
             lblFechaVuelo.Font = new Font("Segoe UI Symbol", 9.75F, FontStyle.Italic, GraphicsUnit.Point);
             lblFechaVuelo.Location = new Point(21, 181);
@@ -137,6 +143,7 @@
             // 
             // cboPartida
             // 
+            cboPartida.Anchor = AnchorStyles.None;
             cboPartida.FormattingEnabled = true;
             cboPartida.Location = new Point(141, 68);
             cboPartida.Name = "cboPartida";
@@ -147,6 +154,7 @@
             // 
             // cboDestino
             // 
+            cboDestino.Anchor = AnchorStyles.None;
             cboDestino.FormattingEnabled = true;
             cboDestino.Location = new Point(141, 120);
             cboDestino.Name = "cboDestino";
@@ -157,6 +165,7 @@
             // 
             // dtmVuelo
             // 
+            dtmVuelo.Anchor = AnchorStyles.None;
             dtmVuelo.Checked = false;
             dtmVuelo.Enabled = false;
             dtmVuelo.Location = new Point(141, 175);
@@ -169,6 +178,7 @@
             // 
             // lblCostoTurista
             // 
+            lblCostoTurista.Anchor = AnchorStyles.None;
             lblCostoTurista.AutoSize = true;
             lblCostoTurista.Font = new Font("Segoe UI Symbol", 9.75F, FontStyle.Italic, GraphicsUnit.Point);
             lblCostoTurista.Location = new Point(31, 325);
@@ -179,6 +189,7 @@
             // 
             // lblLLegada
             // 
+            lblLLegada.Anchor = AnchorStyles.None;
             lblLLegada.AutoSize = true;
             lblLLegada.Font = new Font("Segoe UI Symbol", 9.75F, FontStyle.Italic, GraphicsUnit.Point);
             lblLLegada.Location = new Point(59, 279);
@@ -189,6 +200,7 @@
             // 
             // lblHoraVuelo
             // 
+            lblHoraVuelo.Anchor = AnchorStyles.None;
             lblHoraVuelo.AutoSize = true;
             lblHoraVuelo.Location = new Point(141, 229);
             lblHoraVuelo.Name = "lblHoraVuelo";
@@ -198,6 +210,7 @@
             // 
             // lblDuracionVuelo
             // 
+            lblDuracionVuelo.Anchor = AnchorStyles.None;
             lblDuracionVuelo.AutoSize = true;
             lblDuracionVuelo.Location = new Point(141, 281);
             lblDuracionVuelo.Name = "lblDuracionVuelo";
@@ -207,6 +220,7 @@
             // 
             // lblHoraSalida
             // 
+            lblHoraSalida.Anchor = AnchorStyles.None;
             lblHoraSalida.AutoSize = true;
             lblHoraSalida.Font = new Font("Segoe UI Symbol", 9.75F, FontStyle.Italic, GraphicsUnit.Point);
             lblHoraSalida.Location = new Point(70, 229);
@@ -217,6 +231,7 @@
             // 
             // txtCostoPremium
             // 
+            txtCostoPremium.Anchor = AnchorStyles.None;
             txtCostoPremium.Location = new Point(141, 373);
             txtCostoPremium.Name = "txtCostoPremium";
             txtCostoPremium.Size = new Size(104, 23);
@@ -224,6 +239,7 @@
             // 
             // lblCostoPremium
             // 
+            lblCostoPremium.Anchor = AnchorStyles.None;
             lblCostoPremium.AutoSize = true;
             lblCostoPremium.Font = new Font("Segoe UI Symbol", 9.75F, FontStyle.Italic, GraphicsUnit.Point);
             lblCostoPremium.Location = new Point(15, 379);
@@ -234,6 +250,7 @@
             // 
             // label1
             // 
+            label1.Anchor = AnchorStyles.None;
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI Symbol", 9.75F, FontStyle.Italic, GraphicsUnit.Point);
             label1.Location = new Point(50, 431);
@@ -244,6 +261,7 @@
             // 
             // cboAeronave
             // 
+            cboAeronave.Anchor = AnchorStyles.None;
             cboAeronave.FormattingEnabled = true;
             cboAeronave.Location = new Point(141, 425);
             cboAeronave.Name = "cboAeronave";
@@ -255,6 +273,7 @@
             // 
             // lblInfoAeronave
             // 
+            lblInfoAeronave.Anchor = AnchorStyles.None;
             lblInfoAeronave.AutoSize = true;
             lblInfoAeronave.Location = new Point(141, 451);
             lblInfoAeronave.Name = "lblInfoAeronave";
@@ -265,6 +284,7 @@
             // 
             // btnModificar1
             // 
+            btnModificar1.Anchor = AnchorStyles.None;
             btnModificar1.Animated = true;
             btnModificar1.CustomizableEdges = customizableEdges3;
             btnModificar1.DisabledState.BorderColor = Color.DarkGray;
@@ -285,6 +305,7 @@
             // 
             // btnAgregar1
             // 
+            btnAgregar1.Anchor = AnchorStyles.None;
             btnAgregar1.Animated = true;
             btnAgregar1.CustomizableEdges = customizableEdges5;
             btnAgregar1.DisabledState.BorderColor = Color.DarkGray;

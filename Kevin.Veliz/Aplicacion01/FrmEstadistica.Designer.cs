@@ -35,16 +35,6 @@
             lblMontoTotal = new Label();
             textBox1 = new TextBox();
             dtgvViajes = new DataGridView();
-            Partida = new DataGridViewTextBoxColumn();
-            Destino = new DataGridViewTextBoxColumn();
-            FechaSalida = new DataGridViewTextBoxColumn();
-            FechaLlegada = new DataGridViewTextBoxColumn();
-            Avion = new DataGridViewTextBoxColumn();
-            CantAsientosPremium = new DataGridViewTextBoxColumn();
-            CantAsientosTurista = new DataGridViewTextBoxColumn();
-            CostoClasePremium = new DataGridViewTextBoxColumn();
-            CostoClaseTurista = new DataGridViewTextBoxColumn();
-            RecaudacionTotal = new DataGridViewTextBoxColumn();
             label1 = new Label();
             dtgvMontoDestinos = new DataGridView();
             DestinoLugar = new DataGridViewTextBoxColumn();
@@ -62,8 +52,9 @@
             btnLimpiar.DisabledState.CustomBorderColor = Color.DarkGray;
             btnLimpiar.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
             btnLimpiar.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
-            btnLimpiar.Location = new Point(658, 519);
+            btnLimpiar.Location = new Point(667, 473);
             btnLimpiar.ShadowDecoration.CustomizableEdges = customizableEdges1;
+            btnLimpiar.Visible = false;
             // 
             // btnSalir
             // 
@@ -72,7 +63,7 @@
             btnSalir.DisabledState.CustomBorderColor = Color.DarkGray;
             btnSalir.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
             btnSalir.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
-            btnSalir.Location = new Point(752, 519);
+            btnSalir.Location = new Point(761, 473);
             btnSalir.ShadowDecoration.CustomizableEdges = customizableEdges2;
             // 
             // lblTitulo
@@ -80,7 +71,7 @@
             lblTitulo.Anchor = AnchorStyles.None;
             lblTitulo.AutoSize = true;
             lblTitulo.Font = new Font("Segoe UI Symbol", 9.75F, FontStyle.Italic, GraphicsUnit.Point);
-            lblTitulo.Location = new Point(12, 9);
+            lblTitulo.Location = new Point(21, 32);
             lblTitulo.Name = "lblTitulo";
             lblTitulo.Size = new Size(109, 17);
             lblTitulo.TabIndex = 5;
@@ -90,13 +81,14 @@
             // btnCalcular
             // 
             btnCalcular.Anchor = AnchorStyles.None;
+            btnCalcular.BackColor = Color.FromArgb(255, 224, 192);
             btnCalcular.Font = new Font("Segoe UI Symbol", 9.75F, FontStyle.Italic, GraphicsUnit.Point);
-            btnCalcular.Location = new Point(755, 29);
+            btnCalcular.Location = new Point(764, 52);
             btnCalcular.Name = "btnCalcular";
-            btnCalcular.Size = new Size(75, 23);
+            btnCalcular.Size = new Size(75, 25);
             btnCalcular.TabIndex = 6;
             btnCalcular.Text = "Calcular";
-            btnCalcular.UseVisualStyleBackColor = true;
+            btnCalcular.UseVisualStyleBackColor = false;
             btnCalcular.Click += btnCalcular_Click;
             // 
             // lblMontoTotal
@@ -104,7 +96,7 @@
             lblMontoTotal.Anchor = AnchorStyles.None;
             lblMontoTotal.AutoSize = true;
             lblMontoTotal.Font = new Font("Segoe UI Symbol", 9.75F, FontStyle.Italic, GraphicsUnit.Point);
-            lblMontoTotal.Location = new Point(510, 37);
+            lblMontoTotal.Location = new Point(519, 60);
             lblMontoTotal.Name = "lblMontoTotal";
             lblMontoTotal.Size = new Size(120, 17);
             lblMontoTotal.TabIndex = 7;
@@ -115,7 +107,7 @@
             textBox1.Anchor = AnchorStyles.None;
             textBox1.Enabled = false;
             textBox1.Font = new Font("Segoe UI Symbol", 9.75F, FontStyle.Italic, GraphicsUnit.Point);
-            textBox1.Location = new Point(636, 29);
+            textBox1.Location = new Point(645, 52);
             textBox1.Name = "textBox1";
             textBox1.Size = new Size(100, 25);
             textBox1.TabIndex = 8;
@@ -125,70 +117,19 @@
             // 
             dtgvViajes.Anchor = AnchorStyles.None;
             dtgvViajes.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dtgvViajes.Columns.AddRange(new DataGridViewColumn[] { Partida, Destino, FechaSalida, FechaLlegada, Avion, CantAsientosPremium, CantAsientosTurista, CostoClasePremium, CostoClaseTurista, RecaudacionTotal });
-            dtgvViajes.Location = new Point(12, 29);
+            dtgvViajes.Location = new Point(21, 52);
             dtgvViajes.MultiSelect = false;
             dtgvViajes.Name = "dtgvViajes";
             dtgvViajes.RowTemplate.Height = 25;
             dtgvViajes.Size = new Size(444, 239);
             dtgvViajes.TabIndex = 9;
             // 
-            // Partida
-            // 
-            Partida.HeaderText = "Lugar de partida";
-            Partida.Name = "Partida";
-            // 
-            // Destino
-            // 
-            Destino.HeaderText = "Lugar de destino";
-            Destino.Name = "Destino";
-            // 
-            // FechaSalida
-            // 
-            FechaSalida.HeaderText = "Fecha salida";
-            FechaSalida.Name = "FechaSalida";
-            // 
-            // FechaLlegada
-            // 
-            FechaLlegada.HeaderText = "Fecha Llegada";
-            FechaLlegada.Name = "FechaLlegada";
-            // 
-            // Avion
-            // 
-            Avion.HeaderText = "Avion";
-            Avion.Name = "Avion";
-            // 
-            // CantAsientosPremium
-            // 
-            CantAsientosPremium.HeaderText = "Asientos premium";
-            CantAsientosPremium.Name = "CantAsientosPremium";
-            // 
-            // CantAsientosTurista
-            // 
-            CantAsientosTurista.HeaderText = "Asientos turistas";
-            CantAsientosTurista.Name = "CantAsientosTurista";
-            // 
-            // CostoClasePremium
-            // 
-            CostoClasePremium.HeaderText = "Costo premium";
-            CostoClasePremium.Name = "CostoClasePremium";
-            // 
-            // CostoClaseTurista
-            // 
-            CostoClaseTurista.HeaderText = "Costo turista";
-            CostoClaseTurista.Name = "CostoClaseTurista";
-            // 
-            // RecaudacionTotal
-            // 
-            RecaudacionTotal.HeaderText = "Recaudacion";
-            RecaudacionTotal.Name = "RecaudacionTotal";
-            // 
             // label1
             // 
             label1.Anchor = AnchorStyles.None;
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI Symbol", 9.75F, FontStyle.Italic, GraphicsUnit.Point);
-            label1.Location = new Point(12, 303);
+            label1.Location = new Point(21, 326);
             label1.Name = "label1";
             label1.Size = new Size(148, 17);
             label1.TabIndex = 11;
@@ -200,7 +141,7 @@
             dtgvMontoDestinos.Anchor = AnchorStyles.None;
             dtgvMontoDestinos.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dtgvMontoDestinos.Columns.AddRange(new DataGridViewColumn[] { DestinoLugar, MontoDestino });
-            dtgvMontoDestinos.Location = new Point(12, 323);
+            dtgvMontoDestinos.Location = new Point(21, 346);
             dtgvMontoDestinos.MultiSelect = false;
             dtgvMontoDestinos.Name = "dtgvMontoDestinos";
             dtgvMontoDestinos.RowTemplate.Height = 25;
@@ -222,7 +163,7 @@
             lblDestinoFavorito.Anchor = AnchorStyles.None;
             lblDestinoFavorito.AutoSize = true;
             lblDestinoFavorito.Font = new Font("Segoe UI Symbol", 9.75F, FontStyle.Italic, GraphicsUnit.Point);
-            lblDestinoFavorito.Location = new Point(281, 323);
+            lblDestinoFavorito.Location = new Point(290, 346);
             lblDestinoFavorito.Name = "lblDestinoFavorito";
             lblDestinoFavorito.Size = new Size(106, 17);
             lblDestinoFavorito.TabIndex = 13;
@@ -232,10 +173,11 @@
             // 
             lblDestino.Anchor = AnchorStyles.None;
             lblDestino.AutoSize = true;
+            lblDestino.BorderStyle = BorderStyle.Fixed3D;
             lblDestino.Font = new Font("Segoe UI Symbol", 9.75F, FontStyle.Italic, GraphicsUnit.Point);
-            lblDestino.Location = new Point(281, 365);
+            lblDestino.Location = new Point(290, 373);
             lblDestino.Name = "lblDestino";
-            lblDestino.Size = new Size(15, 17);
+            lblDestino.Size = new Size(17, 19);
             lblDestino.TabIndex = 14;
             lblDestino.Text = "a";
             // 
@@ -244,7 +186,7 @@
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.GradientInactiveCaption;
-            ClientSize = new Size(856, 554);
+            ClientSize = new Size(872, 520);
             Controls.Add(lblDestino);
             Controls.Add(lblDestinoFavorito);
             Controls.Add(dtgvMontoDestinos);
@@ -254,8 +196,10 @@
             Controls.Add(lblMontoTotal);
             Controls.Add(btnCalcular);
             Controls.Add(lblTitulo);
+            MinimumSize = new Size(870, 542);
             Name = "FrmEstadistica";
             Text = "Estadisticas";
+            FormClosing += FrmEstadistica_FormClosing_1;
             Load += FrmEstadisticaBase_Load;
             Controls.SetChildIndex(btnSalir, 0);
             Controls.SetChildIndex(btnLimpiar, 0);
@@ -286,15 +230,5 @@
         private DataGridViewTextBoxColumn MontoDestino;
         private Label lblDestinoFavorito;
         private Label lblDestino;
-        private DataGridViewTextBoxColumn Partida;
-        private DataGridViewTextBoxColumn Destino;
-        private DataGridViewTextBoxColumn FechaSalida;
-        private DataGridViewTextBoxColumn FechaLlegada;
-        private DataGridViewTextBoxColumn Avion;
-        private DataGridViewTextBoxColumn CantAsientosPremium;
-        private DataGridViewTextBoxColumn CantAsientosTurista;
-        private DataGridViewTextBoxColumn CostoClasePremium;
-        private DataGridViewTextBoxColumn CostoClaseTurista;
-        private DataGridViewTextBoxColumn RecaudacionTotal;
     }
 }

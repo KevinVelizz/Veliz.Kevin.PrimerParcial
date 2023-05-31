@@ -13,7 +13,6 @@ namespace Entidades
         private bool agregado;
         private bool enVuelo;
         private bool vacunado;
-
         public Pasajero()
         {
             this.equipajes = new List<Equipaje>();
@@ -26,6 +25,7 @@ namespace Entidades
             this.equipajes = equipajes;
             this.premium = premium;
             this.equipajeDeMano = equipajeDeMano;
+            this.equipajes = equipajes;
         }
 
         public Pasajero(string nombre, string apellido, int dni, int edad, List<Equipaje> equipajes, bool premium, bool equipajeDeMano, bool vacunado) : this(nombre, apellido, dni, edad, equipajes, premium, equipajeDeMano)
@@ -51,6 +51,7 @@ namespace Entidades
             set { this.equipajes = value; }
         }
 
+        [XmlIgnore]
         public Equipaje this[int index]
         {
             get

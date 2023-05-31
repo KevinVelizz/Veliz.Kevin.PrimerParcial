@@ -24,6 +24,7 @@ namespace Aplicacion01
             this.btnAgregar1.Visible = false;
             this.btnModificar1.Visible = true;
             this.txtMatricula.Enabled = false;
+            this.btnLimpiar.Visible = false;
             this.btnModificar1.Location = new System.Drawing.Point(this.btnAgregar1.Location.X, this.btnAgregar1.Location.Y);
         }
 

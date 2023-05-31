@@ -15,18 +15,6 @@
 
         }
 
-        private void FrmBase_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            if (this.cerrar == false)
-            {
-                DialogResult resultado = MessageBox.Show("¿Está seguro que desea salir?", "Confirmación de salida", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                if (resultado == DialogResult.No)
-                {
-                    e.Cancel = true;
-                }
-            }
-        }
-
         private void btnSalir_Click(object sender, EventArgs e)
         {
             DialogResult resultado = MessageBox.Show("¿Está seguro que desea salir?", "Confirmación de salida", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
@@ -52,6 +40,18 @@
                 else if (control is ComboBox comboBox)
                 {
                     comboBox.Text = "--Seleccione--";
+                }
+            }
+        }
+
+        private void FrmBase_FormClosing_1(object sender, FormClosingEventArgs e)
+        {
+            if (this.cerrar == false)
+            {
+                DialogResult resultado = MessageBox.Show("¿Está seguro que desea salir?", "Confirmación de salida", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (resultado == DialogResult.No)
+                {
+                    e.Cancel = true;
                 }
             }
         }

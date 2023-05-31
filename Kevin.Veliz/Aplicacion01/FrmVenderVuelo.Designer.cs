@@ -32,6 +32,8 @@
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges2 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges3 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges4 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges5 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges6 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             chkComida = new CheckBox();
             chkInternet = new CheckBox();
             lblInfoAvion = new Label();
@@ -52,6 +54,7 @@
             btnBuscar = new Button();
             txtBuscarNombre = new TextBox();
             btnVender = new Guna.UI2.WinForms.Guna2Button();
+            btnEquipaje = new Guna.UI2.WinForms.Guna2Button();
             ((System.ComponentModel.ISupportInitialize)dtgvPasajerosDisponibles).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dtgvVuelosDisponibles).BeginInit();
             SuspendLayout();
@@ -295,12 +298,33 @@
             btnVender.Text = "Vender";
             btnVender.Click += btnVender_Click_1;
             // 
+            // btnEquipaje
+            // 
+            btnEquipaje.Animated = true;
+            btnEquipaje.CustomizableEdges = customizableEdges5;
+            btnEquipaje.DisabledState.BorderColor = Color.DarkGray;
+            btnEquipaje.DisabledState.CustomBorderColor = Color.DarkGray;
+            btnEquipaje.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
+            btnEquipaje.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
+            btnEquipaje.FillColor = Color.FromArgb(255, 224, 192);
+            btnEquipaje.Font = new Font("Segoe UI Symbol", 9F, FontStyle.Italic, GraphicsUnit.Point);
+            btnEquipaje.ForeColor = Color.Black;
+            btnEquipaje.Location = new Point(12, 260);
+            btnEquipaje.Name = "btnEquipaje";
+            btnEquipaje.PressedColor = Color.IndianRed;
+            btnEquipaje.ShadowDecoration.CustomizableEdges = customizableEdges6;
+            btnEquipaje.Size = new Size(78, 38);
+            btnEquipaje.TabIndex = 24;
+            btnEquipaje.Text = "Equipaje pasajero";
+            btnEquipaje.Click += btnEquipaje_Click;
+            // 
             // FrmVenderVuelo
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.GradientInactiveCaption;
             ClientSize = new Size(953, 535);
+            Controls.Add(btnEquipaje);
             Controls.Add(btnVender);
             Controls.Add(lblDniBuscar);
             Controls.Add(lblApellidoBuscar);
@@ -346,6 +370,7 @@
             Controls.SetChildIndex(lblApellidoBuscar, 0);
             Controls.SetChildIndex(lblDniBuscar, 0);
             Controls.SetChildIndex(btnVender, 0);
+            Controls.SetChildIndex(btnEquipaje, 0);
             ((System.ComponentModel.ISupportInitialize)dtgvPasajerosDisponibles).EndInit();
             ((System.ComponentModel.ISupportInitialize)dtgvVuelosDisponibles).EndInit();
             ResumeLayout(false);
@@ -373,5 +398,6 @@
         private Button btnBuscar;
         private TextBox txtBuscarNombre;
         protected Guna.UI2.WinForms.Guna2Button btnVender;
+        protected Guna.UI2.WinForms.Guna2Button btnEquipaje;
     }
 }

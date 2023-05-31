@@ -173,35 +173,6 @@ namespace Entidades
             return vuelo.recaudacionTotal;
         }
 
-
-        public static bool operator ==(Vuelo vuelo, Vuelo vuelo1)
-        {
-            return vuelo.Aeronave == vuelo1.Aeronave && vuelo.enViaje == vuelo1.enViaje;
-        }
-
-        public static bool operator !=(Vuelo vuelo, Vuelo vuelo1)
-        {
-            return !(vuelo == vuelo1);
-        }
-
-        public override bool Equals(object? obj)
-        {
-            bool retorno = false;
-            if (obj is Vuelo)
-            {
-                if (this == (Vuelo)obj)
-                {
-                    retorno = true;
-                }
-            }
-            return retorno;
-        }
-
-        public override int GetHashCode()
-        {
-            return Avion.Matricula.GetHashCode();
-        }
-
         public static bool operator ==(Vuelo vuelo, Pasajero pasajero)
         {
             return vuelo.pasajeros.Contains(pasajero);
@@ -296,25 +267,6 @@ namespace Entidades
             mensaje.AppendLine($"Costo premium {this.costoClasePremium}");
             mensaje.AppendLine($"Costo turista {this.costoClaseTurista}");
 
-            return mensaje.ToString();
-        }
-
-        public string MostrarPasajeros()
-        {
-            StringBuilder mensaje = new StringBuilder();
-            foreach (Pasajero pasajero in pasajeros)
-            {
-                mensaje.AppendLine(pasajero.ToString());
-            }
-            return mensaje.ToString();
-        }
-
-        public string Informacion()
-        {
-            StringBuilder mensaje = new StringBuilder();
-            mensaje.AppendLine($"Partida: {this.ciudadDePartida} - ");
-            mensaje.AppendLine($"Destino: {this.ciudadDeDestino} - ");
-            mensaje.AppendLine($"Fecha salida: {this.fechaDeVuelo}");
             return mensaje.ToString();
         }
 

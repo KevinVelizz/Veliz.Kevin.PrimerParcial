@@ -7,7 +7,6 @@ namespace Aplicacion01
         private Pasajero pasajero;
         private List<Equipaje> equipajes;
         private string claseSeleccionada;
-        private List<Vuelo> vuelos;
         private bool modifica;
 
         public FrmPasajero()
@@ -15,11 +14,6 @@ namespace Aplicacion01
             InitializeComponent();
             this.equipajes = new List<Equipaje>();
             this.StartPosition = FormStartPosition.CenterScreen;
-        }
-
-        public FrmPasajero(List<Vuelo> vuelos) : this()
-        {
-            this.vuelos = vuelos;
             this.btnModificar.Visible = false;
             this.btnAgregar.Visible = true;
             this.btnAgregar.Enabled = true;
@@ -36,6 +30,8 @@ namespace Aplicacion01
             this.btnAgregar.Visible = false;
             this.btnAgregar.Enabled = false;
             this.modifica = true;
+            this.btnModificar.Visible = true;
+            this.btnLimpiar.Visible = false;
         }
 
         private void FrmPasajero_Load(object sender, EventArgs e)
@@ -115,12 +111,19 @@ namespace Aplicacion01
 
             if (int.TryParse(this.txtDNI.Text, out int numero) && int.TryParse(this.txtEdad.Text, out int numero1))
             {
-                dni = numero;
-                edad = numero1;
+                if (numero > 1000000 && numero1 >= 0)
+                {
+                    dni = numero;
+                    edad = numero1;
+                }
+                else
+                {
+                    MessageBox.Show("Ingrese DNI o edad válido.");
+                }
             }
             else
             {
-                MessageBox.Show("Ingrese valores númericos");
+                MessageBox.Show("Ingrese valores númericos.");
                 verificar = false;
             }
 
@@ -148,7 +151,7 @@ namespace Aplicacion01
                 this.nudPesoEquipaje1.Value = (decimal)this.pasajero.Equipajes[0].Peso;
             }
 
-            if (pasajero.Equipajes.Count > 1)
+            if (pasajero?.Equipajes?.Count > 1)
             {
                 this.nudPesoEquipaje2.Value = (decimal)this.pasajero.Equipajes[1].Peso;
             }

@@ -107,6 +107,7 @@
             // 
             // btnIngresar1
             // 
+            btnIngresar1.Anchor = AnchorStyles.None;
             btnIngresar1.Animated = true;
             btnIngresar1.CustomizableEdges = customizableEdges1;
             btnIngresar1.DisabledState.BorderColor = Color.DarkGray;
@@ -127,6 +128,7 @@
             // 
             // btnLimpiar1
             // 
+            btnLimpiar1.Anchor = AnchorStyles.None;
             btnLimpiar1.Animated = true;
             btnLimpiar1.CustomizableEdges = customizableEdges3;
             btnLimpiar1.DisabledState.BorderColor = Color.DarkGray;
@@ -140,7 +142,7 @@
             btnLimpiar1.Name = "btnLimpiar1";
             btnLimpiar1.PressedColor = Color.IndianRed;
             btnLimpiar1.ShadowDecoration.CustomizableEdges = customizableEdges4;
-            btnLimpiar1.Size = new Size(100, 23);
+            btnLimpiar1.Size = new Size(100, 26);
             btnLimpiar1.TabIndex = 15;
             btnLimpiar1.Text = "Limpiar";
             btnLimpiar1.Click += btnLimpiar1_Click;
@@ -159,6 +161,7 @@
             Controls.Add(lblCorreo);
             Controls.Add(txtContraseña);
             Controls.Add(txtCorreo);
+            MinimumSize = new Size(300, 350);
             Name = "IngresarUsuario";
             Text = " ";
             Load += IngresarUsuario_Load;

@@ -93,6 +93,7 @@
             Controls.Add(btnLimpiar);
             Name = "FrmBase";
             Text = "FrmBase";
+            FormClosing += FrmBase_FormClosing_1;
             Load += FrmBase_Load;
             ResumeLayout(false);
         }

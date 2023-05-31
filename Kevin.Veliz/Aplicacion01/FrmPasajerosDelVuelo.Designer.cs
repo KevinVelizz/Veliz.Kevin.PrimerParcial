@@ -44,6 +44,7 @@
             btnLimpiar.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
             btnLimpiar.Location = new Point(363, 312);
             btnLimpiar.ShadowDecoration.CustomizableEdges = customizableEdges1;
+            btnLimpiar.Visible = false;
             // 
             // btnSalir
             // 

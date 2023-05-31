@@ -159,7 +159,7 @@ namespace Entidades
             }
         }
 
-        public static void SerealizarEstadistica(Dictionary<string, double> infoCadaDestino, double montoTotal)
+        public static void SerealizarEstadistica(Dictionary<string, double> infoCadaDestino, double montoTotal, List<Vuelo> vuelos, string destino)
         {
             try
             {
@@ -170,7 +170,15 @@ namespace Entidades
                     {
                         writer.WriteLine($"{info.Key} - ${info.Value}");
                     }
-                    writer.WriteLine($"Monto total: ${montoTotal}");
+
+                    writer.WriteLine("Vuelos realizados: \n");
+
+                    foreach (Vuelo vuelo in vuelos)
+                    {
+                        writer.WriteLine(vuelo);
+                    }
+                    writer.WriteLine($"\nMonto total: ${montoTotal}");
+                    writer.WriteLine($"\nDestino favorito: {destino}");
                 }
             }
             catch (Exception ex)

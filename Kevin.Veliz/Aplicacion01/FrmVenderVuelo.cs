@@ -39,7 +39,6 @@ namespace Aplicacion01
         private void FrmVenderVuelo_Load(object sender, EventArgs e)
         {
             dtgvVuelosDisponibles.ClearSelection();
-
             if (this.pasajeros.Count > 0)
             {
                 this.dtgvPasajerosDisponibles.DataSource = this.pasajeros.FindAll(pasajero => !pasajero.Agregado);
@@ -113,17 +112,14 @@ namespace Aplicacion01
                     }
                     else
                     {
-                        if (vuelo.Avion.ServicioComida == false && vuelo.Avion.ServicioInternet == false)
-                        {
-                            int rowIndex = this.dtgvVuelosDisponibles.Rows.Add();
-                            DataGridViewRow row = dtgvVuelosDisponibles.Rows[rowIndex];
-                            row.Tag = vuelo;
+                        int rowIndex = this.dtgvVuelosDisponibles.Rows.Add();
+                        DataGridViewRow row = dtgvVuelosDisponibles.Rows[rowIndex];
+                        row.Tag = vuelo;
 
-                            row.Cells["LugarSalida"].Value = vuelo.CiudadDePartida;
-                            row.Cells["LugarDestino"].Value = vuelo.CiudadDeDestino;
-                            row.Cells["FechaSalida"].Value = vuelo.FechaDeVuelo;
-                            row.Cells["FechaLlegada"].Value = vuelo.FechaDeLLegada;
-                        }
+                        row.Cells["LugarSalida"].Value = vuelo.CiudadDePartida;
+                        row.Cells["LugarDestino"].Value = vuelo.CiudadDeDestino;
+                        row.Cells["FechaSalida"].Value = vuelo.FechaDeVuelo;
+                        row.Cells["FechaLlegada"].Value = vuelo.FechaDeLLegada;
                     }
                 }
             }
@@ -170,32 +166,51 @@ namespace Aplicacion01
             this.buscarPasajero();
         }
 
-
         private void buscarPasajero()
         {
             this.ActualizarLista(this.pasajeros);
-            if (int.TryParse(this.txtBuscarDNI.Text, out _))
+            if (this.txtBuscarDNI.Text != "" && this.txtBuscarNombre.Text != "" && this.txtBuscarApellido.Text != "")
             {
-                this.dtgvPasajerosDisponibles.DataSource = this.pasajeros.FindAll(pasajero => pasajero.Dni.ToString().Contains(this.txtBuscarDNI.Text) && pasajero.Agregado == false);
+                this.dtgvPasajerosDisponibles.DataSource = this.pasajeros.FindAll(pasajero => pasajero.Dni.ToString().Contains(this.txtBuscarDNI.Text)
+                && pasajero.Nombre.Contains(this.txtBuscarNombre.Text, StringComparison.OrdinalIgnoreCase)
+                && pasajero.Apellido.Contains(txtBuscarApellido.Text, StringComparison.OrdinalIgnoreCase));
             }
-            else if (!Regex.IsMatch(this.txtBuscarNombre.Text, @"\d"))
+            else if (this.txtBuscarDNI.Text != "" && this.txtBuscarNombre.Text != "")
             {
-                this.dtgvPasajerosDisponibles.DataSource = this.pasajeros.FindAll(pasajero => pasajero.Nombre.Contains(this.txtBuscarNombre.Text, StringComparison.OrdinalIgnoreCase) && pasajero.Agregado == false);
+                this.dtgvPasajerosDisponibles.DataSource = this.pasajeros.FindAll(pasajero => pasajero.Dni.ToString().Contains(this.txtBuscarDNI.Text)
+                && pasajero.Nombre.Contains(this.txtBuscarNombre.Text, StringComparison.OrdinalIgnoreCase));
             }
-            else if (!Regex.IsMatch(this.txtBuscarNombre.Text, @"\d"))
+            else if (this.txtBuscarDNI.Text != "" && this.txtBuscarApellido.Text != "")
             {
-                this.dtgvPasajerosDisponibles.DataSource = this.pasajeros.FindAll(pasajero => pasajero.Apellido.Contains(this.txtBuscarApellido.Text, StringComparison.OrdinalIgnoreCase) && pasajero.Agregado == false);
+                this.dtgvPasajerosDisponibles.DataSource = this.pasajeros.FindAll(pasajero => pasajero.Dni.ToString().Contains(this.txtBuscarDNI.Text)
+                && pasajero.Nombre.Contains(this.txtBuscarApellido.Text, StringComparison.OrdinalIgnoreCase));
+            }
+            else if (this.txtBuscarNombre.Text != "" && this.txtBuscarApellido.Text != "")
+            {
+                this.dtgvPasajerosDisponibles.DataSource = this.pasajeros.FindAll(pasajero => pasajero.Nombre.Contains(this.txtBuscarNombre.Text, StringComparison.OrdinalIgnoreCase)
+                && pasajero.Nombre.Contains(this.txtBuscarApellido.Text, StringComparison.OrdinalIgnoreCase));
+            }
+            else if (this.txtBuscarDNI.Text != "")
+            {
+                this.dtgvPasajerosDisponibles.DataSource = this.pasajeros.FindAll(pasajero => pasajero.Dni.ToString().Contains(this.txtBuscarDNI.Text));
+            }
+            else if (this.txtBuscarNombre.Text != "")
+            {
+                this.dtgvPasajerosDisponibles.DataSource = this.pasajeros.FindAll(pasajero => pasajero.Nombre.Contains(this.txtBuscarNombre.Text, StringComparison.OrdinalIgnoreCase));
+            }
+            else if (this.txtBuscarApellido.Text != "")
+            {
+                this.dtgvPasajerosDisponibles.DataSource = this.pasajeros.FindAll(pasajero => pasajero.Apellido.Contains(this.txtBuscarApellido.Text, StringComparison.OrdinalIgnoreCase));
             }
             else
             {
-                this.dtgvPasajerosDisponibles.DataSource = null;
+                this.dtgvPasajerosDisponibles.DataSource = this.pasajeros;
             }
         }
 
         private void btnVender_Click_1(object sender, EventArgs e)
         {
             bool validar = true;
-
             if (this.pasajeroSeleccionado is not null && this.vueloSeleccionado is not null)
             {
                 if (this.pasajeroSeleccionado.Equipajes.Count > 0)
@@ -249,6 +264,21 @@ namespace Aplicacion01
                         MessageBox.Show("Ya no hay asientos para la clase: turista");
                     }
                 }
+            }
+        }
+
+        private void btnEquipaje_Click(object sender, EventArgs e)
+        {
+            string mensaje;
+            if (this.pasajeroSeleccionado is not null)
+            {
+                mensaje = ($"{this.pasajeroSeleccionado.Equipajes[0]} ");
+
+                if (this.pasajeroSeleccionado.Equipajes.Count > 1)
+                {
+                    mensaje += $"{this.pasajeroSeleccionado.Equipajes[1]}";
+                }
+                MessageBox.Show(mensaje);
             }
         }
 

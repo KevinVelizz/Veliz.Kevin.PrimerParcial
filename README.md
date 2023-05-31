@@ -14,6 +14,9 @@ Primer Parcial laboratorio-II
 
 * Podrá ver una sección de estadistica en cuanto a los vuelos realizados.
 
+![imagen de Diagrama](./Kevin.Veliz/Diagrama%20de%20clase/DiagramaDeClase.jpg)
+
+
 ## Temas:
 Contiene una class library con las entidades y ciertas funcionalidades para el programa.
 
@@ -83,7 +86,8 @@ public void AgregarEquipaje(string descripcion, double peso)
 
 Utilice una clase **ABSTRACTA** denominada **Persona** que es la clase **padre** de **Usuario**  y de **Pasajero** para reutilizar algunas propiedades. Contiene un **metódo abstracto** **Informacion** que tendrá que ser implementada en sus hijas en caso de no ser abstractas. Además posee un método **virtual** que podrá ser sobreescrito por sus hijas.
 
-**Polimorfismo, abstracción y herencia**
+### ***Polimorfismo, abstracción y herencia***
+
 ```` C# 
 public abstract class Persona
 {
@@ -99,7 +103,7 @@ public abstract class Persona
 }
 ````
 ---
-### Colecciones.
+### ***Colecciones.***
 Utilice 2 tipos de colecciones, un diccionario y varias listas. El diccionario es para mostrar las estadisticas de destino y su monto para luego poder realizar un sort de manera decreciente y las listas para los pasajeros de un vuelo, aeronaves dentro de la aerolinea, etc.
 
 ````C#
@@ -110,14 +114,90 @@ this.recaudacionDestino.Add(auxDestino, this.acumuladorDineroPorDestino);
 Dictionary<string,double> diccionarioOrdenado = this.recaudacionDestino.OrderByDescending(x => x.Value).ToDictionary(x => x.Key, x => x.Value);
 ````
 
-### **Contras**
+### ***Contras***
 
-* Al momento de que un vuelo este este en el estado de "en vuelo" o en "realizado" se necesitará volver a presionar en el strip de "Vuelos", para recargar su información.
+* Al momento de que un vuelo este este en el estado de **en vuelo** o en **realizado** se necesitará volver a presionar en el strip de **Vuelos**, para recargar su información y la información de los pasajeros.
 * Manipulación de las listas y no la "lista" del DataGridView, debido a incovenientes en el uso de dicho componente. Así justificando las serealizaciones y deserealizaciones constantes.
 
 
-### Valor Agregado
 
+### ***Propuesta de valor Agregado***
+* Utilice metodos genéricos, para la serealización pasandole una lista genérica, y así serealizar en XML, ya sea la de pasajeros o aeronaves y para agregar la información al DataGridView. 
+
+```` C#
+public static void SerealizarDatos<T>(List<T> lista, string path)
+{
+    try
+    {
+        using (XmlTextWriter writer = new XmlTextWriter(path, Encoding.UTF8))
+        {
+            XmlSerializer ser = new XmlSerializer((typeof(List<T>)));
+            ser.Serialize(writer, lista);
+        }
+    }
+    catch (Exception ex)
+    {
+        Console.WriteLine($"ERROR:{ex.Message} - {ex.StackTrace}");
+    }
+}
+
+private void ActualizarLista<T>(List<T> listaDatos)
+{
+    this.dtgvElementos.DataSource = null;
+    this.dtgvElementos.DataSource = listaDatos;
+}
+````
+
+* Utilice expresiones lambda para filtrar los pasajeros con dicha condición.
+
+```` C#
+private void buscarPasajero()
+{
+    this.ActualizarLista(this.pasajeros);
+    if (this.txtBuscarDNI.Text != "" && this.txtBuscarNombre.Text != "" && this.txtBuscarApellido.Text != "")
+    {
+        this.dtgvPasajerosDisponibles.DataSource = this.pasajeros.FindAll(pasajero => pasajero.Dni.ToString().Contains(this.txtBuscarDNI.Text)
+        && pasajero.Nombre.Contains(this.txtBuscarNombre.Text, StringComparison.OrdinalIgnoreCase)
+        && pasajero.Apellido.Contains(txtBuscarApellido.Text, StringComparison.OrdinalIgnoreCase));
+    }
+    else if (this.txtBuscarDNI.Text != "" && this.txtBuscarNombre.Text != "")
+    {
+        this.dtgvPasajerosDisponibles.DataSource = this.pasajeros.FindAll(pasajero => pasajero.Dni.ToString().Contains(this.txtBuscarDNI.Text)
+        && pasajero.Nombre.Contains(this.txtBuscarNombre.Text, StringComparison.OrdinalIgnoreCase));
+    }
+    else if (this.txtBuscarDNI.Text != "" && this.txtBuscarApellido.Text != "")
+    {
+        this.dtgvPasajerosDisponibles.DataSource = this.pasajeros.FindAll(pasajero => pasajero.Dni.ToString().Contains(this.txtBuscarDNI.Text)
+        && pasajero.Nombre.Contains(this.txtBuscarApellido.Text, StringComparison.OrdinalIgnoreCase));
+    }
+    else if (this.txtBuscarNombre.Text != "" && this.txtBuscarApellido.Text != "")
+    {
+        this.dtgvPasajerosDisponibles.DataSource = this.pasajeros.FindAll(pasajero => pasajero.Nombre.Contains(this.txtBuscarNombre.Text, StringComparison.OrdinalIgnoreCase)
+        && pasajero.Nombre.Contains(this.txtBuscarApellido.Text, StringComparison.OrdinalIgnoreCase));
+    }
+    else if (this.txtBuscarDNI.Text != "")
+    {
+        this.dtgvPasajerosDisponibles.DataSource = this.pasajeros.FindAll(pasajero => pasajero.Dni.ToString().Contains(this.txtBuscarDNI.Text));
+    }
+    else if (this.txtBuscarNombre.Text != "")
+    {
+        this.dtgvPasajerosDisponibles.DataSource = this.pasajeros.FindAll(pasajero => pasajero.Nombre.Contains(this.txtBuscarNombre.Text, StringComparison.OrdinalIgnoreCase));
+    }
+    else if (this.txtBuscarApellido.Text != "")
+    {
+        this.dtgvPasajerosDisponibles.DataSource = this.pasajeros.FindAll(pasajero => pasajero.Apellido.Contains(this.txtBuscarApellido.Text, StringComparison.OrdinalIgnoreCase));
+    }
+    else
+    {
+        this.dtgvPasajerosDisponibles.DataSource = this.pasajeros;
+    }
+}
+````
+FindAll devuelve una lista nueva con los valores según la condición.
+
+* Componentes no vistos. DataGridView para mejor visualización, Timer.
+
+---
 
 
 

@@ -1,4 +1,5 @@
 using Entidades;
+using System.Net;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
 
@@ -24,6 +25,10 @@ namespace Aplicacion01
             this.StartPosition = FormStartPosition.CenterScreen;
             this.panelModificar.Dock = DockStyle.Fill;
             this.panelInicio.Dock = DockStyle.Fill;
+            this.panelInicio.Visible = true;
+            this.pcbImagen.Location = new Point(670, 280);
+            this.label1.Anchor = AnchorStyles.None;
+            this.label1.Location = new Point(610, 410);
         }
 
         private void Aerolineas_Load(object sender, EventArgs e)
@@ -32,6 +37,7 @@ namespace Aplicacion01
             this.pasajeros = Archivos.DeserealizarPasajeros();
             this.vuelos = Archivos.DeserealizarVuelos();
             this.StripNombreOperador.Enabled = false;
+
 
             IngresarUsuario ingresarUsuario = new IngresarUsuario();
             ingresarUsuario.ShowDialog();
@@ -119,6 +125,14 @@ namespace Aplicacion01
                             else
                             {
                                 pasajero.Agregado = true;
+                                if (vuelo.EnViaje)
+                                {
+                                    pasajero.EnVuelo = true;
+                                }
+                                else
+                                {
+                                    pasajero.EnVuelo = false;
+                                }
                             }
                             break;
                         }
@@ -269,7 +283,7 @@ namespace Aplicacion01
             switch (index)
             {
                 case 0:
-                    FrmPasajero frmPasajero = new FrmPasajero(this.vuelos);
+                    FrmPasajero frmPasajero = new FrmPasajero();
                     frmPasajero.ShowDialog();
 
                     if (frmPasajero.DialogResult == DialogResult.OK)
@@ -599,21 +613,42 @@ namespace Aplicacion01
         private void buscarPasajero()
         {
             this.ActualizarLista(this.pasajeros);
-            if (int.TryParse(this.txtBuscarDNI.Text, out _))
+            if (this.txtBuscarDNI.Text != "" && this.txtBuscarNombre.Text != "" && this.txtBuscarApellido.Text != "")
+            {
+                this.dtgvElementos.DataSource = this.pasajeros.FindAll(pasajero => pasajero.Dni.ToString().Contains(this.txtBuscarDNI.Text)
+                && pasajero.Nombre.Contains(this.txtBuscarNombre.Text, StringComparison.OrdinalIgnoreCase)
+                && pasajero.Apellido.Contains(txtBuscarApellido.Text, StringComparison.OrdinalIgnoreCase));
+            }
+            else if (this.txtBuscarDNI.Text != "" && this.txtBuscarNombre.Text != "")
+            {
+                this.dtgvElementos.DataSource = this.pasajeros.FindAll(pasajero => pasajero.Dni.ToString().Contains(this.txtBuscarDNI.Text)
+                && pasajero.Nombre.Contains(this.txtBuscarNombre.Text, StringComparison.OrdinalIgnoreCase));
+            }
+            else if (this.txtBuscarDNI.Text != "" && this.txtBuscarApellido.Text != "")
+            {
+                this.dtgvElementos.DataSource = this.pasajeros.FindAll(pasajero => pasajero.Dni.ToString().Contains(this.txtBuscarDNI.Text)
+                && pasajero.Nombre.Contains(this.txtBuscarApellido.Text, StringComparison.OrdinalIgnoreCase));
+            }
+            else if (this.txtBuscarNombre.Text != "" && this.txtBuscarApellido.Text != "")
+            {
+                this.dtgvElementos.DataSource = this.pasajeros.FindAll(pasajero => pasajero.Nombre.Contains(this.txtBuscarNombre.Text, StringComparison.OrdinalIgnoreCase)
+                && pasajero.Nombre.Contains(this.txtBuscarApellido.Text, StringComparison.OrdinalIgnoreCase));
+            }
+            else if (this.txtBuscarDNI.Text != "")
             {
                 this.dtgvElementos.DataSource = this.pasajeros.FindAll(pasajero => pasajero.Dni.ToString().Contains(this.txtBuscarDNI.Text));
             }
-            else if (!Regex.IsMatch(this.txtBuscarNombre.Text, @"\d"))
+            else if (this.txtBuscarNombre.Text != "")
             {
                 this.dtgvElementos.DataSource = this.pasajeros.FindAll(pasajero => pasajero.Nombre.Contains(this.txtBuscarNombre.Text, StringComparison.OrdinalIgnoreCase));
             }
-            else if (!Regex.IsMatch(this.txtBuscarNombre.Text, @"\d"))
+            else if (this.txtBuscarApellido.Text != "")
             {
                 this.dtgvElementos.DataSource = this.pasajeros.FindAll(pasajero => pasajero.Apellido.Contains(this.txtBuscarApellido.Text, StringComparison.OrdinalIgnoreCase));
             }
             else
             {
-                this.dtgvElementos.DataSource = null;
+                this.dtgvElementos.DataSource = this.pasajeros;
             }
         }
 
@@ -671,8 +706,12 @@ namespace Aplicacion01
                 }
             }
         }
+        private void panelInicio_Paint(object sender, PaintEventArgs e)
+        {
 
-        private void FrmAerolinea_FormClosing(object sender, FormClosingEventArgs e)
+        }
+
+        private void FrmAerolinea_FormClosing_1(object sender, FormClosingEventArgs e)
         {
             DialogResult resultado = MessageBox.Show("¿Está seguro que desea salir?", "Confirmación de salida", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (resultado == DialogResult.No)
