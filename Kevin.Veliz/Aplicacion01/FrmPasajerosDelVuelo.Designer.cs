@@ -58,6 +58,7 @@
             // 
             // dtgvPasajerosDelVuelo
             // 
+            dtgvPasajerosDelVuelo.Anchor = AnchorStyles.None;
             dtgvPasajerosDelVuelo.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dtgvPasajerosDelVuelo.Location = new Point(12, 38);
             dtgvPasajerosDelVuelo.MultiSelect = false;
@@ -71,7 +72,7 @@
             // 
             lblNombre.Anchor = AnchorStyles.None;
             lblNombre.AutoSize = true;
-            lblNombre.Location = new Point(227, 18);
+            lblNombre.Location = new Point(235, 18);
             lblNombre.Name = "lblNombre";
             lblNombre.Size = new Size(64, 17);
             lblNombre.TabIndex = 1;
@@ -82,10 +83,12 @@
             AutoScaleDimensions = new SizeF(7F, 17F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.GradientInactiveCaption;
-            ClientSize = new Size(537, 347);
+            ClientSize = new Size(553, 386);
             Controls.Add(lblNombre);
             Controls.Add(dtgvPasajerosDelVuelo);
             Font = new Font("Segoe UI Symbol", 9.75F, FontStyle.Italic, GraphicsUnit.Point);
+            FormBorderStyle = FormBorderStyle.Sizable;
+            MinimumSize = new Size(553, 386);
             Name = "FrmPasajerosDelVuelo";
             Text = "FrmModificaPasajero";
             Load += FrmPasajerosDelVuelo_Load;

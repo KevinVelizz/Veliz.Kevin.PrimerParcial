@@ -70,7 +70,7 @@ namespace Aplicacion01
                 }
             }
             this.textBox1.Text = acumuladorDinero.ToString();
-        }  
+        }
 
         private void FrmEstadistica_FormClosing_1(object sender, FormClosingEventArgs e)
         {

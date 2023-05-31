@@ -53,6 +53,12 @@ namespace Entidades
             set { this.fechaDeVuelo = value; }
         }
 
+        public DateTime FechaDeLLegada
+        {
+            get { return this.fechaDeLLegada; }
+            set { this.fechaDeLLegada = value; }
+        }
+
         public int CantidadAsientosDispTurista
         {
             get
@@ -111,13 +117,7 @@ namespace Entidades
         {
             get { return this.Aeronave; }
             set { this.Aeronave = value; }
-        }
-
-        public DateTime FechaDeLLegada
-        {
-            get { return this.fechaDeLLegada; }
-            set { this.fechaDeLLegada = value; }
-        }
+        } 
 
         public double RecaudacionTotal
         {

@@ -1,7 +1,4 @@
 using Entidades;
-using System.Net;
-using System.Text.RegularExpressions;
-using System.Windows.Forms;
 
 namespace Aplicacion01
 {
@@ -26,9 +23,9 @@ namespace Aplicacion01
             this.panelModificar.Dock = DockStyle.Fill;
             this.panelInicio.Dock = DockStyle.Fill;
             this.panelInicio.Visible = true;
-            this.pcbImagen.Location = new Point(670, 280);
+            this.pcbImagen.Location = new Point(480, 230);
             this.label1.Anchor = AnchorStyles.None;
-            this.label1.Location = new Point(610, 410);
+            this.label1.Location = new Point(430, 350);
         }
 
         private void Aerolineas_Load(object sender, EventArgs e)
@@ -76,6 +73,43 @@ namespace Aplicacion01
             {
                 this.VisualizacionDelUsuario(this.index, this.usuario.Perfil);
             }
+
+            foreach (Vuelo vuelo in this.vuelos)
+            {
+                vuelo.VueloEnCurso();
+                vuelo.VueloRealizado();
+
+                foreach (Pasajero pasajeroVuelo in vuelo.Pasajeros)
+                {
+                    foreach (Pasajero pasajero in this.pasajeros)
+                    {
+                        if (pasajeroVuelo == pasajero)
+                        {
+                            if (vuelo.Realizado)
+                            {
+                                pasajero.Agregado = false;
+                                pasajero.EnVuelo = false;
+                            }
+                            else
+                            {
+                                pasajero.Agregado = true;
+
+                                if (vuelo.EnViaje)
+                                {
+                                    pasajero.EnVuelo = true;
+                                }
+                                else
+                                {
+                                    pasajero.EnVuelo = false;
+                                }
+                            }
+                            break;
+                        }
+                    }
+                }
+                Archivos.SerealizarDatos(this.pasajeros, Archivos.PathPasajeros);
+            }
+
             this.vuelos = Archivos.DeserealizarVuelos();
             this.pasajeros = Archivos.DeserealizarPasajeros();
             this.ActualizarLista(this.pasajeros);
@@ -112,19 +146,21 @@ namespace Aplicacion01
                 vuelo.VueloEnCurso();
                 vuelo.VueloRealizado();
 
-                foreach (Pasajero aux in vuelo.Pasajeros)
+                foreach (Pasajero pasajeroVuelo in vuelo.Pasajeros)
                 {
                     foreach (Pasajero pasajero in this.pasajeros)
                     {
-                        if (aux == pasajero)
+                        if (pasajeroVuelo == pasajero)
                         {
                             if (vuelo.Realizado)
                             {
                                 pasajero.Agregado = false;
+                                pasajero.EnVuelo = false;
                             }
                             else
                             {
                                 pasajero.Agregado = true;
+
                                 if (vuelo.EnViaje)
                                 {
                                     pasajero.EnVuelo = true;
@@ -162,6 +198,7 @@ namespace Aplicacion01
             }
             Archivos.SerealizarVuelos(this.vuelos);
             this.vuelos = Archivos.DeserealizarVuelos();
+            this.pasajeros = Archivos.DeserealizarPasajeros();
             this.ActualizarLista(this.vuelos);
         }
 
@@ -550,6 +587,10 @@ namespace Aplicacion01
                                 this.vuelos = Archivos.DeserealizarVuelos();
                                 this.aeronaves = Archivos.DeserealizarAeronaves();
                             }
+                        }
+                        else
+                        {
+                            MessageBox.Show("No se puede modificar el vuelo, está en viaje o fue realizado.");
                         }
                     }
                     break;

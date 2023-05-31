@@ -66,8 +66,9 @@
             btnLimpiar.DisabledState.CustomBorderColor = Color.DarkGray;
             btnLimpiar.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
             btnLimpiar.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
-            btnLimpiar.Location = new Point(755, 486);
+            btnLimpiar.Location = new Point(655, 486);
             btnLimpiar.ShadowDecoration.CustomizableEdges = customizableEdges1;
+            btnLimpiar.Visible = false;
             // 
             // btnSalir
             // 
@@ -110,7 +111,7 @@
             lblInfoAvion.Anchor = AnchorStyles.None;
             lblInfoAvion.AutoSize = true;
             lblInfoAvion.Font = new Font("Segoe UI Symbol", 9.75F, FontStyle.Italic, GraphicsUnit.Point);
-            lblInfoAvion.Location = new Point(469, 260);
+            lblInfoAvion.Location = new Point(496, 260);
             lblInfoAvion.Name = "lblInfoAvion";
             lblInfoAvion.Size = new Size(43, 17);
             lblInfoAvion.TabIndex = 5;
@@ -289,7 +290,7 @@
             btnVender.FillColor = Color.FromArgb(255, 224, 192);
             btnVender.Font = new Font("Segoe UI Symbol", 9F, FontStyle.Italic, GraphicsUnit.Point);
             btnVender.ForeColor = Color.Black;
-            btnVender.Location = new Point(658, 486);
+            btnVender.Location = new Point(755, 486);
             btnVender.Name = "btnVender";
             btnVender.PressedColor = Color.IndianRed;
             btnVender.ShadowDecoration.CustomizableEdges = customizableEdges4;
@@ -323,7 +324,7 @@
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.GradientInactiveCaption;
-            ClientSize = new Size(953, 535);
+            ClientSize = new Size(969, 574);
             Controls.Add(btnEquipaje);
             Controls.Add(btnVender);
             Controls.Add(lblDniBuscar);
@@ -345,6 +346,7 @@
             Controls.Add(lblInfoAvion);
             Controls.Add(chkInternet);
             Controls.Add(chkComida);
+            MinimumSize = new Size(969, 574);
             Name = "FrmVenderVuelo";
             Text = "FrmVenderVuelo";
             Load += FrmVenderVuelo_Load;

@@ -1,14 +1,4 @@
 ﻿using Entidades;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Text.RegularExpressions;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace Aplicacion01
 {
@@ -131,6 +121,11 @@ namespace Aplicacion01
             {
                 DataGridViewRow filaSeleccionada = dtgvVuelosDisponibles.Rows[e.RowIndex];
                 this.vueloSeleccionado = filaSeleccionada.Tag as Vuelo;
+                if (this.vueloSeleccionado is not null)
+                {
+                    this.lblInfoAvion.Visible = true;
+                    this.lblInfoAvion.Text = this.vueloSeleccionado.Avion.ToString();
+                }
 
                 foreach (Vuelo vuelo in this.vuelos)
                 {
@@ -246,6 +241,7 @@ namespace Aplicacion01
                         Archivos.SerealizarDatos(this.pasajeros, Archivos.pathPasajeros);
                         Archivos.SerealizarVuelos(this.vuelos);
                         this.cerrar = true;
+                        MessageBox.Show("Se vendió correctamente.");
                         this.Close();
                     }
                     else
@@ -264,6 +260,10 @@ namespace Aplicacion01
                         MessageBox.Show("Ya no hay asientos para la clase: turista");
                     }
                 }
+            }
+            else
+            {
+                MessageBox.Show("Seleccione un pasajero y un vuelo desde el tag.");
             }
         }
 

@@ -54,6 +54,7 @@
             // 
             // btnAgregar
             // 
+            btnAgregar.Anchor = AnchorStyles.None;
             btnAgregar.Location = new Point(14, 415);
             btnAgregar.Name = "btnAgregar";
             btnAgregar.Size = new Size(75, 23);
@@ -64,6 +65,7 @@
             // 
             // btnCancelar
             // 
+            btnCancelar.Anchor = AnchorStyles.None;
             btnCancelar.Location = new Point(222, 415);
             btnCancelar.Name = "btnCancelar";
             btnCancelar.Size = new Size(75, 23);
@@ -74,6 +76,7 @@
             // 
             // txtApellido
             // 
+            txtApellido.Anchor = AnchorStyles.None;
             txtApellido.Location = new Point(176, 62);
             txtApellido.Name = "txtApellido";
             txtApellido.Size = new Size(100, 23);
@@ -81,6 +84,7 @@
             // 
             // txtDNI
             // 
+            txtDNI.Anchor = AnchorStyles.None;
             txtDNI.Location = new Point(176, 109);
             txtDNI.Name = "txtDNI";
             txtDNI.Size = new Size(100, 23);
@@ -88,6 +92,7 @@
             // 
             // txtNombre
             // 
+            txtNombre.Anchor = AnchorStyles.None;
             txtNombre.Location = new Point(176, 20);
             txtNombre.Name = "txtNombre";
             txtNombre.Size = new Size(100, 23);
@@ -95,6 +100,7 @@
             // 
             // txtEdad
             // 
+            txtEdad.Anchor = AnchorStyles.None;
             txtEdad.Location = new Point(176, 151);
             txtEdad.Name = "txtEdad";
             txtEdad.Size = new Size(100, 23);
@@ -102,6 +108,7 @@
             // 
             // lblNombre
             // 
+            lblNombre.Anchor = AnchorStyles.None;
             lblNombre.AutoSize = true;
             lblNombre.Font = new Font("Segoe UI Symbol", 9.75F, FontStyle.Italic, GraphicsUnit.Point);
             lblNombre.Location = new Point(95, 26);
@@ -112,6 +119,7 @@
             // 
             // lblApellido
             // 
+            lblApellido.Anchor = AnchorStyles.None;
             lblApellido.AutoSize = true;
             lblApellido.Font = new Font("Segoe UI Symbol", 9.75F, FontStyle.Italic, GraphicsUnit.Point);
             lblApellido.Location = new Point(96, 68);
@@ -122,6 +130,7 @@
             // 
             // label3
             // 
+            label3.Anchor = AnchorStyles.None;
             label3.AutoSize = true;
             label3.Font = new Font("Segoe UI Symbol", 9.75F, FontStyle.Italic, GraphicsUnit.Point);
             label3.Location = new Point(122, 115);
@@ -132,6 +141,7 @@
             // 
             // lblEdad
             // 
+            lblEdad.Anchor = AnchorStyles.None;
             lblEdad.AutoSize = true;
             lblEdad.Font = new Font("Segoe UI Symbol", 9.75F, FontStyle.Italic, GraphicsUnit.Point);
             lblEdad.Location = new Point(114, 157);
@@ -142,6 +152,7 @@
             // 
             // btnLimpiar
             // 
+            btnLimpiar.Anchor = AnchorStyles.None;
             btnLimpiar.Location = new Point(115, 415);
             btnLimpiar.Name = "btnLimpiar";
             btnLimpiar.Size = new Size(75, 23);
@@ -152,6 +163,7 @@
             // 
             // lblPesoEquipaje2
             // 
+            lblPesoEquipaje2.Anchor = AnchorStyles.None;
             lblPesoEquipaje2.AutoSize = true;
             lblPesoEquipaje2.Font = new Font("Segoe UI Symbol", 9.75F, FontStyle.Italic, GraphicsUnit.Point);
             lblPesoEquipaje2.Location = new Point(3, 305);
@@ -162,6 +174,7 @@
             // 
             // chkEquipajeMano
             // 
+            chkEquipajeMano.Anchor = AnchorStyles.None;
             chkEquipajeMano.AutoSize = true;
             chkEquipajeMano.Location = new Point(176, 348);
             chkEquipajeMano.Name = "chkEquipajeMano";
@@ -172,6 +185,7 @@
             // 
             // label1
             // 
+            label1.Anchor = AnchorStyles.None;
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI Symbol", 9.75F, FontStyle.Italic, GraphicsUnit.Point);
             label1.Location = new Point(115, 202);
@@ -182,6 +196,7 @@
             // 
             // cboClase
             // 
+            cboClase.Anchor = AnchorStyles.None;
             cboClase.FormattingEnabled = true;
             cboClase.Location = new Point(176, 196);
             cboClase.Name = "cboClase";
@@ -192,6 +207,7 @@
             // 
             // lblPeso
             // 
+            lblPeso.Anchor = AnchorStyles.None;
             lblPeso.AutoSize = true;
             lblPeso.Font = new Font("Segoe UI Symbol", 9.75F, FontStyle.Italic, GraphicsUnit.Point);
             lblPeso.Location = new Point(14, 256);
@@ -202,6 +218,7 @@
             // 
             // nudPesoEquipaje1
             // 
+            nudPesoEquipaje1.Anchor = AnchorStyles.None;
             nudPesoEquipaje1.Font = new Font("Segoe UI Symbol", 9.75F, FontStyle.Italic, GraphicsUnit.Point);
             nudPesoEquipaje1.Location = new Point(176, 250);
             nudPesoEquipaje1.Maximum = new decimal(new int[] { 25, 0, 0, 0 });
@@ -213,6 +230,7 @@
             // 
             // nudPesoEquipaje2
             // 
+            nudPesoEquipaje2.Anchor = AnchorStyles.None;
             nudPesoEquipaje2.Font = new Font("Segoe UI Symbol", 9.75F, FontStyle.Italic, GraphicsUnit.Point);
             nudPesoEquipaje2.Location = new Point(176, 299);
             nudPesoEquipaje2.Maximum = new decimal(new int[] { 21, 0, 0, 0 });
@@ -224,6 +242,7 @@
             // 
             // btnModificar
             // 
+            btnModificar.Anchor = AnchorStyles.None;
             btnModificar.Location = new Point(14, 386);
             btnModificar.Name = "btnModificar";
             btnModificar.Size = new Size(75, 23);
@@ -234,6 +253,7 @@
             // 
             // chkVacunado
             // 
+            chkVacunado.Anchor = AnchorStyles.None;
             chkVacunado.AutoSize = true;
             chkVacunado.Location = new Point(176, 373);
             chkVacunado.Name = "chkVacunado";
@@ -268,6 +288,7 @@
             Controls.Add(txtApellido);
             Controls.Add(btnCancelar);
             Controls.Add(btnAgregar);
+            MinimumSize = new Size(326, 489);
             Name = "FrmPasajero";
             Text = "FrmPasajero";
             Load += FrmPasajero_Load;

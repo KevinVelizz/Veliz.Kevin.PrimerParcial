@@ -186,7 +186,7 @@
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.GradientInactiveCaption;
-            ClientSize = new Size(872, 520);
+            ClientSize = new Size(872, 542);
             Controls.Add(lblDestino);
             Controls.Add(lblDestinoFavorito);
             Controls.Add(dtgvMontoDestinos);
@@ -196,6 +196,7 @@
             Controls.Add(lblMontoTotal);
             Controls.Add(btnCalcular);
             Controls.Add(lblTitulo);
+            FormBorderStyle = FormBorderStyle.Sizable;
             MinimumSize = new Size(870, 542);
             Name = "FrmEstadistica";
             Text = "Estadisticas";

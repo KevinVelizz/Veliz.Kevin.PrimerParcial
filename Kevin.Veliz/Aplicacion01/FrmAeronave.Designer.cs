@@ -70,6 +70,7 @@
             // 
             // txtMatricula
             // 
+            txtMatricula.Anchor = AnchorStyles.None;
             txtMatricula.Location = new Point(144, 28);
             txtMatricula.Name = "txtMatricula";
             txtMatricula.Size = new Size(100, 23);
@@ -77,6 +78,7 @@
             // 
             // txtCantAsientos
             // 
+            txtCantAsientos.Anchor = AnchorStyles.None;
             txtCantAsientos.Location = new Point(144, 75);
             txtCantAsientos.Name = "txtCantAsientos";
             txtCantAsientos.Size = new Size(100, 23);
@@ -84,6 +86,7 @@
             // 
             // txtCantBanios
             // 
+            txtCantBanios.Anchor = AnchorStyles.None;
             txtCantBanios.Location = new Point(144, 128);
             txtCantBanios.Name = "txtCantBanios";
             txtCantBanios.Size = new Size(100, 23);
@@ -91,6 +94,7 @@
             // 
             // lblMatricula
             // 
+            lblMatricula.Anchor = AnchorStyles.None;
             lblMatricula.AutoSize = true;
             lblMatricula.Font = new Font("Segoe UI Symbol", 9.75F, FontStyle.Italic, GraphicsUnit.Point);
             lblMatricula.Location = new Point(59, 34);
@@ -101,6 +105,7 @@
             // 
             // lblCantAsientos
             // 
+            lblCantAsientos.Anchor = AnchorStyles.None;
             lblCantAsientos.AutoSize = true;
             lblCantAsientos.Font = new Font("Segoe UI Symbol", 9.75F, FontStyle.Italic, GraphicsUnit.Point);
             lblCantAsientos.Location = new Point(12, 83);
@@ -111,6 +116,7 @@
             // 
             // lblCantBanios
             // 
+            lblCantBanios.Anchor = AnchorStyles.None;
             lblCantBanios.AutoSize = true;
             lblCantBanios.Font = new Font("Segoe UI Symbol", 9.75F, FontStyle.Italic, GraphicsUnit.Point);
             lblCantBanios.Location = new Point(21, 136);
@@ -121,6 +127,7 @@
             // 
             // chkInternet
             // 
+            chkInternet.Anchor = AnchorStyles.None;
             chkInternet.AutoSize = true;
             chkInternet.Location = new Point(144, 206);
             chkInternet.Name = "chkInternet";
@@ -131,6 +138,7 @@
             // 
             // chkComida
             // 
+            chkComida.Anchor = AnchorStyles.None;
             chkComida.AutoSize = true;
             chkComida.Location = new Point(143, 240);
             chkComida.Name = "chkComida";
@@ -141,6 +149,7 @@
             // 
             // txtCapacidadBodega
             // 
+            txtCapacidadBodega.Anchor = AnchorStyles.None;
             txtCapacidadBodega.Location = new Point(144, 177);
             txtCapacidadBodega.Name = "txtCapacidadBodega";
             txtCapacidadBodega.Size = new Size(100, 23);
@@ -148,6 +157,7 @@
             // 
             // lblCapacidadBodega
             // 
+            lblCapacidadBodega.Anchor = AnchorStyles.None;
             lblCapacidadBodega.AutoSize = true;
             lblCapacidadBodega.Location = new Point(-1, 185);
             lblCapacidadBodega.Name = "lblCapacidadBodega";
@@ -157,6 +167,7 @@
             // 
             // btnAgregar1
             // 
+            btnAgregar1.Anchor = AnchorStyles.None;
             btnAgregar1.Animated = true;
             btnAgregar1.BorderStyle = System.Drawing.Drawing2D.DashStyle.DashDot;
             btnAgregar1.CustomizableEdges = customizableEdges3;
@@ -178,6 +189,7 @@
             // 
             // btnModificar1
             // 
+            btnModificar1.Anchor = AnchorStyles.None;
             btnModificar1.Animated = true;
             btnModificar1.BorderStyle = System.Drawing.Drawing2D.DashStyle.DashDot;
             btnModificar1.CustomizableEdges = customizableEdges5;
@@ -202,7 +214,7 @@
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.GradientInactiveCaption;
-            ClientSize = new Size(332, 350);
+            ClientSize = new Size(348, 389);
             Controls.Add(btnModificar1);
             Controls.Add(btnAgregar1);
             Controls.Add(lblCapacidadBodega);
@@ -215,7 +227,7 @@
             Controls.Add(txtCantBanios);
             Controls.Add(txtCantAsientos);
             Controls.Add(txtMatricula);
-            FormBorderStyle = FormBorderStyle.Sizable;
+            MinimumSize = new Size(364, 428);
             Name = "FrmAeronave";
             Text = "FrmAeronave";
             Load += FrmAeronave_Load;

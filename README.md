@@ -119,6 +119,7 @@ Dictionary<string,double> diccionarioOrdenado = this.recaudacionDestino.OrderByD
 * Al momento de que un vuelo este este en el estado de **en vuelo** o en **realizado** se necesitará volver a presionar en el strip de **Vuelos**, para recargar su información y la información de los pasajeros.
 * Manipulación de las listas y no la "lista" del DataGridView, debido a incovenientes en el uso de dicho componente. Así justificando las serealizaciones y deserealizaciones constantes.
 
+* En el formulario de **Vender Vuelo** primero debe seleccionarse un pasajero y luego el vuelo desde el tag del DataGridView para que se muestre el monto bruto y neto.
 
 
 ### ***Propuesta de valor Agregado***
@@ -197,6 +198,7 @@ FindAll devuelve una lista nueva con los valores según la condición.
 
 * Componentes no vistos. DataGridView para mejor visualización, Timer.
 
+* Utilice un nuget llamado GUNA que me brinda componentes con configuraciones sencillas y con estilos para windowsForms.
 ---
 
 

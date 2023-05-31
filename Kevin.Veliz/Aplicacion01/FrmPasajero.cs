@@ -19,6 +19,7 @@ namespace Aplicacion01
             this.btnAgregar.Enabled = true;
             this.txtDNI.Enabled = true;
             this.modifica = false;
+            this.Text = "Agregar pasajero";
         }
 
         public FrmPasajero(Pasajero pasajero) : this()
@@ -32,6 +33,7 @@ namespace Aplicacion01
             this.modifica = true;
             this.btnModificar.Visible = true;
             this.btnLimpiar.Visible = false;
+            this.Text = "Modificar pasajero";
         }
 
         private void FrmPasajero_Load(object sender, EventArgs e)
@@ -118,6 +120,7 @@ namespace Aplicacion01
                 }
                 else
                 {
+                    verificar = false;
                     MessageBox.Show("Ingrese DNI o edad válido.");
                 }
             }

@@ -1,13 +1,4 @@
 ﻿using Entidades;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace Aplicacion01
 {
@@ -37,6 +28,7 @@ namespace Aplicacion01
             this.aeronaves = listaAeronaves;
             this.btnAgregar1.Visible = true;
             this.btnModificar1.Visible = false;
+            this.Text = "Agregar vuelo";
         }
 
         public FrmVuelo(Vuelo vuelo, List<Aeronave> aeronaves) : this()
@@ -46,6 +38,8 @@ namespace Aplicacion01
             this.btnModificar1.Location = new System.Drawing.Point(this.btnAgregar1.Location.X, this.btnAgregar1.Location.Y);
             this.btnAgregar1.Visible = false;
             this.modifica = true;
+            this.btnLimpiar.Visible = false;
+            this.Text = "Modificar vuelo";
         }
 
         private void FrmVuelo_Load(object sender, EventArgs e)

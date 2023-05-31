@@ -78,7 +78,7 @@
             menuAerolinea.Margin = new Padding(10, 11, 10, 11);
             menuAerolinea.Name = "menuAerolinea";
             menuAerolinea.Padding = new Padding(6, 11, 0, 11);
-            menuAerolinea.Size = new Size(1441, 46);
+            menuAerolinea.Size = new Size(1047, 46);
             menuAerolinea.TabIndex = 2;
             menuAerolinea.Text = "menuAerolinea";
             // 
@@ -188,9 +188,9 @@
             panelModificar.Controls.Add(btnModificar);
             panelModificar.Controls.Add(btnEliminar);
             panelModificar.Controls.Add(btnAgregar);
-            panelModificar.Location = new Point(27, 60);
+            panelModificar.Location = new Point(-1, 59);
             panelModificar.Name = "panelModificar";
-            panelModificar.Size = new Size(1414, 661);
+            panelModificar.Size = new Size(1036, 518);
             panelModificar.TabIndex = 3;
             panelModificar.Visible = false;
             panelModificar.Paint += panelModificar_Paint;
@@ -199,11 +199,11 @@
             // 
             dtgvElementos.Anchor = AnchorStyles.None;
             dtgvElementos.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dtgvElementos.Location = new Point(14, 89);
+            dtgvElementos.Location = new Point(14, 63);
             dtgvElementos.Name = "dtgvElementos";
             dtgvElementos.ReadOnly = true;
             dtgvElementos.RowTemplate.Height = 25;
-            dtgvElementos.Size = new Size(1321, 499);
+            dtgvElementos.Size = new Size(916, 415);
             dtgvElementos.TabIndex = 14;
             dtgvElementos.CellClick += dtgvElementos_CellClick;
             // 
@@ -212,7 +212,7 @@
             lblDniBuscar.Anchor = AnchorStyles.None;
             lblDniBuscar.AutoSize = true;
             lblDniBuscar.Font = new Font("Segoe UI Symbol", 11.25F, FontStyle.Italic, GraphicsUnit.Point);
-            lblDniBuscar.Location = new Point(256, 36);
+            lblDniBuscar.Location = new Point(254, 9);
             lblDniBuscar.Name = "lblDniBuscar";
             lblDniBuscar.Size = new Size(38, 20);
             lblDniBuscar.TabIndex = 13;
@@ -223,7 +223,7 @@
             lblApellidoBuscar.Anchor = AnchorStyles.None;
             lblApellidoBuscar.AutoSize = true;
             lblApellidoBuscar.Font = new Font("Segoe UI Symbol", 11.25F, FontStyle.Italic, GraphicsUnit.Point);
-            lblApellidoBuscar.Location = new Point(135, 36);
+            lblApellidoBuscar.Location = new Point(134, 9);
             lblApellidoBuscar.Name = "lblApellidoBuscar";
             lblApellidoBuscar.Size = new Size(69, 20);
             lblApellidoBuscar.TabIndex = 12;
@@ -234,7 +234,7 @@
             lblNombreBuscar.Anchor = AnchorStyles.None;
             lblNombreBuscar.AutoSize = true;
             lblNombreBuscar.Font = new Font("Segoe UI Symbol", 11.25F, FontStyle.Italic, GraphicsUnit.Point);
-            lblNombreBuscar.Location = new Point(27, 36);
+            lblNombreBuscar.Location = new Point(28, 9);
             lblNombreBuscar.Name = "lblNombreBuscar";
             lblNombreBuscar.Size = new Size(67, 20);
             lblNombreBuscar.TabIndex = 11;
@@ -243,7 +243,7 @@
             // btnMostrarPasajeros
             // 
             btnMostrarPasajeros.Anchor = AnchorStyles.None;
-            btnMostrarPasajeros.Location = new Point(1341, 278);
+            btnMostrarPasajeros.Location = new Point(936, 426);
             btnMostrarPasajeros.Name = "btnMostrarPasajeros";
             btnMostrarPasajeros.Size = new Size(75, 52);
             btnMostrarPasajeros.TabIndex = 10;
@@ -255,7 +255,7 @@
             // txtBuscarDNI
             // 
             txtBuscarDNI.Anchor = AnchorStyles.None;
-            txtBuscarDNI.Location = new Point(226, 58);
+            txtBuscarDNI.Location = new Point(225, 32);
             txtBuscarDNI.Name = "txtBuscarDNI";
             txtBuscarDNI.Size = new Size(100, 25);
             txtBuscarDNI.TabIndex = 9;
@@ -264,7 +264,7 @@
             // txtBuscarApellido
             // 
             txtBuscarApellido.Anchor = AnchorStyles.None;
-            txtBuscarApellido.Location = new Point(120, 58);
+            txtBuscarApellido.Location = new Point(119, 32);
             txtBuscarApellido.Name = "txtBuscarApellido";
             txtBuscarApellido.Size = new Size(100, 25);
             txtBuscarApellido.TabIndex = 8;
@@ -273,7 +273,7 @@
             // btnBuscar
             // 
             btnBuscar.Anchor = AnchorStyles.None;
-            btnBuscar.Location = new Point(351, 58);
+            btnBuscar.Location = new Point(331, 32);
             btnBuscar.Name = "btnBuscar";
             btnBuscar.Size = new Size(80, 25);
             btnBuscar.TabIndex = 7;
@@ -285,7 +285,7 @@
             // txtBuscarNombre
             // 
             txtBuscarNombre.Anchor = AnchorStyles.None;
-            txtBuscarNombre.Location = new Point(14, 59);
+            txtBuscarNombre.Location = new Point(13, 32);
             txtBuscarNombre.Name = "txtBuscarNombre";
             txtBuscarNombre.Size = new Size(100, 25);
             txtBuscarNombre.TabIndex = 6;
@@ -296,7 +296,7 @@
             lblNombreSeccion.Anchor = AnchorStyles.None;
             lblNombreSeccion.AutoSize = true;
             lblNombreSeccion.Font = new Font("Segoe UI Symbol", 11.25F, FontStyle.Italic, GraphicsUnit.Point);
-            lblNombreSeccion.Location = new Point(621, 67);
+            lblNombreSeccion.Location = new Point(460, 40);
             lblNombreSeccion.Name = "lblNombreSeccion";
             lblNombreSeccion.Size = new Size(50, 20);
             lblNombreSeccion.TabIndex = 4;
@@ -305,7 +305,7 @@
             // btnModificar
             // 
             btnModificar.Anchor = AnchorStyles.None;
-            btnModificar.Location = new Point(1341, 214);
+            btnModificar.Location = new Point(936, 188);
             btnModificar.Name = "btnModificar";
             btnModificar.Size = new Size(75, 58);
             btnModificar.TabIndex = 2;
@@ -318,7 +318,7 @@
             btnEliminar.Anchor = AnchorStyles.None;
             btnEliminar.Font = new Font("Segoe UI", 20.25F, FontStyle.Bold, GraphicsUnit.Point);
             btnEliminar.ForeColor = Color.Red;
-            btnEliminar.Location = new Point(1341, 151);
+            btnEliminar.Location = new Point(936, 125);
             btnEliminar.Name = "btnEliminar";
             btnEliminar.Size = new Size(75, 57);
             btnEliminar.TabIndex = 1;
@@ -331,7 +331,7 @@
             btnAgregar.Anchor = AnchorStyles.None;
             btnAgregar.Font = new Font("Segoe UI", 20.25F, FontStyle.Bold, GraphicsUnit.Point);
             btnAgregar.ForeColor = Color.LimeGreen;
-            btnAgregar.Location = new Point(1341, 89);
+            btnAgregar.Location = new Point(936, 63);
             btnAgregar.Name = "btnAgregar";
             btnAgregar.Size = new Size(75, 56);
             btnAgregar.TabIndex = 0;
@@ -382,13 +382,13 @@
             AutoScaleDimensions = new SizeF(7F, 17F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.GradientInactiveCaption;
-            ClientSize = new Size(1441, 711);
+            ClientSize = new Size(1047, 598);
             Controls.Add(panelModificar);
             Controls.Add(menuAerolinea);
             Controls.Add(panelInicio);
             Font = new Font("Segoe UI Symbol", 9.75F, FontStyle.Italic, GraphicsUnit.Point);
             MainMenuStrip = menuAerolinea;
-            MinimumSize = new Size(1440, 700);
+            MinimumSize = new Size(1063, 637);
             Name = "FrmAerolinea";
             Text = "Aerolineas";
             FormClosing += FrmAerolinea_FormClosing_1;
